@@ -46,4 +46,4 @@ while(cur != null){
     cur = next;
 }
 // note: end of loop, prev is now new head for reversed LinkedList
-// note: when reversing LinkedList, always use dummy node.
+// note: when reversing LinkedList, always use dummy node. see lc 92. Reverse Linked List II
