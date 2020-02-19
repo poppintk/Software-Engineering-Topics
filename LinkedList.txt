@@ -1,0 +1,28 @@
+// assume ListNode is Single Linked List Node
+
+
+ListNode fast = head;
+ListNode slow = head;
+1) increase by two
+// note
+// "fast.next != null" works on odd length
+// "fast != null" works on even length
+while(fast != null && fast.next != null){// note: missing either one condition will crash for arbitrary size of length
+    fast = fast.next.next;
+    slow = slow.next;
+}
+// if size is odd, fast will be the last node and slow will be on index Math.floor(size/2)
+// if size is even, fast will be null pointer at the end and slow will be on index size/2
+
+2) increase by one
+while(fast != null){
+  fast = fast.next
+}
+ 
+//note: following code will missing one more case for fast != null,
+// in such a code, don't forget process bussiness logic for last LinkedList node
+while(fast.next != null){
+  fast = fast.next
+}
+// exit condition: fast.next = null
+// so we missing case fast != null
