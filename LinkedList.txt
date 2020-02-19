@@ -7,8 +7,8 @@ ListNode fast = head;
 ListNode slow = head;
 1) increase by two
 // note
-// "fast.next != null" works on odd length
-// "fast != null" works on even length
+// "fast.next != null" works on odd length, even length error.
+// "fast != null" works on even length , odd length error.
 while(fast != null && fast.next != null){// note: missing either one condition will crash for arbitrary size of length
     fast = fast.next.next;
     slow = slow.next;
