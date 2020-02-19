@@ -1,3 +1,5 @@
+234. Palindrome Linked List
+
 // assume ListNode is Single Linked List Node
 
 
@@ -26,3 +28,21 @@ while(fast.next != null){
 }
 // exit condition: fast.next = null
 // so we missing case fast != null
+
+
+3) reverse LinkedList
+we need three references: prev,cur and next.
+before update cur.next reference, we store cur.next old reference in next variable
+
+
+ListNode prev = null;
+ListNode cur = slow;
+ListNode next = null;
+
+while(cur != null){
+    next = cur.next;
+    cur.next = prev;
+    prev = cur;
+    cur = next;
+}
+// note: end of loop, prev is now new head for reversed LinkedList
