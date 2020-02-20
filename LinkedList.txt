@@ -15,6 +15,7 @@ while(fast != null && fast.next != null){// note: missing either one condition w
 }
 // if size is odd, fast will be the last node and slow will be on index Math.floor(size/2)
 // if size is even, fast will be null pointer at the end and slow will be on index size/2
+// 876. Middle of the Linked List
 
 2) increase by one
 while(fast != null){
