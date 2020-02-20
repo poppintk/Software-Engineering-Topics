@@ -53,3 +53,4 @@ while(cur != null){
 // 83. Remove Duplicates from Sorted List
 // 82. Remove Duplicates from Sorted List II
 // 61. Rotate List
+// 86. Partition List
