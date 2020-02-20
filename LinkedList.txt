@@ -50,3 +50,4 @@ while(cur != null){
 // note: when reversing LinkedList, always use dummy node. 
 // see lc for dummy Node 92. Reverse Linked List II 
 // 83. Remove Duplicates from Sorted List
+// 82. Remove Duplicates from Sorted List II
