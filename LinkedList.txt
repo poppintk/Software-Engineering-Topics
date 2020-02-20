@@ -29,6 +29,7 @@ while(fast.next != null){
 }
 // exit condition: fast.next = null
 // so we missing case fast != null
+// note: need to check edge case fast is null, otherwise break the code
 
 
 3) reverse LinkedList
