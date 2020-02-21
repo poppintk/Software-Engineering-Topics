@@ -50,6 +50,8 @@ while(cur != null){
 // note: end of loop, prev is now new head for reversed LinkedList
 // note: when reversing LinkedList, or deleting node including head we need dummyNode, always use dummy node. 
 4) dummyNode
+ListNode dummyNode = new ListNode(-1);
+dummyNode.next = head;
 int num = -1; // if use dummyNode count must start from -1
 ListNode cur = dummyNode;
 
