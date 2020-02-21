@@ -49,6 +49,16 @@ while(cur != null){
 }
 // note: end of loop, prev is now new head for reversed LinkedList
 // note: when reversing LinkedList, or deleting node including head we need dummyNode, always use dummy node. 
+4) dummyNode
+int num = -1; // if use dummyNode count must start from -1
+ListNode cur = dummyNode;
+
+while(cur != null){
+    cur = cur.next;
+    num++;
+}
+
+
 // see lc for dummy Node 92. Reverse Linked List II 
 // 83. Remove Duplicates from Sorted List
 // 82. Remove Duplicates from Sorted List II
