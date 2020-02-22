@@ -1,5 +1,3 @@
-234. Palindrome Linked List
-
 // assume ListNode is Single Linked List Node
 
 
@@ -108,8 +106,6 @@ return dummyNode.next;
 
 
 // see lc for dummy Node 92. Reverse Linked List II 
-// 83. Remove Duplicates from Sorted List
-// 82. Remove Duplicates from Sorted List II
 // 61. Rotate List
 // 86. Partition List
 // 143. Reorder List
