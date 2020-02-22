@@ -1,9 +1,11 @@
 // assume ListNode is Single Linked List Node
 
 
+
+
+1) increase by two
 ListNode fast = head;
 ListNode slow = head;
-1) increase by two
 // note
 // "fast.next != null" works on odd length, even length error.
 // "fast != null" works on even length , odd length error.
@@ -27,6 +29,7 @@ while (current.next != null && current.next.next != null) {
     current = current.next.next;
 }
 // 24. Swap Nodes in Pairs
+
 
 2) increase by one
 while(fast != null){
@@ -60,6 +63,9 @@ while(cur != null){
 }
 // note: end of loop, prev is now new head for reversed LinkedList
 // note: when reversing LinkedList, or deleting node including head we need dummyNode, always use dummy node. 
+// 206. Reverse Linked List
+// 92. Reverse Linked List II 
+
 4) dummyNode
 ListNode dummyNode = new ListNode(-1);
 dummyNode.next = head;
@@ -109,7 +115,11 @@ return dummyNode.next;
 // 21. Merge Two Sorted Lists
 // 23. Merge k Sorted Lists
 
-// see lc for dummy Node 92. Reverse Linked List II 
+
+
+
+
+// see lc for dummy Node 
 // 61. Rotate List
 // 86. Partition List
 // 143. Reorder List
