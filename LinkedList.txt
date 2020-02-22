@@ -104,6 +104,10 @@ return dummyNode.next;
 // 83. Remove Duplicates from Sorted List
 // 82. Remove Duplicates from Sorted List II
 
+7) k way merge sorted list
+ Use queue
+// 21. Merge Two Sorted Lists
+// 23. Merge k Sorted Lists
 
 // see lc for dummy Node 92. Reverse Linked List II 
 // 61. Rotate List
