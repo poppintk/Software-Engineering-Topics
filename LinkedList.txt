@@ -84,6 +84,26 @@ while(cur != null){
 // at then exit condition num will be number of node in linkedList + 1
 
 
+
+
+6) dummyNode + continously delete pattern
+ListNode dummyNode = new ListNode(-1);
+dummyNode.next = head;
+ListNode cur = dummyNode;
+ListNode prev = null;
+while(cur != null){
+    prev = cur;
+    cur = cur.next;
+    while(cur != null && cur.val == val){// delete
+        prev.next = cur.next;
+        cur = cur.next;
+    }
+}
+
+return dummyNode.next;
+// 203. Remove Linked List Elements
+
+
 // see lc for dummy Node 92. Reverse Linked List II 
 // 83. Remove Duplicates from Sorted List
 // 82. Remove Duplicates from Sorted List II
@@ -93,3 +113,4 @@ while(cur != null){
 // 328. Odd Even Linked List
 // 141. Linked List Cycle
 // 142. Linked List Cycle II
+
