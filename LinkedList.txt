@@ -73,6 +73,16 @@ while(cur != null){
 }
 // 19. Remove Nth Node From End of List
 
+5) loop count
+int num = 0;
+ListNode cur = dummyNode;
+
+while(cur != null){
+    cur = cur.next;
+    num++;
+}
+// at then exit condition num will be number of node in linkedList + 1
+
 
 // see lc for dummy Node 92. Reverse Linked List II 
 // 83. Remove Duplicates from Sorted List
