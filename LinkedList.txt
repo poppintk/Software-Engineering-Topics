@@ -17,6 +17,18 @@ while(fast != null && fast.next != null){// note: missing either one condition w
 // if size is even, fast will be null pointer at the end and slow will be on index size/2
 // 876. Middle of the Linked List
 
+// adding dummyNode and no need to check current == null edge case
+ListNode current = dummy;
+while (current.next != null && current.next.next != null) {
+    ListNode first = current.next;
+    ListNode second = current.next.next;
+    first.next = second.next;
+    current.next = second;
+    current.next.next = first;
+    current = current.next.next;
+}
+// 24. Swap Nodes in Pairs
+
 2) increase by one
 while(fast != null){
   fast = fast.next
