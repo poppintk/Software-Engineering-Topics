@@ -112,32 +112,33 @@ return dummyNode.next;
 
 7) merge sorted list
 // 21. Merge Two Sorted Lists
+// Note: dummyHead is used.
 ListNode dummyHead = new ListNode(-1);
-    ListNode cur = dummyHead;
-    ListNode l = l1;
-    ListNode r = l2;
-    while(l != null && r != null){
-        if(l.val > r.val){
-            cur.next = r;
-            cur = cur.next;
-            r = r.next;
-        }else{
-            cur.next = l;
-            cur = cur.next;
-            l = l.next;
-        }
+ListNode cur = dummyHead;
+ListNode l = l1;
+ListNode r = l2;
+while(l != null && r != null){
+    if(l.val > r.val){
+        cur.next = r;
+        cur = cur.next;
+        r = r.next;
+    }else{
+        cur.next = l;
+        cur = cur.next;
+        l = l.next;
     }
-    while(l != null){
-         cur.next = l;
-         cur = cur.next;
-         l = l.next;
-    }
-     while(r != null){
-         cur.next = r;
-         cur = cur.next;
-         r = r.next;
-    }
-    return dummyHead.next;
+}
+while(l != null){
+     cur.next = l;
+     cur = cur.next;
+     l = l.next;
+}
+ while(r != null){
+     cur.next = r;
+     cur = cur.next;
+     r = r.next;
+}
+return dummyHead.next;
 
 
 
