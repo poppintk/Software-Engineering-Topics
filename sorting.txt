@@ -1,1 +1,41 @@
 
+912. Sort an Array
+//merge sort
+class Solution {
+    public List<Integer> sortArray(int[] nums) {
+        return mergeSort(nums, 0, nums.length-1);
+    }
+    // note: startIndex, endIndex
+    public List<Integer> mergeSort(int[] nums,int startIndex, int endIndex){
+       List<Integer> res;
+       if (endIndex == startIndex)  return Arrays.asList(nums[startIndex]);
+       int midIndex = (startIndex + endIndex)/2;
+       
+       // divide
+       List<Integer> left = mergeSort(nums,startIndex,midIndex);
+       List<Integer> right = mergeSort(nums,midIndex + 1,endIndex);
+
+       // merge
+       int l = 0;
+       int r = 0;
+       res = new ArrayList<>();
+       while(l < left.size() && r < right.size()){
+            if(left.get(l) > right.get(r)){
+                res.add(right.get(r));
+                r++;
+            }else{
+                res.add(left.get(l));
+                l++;
+            }
+        }
+        while(l < left.size()){
+            res.add(left.get(l));
+            l++;
+        }
+        while(r < right.size()){
+            res.add(right.get(r));
+            r++;
+        }
+        return res;
+    }
+}
