@@ -32,6 +32,7 @@ while (current.next != null && current.next.next != null) {
 
 
 2) increase by one
+// no edge case
 while(fast != null){
   fast = fast.next
 }
