@@ -66,7 +66,7 @@ while(cur != null){
 // note: end of loop, prev is now new head for reversed LinkedList
 // note: when reversing LinkedList, or deleting node including head we need dummyNode, always use dummy node. 
 // 206. Reverse Linked List
-// 92. Reverse Linked List II 
+// 92. Reverse Linked List II (require dummyNode)
 
 4) dummyNode
 ListNode dummyNode = new ListNode(-1);
@@ -82,20 +82,11 @@ while(cur != null){
 
 // 19. Remove Nth Node From End of List
 
-5) loop count
-int num = 0;
-ListNode cur = dummyNode;
-
-while(cur != null){
-    cur = cur.next;
-    num++;
-}
-// at then exit condition num will be number of node in linkedList + 1
 
 
 
 
-6) dummyNode + continously delete pattern
+5) dummyNode + continously delete pattern
 ListNode dummyNode = new ListNode(-1);
 dummyNode.next = head;
 ListNode cur = dummyNode;
@@ -114,12 +105,12 @@ return dummyNode.next;
 // 83. Remove Duplicates from Sorted List
 // 82. Remove Duplicates from Sorted List II
 
-7) k way merge sorted list
+6) k way merge sorted list
  Use queue
 
 // 23. Merge k Sorted Lists
 
-8) merge sorted list
+7) merge sorted list
 // 21. Merge Two Sorted Lists
 ListNode dummyHead = new ListNode(-1);
     ListNode cur = dummyHead;
