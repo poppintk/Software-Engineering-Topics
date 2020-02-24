@@ -9,6 +9,7 @@ ListNode slow = head;
 // note
 // "fast.next != null" works on odd length, even length error.
 // "fast != null" works on even length , odd length error.
+// no edge case
 while(fast != null && fast.next != null){// note: missing either one condition will crash for arbitrary size of length
     fast = fast.next.next;
     slow = slow.next;
@@ -37,7 +38,7 @@ while(fast != null){
   fast = fast.next
 }
  
-//note: following code will missing one more case for fast != null,
+//note: edge case: fast == null,
 // in such a code, don't forget process bussiness logic for last LinkedList node
 while(fast.next != null){
   fast = fast.next
