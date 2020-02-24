@@ -71,13 +71,15 @@ while(cur != null){
 4) dummyNode
 ListNode dummyNode = new ListNode(-1);
 dummyNode.next = head;
-int num = -1; // if use dummyNode count must start from -1
+int nth = -1; // if use dummyNode count must start from -1
 ListNode cur = dummyNode;
 
 while(cur != null){
     cur = cur.next;
-    num++;
+    nth++;
 }
+// node nth node will be node at index + 1;
+
 // 19. Remove Nth Node From End of List
 
 5) loop count
