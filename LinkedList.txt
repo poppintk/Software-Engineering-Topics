@@ -71,7 +71,7 @@ while(cur != null){
 4) dummyNode
 ListNode dummyNode = new ListNode(-1);
 dummyNode.next = head;
-int nth = -1; // if use dummyNode count must start from -1
+int nth = -1; // if use dummyNode count must start from -1, otherwise, 0
 ListNode cur = dummyNode;
 
 while(cur != null){
