@@ -87,15 +87,21 @@ while(cur != null){
 
 
 5) dummyNode + continously delete pattern
-ListNode dummyNode = new ListNode(-1);
+ListNode dummyNode = new ListNode(Integer.MIN_VALUE);
 dummyNode.next = head;
+
 ListNode cur = dummyNode;
-ListNode prev = null;
+ListNode prev = dummyNode;
+int preVal = -1;
+
+
 while(cur != null){
-    prev = cur;
-    cur = cur.next;
-    while(cur != null && cur.val == val){// delete
+    if(cur.val == preVal){// delete
         prev.next = cur.next;
+        cur = cur.next;
+    }else{
+        prev = cur;
+        preVal = cur.val;
         cur = cur.next;
     }
 }
