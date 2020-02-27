@@ -75,3 +75,22 @@ Entities must depend on abstractions not on concretions. It states that the high
 
 DevOps
 Plan -> code -> build-> test-> release -> deploy-> operate-> monitor
+
+
+
+Q: What does yield method of the Thread class do?
+
+Ans: A yield () method moves the currently running thread to a  runnable state and allows the other threads for execution. So that equal priority threads have a chance to run. It is a static method. It doesn’t release any lock.
+
+Yield () method moves the thread back to the Runnable state only, and not the thread to sleep (), wait () (or) block.
+
+Example:
+
+public static void main (String[] args){
+Thread t = new Thread ();
+t.start ();
+}
+public void run(){
+Thread.yield();
+}
+}
