@@ -129,3 +129,37 @@ public static void main (String[] args){
     Wait();
   }
 }
+
+Q #48) Explain thread life cycle in Java.
+Ans: Thread has the following states:
+New
+Runnable
+Running
+Non-runnable (Blocked)
+Terminated
+Thread Life Cycle in JAVA
+
+New:
+In New state, Thread instance has been created but start () method is not yet invoked. Now the thread is not considered alive.
+
+Runnable:
+The Thread is in runnable state after invocation of the start () method, 
+but before the run () method is invoked. 
+But a thread can also return to the runnable state from waiting/sleeping. In this state the thread is considered alive.
+
+Running:
+The thread is in running state after it calls the run () method. Now the thread begins the execution.
+
+Non-Runnable(Blocked):
+The thread is alive but it is not eligible to run. It is not in runnable state but also, it will return to runnable state after some time.
+Example: wait, sleep, block.
+
+Terminated :
+Once the run method is completed then it is terminated. Now the thread is not alive.
+
+wait() vs sleep()
+sleep() is a method which is used to pause the process for few seconds or the time we want to. 
+But in case of wait() method, thread goes in waiting state and it won’t come back automatically until we call the notify() or notifyAll().
+
+The major difference is that wait() releases the lock or monitor while sleep() doesn’t releases the lock or monitor while waiting.
+wait() is used for inter-thread communication while sleep() is used to introduce pause on execution, generally.
