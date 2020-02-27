@@ -84,7 +84,11 @@ Yield () method moves the thread back to the Runnable state only, and not the th
 
 
 Q #38) What is a Thread?
-Ans: In Java, the flow of a execution is called Thread. Every java program has at least one thread called main thread, the Main thread is created by JVM. The user can define their own threads by extending Thread class (or) by implementing Runnable interface. Threads are executed concurrently.
+Ans: In Java, the flow of a execution is called Thread. 
+Every java program has at least one thread called main thread, 
+the Main thread is created by JVM. 
+The user can define their own threads by extending Thread class (or) by implementing Runnable interface. 
+Threads are executed concurrently.
 
 Q #39) How do you make a thread in Java?
 #1) Extend Thread class:
