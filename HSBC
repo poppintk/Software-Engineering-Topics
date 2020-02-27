@@ -167,3 +167,15 @@ But in case of wait() method, thread goes in waiting state and it won’t come b
 
 The major difference is that wait() releases the lock or monitor while sleep() doesn’t releases the lock or monitor while waiting.
 wait() is used for inter-thread communication while sleep() is used to introduce pause on execution, generally.
+
+
+Lambda expressions,
+Method references,
+Functional interfaces,
+Stream API,
+Default methods,
+Static methods in interface,
+Optional class,
+Collectors class,
+ForEach() method,
+Type and Repating Annotations
