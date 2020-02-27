@@ -81,3 +81,35 @@ Plan -> code -> build-> test-> release -> deploy-> operate-> monitor
 Q: What does yield method of the Thread class do?
 Ans: A yield () method moves the currently running thread to a  runnable state and allows the other threads for execution. So that equal priority threads have a chance to run. It is a static method. It doesn’t release any lock.
 Yield () method moves the thread back to the Runnable state only, and not the thread to sleep (), wait () (or) block.
+
+
+Q #38) What is a Thread?
+Ans: In Java, the flow of a execution is called Thread. Every java program has at least one thread called main thread, the Main thread is created by JVM. The user can define their own threads by extending Thread class (or) by implementing Runnable interface. Threads are executed concurrently.
+
+Q #39) How do you make a thread in Java?
+#1) Extend Thread class:
+Extending a Thread class and override the run method. The thread is available in java.lang.thread.
+Example:
+Public class Addition extends Thread {
+  public void run () {
+    //todo
+  }
+}
+#2) Implement Runnable interface:
+Another way is implementing the runnable interface. For that we should provide the implementation for run () method which is defined in the interface.
+Example:
+Public class Addition implements Runnable {
+  public void run () {
+    //todo
+  }
+}
+
+Q #40) Explain about join () method.
+Ans: Join () method is used to join one thread with the end of the currently running thread.
+Example:
+public static void main (String[] args){
+  Thread t = new Thread ();
+  t.start ();
+  t.join ();// Once it reaches the code t.join() then main thread started the execution.
+  // main thread will contious to run...
+}
