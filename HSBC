@@ -13,6 +13,8 @@ HashMap: HashMap offers 0(1) lookup and insertion. If you iterate through the ke
 •	It may have one null key and multiple null values.
 •	It maintains no order.
 •	It is not-thread safe
+HashSet internally uses HashMap for storing objects
+
 
 LinkedHashMap: LinkedHashMap offers 0(1) lookup and insertion. Keys are ordered by their insertion order. It is implemented by doubly-linked buckets.
 •	A LinkedHashMap contains values based on the key.
@@ -20,6 +22,7 @@ LinkedHashMap: LinkedHashMap offers 0(1) lookup and insertion. Keys are ordered 
 •	It may have one null key and multiple null values.
 •	It is same as HashMap instead maintains insertion order.
 •	It is not-thread safe
+LinkedHashSet uses LinkedHashMap internally to store objects
 
 
 TreeMap: TreeMap offers O(log N) lookup and insertion. Keys are ordered, so if you need to iterate through the keys in sorted order, you can. This means that keys must implement the Comparable interface. TreeMap is implemented by a Red-Black Tree.
@@ -29,6 +32,8 @@ TreeMap: TreeMap offers O(log N) lookup and insertion. Keys are ordered, so if y
 •	It contains only unique elements.
 •	It cannot have null key but can have multiple null values.
 •	It is same as HashMap instead maintains ascending order(Sorted using the natural order of its key).
+TreeSet uses TreeMap internally to store objects
+
 
 Hashtable: “Hashtable” is the generic name for hash-based maps.
 •	A Hashtable is an array of list. Each list is known as a bucket. The position of bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
