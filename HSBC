@@ -1,13 +1,7 @@
-Hashmap vs Hashtable
-1. HashMap is non synchronized. It is not-thread safe and can’t be shared between many threads without proper synchronization code whereas Hashtable is synchronized. It is thread-safe and can be shared with many threads.
-2. HashMap allows one null key and multiple null values whereas Hashtable doesn’t allow any null key or value.
-3. HashMap is generally preferred over HashTable if thread synchronization is not needed
-Why HashTable doesn’t allow null and HashMap does?
-To successfully store and retrieve objects from a HashTable, the objects used as keys must implement the hashCode method and the equals method. Since null is not an object, it can’t implement these methods. HashMap is an advanced version and improvement on the Hashtable. HashMap was created later.
-
-
 Differences between TreeMap, HashMap and LinkedHashMap in Java
-HashMap: HashMap offers 0(1) lookup and insertion. If you iterate through the keys, though, the ordering of the keys is essentially arbitrary. It is implemented by an array of linked lists.
+HashMap: HashMap offers 0(1) lookup and insertion. 
+If you iterate through the keys, though, the ordering of the keys is essentially arbitrary. 
+It is implemented by an array of linked lists.
 •	A HashMap contains values based on the key.
 •	It contains only unique elements.
 •	It may have one null key and multiple null values.
@@ -16,7 +10,9 @@ HashMap: HashMap offers 0(1) lookup and insertion. If you iterate through the ke
 HashSet internally uses HashMap for storing objects
 
 
-LinkedHashMap: LinkedHashMap offers 0(1) lookup and insertion. Keys are ordered by their insertion order. It is implemented by doubly-linked buckets.
+LinkedHashMap: LinkedHashMap offers 0(1) lookup and insertion. 
+Keys are ordered by their insertion order. 
+It is implemented by doubly-linked buckets.
 •	A LinkedHashMap contains values based on the key.
 •	It contains only unique elements.
 •	It may have one null key and multiple null values.
@@ -25,7 +21,9 @@ LinkedHashMap: LinkedHashMap offers 0(1) lookup and insertion. Keys are ordered 
 LinkedHashSet uses LinkedHashMap internally to store objects
 
 
-TreeMap: TreeMap offers O(log N) lookup and insertion. Keys are ordered, so if you need to iterate through the keys in sorted order, you can. This means that keys must implement the Comparable interface. TreeMap is implemented by a Red-Black Tree.
+TreeMap: TreeMap offers O(log N) lookup and insertion. 
+Keys are ordered, so if you need to iterate through the keys in sorted order, you can. 
+This means that keys must implement the Comparable interface. TreeMap is implemented by a Red-Black Tree.
 
 •	It is not-thread safe
 •	A TreeMap contains values based on the key. It implements the NavigableMap interface and extends AbstractMap class.
@@ -36,7 +34,8 @@ TreeSet uses TreeMap internally to store objects
 
 
 Hashtable: “Hashtable” is the generic name for hash-based maps.
-•	A Hashtable is an array of list. Each list is known as a bucket. The position of bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
+•	A Hashtable is an array of list. Each list is known as a bucket. 
+The position of bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
 •	It contains only unique elements.
 •	It may have not have any null key or value.
 •	It is synchronized.
