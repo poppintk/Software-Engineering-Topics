@@ -178,3 +178,14 @@ Optional class,
 Collectors class,
 ForEach() method,
 Type and Repating Annotations
+
+Microservice
+- load balancer
+- Service registration and discovery
+- Service-to-service calls
+ RPC(remote procedure call)
+- logging and monitoring
+- Leadership election and cluster management
+- route gateway routing
+- global locks
+- Distributed messaging
