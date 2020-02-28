@@ -189,3 +189,6 @@ Microservice
 - route gateway routing
 - global locks
 - Distributed messaging
+
+CompletableFuture in Java 8
+working nonblocking for main thread when there is many dependable tasks to run. 
