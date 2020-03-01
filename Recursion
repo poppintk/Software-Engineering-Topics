@@ -15,3 +15,25 @@ think careful through how returned value connect to previous call stack.
 
 24. Swap Nodes in Pairs
 
+3) Tail recursion
+// non-tail recursion
+function recsum(x) {
+    if (x === 1) {
+        return x;
+    } else {
+        return x + recsum(x - 1);
+    }
+}
+
+//tail recursion
+function tailrecsum(x, running_total = 0) {
+    if (x === 0) {
+        return running_total;
+    } else {
+        return tailrecsum(x - 1, running_total + x);
+    }
+}
+
+The consequence of this is that once you are ready to perform your next recursive step, 
+you don't need the current stack frame any more. This allows for some optimization. 
+In fact, with an appropriately written compiler, you should never have a stack overflow snicker with a tail recursive call.
