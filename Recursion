@@ -12,3 +12,6 @@ public ListNode recurse(ListNode head){
 like, if returned is head then basecase and non-basecase part should be head. 
 if returned is tail then basecase and non-basecase part should be tail.
 think careful through how returned value connect to previous call stack.
+
+24. Swap Nodes in Pairs
+
