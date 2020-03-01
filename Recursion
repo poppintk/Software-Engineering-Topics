@@ -37,3 +37,4 @@ function tailrecsum(x, running_total = 0) {
 The consequence of this is that once you are ready to perform your next recursive step, 
 you don't need the current stack frame any more. This allows for some optimization. 
 In fact, with an appropriately written compiler, you should never have a stack overflow snicker with a tail recursive call.
+98. Validate Binary Search Tree
