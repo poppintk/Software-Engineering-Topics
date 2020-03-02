@@ -41,6 +41,7 @@ In fact, with an appropriately written compiler, you should never have a stack o
 965. Univalued Binary Tree
 653. Two Sum IV - Input is a BST
 101. Symmetric Tree
+1022. Sum of Root To Leaf Binary Numbers
 
 4) edge case
 // terminate at leaf
