@@ -45,6 +45,7 @@ In fact, with an appropriately written compiler, you should never have a stack o
 
 4) edge case
 // terminate at leaf
+if(root == null) return;// edge case
 if(root.left == null && root.right == null) return;
 recurse(root.left);
 recurse(root.right);
