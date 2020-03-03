@@ -78,9 +78,9 @@ class QuickSort {
     void sort(int arr[], int low, int high){ 
         if(low >= high) return;
 
-        int pi = partition(arr, low, high); // edge case low + 1 = high 
-        sort(arr, low, pi-1); // not includes pi
-        sort(arr, pi+1, high); // not includes pi
+        int pi = partition(arr, low, high); // edge case: low + 1 = high , must have two element in arr at least
+        sort(arr, low, pi-1); //note: not includes pi
+        sort(arr, pi+1, high); //note: not includes pi
 
     }
   }
