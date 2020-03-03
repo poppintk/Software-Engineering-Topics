@@ -56,4 +56,8 @@ if(root == null) return;
 recurse(root.left);
 recurse(root.right);
 
+// either one is null
+if(root.left == null && root.right == null) return;
+if(root.left == null || root.right == null) return; // either one is null
+
 
