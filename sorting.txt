@@ -79,8 +79,8 @@ class QuickSort {
         if(low >= high) return;
 
         int pi = partition(arr, low, high); // edge case low + 1 = high 
-        sort(arr, low, pi-1); 
-        sort(arr, pi+1, high); 
+        sort(arr, low, pi-1); // not includes pi
+        sort(arr, pi+1, high); // not includes pi
 
     }
   }
