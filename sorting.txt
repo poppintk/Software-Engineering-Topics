@@ -40,7 +40,7 @@ class Solution {
     }
 }
 
-// quick sort
+// quick sort (non-randomized)
 /* This function takes last element as pivot, places
    the pivot element at its correct position in sorted
     array, and places all smaller (smaller than pivot)
