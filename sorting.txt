@@ -55,7 +55,6 @@ class QuickSort {
             // If current element is smaller than the pivot 
             if (arr[j] < pivot) { 
                 i++; 
-  
                 // swap arr[i] and arr[j] 
                 int temp = arr[i]; 
                 arr[i] = arr[j]; 
@@ -77,16 +76,12 @@ class QuickSort {
       low  --> Starting index, 
       high  --> Ending index */
     void sort(int arr[], int low, int high){ 
-        if (low < high){ 
-            /* pi is partitioning index, arr[pi] is  
-              now at right place */
-            int pi = partition(arr, low, high); 
-  
-            // Recursively sort elements before 
-            // partition and after partition 
-            sort(arr, low, pi-1); 
-            sort(arr, pi+1, high); 
-        } 
+        if(low >= high) return;
+
+        int pi = partition(arr, low, high); // edge case low + 1 = high 
+        sort(arr, low, pi-1); 
+        sort(arr, pi+1, high); 
+
     }
   }
   // kth statistical element
