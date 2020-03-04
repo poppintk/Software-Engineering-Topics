@@ -6,6 +6,7 @@ public ListNode recurse(ListNode head){
   if(head == null || head.next == null) return head;
   
   recurse(head.next.next); // base case is head == null or head.next == null
+//实际上 base case 只要考虑奇偶情况即可，所以只有2个cases这里
 }
 
 2) if recursion function return something, make sure someting is return follow the same sequence.
