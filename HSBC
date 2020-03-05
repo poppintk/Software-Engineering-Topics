@@ -196,3 +196,5 @@ working nonblocking for main thread when there is many dependable tasks to run.
 
 Java 7 uses Dual-Pivot Quicksort for primitives and TimSort for objects.
 Timsort is a hybrid "merge sort and insertion sort."
+JAVA 8 also offer parallel sort()
+
