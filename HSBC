@@ -198,5 +198,15 @@ Java 7 uses Dual-Pivot Quicksort for primitives and TimSort for objects.
 Timsort is a hybrid "merge sort and insertion sort."
 JAVA 8 also offer parallel sort()
 
-Collection sort also call Arrays.sort();
+Collection sort also convert into T[] then call Arrays.sort();
+
+Arrays.sort(int[]);
+- primative array
+- use DualPivotQuicksort
+
+Arrays.sort(T[]);
+- Object array
+- use mergeSort only requested
+- use TimSort() by default
+
 
