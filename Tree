@@ -46,6 +46,13 @@ inIdx = inMap.get(preorder[prestart])
 leftSubTree: prestart = prestart + 1, instart = instart, inend = inIdx - 1;
 rightSubTree: prestart = prestart + inIdx - instart + 1, instart = InIdx+1, inend = inend;
 
+105. Construct Binary Tree from Preorder and Inorder Traversal
+preorder
+     1
+   /   \
+  2     3 
+ /     /
+4     5
 
 
 
