@@ -7,6 +7,33 @@ HEIGHT:
 The height of a node is the number of edges on the longest path from the node to a leaf.
 A leaf node will have a height of 0.
 
+1) preorder, inorder, post order travasal
+// preorder
+public void preorder(TreeNode root){
+    if(root == null) return;
+    System.out.println(root.val);
+    preorder(root.left);
+    preorder(rootright);
+}
+
+// inorder
+public void preorder(TreeNode root){
+    if(root == null) return;
+    preorder(root.left);
+    System.out.println(root.val);
+    preorder(rootright);
+}
+
+// post order
+public void preorder(TreeNode root){
+    if(root == null) return;
+    preorder(root.left);
+    preorder(rootright);
+    System.out.println(root.val);
+}
+
+
+
 
 236. Lowest Common Ancestor of a Binary Tree
 235. Lowest Common Ancestor of a Binary Search Tree
