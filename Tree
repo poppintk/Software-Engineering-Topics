@@ -159,6 +159,14 @@ if(root.left == null && root.right == null) return;
 if(root.left == null || root.right == null) return; // either one is null
 
 
+129. Sum Root to Leaf Numbers
+//tail recursion
+private int dfs(TreeNode root, Integer sum){
+    if(root == null) return 0;
+    if(root.left == null && root.right == null) return sum * 10 + root.val;
+    return dfs(root.left, sum * 10 + root.val) + dfs(root.right, sum * 10 + root.val);
+}
+
 257. Binary Tree Paths
 112. Path Sum
 113. Path Sum II
