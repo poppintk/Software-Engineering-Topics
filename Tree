@@ -39,12 +39,20 @@ preorder
  /     /
 4     5
 //practice trace
-preorder : [1,2,4,3,5] prestart
+preorder : [1,2,4,3,5] prestart, preend
 inorder: [4,2,1,5,3] instart, inend
 
 inIdx = inMap.get(preorder[prestart])
-leftSubTree: prestart = prestart + 1, instart = instart, inend = inIdx - 1;
-rightSubTree: prestart = prestart + inIdx - instart + 1, instart = InIdx+1, inend = inend;
+leftSubTree: 
+    prestart = prestart + 1, 
+    preend = prestart + inIdx - instart,
+    instart = instart, 
+    inend = inIdx - 1;
+rightSubTree: 
+    prestart = prestart + inIdx - instart + 1, 
+    preend = preend,
+    instart = InIdx+1, 
+    inend = inend;
 
 106. Construct Binary Tree from Inorder and Postorder Traversal
      1
