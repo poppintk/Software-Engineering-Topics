@@ -130,6 +130,17 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     return root;
 }
 
+//
+private void dfs(TreeNode root, List<Integer> nums, String num){
+    if(root == null) return;
+    if(root.left == null && root.right == null){
+        nums.add(Integer.parseInt(num+root.val));
+        return;
+    }
+    dfs(root.left,nums,num + root.val);
+    dfs(root.right,nums,num + root.val);
+}
+
 
 257. Binary Tree Paths
 112. Path Sum
