@@ -96,6 +96,40 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     return null;
 }
 
+//116. Populating Next Right Pointers in Each Node
+//117. Populating Next Right Pointers in Each Node II
+ public Node connect(Node root) {
+    Node head = root;
+    Node dummy = new Node(-1);
+    Node nextlvl = dummy;
+
+    while(head != null){
+        // constructing next level
+        if(head.left != null){
+            nextlvl.next = head.left;
+            nextlvl = nextlvl.next;
+        }
+        // constructing next level
+        if(head.right != null){
+            nextlvl.next = head.right;
+            nextlvl = nextlvl.next;
+        }
+        // constructing next level
+        head = head.next;
+
+        // end of the level
+        if (head == null) {
+            // head to next head of level
+            head = dummy.next;
+            // set dummy node next to null
+            dummy.next = null;
+            nextlvl = dummy;
+        }
+    }
+
+    return root;
+}
+
 
 257. Binary Tree Paths
 112. Path Sum
