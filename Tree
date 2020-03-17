@@ -141,6 +141,23 @@ private void dfs(TreeNode root, List<Integer> nums, String num){
     dfs(root.right,nums,num + root.val);
 }
 
+1) edge case
+// terminate at leaf
+if(root == null) return;// edge case
+if(root.left == null && root.right == null) return;
+recurse(root.left);
+recurse(root.right);
+
+// terminate at null;
+if(root == null) return;
+recurse(root.left);
+recurse(root.right);
+
+// either one is null
+if(root == null) return;// edge case
+if(root.left == null && root.right == null) return;
+if(root.left == null || root.right == null) return; // either one is null
+
 
 257. Binary Tree Paths
 112. Path Sum
