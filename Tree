@@ -23,6 +23,27 @@ public void preorder(TreeNode root){
     System.out.println(root.val);
     preorder(rootright);
 }
+// iterative inorder
+public List<Integer> iterative(TreeNode root) {
+    List<Integer> result = new ArrayList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    pushAllLeft(root,stack);
+    TreeNode cur = null;
+    while(!stack.isEmpty()){
+        cur = stack.pop();
+        result.add(cur.val);
+        pushAllLeft(cur.right,stack);
+    }
+    return result;
+}
+
+public void pushAllLeft(TreeNode root,Stack<TreeNode> stack){
+    TreeNode cur = root;
+    while(cur != null){
+        stack.add(cur);
+        cur = cur.left;
+    }
+}
 
 // post order
 public void preorder(TreeNode root){
