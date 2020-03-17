@@ -167,7 +167,7 @@ private int dfs(TreeNode root, Integer sum){
     return dfs(root.left, sum * 10 + root.val) + dfs(root.right, sum * 10 + root.val);
 }
 222. Count Complete Tree Nodes
-// non tail recursion 
+// non tail recursion (there is log(2n) algorithm,but following solves general tree nodes problem)
 public int countNodes(TreeNode root) {
     if(root == null) return 0;
     return 1 + countNodes(root.left) + countNodes(root.right);
