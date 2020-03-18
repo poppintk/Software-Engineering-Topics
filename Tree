@@ -249,7 +249,7 @@ public void flatten(TreeNode root) {
     root.left = null;
     next = root;
 }
-124. Binary Tree Maximum Path Sum
+
 199. Binary Tree Right Side View
 94. Binary Tree Inorder Traversal
 100. Same Tree
@@ -257,3 +257,6 @@ public void flatten(TreeNode root) {
 104. Maximum Depth of Binary Tree
 107. Binary Tree Level Order Traversal II
 110. Balanced Binary Tree
+144. Binary Tree Preorder Traversal
+145. Binary Tree Postorder Traversal
+124. Binary Tree Maximum Path Sum
