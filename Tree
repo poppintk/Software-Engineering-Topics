@@ -22,6 +22,9 @@ public void preorder(TreeNode root){
       3     8 
      / \   / \ 
     2  5  7   9
+    
+// keep tracking of max and min
+// left update max(since left subtree less than root), right update min(since right greater than root).
 public boolean recurse(TreeNode root, Integer max, Integer min){
     if(root == null) return true;
     if(min != null && root.val <= min) return false;
