@@ -17,6 +17,11 @@ public void preorder(TreeNode root){
 }
 
 //98. Validate Binary Search Tree
+         6
+       /   \
+      3     8 
+     / \   / \ 
+    2  5  7   9
 public boolean recurse(TreeNode root, Integer max, Integer min){
     if(root == null) return true;
     if(min != null && root.val <= min) return false;
