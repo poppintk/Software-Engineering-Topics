@@ -204,8 +204,8 @@ public int countNodes(TreeNode root) {
 }
 
 
-112. Path Sum
-113. Path Sum II
+112. Path Sum (base case end from leaves)
+113. Path Sum II (end from leaves + backtracking on temp)
 
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
