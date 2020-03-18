@@ -232,7 +232,18 @@ class Solution {
 
 257. Binary Tree Paths
 
+
 114. Flatten Binary Tree to Linked List
+private TreeNode next = null;
+public void flatten(TreeNode root) {
+    if(root == null) return;
+    flatten(root.right);
+    flatten(root.left);
+    // post order
+    root.right = next;
+    root.left = null;
+    next = root;
+}
 199. Binary Tree Right Side View
 94. Binary Tree Inorder Traversal
 100. Same Tree
