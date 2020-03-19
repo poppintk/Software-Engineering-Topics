@@ -87,6 +87,18 @@ public List<Integer> postorderTraversal(TreeNode root) {
     return ans;
 }
 
+public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> result = new ArrayList<>();
+    dfs(root, 0, result);
+    return result;
+}
+public void dfs(TreeNode root, int depth, List<Integer> result){
+    if(root == null) return;
+    if(result.size() == depth) result.add(root.val); // trick two
+    dfs(root.right, depth + 1, result);// trick one
+    dfs(root.left, depth + 1, result);
+}
+
 //98. Validate Binary Search Tree
          6
        /   \
