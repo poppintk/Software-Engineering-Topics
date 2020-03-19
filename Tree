@@ -23,7 +23,8 @@ recurse(root.right);
 if(root == null) return;// edge case
 if(root.left == null && root.right == null) return;
 if(root.left == null || root.right == null) return; // either one is null
-
+recurse(root.left);
+recurse(root.right);
 
 129. Sum Root to Leaf Numbers
 //tail recursion
