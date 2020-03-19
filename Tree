@@ -27,7 +27,7 @@ recurse(root.left);
 recurse(root.right);
 
 129. Sum Root to Leaf Numbers
-//tail recursion
+//tail recursion, recursion type 1 -> through return value
 private int dfs(TreeNode root, Integer sum){
     if(root == null) return 0;
     if(root.left == null && root.right == null) return sum * 10 + root.val;
@@ -45,12 +45,47 @@ public int dfs1(TreeNode root, int num){
     return dfs(root.left, num * 10 + root.val) + dfs(root.right, num * 10 + root.val);
 }
 
-222. Count Complete Tree Nodes
+222. Count Complete Tree Nodes recursion type 2 -> count numbers
 // non tail recursion (there is log(2n) algorithm,but following solves general tree nodes problem)
 public int countNodes(TreeNode root) {
     if(root == null) return 0;
     return 1 + countNodes(root.left) + countNodes(root.right);
 }
+
+//98. Validate Binary Search Tree
+         6
+       /   \
+      3     8 
+     / \   / \ 
+    2  5  7   9
+    
+// keep tracking of max and min
+// left update max(since left subtree less than root), right update min(since right greater than root).
+// recursion type 3 -> return boolean
+public boolean recurse(TreeNode root, Integer max, Integer min){
+    if(root == null) return true;
+    if(min != null && root.val <= min) return false;
+    if(max != null && root.val >= max) return false;
+    return recurse(root.left, root.val, min) && recurse(root.right, max, root.val);
+}
+public boolean isValidBST(TreeNode root) {
+    return recurse(root,null,null);
+}
+
+//199. Binary Tree Right Side View
+// recursion type 4 -> no return type
+public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> result = new ArrayList<>();
+    dfs(root, 0, result);
+    return result;
+}
+public void dfs(TreeNode root, int depth, List<Integer> result){
+    if(root == null) return;
+    if(result.size() == depth) result.add(root.val); // trick two
+    dfs(root.right, depth + 1, result);// trick one
+    dfs(root.left, depth + 1, result);
+}
+
 
 1) preorder, inorder, post order travasal
 // preorder
@@ -130,38 +165,6 @@ public List<Integer> postorderTraversal(TreeNode root) {
         ans.addFirst(cur.val);
     }
     return ans;
-}
-
-//199. Binary Tree Right Side View
-public List<Integer> rightSideView(TreeNode root) {
-    List<Integer> result = new ArrayList<>();
-    dfs(root, 0, result);
-    return result;
-}
-public void dfs(TreeNode root, int depth, List<Integer> result){
-    if(root == null) return;
-    if(result.size() == depth) result.add(root.val); // trick two
-    dfs(root.right, depth + 1, result);// trick one
-    dfs(root.left, depth + 1, result);
-}
-
-//98. Validate Binary Search Tree
-         6
-       /   \
-      3     8 
-     / \   / \ 
-    2  5  7   9
-    
-// keep tracking of max and min
-// left update max(since left subtree less than root), right update min(since right greater than root).
-public boolean recurse(TreeNode root, Integer max, Integer min){
-    if(root == null) return true;
-    if(min != null && root.val <= min) return false;
-    if(max != null && root.val >= max) return false;
-    return recurse(root.left, root.val, min) && recurse(root.right, max, root.val);
-}
-public boolean isValidBST(TreeNode root) {
-    return recurse(root,null,null);
 }
 
 
