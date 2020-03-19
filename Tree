@@ -16,24 +16,6 @@ public void preorder(TreeNode root){
     preorder(rootright);
 }
 
-//98. Validate Binary Search Tree
-         6
-       /   \
-      3     8 
-     / \   / \ 
-    2  5  7   9
-    
-// keep tracking of max and min
-// left update max(since left subtree less than root), right update min(since right greater than root).
-public boolean recurse(TreeNode root, Integer max, Integer min){
-    if(root == null) return true;
-    if(min != null && root.val <= min) return false;
-    if(max != null && root.val >= max) return false;
-    return recurse(root.left, root.val, min) && recurse(root.right, max, root.val);
-}
-public boolean isValidBST(TreeNode root) {
-    return recurse(root,null,null);
-}
 
 // inorder
 public void preorder(TreeNode root){
@@ -71,6 +53,27 @@ public void preorder(TreeNode root){
     preorder(rootright);
     System.out.println(root.val);
 }
+
+//98. Validate Binary Search Tree
+         6
+       /   \
+      3     8 
+     / \   / \ 
+    2  5  7   9
+    
+// keep tracking of max and min
+// left update max(since left subtree less than root), right update min(since right greater than root).
+public boolean recurse(TreeNode root, Integer max, Integer min){
+    if(root == null) return true;
+    if(min != null && root.val <= min) return false;
+    if(max != null && root.val >= max) return false;
+    return recurse(root.left, root.val, min) && recurse(root.right, max, root.val);
+}
+public boolean isValidBST(TreeNode root) {
+    return recurse(root,null,null);
+}
+
+
 105. Construct Binary Tree from Preorder and Inorder Traversal
 preorder
      1
