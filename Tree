@@ -37,6 +37,13 @@ private int dfs(TreeNode root, Integer sum){
 //then try
 // if(root.left == null) return dfs(root.right, num*10 + root.val);
 // if(root.right == null) return dfs(root.left, num*10 + root.val);
+public int dfs1(TreeNode root, int num){
+    if(root == null) return num;
+    if(root.left == null && root.right == null) return num * 10 + root.val;
+    if(root.left == null) return dfs(root.right, num*10 + root.val);
+    if(root.right == null) return dfs(root.left, num*10 + root.val);
+    return dfs(root.left, num * 10 + root.val) + dfs(root.right, num * 10 + root.val);
+}
 
 222. Count Complete Tree Nodes
 // non tail recursion (there is log(2n) algorithm,but following solves general tree nodes problem)
