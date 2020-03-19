@@ -15,6 +15,26 @@ public void preorder(TreeNode root){
     preorder(root.left);
     preorder(rootright);
 }
+// iterative pre-order
+private List<Integer> result = new ArrayList<>();
+public List<Integer> preorderTraversal(TreeNode root) {
+    Stack<TreeNode> stack = new Stack<>();
+    pushAllLeft(root,stack);
+    TreeNode cur = null;
+    while(!stack.isEmpty()){
+        cur = stack.pop();
+        pushAllLeft(cur.right,stack);
+    }
+    return result;
+}
+public void pushAllLeft(TreeNode root,Stack<TreeNode> stack){
+    TreeNode cur = root;
+    while(cur != null){
+        result.add(cur.val);
+        stack.add(cur);
+        cur = cur.left;
+    }
+}
 
 
 // inorder
@@ -37,7 +57,6 @@ public List<Integer> iterative(TreeNode root) {
     }
     return result;
 }
-
 public void pushAllLeft(TreeNode root,Stack<TreeNode> stack){
     TreeNode cur = root;
     while(cur != null){
@@ -50,9 +69,12 @@ public void pushAllLeft(TreeNode root,Stack<TreeNode> stack){
 public void preorder(TreeNode root){
     if(root == null) return;
     preorder(root.left);
-    preorder(rootright);
+    preorder(root.right);
     System.out.println(root.val);
 }
+// iterative post order
+TODO
+145. Binary Tree Postorder Traversal
 
 //98. Validate Binary Search Tree
          6
