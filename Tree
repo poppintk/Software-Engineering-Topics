@@ -310,8 +310,6 @@ public void flatten(TreeNode root) {
     next = root;
 }
 
-199. Binary Tree Right Side View
-
 100. Same Tree
 101. Symmetric Tree
 104. Maximum Depth of Binary Tree
