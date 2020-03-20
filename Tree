@@ -29,7 +29,7 @@ recurse(root.right);
 129. Sum Root to Leaf Numbers
 //tail recursion, recursion type 1 -> through return value
 private int dfs(TreeNode root, Integer sum){
-    if(root == null) return 0;
+    if(root == null) return 0; //edge case
     if(root.left == null && root.right == null) return sum * 10 + root.val;
     return dfs(root.left, sum * 10 + root.val) + dfs(root.right, sum * 10 + root.val);
 }
@@ -38,7 +38,7 @@ private int dfs(TreeNode root, Integer sum){
 // if(root.left == null) return dfs(root.right, num*10 + root.val);
 // if(root.right == null) return dfs(root.left, num*10 + root.val);
 public int dfs1(TreeNode root, int num){
-    if(root == null) return num;
+    if(root == null) return num; //edge case
     if(root.left == null && root.right == null) return num * 10 + root.val;
     if(root.left == null) return dfs(root.right, num*10 + root.val);
     if(root.right == null) return dfs(root.left, num*10 + root.val);
