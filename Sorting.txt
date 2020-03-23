@@ -104,4 +104,60 @@ class QuickSort {
         else
             return kthSmallest(arr, low, partition-1, k );          
     } 
+    
+    // use Randomized algorithm
+    Random r = new Random();
+    public int partition(int arr[], int low, int high) { 
+        int pivot = arr[high];
+        int i = low; // index of smaller element 
+        for (int j=low; j < high; j++){ 
+            // If current element is smaller than the pivot 
+            if (arr[j] < pivot) { 
+                // swap arr[i] and arr[j] 
+                swap(arr,i,j);
+                i++;
+            } 
+        } 
+        // swap arr[i] and arr[high] (or pivot) 
+        swap(arr, i,high);
+        return i; 
+    } 
+    
+     public int findKthLargest(int[] nums, int k) {
+        return find(nums, 0, nums.length-1, nums.length - k);
+    }
+    
+    
+    // kth statistical element
+  public int find(int[] arr, int low, int high, int k) { 
+        if (low > high) return Integer.MAX_VALUE;
+      
+        int pivotIndex = r.nextInt(high + 1 -low) + low;
+        swap(arr, pivotIndex, high);  
+        // find the partition  
+        int p = partition(arr,low,high); 
+  
+        // if partition value is equal to the kth position,  
+        // return value at k. 
+        if(p == k) 
+            return arr[p]; 
+                
+        // if partition value is less than kth position, 
+        // search right side of the array. 
+        else if(p < k) 
+            return find(arr, p + 1, high, k ); 
+              
+        // if partition value is more than kth position,  
+        // search left side of the array. 
+        else
+            return find(arr, low, p-1, k );     
+      
+    } 
+    
+     private void swap(int[] nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+   
 
