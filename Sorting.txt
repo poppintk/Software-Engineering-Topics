@@ -40,7 +40,7 @@ class Solution {
     }
 }
 
-// quick sort (non-randomized)
+// quick sort
 /* This function takes last element as pivot, places
    the pivot element at its correct position in sorted
     array, and places all smaller (smaller than pivot)
@@ -48,36 +48,18 @@ class Solution {
    of pivot */
 // Java program for implementation of QuickSort 
 class QuickSort { 
-    public int partition(int arr[], int low, int high) { 
-        int pivot = arr[high];
-        int i = low; // index of smaller element 
-        for (int j=low; j < high; j++){ 
-            // If current element is smaller than the pivot 
-            if (arr[j] < pivot) { 
-                // swap arr[i] and arr[j] 
-                int temp = arr[i]; 
-                arr[i] = arr[j]; 
-                arr[j] = temp; 
-                i++;
-            } 
-        } 
-  
-        // swap arr[i] and arr[high] (or pivot) 
-        int temp = arr[i]; 
-        arr[i] = arr[high]; 
-        arr[high] = temp; 
-        System.out.println(Arrays.toString(arr));
-        return i; 
-    } 
-  
-  
+    Random random = new Random();
+ 
     /* The main function that implements QuickSort() 
       arr[] --> Array to be sorted, 
       low  --> Starting index, 
       high  --> Ending index */
     void sort(int arr[], int low, int high){ 
         if(low >= high) return;
-
+        // ramdomized
+        int pivotIndex = random.nextInt(high + 1 -low) + low; (inclusive high and low)
+        swap(arr, pivotIndex, high);
+        // find the partition  
         int pi = partition(arr, low, high); // edge case: low + 1 = high , must have two element in arr at least
         sort(arr, low, pi-1); //note: not includes pi
         sort(arr, pi+1, high); //note: not includes pi
@@ -85,10 +67,14 @@ class QuickSort {
     }
   }
   // kth statistical element
-  public static int kthSmallest(int[] arr, int low,  
-                                  int high, int k) { 
+  public static int kthSmallest(int[] arr, int low, int high, int k) { 
+        if (low > high) return Integer.MAX_VALUE;
+        // ramdomized
+        int pivotIndex = random.nextInt(high + 1 -low) + low;(inclusive high and low)
+        swap(arr, pivotIndex, high);  
+        
         // find the partition  
-        int partition = partition(arr,low,high); 
+        int p = partition(arr,low,high); 
   
         // if partition value is equal to the kth position,  
         // return value at k. 
@@ -105,8 +91,12 @@ class QuickSort {
             return kthSmallest(arr, low, partition-1, k );          
     } 
     
-    // use Randomized algorithm
-    Random r = new Random();
+    private void swap(int[] nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+    
     public int partition(int arr[], int low, int high) { 
         int pivot = arr[high];
         int i = low; // index of smaller element 
@@ -122,42 +112,6 @@ class QuickSort {
         swap(arr, i,high);
         return i; 
     } 
-    
-     public int findKthLargest(int[] nums, int k) {
-        return find(nums, 0, nums.length-1, nums.length - k);
-    }
-    
-    
-    // kth statistical element
-  public int find(int[] arr, int low, int high, int k) { 
-        if (low > high) return Integer.MAX_VALUE;
-      
-        int pivotIndex = r.nextInt(high + 1 -low) + low;
-        swap(arr, pivotIndex, high);  
-        // find the partition  
-        int p = partition(arr,low,high); 
-  
-        // if partition value is equal to the kth position,  
-        // return value at k. 
-        if(p == k) 
-            return arr[p]; 
-                
-        // if partition value is less than kth position, 
-        // search right side of the array. 
-        else if(p < k) 
-            return find(arr, p + 1, high, k ); 
-              
-        // if partition value is more than kth position,  
-        // search left side of the array. 
-        else
-            return find(arr, low, p-1, k );     
-      
-    } 
-    
-     private void swap(int[] nums, int a, int b) {
-        int temp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = temp;
-    }
+}
    
 
