@@ -2,43 +2,46 @@
 912. Sort an Array
 //merge sort
 class Solution {
-    public List<Integer> sortArray(int[] nums) {
+    public int[] sortArray(int[] nums) {
         return mergeSort(nums, 0, nums.length-1);
     }
     // note: startIndex, endIndex
-    public List<Integer> mergeSort(int[] nums,int startIndex, int endIndex){
-       List<Integer> res;
-       if (endIndex == startIndex)  return Arrays.asList(nums[startIndex]);
+    public int[] mergeSort(int[] nums,int startIndex, int endIndex){
+
+       if (endIndex == startIndex)  return new int[]{nums[startIndex]};
        int midIndex = (startIndex + endIndex)/2;
        
        // divide
-       List<Integer> left = mergeSort(nums,startIndex,midIndex);
-       List<Integer> right = mergeSort(nums,midIndex + 1,endIndex);
+       int[] left = mergeSort(nums,startIndex,midIndex);
+       int[] right = mergeSort(nums,midIndex + 1,endIndex);
 
        // merge
        int l = 0;
        int r = 0;
-       res = new ArrayList<>();
-       while(l < left.size() && r < right.size()){
-            if(left.get(l) > right.get(r)){
-                res.add(right.get(r));
+       int i = 0;
+       int[] res = new int[left.length + right.length];
+       while(l < left.length && r < right.length){
+            if(left[l] > right[r]){
+                res[i] = right[r];
                 r++;
             }else{
-                res.add(left.get(l));
+                res[i] = left[l];
                 l++;
             }
+           i++;
         }
-        while(l < left.size()){
-            res.add(left.get(l));
+        while(l < left.length){
+            res[i] = left[l];
             l++;
+            i++;
         }
-        while(r < right.size()){
-            res.add(right.get(r));
+        while(r < right.length){
+            res[i] = right[r];
             r++;
+            i++;
         }
         return res;
     }
-}
 
 // quick sort
 /* This function takes last element as pivot, places
