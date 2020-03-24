@@ -71,7 +71,7 @@ class QuickSort {
   
         // if partition value is equal to the kth position,  
         // return value at k. 
-        if(partition == k) 
+        if(partition == k)// NOTE: HERE
             return arr[partition];     
         // if partition value is less than kth position, 
         // search right side of the array. 
@@ -113,6 +113,55 @@ class QuickSort {
 Quick Select pattern
 NOTE: not working in case array has duplicated value, and that duplicated value consider as one order statistic 414. Third Maximum Number
 //215. Kth Largest Element in an Array
-//973. K Closest Points to Origin
-   
+//973. K Closest Points to Origin (notes on the quickSelect return type, when dealing with top or lower range, we can try in place sort up to 0 index or up to end index, so return is void)
+class Solution {
+    Random random = new Random();
+    public int[][] kClosest(int[][] points, int K) {
+        quickSelect(points, 0, points.length -1,K);
+        return Arrays.copyOfRange( points,0,K);
+    }
+    
+    public void quickSelect(int[][] points, int left, int right, int k){
+        if(left > right) return;// NOTE: HERE BASE CASE
+        // random pivot
+        int pivotIndex = random.nextInt(right + 1 - left) + left;
+        swap(points, pivotIndex, right);
+        
+        // find partition
+        int p = partition(points, left, right);
+
+        if(p < k){
+            quickSelect(points, p + 1, right, k);
+            return;// NOTE: HERE NO RETURN TYPE
+        }
+        else{
+            quickSelect(points, left, p - 1, k);
+            return;
+        }
+    }
+    
+    public int partition(int[][] points, int left, int right){
+        int[] pivot = points[right];
+        
+        int index = left;
+        for(int i = left; i < right; i++){
+            if(getPointSize(points[i]) < getPointSize(pivot)){
+                swap(points,index,i);
+                index ++;
+            }
+        }
+        swap(points, index, right);
+        return index;
+    }
+    
+    public int getPointSize(int[] point){
+        return point[0]*point[0] + point[1]*point[1];
+    }
+    
+    public void swap(int[][] points, int a, int b){
+        int[] temp = points[a];
+        points[a] = points[b];
+        points[b] = temp;
+    }
+}
 
