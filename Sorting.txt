@@ -113,6 +113,34 @@ class QuickSort {
 Quick Select pattern
 NOTE: not working in case array has duplicated value, and that duplicated value consider as one order statistic 414. Third Maximum Number
 //215. Kth Largest Element in an Array
+// iterative version
+public int find(int[] arr, int low, int high, int k) { 
+    while(low <= high){
+        int pivotIndex = r.nextInt(high + 1 -low) + low;
+        swap(arr, pivotIndex, high);  
+        // find the partition  
+        int p = partition(arr,low,high); 
+        if(p == k) return arr[p]; 
+        else if(p < k) low = p+1;
+        else high = p-1;
+    } 
+    return Integer.MAX_VALUE;
+} 
+// recursive version
+ public int find(int[] arr, int low, int high, int k) { 
+    if (low > high) return Integer.MAX_VALUE;
+    int pivotIndex = r.nextInt(high + 1 -low) + low;
+    swap(arr, pivotIndex, high);  
+    // find the partition  
+    int p = partition(arr,low,high); 
+    
+    if(p == k) return arr[p]; 
+    else if(p < k) return find(arr, p + 1, high, k ); 
+    else return find(arr, low, p-1, k );     
+} 
+
+
+
 //973. K Closest Points to Origin (notes on the quickSelect return type, when dealing with top or lower range, we can try in place sort up to 0 index or up to end index, so return is void)
 class Solution {
     Random random = new Random();
