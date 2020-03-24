@@ -44,19 +44,9 @@ class Solution {
     }
 
 // quick sort
-/* This function takes last element as pivot, places
-   the pivot element at its correct position in sorted
-    array, and places all smaller (smaller than pivot)
-   to left of pivot and all greater elements to right
-   of pivot */
-// Java program for implementation of QuickSort 
 class QuickSort { 
     Random random = new Random();
  
-    /* The main function that implements QuickSort() 
-      arr[] --> Array to be sorted, 
-      low  --> Starting index, 
-      high  --> Ending index */
     void sort(int arr[], int low, int high){ 
         if(low >= high) return;
         // ramdomized
@@ -100,6 +90,8 @@ class QuickSort {
         nums[b] = temp;
     }
     
+    // NOTE: This function does not garrantee that elements before pivot element is in sorted order
+    // only garrantee that everything before pivot is less than pivot
     public int partition(int arr[], int low, int high) { 
         int pivot = arr[high];
         int i = low; // index of smaller element 
