@@ -46,5 +46,6 @@ In fact, with an appropriately written compiler, you should never have a stack o
 404. Sum of Left Leaves
 
 
-
+skills on how to convert recursive into loop
+http://blog.moertel.com/posts/2013-05-11-recursive-to-iterative.html
 
