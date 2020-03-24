@@ -111,6 +111,7 @@ class QuickSort {
 
 
 Quick Select pattern
+NOTE: not working in case array has duplicated value, and that duplicated value consider as one order statistic 414. Third Maximum Number
 //215. Kth Largest Element in an Array
    
 
