@@ -139,6 +139,21 @@ class Solution {
             return;
         }
     }
+    // equivalent iterative version
+    public void quickSelect(int[][] points, int left, int right, int k){
+        while(left <= right){
+            // random pivot
+            int pivotIndex = random.nextInt(right + 1 - left) + left;
+            swap(points, pivotIndex, right);
+            // find partition
+            int p = partition(points, left, right);
+            if(p < k){
+                left = p + 1;
+            }else{
+                right = p - 1;
+            }
+        }
+    }
     
     public int partition(int[][] points, int left, int right){
         int[] pivot = points[right];
