@@ -1,6 +1,7 @@
 
 
-g(m) => target is on left
+g(x) is a function that
+exists m s.t. if x >= m g(x) > 0(true) else g(x) <= 0
 
 Template 1
 [1,r)
