@@ -1,0 +1,55 @@
+
+g(m) => target is on left
+
+Template 1
+[1,r)
+左闭右开
+binarySearch(l, r):
+	while l < r:
+		m = l + (r - l) /2
+		if f(m): return m # optional
+		if g(m): r = m # new range [l, m)
+		else l = m + 1 # new range [m+1, r)
+	
+	return l 
+# or not found, where l is smallest number m in range [l,r) such that g(m) is true, return r if not found.
+
+Tempate 2
+[l,r]
+闭区间
+binarySearch(l,r):
+	while(l <= r):
+		m = l + (r-l)/2
+		if f(m): return m # optional
+		if g(m): r = m - 1 # new range [l, m -1]
+		else: l = m + 1 # new range [m+1, r]
+
+	return l 
+# or not found, where l is smallest number m in range [l,r] such that g(m) is true, return r if not found.
+
+
+
+
+注意使用 闭区间 [l, r] 容易死循环
+功能上没有区别
+
+The key to binary search is not trying to find the exact answer, but find a split point m such that   for all n, n >= m,  conditions are satisfied, then m will naturally become the answer for free
+
+
+
+
+Example 1: return the index of an element in a sorted array. Elements are unique.
+If not found return -1;
+
+A = [1, 2, 5, 7, 8, 12]
+search(8) = 4, search(6) = -1
+
+Public int binarySearch(A, val, l, r):
+	while( l < r):
+		mid = l + (r -l)/2;
+		if(A[mid] == val): return mid;
+		if(A[mid] > val) r = m;
+		else l = m + 1;	
+	return -1;
+			
+			
