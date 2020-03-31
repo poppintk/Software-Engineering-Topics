@@ -16,7 +16,7 @@ binarySearch(l, r):
 	return l 
 	
 Time Complexity:
-O(log(r-1)) * O(f(m) + g(m))
+O( log(r-1) *(f(m) + g(m)) )
 
 # or not found, where l is smallest number m in range [l,r) such that g(m) is true, return r if not found.
 缺点： r存在overflow的情况， 比如是upper bound 的上限 Integer.MAX_VALUE
