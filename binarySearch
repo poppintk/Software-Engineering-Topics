@@ -25,7 +25,8 @@ binarySearch(l, r):
 Time Complexity:
 O( log(r-1) *(f(m) + g(m)) )
 
-# or not found, where l is smallest number m in range [l,r) such that g(m) is true, return r if not found.
+# where l is smallest number m in range [l,r) such that g(m) is true, 
+# if l == r not found.
 
 //69. Sqrt(x)
 
@@ -41,7 +42,8 @@ binarySearch(l,r):
 		else: l = m + 1 # new range [m+1, r]
 
 	return l # 如果有f(m)存在， return -1
-# or not found, where l is smallest number m in range [l,r] such that g(m) is true, return r if not found.
+# where l is smallest number m in range [l,r] such that g(m) is true, 
+# if l == r not found.
 
 
 
