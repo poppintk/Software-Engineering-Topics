@@ -3,10 +3,11 @@
 g(x) is a function that
 exists m s.t. if x >= m g(x) > 0(true) else g(x) <= 0
 g(x) 判断 解在左边还是右边，
-如果g(x)为true, 解在左边
+如果g(x)为true, 解在左边, 否则右边
+最后 l 为最小的value, g(x)为true
 
 Template 1
-[1,r)
+[l,r)
 左闭右开
 binarySearch(l, r):
 	while l < r:
