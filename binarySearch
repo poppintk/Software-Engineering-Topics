@@ -31,9 +31,29 @@ Time Complexity:
 O( log(r-1) *(f(m) + g(m)) )
 
 # where l is smallest number m in range [l,r) such that g(m) is true, 
-# if l == r not found.
 
 //69. Sqrt(x)
+
+//704. Binary Search
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length;
+        
+        while(left < right){
+            int mid = left + (right - left)/2;
+            if(nums[mid] >= target){
+                //g(x), such that x >= target g(x)>0 (true), otherwise false
+                right = mid;
+            }else{
+                left = mid +1;
+            }
+        }
+    
+        if(left == nums.length) return -1;
+        return nums[left] == target ? left: -1;
+    }
+}
 
 
 Tempate 2
@@ -48,7 +68,6 @@ binarySearch(l,r):
 
 	return l # 如果有f(m)存在， return -1
 # where l is smallest number m in range [l,r] such that g(m) is true, 
-# if l == r not found.
 
 
 
