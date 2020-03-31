@@ -9,6 +9,10 @@ g(x) 判断 解在左边还是右边，
 Template 1
 [l,r)
 左闭右开
+
+if(n == Integer.MAX_VALUE) return n;
+缺点： r存在overflow的情况， 比如是upper bound 的上限 Integer.MAX_VALUE
+
 binarySearch(l, r):
 	while l < r:
 		m = l + (r - l) /2
@@ -22,7 +26,7 @@ Time Complexity:
 O( log(r-1) *(f(m) + g(m)) )
 
 # or not found, where l is smallest number m in range [l,r) such that g(m) is true, return r if not found.
-缺点： r存在overflow的情况， 比如是upper bound 的上限 Integer.MAX_VALUE
+
 //69. Sqrt(x)
 
 
