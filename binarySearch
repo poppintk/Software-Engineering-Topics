@@ -75,3 +75,7 @@ leetcode 875
 2)那么这里怎么选定初始的lo和hi呢？我们要明确我们找的是吃的速度，那么最低，起码得在吃吧，
 所以起码lo = 1，那hi呢？我们注意到note中第二点pile.length <= H，因为我们吃的速度就算再快，
 一次也只能吃一盘而已，所以无论怎样最少都得pile.length个小时才能吃完，所以hi = max(piles)
+
+// ceil(p/m) == (p + m - 1) / m 
+// if using java Math.ceil((double)p/m) is a lot more slower
+k += (p + mid -1)/mid;
