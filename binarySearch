@@ -15,7 +15,7 @@ binarySearch(l, r):
 		if g(m): r = m # new range [l, m)
 		else l = m + 1 # new range [m+1, r)
 
-	return l 
+	return l # 如果有f(m)存在， return -1
 	
 Time Complexity:
 O( log(r-1) *(f(m) + g(m)) )
@@ -35,7 +35,7 @@ binarySearch(l,r):
 		if g(m): r = m - 1 # new range [l, m -1]
 		else: l = m + 1 # new range [m+1, r]
 
-	return l 
+	return l # 如果有f(m)存在， return -1
 # or not found, where l is smallest number m in range [l,r] such that g(m) is true, return r if not found.
 
 
