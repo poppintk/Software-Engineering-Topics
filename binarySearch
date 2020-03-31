@@ -3,7 +3,7 @@
 g(x) is a function that
 exists m s.t. if x >= m g(x) > 0(true) else g(x) <= 0
 g(x) 判断 解在左边还是右边，
-如果g(x)为true, 解在右边
+如果g(x)为true, 解在左边
 
 Template 1
 [1,r)
