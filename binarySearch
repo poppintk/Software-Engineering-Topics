@@ -96,6 +96,7 @@ Public int binarySearch(A, val, l, r):
 			
 			
 leetcode 875
+https://buptwc.com/2019/11/04/二分法系列详解/
 分析：
 1)去找一个值满足某种条件，这种题见得太多了，显然是二分法，之后我整理一下所有的这种题目做一个合辑。
 find smallest number x in range [l,r] such that g(x) is true
