@@ -157,5 +157,6 @@ return dummyHead.next;
 // 328. Odd Even Linked List
 // 141. Linked List Cycle
 // 142. Linked List Cycle II
-// 148. Sort List(merge sort) vs 109. Convert Sorted List to Binary Search Tree
+// 148. Sort List(merge sort) 
+109. Convert Sorted List to Binary Search Tree // in binary search tree inorder is sorted 
 
