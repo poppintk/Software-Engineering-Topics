@@ -94,7 +94,7 @@ class QuickSort {
     // only garrantee that everything before pivot is less than pivot
     public int partition(int arr[], int low, int high) { 
         int pivot = arr[high];
-        int i = low; // index of smaller element 
+        int i = low; // keep tracking of first element which >= pivot
         for (int j=low; j < high; j++){ 
             // If current element is smaller than the pivot 
             if (arr[j] < pivot) { 
@@ -103,6 +103,7 @@ class QuickSort {
                 i++;
             } 
         } 
+        // Note: index i will be latest i which >= pivot
         // swap arr[i] and arr[high] (or pivot) 
         swap(arr, i,high);
         return i; 
