@@ -1,1 +1,19 @@
 
+Find(x): find the root/cluster-id of x 
+Union(x,y): merge two clusters
+
+
+Usage:
+Check whether two elements are in the same set or not in O(1)
+
+Complexity:
+Find: O(a(n)) = O(1)
+Union: O(a(n)) = O(1)
+Space: O(n)
+
+Without optimization: Find: O(n)
+
+Two key optimizations:
+1) Path compression: make tree flat
+2) Union by rank: merge low rank tree to high rank one
+
