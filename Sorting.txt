@@ -61,7 +61,7 @@ class QuickSort {
   }
   // kth statistical element
   public static int kthSmallest(int[] arr, int low, int high, int k) { 
-        if (low >= high) return Integer.MAX_VALUE;
+        if (low > high) return Integer.MAX_VALUE;
         // ramdomized
         int pivotIndex = random.nextInt(high + 1 -low) + low;(inclusive high and low)
         swap(arr, pivotIndex, high);  
@@ -71,7 +71,7 @@ class QuickSort {
   
         // if partition value is equal to the kth position,  
         // return value at k. 
-        if(partition == k)// NOTE: HERE FOR Kth ELEMENT TO RETURN
+        if(partition == k)// NOTE: HERE FOR Kth ELEMENT, NOTE: base condition low > high
             return arr[partition];     
         // if partition value is less than kth position, 
         // search right side of the array. 
@@ -121,7 +121,7 @@ public int find(int[] arr, int low, int high, int k) {
         swap(arr, pivotIndex, high);  
         // find the partition  
         int p = partition(arr,low,high); 
-        if(p == k) return arr[p]; 
+        if(p == k) return arr[p]; // NOTE: while condition low<= high
         else if(p < k) low = p+1;
         else high = p-1;
     } 
@@ -135,7 +135,7 @@ public int find(int[] arr, int low, int high, int k) {
     // find the partition  
     int p = partition(arr,low,high); 
     
-    if(p == k) return arr[p]; 
+    if(p == k) return arr[p]; //NOTE: base condition low > high
     else if(p < k) return find(arr, p + 1, high, k ); 
     else return find(arr, low, p-1, k );     
 } 
