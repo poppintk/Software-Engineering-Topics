@@ -151,7 +151,7 @@ class Solution {
     }
     
     public void quickSelect(int[][] points, int left, int right, int k){
-        if(left > right) return;// NOTE: HERE BASE CASE
+        if(left >= right) return;// NOTE: HERE BASE CASE
         // random pivot
         int pivotIndex = random.nextInt(right + 1 - left) + left;
         swap(points, pivotIndex, right);
@@ -170,7 +170,7 @@ class Solution {
     }
     // equivalent iterative version
     public void quickSelect(int[][] points, int left, int right, int k){
-        while(left <= right){
+        while(left < right){
             // random pivot
             int pivotIndex = random.nextInt(right + 1 - left) + left;
             swap(points, pivotIndex, right);
