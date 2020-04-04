@@ -114,6 +114,7 @@ class QuickSort {
 Quick Select pattern (Top k pattern)
 //414. Third Maximum Number
 //215. Kth Largest Element in an Array
+//347. Top K Frequent Elements
 // iterative version
 public int find(int[] arr, int low, int high, int k) { 
     while(low <= high){
