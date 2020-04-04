@@ -61,7 +61,7 @@ class QuickSort {
   }
   // kth statistical element
   public static int kthSmallest(int[] arr, int low, int high, int k) { 
-        if (low > high) return Integer.MAX_VALUE;
+        if (low >= high) return Integer.MAX_VALUE;
         // ramdomized
         int pivotIndex = random.nextInt(high + 1 -low) + low;(inclusive high and low)
         swap(arr, pivotIndex, high);  
