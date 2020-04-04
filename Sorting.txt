@@ -111,8 +111,8 @@ class QuickSort {
 }
 
 
-Quick Select pattern
-NOTE: not working in case array has duplicated value, and that duplicated value consider as one order statistic 414. Third Maximum Number
+Quick Select pattern (Top k pattern)
+//414. Third Maximum Number
 //215. Kth Largest Element in an Array
 // iterative version
 public int find(int[] arr, int low, int high, int k) { 
@@ -186,7 +186,6 @@ class Solution {
     
     public int partition(int[][] points, int left, int right){
         int[] pivot = points[right];
-        
         int index = left;
         for(int i = left; i < right; i++){
             if(getPointSize(points[i]) < getPointSize(pivot)){
