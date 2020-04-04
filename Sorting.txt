@@ -42,7 +42,7 @@ class Solution {
         }
         return res;
     }
-
+-------------------------------------------------------------------------------------------------------------------------
 // quick sort
 class QuickSort { 
     Random random = new Random();
