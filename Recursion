@@ -2,6 +2,11 @@
 
 assume recursion function is: recurse(object.next);
 
+ListNode cur = head;
+while(cur != null && cur.next != null){
+  cur = cur.next.next;
+}
+
 public ListNode recurse(ListNode head){
   if(head == null || head.next == null) return head;
   
