@@ -1,4 +1,8 @@
 assume all array here is increasing order
+注意用开区间或者闭区间是有 起始search range 决定的 
+比如left = 0,right = arr.length(condition 1), while(left < right) (condition2) 这是开区间 [left,right)
+当 left = 0, right = arr.length -1(condition 1), while(left <= right) (condition2) 这是闭区间 [left,right] 
+
 
 g(x) is a function that
 exists m s.t. if x >= m g(x) > 0(true) else g(x) <= 0
