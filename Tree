@@ -66,6 +66,10 @@ public boolean recurse(TreeNode root, Integer max, Integer min){
     if(root == null) return true;
     if(min != null && root.val <= min) return false;
     if(max != null && root.val >= max) return false;
+    
+    //Note: above two lines codes can be simplified into
+    //if((min != null && root.val <= min) || (max != null && root.val >= max)) return false;
+    
     return recurse(root.left, root.val, min) && recurse(root.right, max, root.val);
 }
 public boolean isValidBST(TreeNode root) {
