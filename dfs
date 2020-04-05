@@ -1,0 +1,41 @@
+79. Word Search
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int rows = board.length;
+        int cols = board[0].length;
+  
+        for(int i = 0; i< rows; i++){
+            for(int j = 0; j < cols;j++){
+                if(backTracking(board,word,0,i,j)) return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean backTracking(char[][] board, String word,int index,int i,int j){
+        int rows = board.length;
+        int cols = board[0].length;
+        // search range space
+        // choice spaces
+        if(i < 0 || i == rows || j < 0 || j == cols) return false;
+        
+        // constraints 
+        if(board[i][j] != word.charAt(index)) return false;
+        
+        // goal
+        if(index == word.length() - 1) return true;
+    
+        
+        board[i][j]^= 256;
+        boolean ans = backTracking(board,word,index+1,i+1,j) ||
+            backTracking(board,word,index+1,i-1,j)||
+            backTracking(board,word,index+1,i,j+1)||
+            backTracking(board,word,index+1,i,j-1);
+        board[i][j]^= 256;
+        return ans;
+  
+    }
+}
+
+END 79. Word Search
+-----------------------------------------------------------------------------------------------------------------------------
