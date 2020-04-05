@@ -19,7 +19,7 @@ class Solution {
         // choice spaces
         if(i < 0 || i == rows || j < 0 || j == cols) return false;
         
-        // constraints 
+        // constraints: not allowing
         if(board[i][j] != word.charAt(index)) return false;
         
         // goal
