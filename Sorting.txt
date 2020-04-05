@@ -117,14 +117,14 @@ Quick Select pattern (Top k pattern)
 //347. Top K Frequent Elements
 // iterative version
 public int find(int[] arr, int low, int high, int k) { 
-    while(low <= high){
+    while(low < high){
         int pivotIndex = r.nextInt(high + 1 -low) + low;
         swap(arr, pivotIndex, high);  
         // find the partition  
         int p = partition(arr,low,high); 
         if(p == k) return arr[p]; // NOTE: while condition low<= high
-        else if(p < k) low = p+1;
-        else high = p-1;
+        if(p > k) high = p; // same as binary search [low,p) exclude p
+        else low = p+1;//same as binary search [p+1,high)
     } 
     return Integer.MAX_VALUE;
 } 
