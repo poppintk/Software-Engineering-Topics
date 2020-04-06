@@ -47,7 +47,7 @@ O(m*n + l)
 
 END 79. Word Search
 -----------------------------------------------------------------------------------------------------------------------------
-200. Number of Islands
+200. Number of Islands.(connected components pattern)
 
 class Solution {
     public int numIslands(char[][] grid) {
@@ -89,7 +89,7 @@ O(1)
 
 END 200. Number of Islands
 -----------------------------------------------------------------------------------------------------------------------------
-547. Friend Circles
+547. Friend Circles (connected components pattern)
 class Solution {
     public int findCircleNum(int[][] M) {
         int row = M.length;
