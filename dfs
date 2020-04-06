@@ -126,3 +126,30 @@ O(N)
 
 END 547. Friend Circles
 ----------------------------------------------------------------------------------------------------------------------------
+
+Combination vs Permutation
+
+perm(nums, depth, n, used, curr, ans):
+    if depth==n:
+        ans.append(curr)
+        return
+    
+    for i = 0 to len(nums):
+        if used[i]: continue
+        used[i] = True
+        curr.push(nums[i])
+        perm(nums, d+1, n, curr, ans)
+        curr.pop()
+        used[i] = False
+        
+        
+combination(nums, depth, n, start, curr, ans):
+    if depth == n:
+        ans.append(curr)
+        return
+        
+    for i = start to len(nums):
+        curr.push(nums[i])
+        combination(nums, depth + 1, n, i+1, curr, ans)
+        curr.pop()
+        
