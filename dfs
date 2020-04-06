@@ -89,4 +89,33 @@ O(1)
 
 END 200. Number of Islands
 -----------------------------------------------------------------------------------------------------------------------------
-
+547. Friend Circles
+class Solution {
+    public int findCircleNum(int[][] M) {
+        int row = M.length;
+        int count = 0;
+        Set<Integer> visited = new HashSet<>();
+        
+        for(int i = 0; i < row; i++){
+            if(visited.contains(i)) continue;
+            dfs(M,visited, i);
+            count++;
+        }
+        
+        return count;
+    }
+    
+    public void dfs(int[][] M, Set<Integer> visited,int cur){
+        if(visited.contains(cur)) return;
+        visited.add(cur);
+        // for all current's friend
+        for(int i = 0; i < M.length; i++){
+            if(M[cur][i] == 1 && !visited.contains(i)){
+                dfs(M,visited, i);
+            }
+        }
+        
+    }
+}
+END 547. Friend Circles
+----------------------------------------------------------------------------------------------------------------------------
