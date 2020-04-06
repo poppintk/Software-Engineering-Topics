@@ -175,6 +175,72 @@ Space comlexity:O(MN)
 
 END 130. Surrounded Regions
 -----------------------------------------------------------------------------------------------------------------------------
+52. N-Queens II
+class Solution {
+    
+    Integer count = 0;
+    Set<Integer> col = new HashSet<>();
+    Set<Integer> diag1 = new HashSet<>();
+    Set<Integer> diag2 = new HashSet<>();
+    
+    public int totalNQueens(int n) {
+        char[][] board = generateBoard(n);
+        solveQueen(board, n, 0);
+        return count;
+    }
+    
+    public char[][] generateBoard(int n){
+        char[][] board = new char[n][n];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                board[i][j] = '.';
+            }
+        }
+        return board;
+    }
+    
+    public void placeQueen(char[][] board, int n, int i, int j){
+        col.add(j);
+        diag1.add(i + j);
+        diag2.add(j - i + (n - 1));
+        board[i][j] = 'Q';
+    }
+    
+    public void removeQueen(char[][] board, int n, int i, int j){
+        col.remove(j);
+        diag1.remove(i+j);
+        diag2.remove(j - i + (n - 1));
+        board[i][j] = '.';
+    }
+    
+    public boolean isInvalid(char[][] board, int n, int i, int j){
+        return col.contains(j) || diag1.contains(i+j) || diag2.contains(j - i + (n - 1));
+    }
+    
+    public void solveQueen(char[][] board, int n, int i){
+        if(i == n){
+            count ++;
+            return;
+        }// goal
+        
+        // for every column
+        for(int j = 0; j < n; j++){
+            if(isInvalid(board,n,i,j)) continue; // constraint
+            placeQueen(board,n,i,j);
+            solveQueen(board, n, i+1);
+            removeQueen(board,n,i,j);
+        }
+    }
+}
+
+Time complexity:
+total: exponential time
+Space comlexity:O(n*n + 3n)
+
+END 52. N-Queens II
+---------------------------------------------------------------------------------------------------------------------------
+
+
 Combination vs Permutation
 
 perm(nums, depth, n, used, curr, ans):
@@ -201,3 +267,5 @@ combination(nums, depth, n, start, curr, ans):
         combination(nums, depth + 1, n, i+1, curr, ans)
         curr.pop()
         
+        
+  
