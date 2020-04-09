@@ -285,7 +285,7 @@ class Solution {
             }
         
         }
-        // after try all 1 to 9, if there is not a solution then return 
+        // after try all 1 to 9, if there is not a solution then return false
         return false;
         
         // // for each column
