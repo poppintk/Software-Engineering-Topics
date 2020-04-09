@@ -14,6 +14,11 @@ when use void dfs() and bool dfs()?
 if search all solutions then void dfs()
 if search only one solution then bool dfs()
 
+Sudoku solver vs n-queen
+backtracking的时机
+n-queen 是一行一行搜的
+sudoku 是每行从左边到右边
+
 
 79. Word Search
 class Solution {
@@ -256,7 +261,48 @@ Space comlexity:O(n*n + 3n)
 
 END 52. N-Queens II
 ---------------------------------------------------------------------------------------------------------------------------
+37. Sudoku Solver
 
+class Solution {
+    public void solveSudoku(char[][] board) {
+        solve(board,0,0);
+    }
+    
+    public boolean solve(char[][] board, int row, int col){
+
+        // for each column
+        for(int i = row; i < board.length; i++,col = 0){
+            for(int j = col; j <  board.length; j++){
+                if(board[i][j] != '.') continue;
+                for(char c = '1'; c <= '9'; c++){
+                    if(!isValid(board,i,j,c)) continue;
+                    board[i][j] = c;
+                    if(solve(board,i,j)){
+                        return true;
+                    }
+                    board[i][j] = '.';
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
+     private boolean isValid(char[][] board, int row, int col, char c){
+        for(int i = 0; i < 9; i++) {
+            if(board[i][col] != '.' && board[i][col] == c) return false; //check row
+            if(board[row][i] != '.' && board[row][i] == c) return false; //check column
+            if(board[3 * (row / 3) + i / 3][ 3 * (col / 3) + i % 3] != '.' && 
+board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; //check 3*3 block
+        }
+        return true;
+    }
+}
+
+
+END 37. Sudoku Solver
+--------------------------------------------------------------------------------------------------------------------------
 
 Combination vs Permutation
 
