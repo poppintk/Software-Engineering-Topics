@@ -269,7 +269,6 @@ class Solution {
     }
     
     public boolean solve(char[][] board, int row, int col){
-
         // for each column
         for(int i = row; i < board.length; i++,col = 0){
             for(int j = col; j <  board.length; j++){
@@ -277,7 +276,7 @@ class Solution {
                 for(char c = '1'; c <= '9'; c++){
                     if(!isValid(board,i,j,c)) continue;
                     board[i][j] = c;
-                    if(solve(board,i,j)){
+                    if(solve(board,i,j + 1)){
                         return true;
                     }
                     board[i][j] = '.';
