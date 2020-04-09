@@ -269,22 +269,41 @@ class Solution {
     }
     
     public boolean solve(char[][] board, int row, int col){
-        // for each column
-        for(int i = row; i < board.length; i++,col = 0){
-            for(int j = col; j <  board.length; j++){
-                if(board[i][j] != '.') continue;
-                for(char c = '1'; c <= '9'; c++){
-                    if(!isValid(board,i,j,c)) continue;
-                    board[i][j] = c;
-                    if(solve(board,i,j + 1)){
-                        return true;
-                    }
-                    board[i][j] = '.';
-                }
-                return false;
+        if(row == board.length) return true;
+        
+        int nextCol = (col + 1) % board.length;
+        int nextRow = col + 1 == board.length ? row + 1 : row; 
+        
+        if(board[row][col] != '.') return solve(board,nextRow,nextCol);
+        
+        for(char c = '1'; c <= '9'; c++){
+            if(isValid(board,row,col,c)){
+                board[row][col] = c;
+                if(solve(board,nextRow,nextCol)) return true;
+                board[row][col] = '.';
+
             }
+        
         }
-        return true;
+        // after try all 1 to 9, if there is not a solution then return 
+        return false;
+        
+        // // for each column
+        // for(int i = row; i < board.length; i++,col = 0){
+        //     for(int j = col; j <  board.length; j++){
+        //         if(board[i][j] != '.') continue;
+        //         for(char c = '1'; c <= '9'; c++){
+        //             if(!isValid(board,i,j,c)) continue;
+        //             board[i][j] = c;
+        //             if(solve(board,i,j+1)){
+        //                 return true;
+        //             }
+        //             board[i][j] = '.';
+        //         }
+        //         return false;
+        //     }
+        // }
+        // return true;
     }
     
     
@@ -298,7 +317,6 @@ board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false; //check 
         return true;
     }
 }
-
 
 END 37. Sudoku Solver
 --------------------------------------------------------------------------------------------------------------------------
