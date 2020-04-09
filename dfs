@@ -132,7 +132,7 @@ O(N)
 
 END 547. Friend Circles
 ----------------------------------------------------------------------------------------------------------------------------
-130. Surrounded Regions
+130. Surrounded Regions (connected components pattern)
 class Solution {
     public void solve(char[][] board) {
         int row = board.length;
