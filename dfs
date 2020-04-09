@@ -176,7 +176,7 @@ class Solution {
 
 Time complexity:
 total: O(MN)
-Space comlexity:O(MN)
+Space comlexity:O(1)
 
 
 END 130. Surrounded Regions
