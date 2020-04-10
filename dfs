@@ -345,7 +345,7 @@ Combination vs Permutation
 
 perm(nums, depth, n, used, curr, ans):
     if depth==n:
-        ans.append(curr)
+        ans.append(curr) //cur是指针引用， append的时候需要deep copy
         return
     
     for i = 0 to len(nums):
