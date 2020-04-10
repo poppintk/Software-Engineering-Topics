@@ -65,7 +65,7 @@ search: O(4^l) where l = len(word)
 total: O(m*n*4^l)
 
 Space complexity:
-O(1)
+O(m*n + l)
 
 
 END 79. Word Search
