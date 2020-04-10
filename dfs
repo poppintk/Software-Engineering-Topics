@@ -358,7 +358,7 @@ perm(nums, depth, n, used, curr, ans):
         
         
 combination(nums, depth, n, start, curr, ans):
-    if depth == n:
+    if depth == n://特定了长度 比如3choose 2
         ans.append(curr)
         return
         
