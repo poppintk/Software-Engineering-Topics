@@ -5,6 +5,10 @@
 对于DFS来说绝大对数的情况下是需要还原的，因为没找到解。这个类型题目的时间复杂度通常为为O(n!) O(2^n) 或者 O(c^n)。
 只有找连通分量(connected component)/拓扑排序(topological sort)的时候不需要还原，时间复杂度为O(V+E)
 
+要不要回溯的关键： 
+不需要回溯： 一旦第一次被访问到就算找到组织（解）了，不能再被其他联通分量使用。
+需要回溯：所以退栈前需要还原，那么其他路径就可以使用了
+
 
  why Sudoku sovlver need to return bool, while n-Queen can return void?
  For NQueen, we need to find all solutions and valid solution are stored in sols_, no need to return.
