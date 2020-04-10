@@ -300,8 +300,8 @@ class Solution {
     public boolean solve(char[][] board, int row, int col){
         if(row == board.length) return true;
         
-        int nextCol = (col + 1) % board.length;
-        int nextRow = col + 1 == board.length ? row + 1 : row; 
+        int nextCol = (col + 1) % board.length; // code style trick
+        int nextRow = col + 1 == board.length ? row + 1 : row; // code style trick
         
         if(board[row][col] != '.') return solve(board,nextRow,nextCol);
         
