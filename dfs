@@ -26,7 +26,7 @@ diag1 key = (i + j);
 diag2 key = (j - i + (n - 1));
 
 sudoku 是每行从左边到右边
-row/3)*3 + col/3
+（row/3)*3 + col/3
 
 
 79. Word Search
