@@ -375,7 +375,7 @@ combination(nums, depth, n, start, curr, ans):
         
     for i = start to len(nums):
         curr.push(nums[i])
-        combination(nums, depth + 1, n, i+1, curr, ans)
+        combination(nums, depth + 1, n, i+1, curr, ans) //注意i+1 下一个start 从i+1开始 避免重复被用
         curr.pop()
        
 --------------------------------------------------------------------------------------------------------------------------
@@ -443,7 +443,7 @@ space: O(n)
  O(target / min(nums[i]) )
 END 39. Combination Sum
 --------------------------------------------------------------------------------------------------------------------------
-  40. Combination Sum II (Value used only once)
+  40. Combination Sum II (Value used only once， array has duplicated value)
   
   class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
