@@ -374,7 +374,7 @@ combination(nums, depth, n, start, curr, ans):
         curr.pop()
        
 --------------------------------------------------------------------------------------------------------------------------
-39. Combination Sum
+39. Combination Sum (without duplicates, can use element as many as we like )
 class Solution { 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
