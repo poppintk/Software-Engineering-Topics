@@ -349,7 +349,7 @@ perm(nums, depth, n, used, curr, ans):
         return
     
     for i = 0 to len(nums):
-        if used[i]: continue
+        if used[i]: continue //permutation也可以用set
         used[i] = True
         curr.push(nums[i])
         perm(nums, d+1, n, curr, ans)
