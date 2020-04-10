@@ -372,6 +372,8 @@ combination(nums, depth, n, start, curr, ans):
 
 
 
+Time Complexity: O(2^n) 
+space: O(n)
 END 39. Combination Sum
 --------------------------------------------------------------------------------------------------------------------------
   
