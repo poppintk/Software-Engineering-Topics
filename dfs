@@ -392,7 +392,10 @@ class Solution {
         for(int i = from; i < candidates.length; i++){
             if(candidates[i] > target) break; // 需要
             curr.add(candidates[i]);
-            backTracking(candidates,target - candidates[i],i,curr,result);
+            
+            // according to template next from which is i index needs to be i+1, but this queustion
+            // require a number can be applied couple times(duplicated allowed)
+            backTracking(candidates,target - candidates[i],i,curr,result); 
             curr.remove(curr.size()-1);
         }
     }
@@ -415,7 +418,7 @@ class Solution {
         if(depth == n){
             if(target == 0){
                 result.add(new ArrayList<>(curr));
-            }   
+            }
             return;
         }
         
