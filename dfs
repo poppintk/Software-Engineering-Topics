@@ -121,7 +121,7 @@ class Solution {
         Set<Integer> visited = new HashSet<>();
         
         for(int i = 0; i < row; i++){
-            if(visited.contains(i)) continue;
+            if(visited.contains(i)) continue; // needed
             dfs(M,visited, i);
             count++;
         }
