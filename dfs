@@ -66,6 +66,7 @@ total: O(m*n*4^l)
 
 Space complexity:
 O(m*n + l)
+m*n 程序必须使用的空间
 
 
 END 79. Word Search
@@ -108,7 +109,7 @@ class Solution {
 Time complexity:
 total: O(m*n)
 Space comlexity:
-O(1)
+O(m*n)
 
 END 200. Number of Islands
 -----------------------------------------------------------------------------------------------------------------------------
@@ -193,7 +194,7 @@ class Solution {
 
 Time complexity:
 total: O(MN)
-Space comlexity:O(1)
+Space comlexity:O(MN)
 
 
 END 130. Surrounded Regions
