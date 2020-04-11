@@ -80,6 +80,7 @@ m*n 程序必须使用的空间
 END 79. Word Search
 -----------------------------------------------------------------------------------------------------------------------------
 200. Number of Islands.(connected components pattern)
+similar question 733. Flood Fill
 
 class Solution {
     public int numIslands(char[][] grid) {
