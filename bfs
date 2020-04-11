@@ -62,7 +62,7 @@ class Solution {
                         if(newString.equals(endWord)) return step+1;
                         if(!dict.contains(newString)) continue;
                         queue.add(newString);
-                        dict.remove(newString);
+                        dict.remove(newString);// has visited
                     }
                     temp[j] = old;
                 }   
