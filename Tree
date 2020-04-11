@@ -313,6 +313,27 @@ public void flatten(TreeNode root) {
     root.left = null;
     next = root;
 }
+---------------------------------------------------------------------------------------------------------------------------
+543. Diameter of Binary Tree
+class Solution {
+    private int max = Integer.MIN_VALUE;
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
+        longestPath(root);
+        return max;
+    }
+    
+    public int longestPath(TreeNode root){
+        if(root == null) return -1;
+        int l = longestPath(root.left) + 1;
+        int r = longestPath(root.right) + 1;
+        max = Math.max(max, l+r);
+        return Math.max(l,r);
+    }
+}
+
+END 543. Diameter of Binary Tree
+----------------------------------------------------------------------------------------------------------------------------
 
 100. Same Tree
 101. Symmetric Tree
