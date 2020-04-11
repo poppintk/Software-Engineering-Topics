@@ -32,3 +32,46 @@ return NOT_FOUND
 
 
 127. Word Ladder
+
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        
+        Set<String> dict = new HashSet<>();
+        for(String s: wordList){
+            dict.add(s);
+        }
+        
+        if(!dict.contains(endWord)) return 0;
+        
+        int step = 0;
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
+        while(!queue.isEmpty()){
+            ++step;
+            int size = queue.size();
+            // current level
+            for(int i = 0; i < size; i++){
+                String curString = queue.poll();
+                // find next string
+                char [] temp = curString.toCharArray();
+                for(int j = 0; j < curString.length(); j++){
+                    char old = temp[j];
+                    for(char c = 'a'; c <= 'z'; c++){
+                        temp[j] = c;
+                        String newString = String.valueOf(temp);
+                        if(newString.equals(endWord)) return step+1;
+                        if(!dict.contains(newString)) continue;
+                        queue.add(newString);
+                        dict.remove(newString);
+                    }
+                    temp[j] = old;
+                }   
+            }
+        }
+        return 0;
+    }
+}
+
+
+END 127. Word Ladder
+-----------------------------------------------------------------------------------------------------------------------------
