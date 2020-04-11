@@ -353,6 +353,8 @@ END 37. Sudoku Solver
 
 Combination vs Permutation
 
+377. Combination Sum IV is a permutation, need to use DP
+
 permutation 需要 boolean来标记是因为不可以用重复元素, 比如不可以有(1,1,1),
 所以用了1之后1就被标记为true. Combination不需要记录是因为for循环不是从0开始的 是从s+1开始的, 所以不会跟之前的s个元素产生重复
 
@@ -510,4 +512,5 @@ END 39. Combination Sum
 
  
  END 216. Combination Sum III
+ 
   -------------------------------------------------------------------------------------------------------------------------
