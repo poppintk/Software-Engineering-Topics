@@ -1,5 +1,6 @@
 
 BFS
+// q is Queue
 q.push(start)
 step = 0
 
@@ -14,7 +15,7 @@ while not q.empty():
 return NOT_FOUND
 
 Bidirectional BFS
-
+// s1 and s2 are both hashSet
 s1.insert(start)
 s2.insert(end)
 step = 0
