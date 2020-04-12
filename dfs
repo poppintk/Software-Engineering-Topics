@@ -49,6 +49,8 @@ dfs(node):
     
     return OK
 Complexity: O(n)
+拓扑排序 = 顶点染色 + 记录顺序
+
 
 
 
