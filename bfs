@@ -10,8 +10,9 @@ while not q.empty():
 	while size != 0:
 		node = q.pop()
 		new_nodes = expand(node)
-		if goal in new_nodes: return step + 1
-		q.append(new_nodes)
+			//nested code block
+			if goal in new_nodes: return step + 1
+			q.append(new_nodes) // sometimes we also need to check visited condition
 return NOT_FOUND
 
 Bidirectional BFS
