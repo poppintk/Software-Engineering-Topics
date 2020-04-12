@@ -51,7 +51,50 @@ dfs(node):
 Complexity: O(n)
 拓扑排序 = 顶点染色 + 记录顺序
 
-
+class Solution {
+    private int UNKONW = 0;
+    private int VISITING = 1;
+    private int VISITED = 2;
+    
+    private boolean OK = true;
+    private boolean CYCLE = false;
+    
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        // construct adjancy list
+        Map<Integer, List<Integer>> adjancy = new HashMap<>();
+        for(int[] p: prerequisites){
+            if(!adjancy.containsKey(p[0])){
+                adjancy.put(p[0],new ArrayList<>());
+            }
+            adjancy.get(p[0]).add(p[1]);
+        }
+    
+        int[] visited = new int[numCourses]; 
+        for(int i = 0; i < numCourses; i++){
+            if(visited[i] == UNKONW) {
+                if(!hasTopoSort(adjancy,visited, i)){
+                    return CYCLE;
+                }
+            }
+        }
+        return OK;
+        
+    }
+    public boolean hasTopoSort(Map<Integer, List<Integer>>  adjancy, int[] visited, int course){
+        if(visited[course] == VISITED) return OK;
+        if(visited[course] == VISITING) return CYCLE;
+        
+        if(adjancy.containsKey(course)){
+            visited[course] = VISITING;
+            for(int nextCourse: adjancy.get(course)){
+                if(!hasTopoSort(adjancy,visited, nextCourse)) return CYCLE;
+            }
+            visited[course] = VISITED;
+        }
+        
+        return OK;
+    }
+}
 
 
 END 207. Course Schedule
