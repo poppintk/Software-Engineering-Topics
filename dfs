@@ -27,7 +27,31 @@ diag2 key = (j - i + (n - 1));
 
 sudoku 是每行从左边到右边
 （row/3)*3 + col/3
+-------------------------------------------------------------------------------------------------------------------------
+207. Course Schedule
+伪代码
+Topological sorting:
 
+for each node:
+    if not marked:
+        if(dfs(node) == CYCLE) return CYCLE
+return OK
+
+dfs(node):
+    if node is marked as visited: return OK
+    if node is marked as visiting: return CYCLE
+    mark node as visiting
+    for each new_node in node.neighbors:
+        if dfs(new_node) == CYCLE: return CYCLE
+    mark node as visited
+   
+    return OK
+
+
+
+
+END 207. Course Schedule
+-------------------------------------------------------------------------------------------------------------------------
 
 79. Word Search
 class Solution {
