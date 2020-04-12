@@ -44,9 +44,11 @@ dfs(node):
     for each new_node in node.neighbors:
         if dfs(new_node) == CYCLE: return CYCLE
     mark node as visited
-   
+    
+    add node to the "head" of order_list
+    
     return OK
-
+Complexity: O(n)
 
 
 
