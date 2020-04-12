@@ -11,8 +11,11 @@ while not q.empty():
 		node = q.pop()
 		new_nodes = expand(node)
 			//nested code block
+			// sometimes we also need to check visited condition
+			// if(visited) continue;
 			if goal in new_nodes: return step + 1
-			q.append(new_nodes) // sometimes we also need to check visited condition
+			// visited[new_nodes] = true;
+			q.append(new_nodes) 
 return NOT_FOUND
 
 Bidirectional BFS
@@ -60,10 +63,11 @@ class Solution {
                     for(char c = 'a'; c <= 'z'; c++){
                         temp[j] = c;
                         String newString = String.valueOf(temp);
-                        if(newString.equals(endWord)) return step+1;
-                        if(!dict.contains(newString)) continue;
+			if(!dict.contains(newString)) continue; //if(!map.containsKey(newString) || map.get(newString)) continue;
+			if(newString.equals(endWord)) return step+1;
+                        dict.remove(newString);// map.put(newString,true);
                         queue.add(newString);
-                        dict.remove(newString);// has visited
+                        
                     }
                     temp[j] = old;
                 }   
