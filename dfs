@@ -264,7 +264,7 @@ class Solution {
         boolean ans = backTracking(board,word,index+1,i+1,j) ||
             backTracking(board,word,index+1,i-1,j)||
             backTracking(board,word,index+1,i,j+1)||
-            backTracking(board,word,index+1,i,j-1);
+            backTracking(board,word,index+1,i,j-1); // NOTE: this is same as using loop and each loop body has mark and undo mark
         board[i][j]^= 256;
         return ans;
   
