@@ -54,3 +54,144 @@ In fact, with an appropriately written compiler, you should never have a stack o
 skills on how to convert recursive into loop
 http://blog.moertel.com/posts/2013-05-11-recursive-to-iterative.html
 
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+QuickSort(a, l , r):
+	p = partition(a, l, r) # O(n)
+	QuickSort(a, l, p)
+	QuickSort(a, p + 1, r)
+
+Time:
+Best case:
+T(n) = 2*T(n/2) + O(n) = O(nlogn)
+
+
+Worse case:
+T(n) = T(n-1) + T(1) + O(n) = O(n^2) // Note1
+
+Non-worse cases:
+T(n) = T(n/10) + T(9n/10) + O(n) = O(nlogn)
+
+Space: 
+Best/Average: O(logn)
+Worse: O(n) # like linked list
+-------------------------------------------------------------------------------------------------------------------------
+MergeSort(a, l, r):
+	m = l + (r - 1)/2
+	mergeSort(a, l, m)
+	mergeSort(a, m + 1, r)
+	merge(a, l , m , r) #O(r - l)
+
+Time:
+T(n) = 2* T(n/2) + O(n) = O(nlogn) // Note 3
+Space:
+O(lögn + n)
+-------------------------------------------------------------------------------------------------------------------------
+BinarySearch(a, l , r):
+	m = l + (r - 1) / 2
+	if f(m) : binarySearch(a, l , m)
+	else: binarySearch(a, m+1, r)
+
+Time;
+T(n) = T(n/2) + O(1) = O(logn) // Note 2
+Space;
+O(lögn)
+-------------------------------------------------------------------------------------------------------------------------
+inorder(root):
+	inorder(root.left)
+	func(root.val)
+	inorder(root.right)
+
+Time:
+Best:
+T(n) = 2*T(n/2) + O(1) = O(n)  // Note 2 // Note 3
+worse case: 
+T(n) = T(n-1) + T(1) + O(1) = O(n) // Note1
+
+Space:
+O(lögn) perfect
+O(n) worse case
+
+—————————————————————————————————————————
+combination(d, s):
+	if d == n: return func()
+	for I in range(s, n) :
+		combination(d+ 1, I+1)
+Time:
+T(n) = T(n-1) + T(n-2) + …..T(1)
+ 	= O(2^n)
+Space:
+	O(n) 
+-------------------------------------------------------------------------------------------------------------------------
+permutation(d, used):
+	if d == n: return func()
+	for I in range(0, n):
+		if I in used: continue
+		used.add(I)
+		permutation(d+1 , used)
+		used.remove(I)
+Time:
+T(n) = n * T(n-1)
+	= O(n!)
+
+Space:
+O(n)
+-------------------------------------------------------------------------------------------------------------------------
+DP with memorization
+Time: number of subproblems * exclusive time to solve each subproblem
+Space: max depth of call stack * space used by each subproblem
+
+fib(n):
+	if n < 1: return 0
+	return fib(n-1) + fib(n-2)
+
+T(n) = T(n-1) + T(n-2) + O(1)
+	= O(2^n)
+	= O(1.618^n)
+
+fib(n):
+	if n < 1: return 0
+	if m[n] > 0: return m[n]
+	m[n] = fib(n-1) + fib(n-2)
+	return m[n]
+
+N subproblems( number of memory size)
+Each problem takes O(1) to solve
+fib(n) takes O(n) time to solve
+
+-------------------------------------------------------------------------------------------------------------------------
+LC 741. Cherry pickup
+dp(x1, y1, x2):
+	if m[x1][y1][x2] != None:
+		return m[x1][y1][x2]
+	ans = max(max(dp(…), dp(…)),max(dp(…),dp(…)))
+	m[x1][y1][x2] = ans
+	return m[x1][y1][x2]
+
+n^3 subproblems
+Each subproblem takes O(1) // 只看函数本身 复杂度不算递归
+
+dp(n, n, n) takes O(n^3) to solve
+
+-------------------------------------------------------------------------------------------------------------------------
+LC 312. Burst Balloons
+
+dp(i, j):
+	if m[I][j] != None:
+		return m[I][j]
+	for k in range(I, j+1):
+		ans = max(ans, dp(…) + C + dp(…))
+	m[I][j] = ans
+	return m[I][j]
+
+n^2 subproblems
+Each subproblem takes O(n)
+
+dp(non) takes O(n^3) to solve
+-------------------------------------------------------------------------------------------------------------------------
+
+
