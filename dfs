@@ -597,6 +597,8 @@ END 39. Combination Sum
  
   -------------------------------------------------------------------------------------------------------------------------
 78. Subsets
+Given a set of distinct integers, nums, return all possible subsets (the power set).
+
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -614,4 +616,28 @@ class Solution {
 }
 
 END 78. Subsets
+---------------------------------------------------------------------------------------------------------------------------
+90. Subsets II
+Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> cur = new ArrayList<>();
+        Arrays.sort(nums);    
+        dfs(nums, 0, cur, ans);   
+        return ans;
+    }
+    public void dfs(int[] nums, int from, List<Integer> cur,  List<List<Integer>> ans){
+        ans.add(new ArrayList<>(cur));
+        for(int i = from; i < nums.length; i++){
+            if(i > from && nums[i] == nums[i-1]) continue;
+            cur.add(nums[i]);
+            dfs(nums, i+1, cur, ans);
+            cur.remove(cur.size()-1);
+        }
+    }
+}
+
+
+END 90. Subsets II
 ---------------------------------------------------------------------------------------------------------------------------
