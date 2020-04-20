@@ -42,14 +42,14 @@ public int dfs1(TreeNode root, int num){
     if(root.right == null) return dfs(root.left, num*10 + root.val);
     return dfs(root.left, num * 10 + root.val) + dfs(root.right, num * 10 + root.val);
 }
-
+--------------------------------------------------------------------------------------------------------------------------
 222. Count Complete Tree Nodes recursion type 2 -> count numbers
 // non tail recursion (there is log(2n) algorithm,but following solves general tree nodes problem)
 public int countNodes(TreeNode root) {
     if(root == null) return 0;
     return 1 + countNodes(root.left) + countNodes(root.right);
 }
-
+--------------------------------------------------------------------------------------------------------------------------
 //98. Validate Binary Search Tree
          6
        /   \
@@ -75,7 +75,7 @@ public boolean recurse(TreeNode root, Integer max, Integer min){
 public boolean isValidBST(TreeNode root) {
     return recurse(root,null,null);
 }
-
+--------------------------------------------------------------------------------------------------------------------------
 //199. Binary Tree Right Side View
 // recursion type 4 -> no return type
 public List<Integer> rightSideView(TreeNode root) {
@@ -90,7 +90,7 @@ public void dfs(TreeNode root, int depth, List<Integer> result){
     dfs(root.left, depth + 1, result);
 }
 
-
+--------------------------------------------------------------------------------------------------------------------------
 1) preorder, inorder, post order travasal
 // preorder
 public void preorder(TreeNode root){
@@ -170,7 +170,36 @@ public List<Integer> postorderTraversal(TreeNode root) {
     }
     return ans;
 }
+---------------------------------------------------------------------------------------------------------------------------
+1008. Construct Binary Search Tree from Preorder Traversal
 
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return dfs(preorder, 0, preorder.length-1);
+    }
+    public TreeNode dfs(int[] preorder, int preStart, int preEnd) {
+        if(preStart == preorder.length || preStart > preEnd) return null;
+        
+        int rootVal = preorder[preStart];
+        TreeNode root = new TreeNode(rootVal);
+        // find next index that greater than rootVal value
+        int nextIdx = 0;
+        for(int i = preStart; i < preorder.length; i++){
+            if(preorder[i] <= rootVal){
+                nextIdx = i;
+            }else{
+                break;
+            }
+        }
+        root.left = dfs(preorder, preStart + 1, nextIdx);
+        root.right = dfs(preorder, nextIdx + 1, preEnd);
+        return root;
+    }
+}
+
+
+END 1008. Construct Binary Search Tree from Preorder Traversal
+--------------------------------------------------------------------------------------------------------------------------
 
 105. Construct Binary Tree from Preorder and Inorder Traversal
 preorder
@@ -194,7 +223,7 @@ rightSubTree:
     preend = preend,
     instart = InIdx+1, 
     inend = inend;
-
+--------------------------------------------------------------------------------------------------------------------------
 106. Construct Binary Tree from Inorder and Postorder Traversal
      1
    /   \
@@ -216,7 +245,7 @@ rightSubTree:
     instart = InIdx+1, 
     inend = inend;
 
-
+--------------------------------------------------------------------------------------------------------------------------
 236. Lowest Common Ancestor of a Binary Tree
 235. Lowest Common Ancestor of a Binary Search Tree
 
@@ -236,7 +265,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
     return null;
 }
-
+--------------------------------------------------------------------------------------------------------------------------
 //116. Populating Next Right Pointers in Each Node
 //117. Populating Next Right Pointers in Each Node II
  public Node connect(Node root) {
@@ -271,7 +300,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 }
 
 
-
+--------------------------------------------------------------------------------------------------------------------------
 
 112. Path Sum (base case end from leaves)
 113. Path Sum II (end from leaves + backtracking on temp)
@@ -298,10 +327,9 @@ class Solution {
     }
 }
 
-
 257. Binary Tree Paths
 
-
+--------------------------------------------------------------------------------------------------------------------------
 114. Flatten Binary Tree to Linked List
 private TreeNode next = null;
 public void flatten(TreeNode root) {
