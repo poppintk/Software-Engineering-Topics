@@ -595,6 +595,46 @@ END 39. Combination Sum
  
  END 216. Combination Sum III
  
+ --------------------------------------------------------------------------------------------------------------------------
+ 17. Letter Combinations of a Phone Number
+ 
+ class Solution {
+    public List<String> letterCombinations(String digits) {
+        if(digits.equals("")) return new ArrayList<>();
+        
+        List<Character>[] map = new List[10];
+        map[2] = Arrays.asList('a','b','c');
+        map[3] = Arrays.asList('d','e','f');
+        map[4] = Arrays.asList('g','h','i');
+        map[5] = Arrays.asList('j','k','l');
+        map[6] = Arrays.asList('m','n','o');
+        map[7] = Arrays.asList('p','q','r','s');
+        map[8] = Arrays.asList('t','u','v');
+        map[9] = Arrays.asList('w','x','y','z');
+        
+        List<String> ans = new ArrayList<>();
+        StringBuilder curr = new StringBuilder();
+        dfs(digits, map, ans, curr, 0);
+        return ans;
+    }
+    
+    public void dfs(String digits,  List<Character>[] map, List<String> ans,  StringBuilder curr, int i){
+        if(i == digits.length()){
+            ans.add(curr.toString());
+            return;
+        }
+        //做选择
+        int nextDigit = Integer.valueOf(digits.charAt(i) -'0'); // Note: Character need to - '0' to get correct index
+        List<Character> arr = map[nextDigit];
+        for(int j = 0; j < arr.size(); j++){
+            curr.append(arr.get(j));
+            dfs(digits, map, ans, curr, i+1);
+            curr.deleteCharAt(curr.length() - 1);// Note: String Builder api
+        }
+    }
+}
+ 
+ END 17. Letter Combinations of a Phone Number
   -------------------------------------------------------------------------------------------------------------------------
 78. Subsets
 Given a set of distinct integers, nums, return all possible subsets (the power set).
