@@ -35,7 +35,7 @@ class UF {
     }
 
     public int find(int p) {
-        while (p != parent[p]) {
+        while (p != parent[p]) { //NOTE: p != parent[p], since we initialize parent[i] = i;
             parent[p] = parent[parent[p]];
             p = parent[p];
         }
@@ -45,13 +45,16 @@ class UF {
     public void union(int p, int q) {
         int pr = find(p);
         int qr = find(q);
+        // already in same set
         if (pr == qr) return;
-        if (rank[pr] < rank[qr]) {
+        // not in a same set yet
+        if (rank[pr] < rank[qr]) {// smaller one into bigger rank
             parent[pr] = qr;
         } else {
             parent[qr] = pr;
-            if (rank[pr] == rank[qr]) rank[pr]++;
+            if (rank[pr] == rank[qr]) rank[pr]++; // Note: special case
         }
+        // Note, after merge above, we need to reduce count!
         count--;
     }
 
