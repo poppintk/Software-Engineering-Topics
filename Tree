@@ -6,6 +6,11 @@ The height of a node is the number of edges on the longest path from the node to
 A leaf node will have a height of 0.
 
 1) edge case
+// terminate at left subtree of leaves
+if(root.left != null && root.left.left == null && root.left.right == null) return;
+
+
+
 // terminate at leaf (don't forget operation on leaf like add root.val if required)
 if(root == null) return;// edge case
 if(root.left == null && root.right == null) return;
