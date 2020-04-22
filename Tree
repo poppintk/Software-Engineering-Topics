@@ -362,7 +362,26 @@ class Solution {
 
 END 543. Diameter of Binary Tree
 ----------------------------------------------------------------------------------------------------------------------------
+404. Sum of Left Leaves
+    3
+   / \
+  9  20
+    /  \
+   15   7
 
+class Solution {
+    int ans = 0;
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root == null) return 0;
+        int sum = 0;
+        if(root.left != null && root.left.left == null && root.left.right == null){
+            sum = root.left.val; // NOTE: can not just return sum from here, since above case will just return 9
+        }
+        return sum + sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
+    }
+}
+END 404. Sum of Left Leaves
+----------------------------------------------------------------------------------------------------------------------------
 100. Same Tree
 101. Symmetric Tree
 104. Maximum Depth of Binary Tree
