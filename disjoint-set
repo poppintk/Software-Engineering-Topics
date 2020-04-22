@@ -17,3 +17,44 @@ Two key optimizations:
 1) Path compression: make tree flat
 2) Union by rank: merge low rank tree to high rank one
 
+
+
+class UF {
+    private int[] parent;  // parent[i] = parent of i
+    private byte[] rank;   // rank[i] = rank of subtree rooted at i (never more than 31)
+    public int count;      // number of connected components
+
+    public UF(int n) {
+        if (n < 0) throw new IllegalArgumentException();
+        parent = new int[n];
+        rank = new byte[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+        count = n;
+    }
+
+    public int find(int p) {
+        while (p != parent[p]) {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
+    }
+
+    public void union(int p, int q) {
+        int pr = find(p);
+        int qr = find(q);
+        if (pr == qr) return;
+        if (rank[pr] < rank[qr]) {
+            parent[pr] = qr;
+        } else {
+            parent[qr] = pr;
+            if (rank[pr] == rank[qr]) rank[pr]++;
+        }
+        count--;
+    }
+
+    public boolean connected(int p, int q) {
+        return find(p) == find(q);
+    }
