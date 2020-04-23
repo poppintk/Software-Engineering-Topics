@@ -30,6 +30,8 @@ Graph representation:
 ![spanning tree](./img/kruskal.png)
 
 
+Kruskal Example
+
 Given an undirected graph with n nodes labeled 1..n. Some of the nodes are already connected. The i-th edge connects nodes edges[i][0] and edges[i][1] together. Your task is to augment this set of edges with additional edges to connect all the nodes. Find the minimum cost to add new edges between the nodes such that all the nodes are accessible from each other.
 
 Input:
