@@ -1,4 +1,4 @@
 
 What is spanning tree?
-![spanning tree](./spinningTree.png)
-![spanning tree](./mst.png)
+![spanning tree](./img/spinningTree.png)
+![spanning tree](./img/mst.png)
