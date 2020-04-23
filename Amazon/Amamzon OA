@@ -159,6 +159,10 @@ private static int minDays(int[][] grid) {
  To those who keep getting 16, try for null, grid size 0, rows 0. Kept these and got 17/17. 
  Also easy cutting off if count of 1's = queue's size after first loop.
  
+ if all matrix are person, return - 1
+if no person in matrix, return 0;
+if all person are infected but your BFS queue still > 0 , break;
+ 
  ------------------------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------------------------
