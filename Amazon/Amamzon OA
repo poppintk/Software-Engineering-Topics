@@ -13,8 +13,8 @@ Explanation:
 There are 3 connected components [1, 4, 5], [2, 3] and [6].
 We can connect these components into a single component by connecting node 1 to node 2 and node 1 to node 6 at a minimum cost of 5 + 2 = 7.
 
-------------------------------------------------------------------------------------------------------------------------------
 // https://leetcode.com/discuss/interview-question/356981
+
 public class Main {
     public static void main(String[] args) {
         int n = 6;
@@ -164,6 +164,49 @@ if no person in matrix, return 0;
 if all person are infected but your BFS queue still > 0 , break;
  
  ------------------------------------------------------------------------------------------------------------------------
+ 763. Partition Labels
+ class Solution {
+    
+    public List<Integer> partitionLabels(String S) {
+        // last index map
+        int [] lastIndexMap = new int[26];
+        List<Integer> result = new ArrayList<>();
+        for(int i = 0; i < S.length(); i ++){
+            lastIndexMap[S.charAt(i) - 'a'] = i;
+        }
+        int start = 0;
+        int end = 0;
+        int lastIndex = 0;
+        while(end < S.length()){
+            lastIndex = lastIndexMap[S.charAt(end) - 'a'];
+            while(start < lastIndex){
+                lastIndex = Math.max(lastIndexMap[S.charAt(start) - 'a'],lastIndex);
+                start ++;
+            }
+            // start == lastIndex
+            result.add(lastIndex - end + 1);
+            // end must be one plus lastIndex
+            end = lastIndex + 1;
+        }
+        // time complexity is O(n)
+        // space complexity is O(1)
+        return result;
+    }
+}
+ 
+1) The time complexity is O(N) and space complexity is O(n).
+I created a array which stores the last index of the each unique character.
+
+Then looping characters up to the current last index.
+  When looping I keep asking, is current lastIndex is maximum. If we can guarantee
+ Maximum index then this would be our partition end index.
+There is only one pass looping through all characters. That’s why complexity is O(n).
+
+Since no matter what input size is, there is only array size created for keeping tracking last index is 26.
+Therefore the space complexity is O(1). 
+However, we have returning List<Integer> which in worse case could end up O(n) time. 
+Therefore, The time complexity is O(N) and space complexity is O(n).
+ 
  ------------------------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------------------------
  ------------------------------------------------------------------------------------------------------------------------
