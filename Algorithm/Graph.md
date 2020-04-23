@@ -17,14 +17,10 @@ We want to minimize the cost to connect all cities. No redundancy
 
 Graph representation: 
 
-Adjacency Matrix
-
 ![spanning tree](./img/adjacencyMatrix.png)
-
-Adjacency List
 
 ![spanning tree](./img/adjacencyList.png)
 
-Edge List 
-
 ![spanning tree](./img/edgeList.png)
+
+![spanning tree](./img/algomst.png)
