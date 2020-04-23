@@ -24,3 +24,7 @@ Graph representation:
 ![spanning tree](./img/edgeList.png)
 
 ![spanning tree](./img/algomst.png)
+
+![spanning tree](./img/prim.png)
+
+![spanning tree](./img/kruskal.png)
