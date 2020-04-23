@@ -1,3 +1,4 @@
 
 What is spanning tree?
-![Image description](./spinningtree.png)
+![spanning tree](./img/spanningTree.png)
+![spanning tree](./img/mst.png)
