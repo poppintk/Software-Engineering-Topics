@@ -1,3 +1,3 @@
 
 What is spanning tree?
-![Image description](./spinningtree)
+![Image description](../spinningtree)
