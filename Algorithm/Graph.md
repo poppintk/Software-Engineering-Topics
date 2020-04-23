@@ -48,6 +48,7 @@ There are 3 connected components [1, 4, 5], [2, 3] and [6].
 We can connect these components into a single component by connecting node 1 to node 2 and node 1 to node 6 at a minimum cost of 5 + 2 = 7.
 
 public class Main {
+
     public static void main(String[] args) {
         int n = 6;
         int[][] edges = {{1, 4}, {4, 5}, {2, 3}};
@@ -75,6 +76,7 @@ public class Main {
         }
         return totalCost;
     }
+    
 }
 
 class UF {
@@ -119,5 +121,6 @@ class UF {
     public boolean connected(int p, int q) {
         return find(p) == find(q);
     }
+    
 }
 
