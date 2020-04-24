@@ -1,3 +1,58 @@
+Top K Frequently Mentioned Keywords
+
+Given a list of reviews, a list of keywords and an integer k. Find the most popular k keywords in order of most to least frequently mentioned.
+The comparison of strings is case-insensitive. If keywords are mentioned an equal number of times in reviews, sort alphabetically.
+
+Example 1:
+
+Input:
+k = 2
+keywords = ["anacell", "cetracular", "betacellular"]
+reviews = [
+  "Anacell provides the best services in the city",
+  "betacellular has awesome services",
+  "Best services provided by anacell, everyone should use anacell",
+]
+
+Output:
+["anacell", "betacellular"]
+
+Explanation:
+"anacell" is occuring in 2 different reviews and "betacellular" is only occuring in 1 review.
+
+
+public List<String> solve(int k, String[] keywords, String[] reviews) {
+	Map<String, Integer> hm = new HashMap<>();
+	for (String sentence : reviews) {
+		Set<String> hs = new HashSet<>();
+		String[] words = sentence.split("\\W");
+		for (String word : words) {
+			hs.add(word.toLowerCase());
+		}
+		for(String word : hs){
+			word = word.toLowerCase();
+			hm.put(word, hm.getOrDefault(word, 0) + 1);
+		}
+	}
+	PriorityQueue<String> pq = new PriorityQueue<>((a, b) -> hm.get(a) != hm.get(b) ? hm.get(a) - hm.get(b) : b.compareTo(a));
+	for (String str : keywords) {
+		str = str.toLowerCase();
+		if (hm.containsKey(str)) {
+			pq.offer(str);
+		}//if word is not in reviews need to sort alphabetically?
+		if (pq.size() > k) {
+			pq.poll();
+		}
+	}
+	List<String> res = new ArrayList<>();
+	while (!pq.isEmpty()) {
+		res.add(pq.poll());
+	}
+	Collections.reverse(res);
+	return res;
+}
+
+---------------------------------------------------------------------------------------------------------------------------
 Min Cost to Connect All Nodes
 
 Given an undirected graph with n nodes labeled 1..n. Some of the nodes are already connected. The i-th edge connects nodes edges[i][0] and edges[i][1] together. Your task is to augment this set of edges with additional edges to connect all the nodes. Find the minimum cost to add new edges between the nodes such that all the nodes are accessible from each other.
