@@ -23,7 +23,7 @@ slidingWindow(String s, String t){
 			// d 是将移出窗口的字符
 			char d = s.charAt(left);
 			//左移窗口
-			left++;
+			left++; 
 			//进行窗口内数据的一系列更新
 			。。。
 		}
