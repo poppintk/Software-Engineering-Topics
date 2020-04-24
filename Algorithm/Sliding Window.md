@@ -1,4 +1,4 @@
-slidingWindow(String s, String t){
+public int slidingWindow(String s, String t){
 
 	Map<Character, Integer> need, windows;
 	
