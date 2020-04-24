@@ -37,8 +37,8 @@ public List<String> solve(int k, String[] keywords, String[] reviews) {
 	PriorityQueue<String> pq = new PriorityQueue<>((a, b) -> hm.get(a) != hm.get(b) ? hm.get(a) - hm.get(b) : b.compareTo(a));
 	for (String str : keywords) {
 		str = str.toLowerCase();
-		if (hm.containsKey(str)) {
-			pq.offer(str);
+		if (hm.containsKey(str)) { // keyword might not exist in reviews
+			pq.offer(str); // offer() or add()
 		}//if word is not in reviews need to sort alphabetically?
 		if (pq.size() > k) {
 			pq.poll();
