@@ -1,5 +1,7 @@
 slidingWindow(String s, String t){
+
 	Map<Character, Integer> need, windows;
+	
 	for(int i = 0; I < t.length(); I++){
 		need.put(t.charAt(i), 1);
 	}
