@@ -5,17 +5,18 @@ q.push(start)
 step = 0
 
 while not q.empty():
-	++step;
 	size = q.size()
+	if goal in new_nodes: return step + 1 // STEP + 1 OR STEP DEPENDS ON QUESTIONS
 	while size != 0:
 		node = q.pop()
 		new_nodes = expand(node)
 			//nested code block
 			// sometimes we also need to check visited condition
 			// if(visited) continue;
-			if goal in new_nodes: return step + 1
+			
 			// visited[new_nodes] = true;
 			q.append(new_nodes) 
+	++step;
 return NOT_FOUND
 
 Bidirectional BFS
