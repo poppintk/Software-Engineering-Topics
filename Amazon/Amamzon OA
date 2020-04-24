@@ -239,6 +239,11 @@ Therefore, The time complexity is O(N) and space complexity is O(n).
         return logs;
     }
 }
+NOTE: Comparator:
+ return -1 bring first parameter to the front
+ return 1 bring second parameter to the front
+ return 0 keep them in original order
+ 
  
  Overall complexity is O(nlogn). Since it require the sorting and worse case complexity is O(nlogn).
 Space complexity is O(1), since it does not store any states in a collection or Data Structure on the execution of the program.
