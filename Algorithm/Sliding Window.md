@@ -2,8 +2,9 @@ public int slidingWindow(String s, String t){
 
 	Map<Character, Integer> need, windows;
 	
-	for(int i = 0; I < t.length(); I++){
-		need.put(t.charAt(i), 1);
+	for(int i = 0; i < t.length(); i++){
+		char key = t.charAt(i);
+		map.put(key, map.getOrDefault(key, 0) + 1);
 	}
 	
 	int left = 0;
