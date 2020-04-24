@@ -170,7 +170,6 @@ if all person are infected but your BFS queue still > 0 , break;
  ------------------------------------------------------------------------------------------------------------------------
  763. Partition Labels
  class Solution {
-    
     public List<Integer> partitionLabels(String S) {
         // last index map
         int [] lastIndexMap = new int[26];
@@ -178,19 +177,24 @@ if all person are infected but your BFS queue still > 0 , break;
         for(int i = 0; i < S.length(); i ++){
             lastIndexMap[S.charAt(i) - 'a'] = i;
         }
-        int start = 0;
-        int end = 0;
+        int right = 0;
+        int left = 0;
         int lastIndex = 0;
-        while(end < S.length()){
-            lastIndex = lastIndexMap[S.charAt(end) - 'a'];
-            while(start < lastIndex){
-                lastIndex = Math.max(lastIndexMap[S.charAt(start) - 'a'],lastIndex);
-                start ++;
+        while(left < S.length()){
+            // c 是将移入窗口的字符
+            char c = S.charAt(left);
+            lastIndex = lastIndexMap[c - 'a'];
+            // 判断左侧窗口是否要收缩
+            while(right < lastIndex){
+                // d 是将移出窗口的字符
+		        char d = S.charAt(right);
+                lastIndex = Math.max(lastIndexMap[d - 'a'],lastIndex);
+                right ++;
             }
-            // start == lastIndex
-            result.add(lastIndex - end + 1);
-            // end must be one plus lastIndex
-            end = lastIndex + 1;
+            // right == lastIndex
+            result.add(lastIndex - left + 1); // length 
+            // left must be one plus lastIndex
+            left = lastIndex + 1;
         }
         // time complexity is O(n)
         // space complexity is O(1)
