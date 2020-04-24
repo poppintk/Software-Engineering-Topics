@@ -24,7 +24,7 @@ Explanation:
 public List<String> solve(int k, String[] keywords, String[] reviews) {
 	Map<String, Integer> hm = new HashMap<>();
 	for (String sentence : reviews) {
-		Set<String> hs = new HashSet<>();
+		Set<String> hs = new HashSet<>(); // Note: hashSet is used here due to in a sentence there could be more than one occurrence of word
 		String[] words = sentence.split("\\W");
 		for (String word : words) {
 			hs.add(word.toLowerCase());
