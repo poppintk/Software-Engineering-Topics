@@ -87,7 +87,7 @@ public class Main {
         }
         
         Queue<int[]> pq = new PriorityQueue<>(newEdges.length, (e1, e2) -> Integer.compare(e1[2], e2[2]));
-        pq.addAll(Arrays.asList(newEdges));
+        pq.addAll(Arrays.asList(newEdges)); // Note: syntax sugar
         
         int totalCost = 0;
         // 2 because nodes are 1-based and we have 1 unused component at index 0
