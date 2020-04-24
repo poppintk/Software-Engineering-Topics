@@ -759,7 +759,65 @@ class Solution {
         return cache.get(head);
     }
 }
-
+---------------------------------------------------------------------------------------------------------------------------------
+21. Merge Two Sorted Lists
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+//         PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a,b)-> a.val - b.val);
+//         if(l1 != null) minHeap.add(l1);
+//         if(l2 != null) minHeap.add(l2);
+//         ListNode head = null;
+//         ListNode prev = null;
+//         ListNode cur = null;
+//         while(!minHeap.isEmpty()){
+//             cur = minHeap.poll();
+//             // note how to link current with next
+//             if(head == null){
+//                 head = cur;
+//                 prev = cur;
+//             }else{
+//                 prev.next = cur;
+//                 prev = cur;
+//             }
+//             if(cur.next != null){
+//                 minHeap.add(cur.next);
+//             }
+            
+//         }
+//         return head;
+        
+        
+        // faster approch
+        
+        ListNode dummyHead = new ListNode(-1);
+        ListNode cur = dummyHead;
+        ListNode l = l1;
+        ListNode r = l2;
+        while(l != null && r != null){
+            if(l.val > r.val){
+                cur.next = r;
+                cur = cur.next;
+                r = r.next;
+            }else{
+                cur.next = l;
+                cur = cur.next;
+                l = l.next;
+            }
+        }
+        
+        while(l != null){
+             cur.next = l;
+             cur = cur.next;
+             l = l.next;
+        }
+         while(r != null){
+             cur.next = r;
+             cur = cur.next;
+             r = r.next;
+        }
+        return dummyHead.next;
+    }
+}
 
 all Questions
 https://leetcode.com/discuss/interview-question/344650/Amazon-Online-Assessment-Questions
