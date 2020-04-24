@@ -737,6 +737,28 @@ public class Main {
     }
 }
 ----------------------------------------------------------------------------------------------------------------------------
+138. Copy List with Random Pointer
+class Solution {
+    public Node copyRandomList(Node head) {
+        Node cur = head;
+        Map<Node,Node> cache = new HashMap<>();
+        //#1 crate chache map original -> copy node
+        while(cur != null){
+            cache.put(cur,new Node(cur.val));
+            cur = cur.next;
+        }
+        // #2 connecting next ref and rand ref base on original Node connections
+        cur = head;
+        Node copyNode = null;
+        while(cur != null){
+            copyNode = cache.get(cur);
+            copyNode.next = cache.get(cur.next);
+            copyNode.random = cache.get(cur.random);
+            cur = cur.next;
+        }
+        return cache.get(head);
+    }
+}
 
 
 all Questions
