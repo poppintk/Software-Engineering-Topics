@@ -1,1 +1,27 @@
 
+map.put(word, map.getOrDefault(word, 0) + 1);
+=> 
+if(!map.containsKey(word)){
+  map.put(word, 1);
+}else{
+  map.put(word,map.get(word) + 1)
+}
+
+
+Queue<String> pq = new PriorityQueue<>((a, b) -> a-b)
+pq.offer(str); // offer() or add()
+pq.poll();
+
+
+
+
+int[][] newEdges = new int[2][3];
+Queue<int[]> pq = new PriorityQueue<>(newEdges.length, (e1, e2) -> Integer.compare(e1[2], e2[2]));
+pq.addAll(Arrays.asList(newEdges)); // Note: syntax sugar
+
+API:
+static <T> List<T>	asList(T... a)
+
+for (char c : str.toCharArray()) { // looping String array
+
+}
