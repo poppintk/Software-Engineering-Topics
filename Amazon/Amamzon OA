@@ -1417,6 +1417,8 @@ public class Main {
 }
 ------------------------------------------------------------------------------------------------------------------------------------
 Substrings with exactly K distinct chars
+https://leetcode.com/discuss/interview-question/370157
+
 class Solution {
     public int kDistinctSub(String s, int k) {
         int count = 0;
