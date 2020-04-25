@@ -1132,6 +1132,57 @@ class Solution {
         }
     }
 }
+------------------------------------------------------------------------------------------------------------------------------------
+973. K Closest Points to Origin
+class Solution {
+    Random random = new Random();
+    public int[][] kClosest(int[][] points, int K) {
+        quickSelect(points, 0, points.length -1,K);
+        
+        return Arrays.copyOfRange(points,0,K);
+    }
+    
+    public void quickSelect(int[][] points, int left, int right, int k){
+        while(left <= right){
+            // random pivot
+            int randomIndex = random.nextInt(right + 1 - left) + left;
+            swap(points, randomIndex, right);
+
+            // find partition
+            int p = partition(points, left, right);
+            if(p == k) return;
+            if(p < k){
+                left = p + 1;
+            }
+            else{
+                right = p -1;
+            }
+        }
+    }
+    
+    public int partition(int[][] points, int left, int right){
+        int[] pivot = points[right];
+        int index = left;
+        for(int i = left; i < right; i++){
+            if(getPointSize(points[i]) < getPointSize(pivot)){
+                swap(points,index,i);
+                index ++;
+            }
+        }
+        swap(points, index, right);
+        return index;
+    }
+    
+    public int getPointSize(int[] point){
+        return point[0]*point[0] + point[1]*point[1];
+    }
+    
+    public void swap(int[][] points, int a, int b){
+        int[] temp = points[a];
+        points[a] = points[b];
+        points[b] = temp;
+    }
+}
  
 -------------------------------------------------------------------------------------------------------------------------------------
 all Questions
