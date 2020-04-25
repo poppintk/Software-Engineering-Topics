@@ -223,7 +223,7 @@ private static int minDays(int[][] grid) {
  if all matrix are person, return - 1
 if no person in matrix, return 0;
 if all person are infected but your BFS queue still > 0 , break;
- 
+ O(m*n)
  ------------------------------------------------------------------------------------------------------------------------
  763. Partition Labels
  class Solution {
@@ -310,7 +310,7 @@ NOTE: Comparator:
  return 0 keep them in original order
  
  
- Overall complexity is O(nlogn). Since it require the sorting and worse case complexity is O(nlogn).
+ Overall complexity is O(lnlogn) where l is length of String. Since it require the sorting and worse case complexity is O(nlogn).
 Space complexity is O(1), since it does not store any states in a collection or Data Structure on the execution of the program.
  
  
