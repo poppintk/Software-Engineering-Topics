@@ -838,5 +838,76 @@ public class Solution {
 Time complexity : O(m*n)O(m∗n). In worst case(skewed tree) traverse function takes O(m*n)O(m∗n) time.
 Space complexity : O(n)O(n). The depth of the recursion tree can go upto nn. nn refers to the number of nodes in ss.
 -------------------------------------------------------------------------------------------------------------------------------------
+240. Search a 2D Matrix II
+Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+Integers in each row are sorted in ascending from left to right.
+Integers in each column are sorted in ascending from top to bottom.
+
+
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix == null || matrix.length < 1 || matrix[0].length <1) {
+            return false;
+        }
+        int col = matrix[0].length-1;
+        int row = 0;
+        while(col >= 0 && row <= matrix.length-1) {
+            if(target == matrix[row][col]) {
+                return true;
+            } else if(target < matrix[row][col]) {
+                col--;
+            } else if(target > matrix[row][col]) {
+                row++;
+            }
+        }
+        return false;
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+59. Spiral Matrix II
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        // Declaration
+        int[][] matrix = new int[n][n];
+        
+        // Edge Case
+        if (n == 0) {
+            return matrix;
+        }
+       
+        // Normal Case
+        int rowStart = 0;
+        int rowEnd = n-1;
+        int colStart = 0;
+        int colEnd = n-1;
+        int num = 1; //change
+        
+        while (rowStart <= rowEnd && colStart <= colEnd) {
+            for (int i = colStart; i <= colEnd; i ++) {
+                matrix[rowStart][i] = num ++; //change
+            }
+            rowStart ++;
+            for (int i = rowStart; i <= rowEnd; i ++) {
+                matrix[i][colEnd] = num ++; //change
+            }
+            colEnd --;
+            for (int i = colEnd; i >= colStart; i --) {
+                if (rowStart <= rowEnd)
+                    matrix[rowEnd][i] = num ++; //change
+            }
+            rowEnd --;
+            for (int i = rowEnd; i >= rowStart; i --) {
+                if (colStart <= colEnd)
+                    matrix[i][colStart] = num ++; //change
+            }
+            colStart ++;
+        }
+        return matrix;
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
 all Questions
 https://leetcode.com/discuss/interview-question/344650/Amazon-Online-Assessment-Questions
