@@ -339,7 +339,7 @@ Space complexity is O(1), since it does not store any states in a collection or 
  ------------------------------------------------------------------------------------------------------------------------
 200. Number of Clusters <=> Number of Islands(see DFS)
 ------------------------------------------------------------------------------------------------------------------------
-1268. Search Suggestions System
+1268. Search Suggestions System <Product Suggestions>
 
 Input: products = ["mobile","mouse","moneypot","monitor","mousepad"], searchWord = "mouse"
 Output: [
