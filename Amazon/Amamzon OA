@@ -1104,6 +1104,30 @@ class Solution {
         return tmp;
     }
 }
+
+------------------------------------------------------------------------------------------------------------------------------------
+22. Generate Parentheses
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> ans = new LinkedList<>();
+        backTracking("", ans, n, 0, 0);
+        return ans;
+    }
+    
+    public void backTracking(String curr, List<String> ans, int n, int left, int right){
+        if(right == n){
+            ans.add(curr);
+            return;
+        }
+        if(left < n){
+            // NOTE: curr when using string, unlike List<> we need add then remove, String is immutable
+            backTracking(curr + "(", ans, n, left + 1, right); 
+        }
+        if(right < left){
+             backTracking(curr + ")", ans, n, left, right + 1);
+        }
+    }
+}
  
 -------------------------------------------------------------------------------------------------------------------------------------
 all Questions
