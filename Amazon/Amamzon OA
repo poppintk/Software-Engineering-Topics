@@ -388,10 +388,12 @@ Time: O(m * n * logn + L), space: O(m * n + L * m) - including return list ans, 
 ------------------------------------------------------------------------------------------------------------------------
 Critical Routers
 
+https://leetcode.com/discuss/interview-question/436073/
+
 ------------------------------------------------------------------------------------------------------------------------
  
 1192. Critical Connections in a Network
-
+https://leetcode.com/problems/critical-connections-in-a-network/
 ------------------
 994. Rotting Oranges
 
