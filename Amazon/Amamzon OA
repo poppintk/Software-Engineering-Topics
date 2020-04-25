@@ -1415,6 +1415,64 @@ public class Main {
         return dp[c - 1];
     }
 }
+------------------------------------------------------------------------------------------------------------------------------------
+Substrings with exactly K distinct chars
+class Solution {
+    public int kDistinctSub(String s, int k) {
+        int count = 0;
+        Set<Character> charsFound = new HashSet<>();
+        for (int i=0; i < s.length(); i++) {
+            int uniqueFound = 0;
+            for (int j=i; j < s.length(); j++) {
+                if (uniqueFound == k) {
+                    if (charsFound.contains(s.charAt(j))) {
+                        count++;
+                    } else {
+                        charsFound.clear();
+                        break;
+                    }
+                } else {
+                    if (!charsFound.contains(s.charAt(j))) {
+                        charsFound.add(s.charAt(j));
+                        uniqueFound++;
+                        if (uniqueFound == k) {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+}
+
+Brute-force
+
+public static void main( String[] args )
+{
+    String s = "pqpqs";
+    int k = 2;
+
+    List<String> ans = new ArrayList<String>();
+    
+    for( int i = 0; i < s.length(); i++ )
+    {
+        char c = s.charAt( i );
+        String tmp = "" + c;
+        Set<Character> set = new HashSet<Character>();
+        set.add( c );
+
+        for( int j = i+1; j < s.length(); j++ )
+        {
+            char nc = s.charAt( j );
+            set.add( nc );
+            tmp += nc;
+            if( tmp.length() >= k && set.size() == k ) ans.add( tmp );
+        }
+    }
+    System.out.println( ans );
+}
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 all Questions
