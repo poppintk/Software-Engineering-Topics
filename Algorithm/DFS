@@ -698,7 +698,7 @@ class Solution {
             // NOTE: curr when using string, unlike List<> we need add then remove, String is immutable
             backTracking(curr + "(", ans, n, left + 1, right); 
         }
-        if(right < left){
+        if(right < left){ // thank about why it is not "right < n"  is invalid
              backTracking(curr + ")", ans, n, left, right + 1);
         }
     }
