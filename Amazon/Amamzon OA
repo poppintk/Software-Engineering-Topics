@@ -1249,5 +1249,62 @@ class Solution {
     }
 }
 -------------------------------------------------------------------------------------------------------------------------------------
+Substrings of size K with K distinct chars
+
+Given a string s and an int k, return all unique substrings of s of size k with k distinct characters.
+
+Example 1:
+
+Input: s = "abcabc", k = 3
+Output: ["abc", "bca", "cab"]
+Example 2:
+
+Input: s = "abacab", k = 3
+Output: ["bac", "cab"]
+Example 3:
+
+Input: s = "awaglknagawunagwkwagl", k = 4
+Output: ["wagl", "aglk", "glkn", "lkna", "knag", "gawu", "awun", "wuna", "unag", "nagw", "agwk", "kwag"]
+Explanation: 
+Substrings in order are: "wagl", "aglk", "glkn", "lkna", "knag", "gawu", "awun", "wuna", "unag", "nagw", "agwk", "kwag", "wagl" 
+"wagl" is repeated twice, but is included in the output once.
+
+public class Main {
+    public static Set<String> uniqueSubstringSizeK(String s, int k) {
+        Map<Character,Integer> windows = new HashMap<>();
+        Set<String> ans = new HashSet<>();
+
+        int left = 0;
+        int right = 0;
+        while(right < s.length()){
+            char c = s.charAt(right);
+            right++;
+            windows.put(c,windows.getOrDefault(c,0)+1);
+
+            while(windows.size() > k || right - left > k){
+                char d = s.charAt(left);
+                left++;
+                windows.put(d,windows.get(d) - 1);
+                if(windows.get(d) == 0){
+                    windows.remove(d);
+                }
+            }
+
+            if(windows.size() == k && right - left == k){
+                ans.add(s.substring(left,right));
+            }
+        }
+        System.out.println(ans);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        uniqueSubstringSizeK("abcabc", 3);
+        uniqueSubstringSizeK("abacab", 3);
+        uniqueSubstringSizeK("awaglknagawunagwkwagl", 4);
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
 all Questions
 https://leetcode.com/discuss/interview-question/344650/Amazon-Online-Assessment-Questions
