@@ -1,0 +1,85 @@
+2020 4月 SDE2
+1. system design dropbox/google drive 类似的system。
+2. power（x, n) 
+3. course schedule 
+4. web craweler. 后来延展了一下 system design要怎么弄，哪里会是bottle neck。
+https://code.dennyzhang.com/web-crawler
+
+
+2020 4月
+
+https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=630601&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3089%5D%5Bvalue%5D%5B3%5D%3D3%26searchoption%5B3089%5D%5Btype%5D%3Dcheckbox%26searchoption%5B3090%5D%5Bvalue%5D%3D1%26searchoption%5B3090%5D%5Btype%5D%3Dradio%26searchoption%5B3046%5D%5Bvalue%5D%3D5%26searchoption%5B3046%5D%5Btype%5D%3Dradio%26sortid%3D311%26orderby%3Ddateline
+
+
+2020 4月
+
+面的是ecf组岗位，不是很熟悉这个组，一共四轮，每一轮都有大概二十分钟的领导力原则（强行翻译）问题
+
+第一轮，力扣屋耙耙，楼主用的官方solution #2 做的，力扣标的是困难题，其实不难。
+第二轮，力扣嗣贰，经典雨水题
+第三题，系统设计一个在线象棋游戏
+第四题，coding，设计一个拍卖行，实现两个功能，LogPurchasePrice和ShowTopKItems。每个商品可以被多次卖出（如果价格更高的话），估计模拟的是竞价过程吧。showtopkitems要求是不一样的items。
+领导力原则问到了项目中遇到困难怎么处理，跟组员或者老板有分歧怎么解决，老板或者同事给过最严厉的评价是什么，每个都问的很细。
+
+
+2020(1-3月)
+第一轮，20分钟BQ，算法Valid Parentheses，完成后followup一些特殊case，无脑完成。
+第二轮，hiring mngr轮，BQ+设计。高并发log系统设计。
+午休两小时
+第三轮， 20分钟BQ，算法MeetingRooms 2变体, 完成后followup，给定max room算avg meeting time
+统一回复第三题变种：给定room数，若无空闲room则delay会议直至有空位，计算全部会议平均真实耗时
+
+第四轮， 20分钟BQ，非leet题，考BFS，秒之（类似lc 捌撕泣）
+第五轮， bar raiser（面试安排上直接写是br，现在都流行告诉我的吗。。）简单设计+大量BQ。两位考官一起面。
+
+2020 4月 Audible 组
+coding 1: 类似莉蔻 伞舅
+coding 2: 类似利口 衣衣舞而，后面有变形，不过都不难，最后有被问到万一log数量太大了怎么办，如何distrubute，感觉是面试官临时想到的问题，反正多和面试官讨论。
+design 1: 让你说出你现在做的proj的整个系统，并且如何改进。反正还是system design的那一套。
+design 2: 设计whats app。
+
+
+2020(4-6月
+
+1. 蠡口易二柳 上来直接hard 有点懵b 一时不知从何入手 就跟面试官商量能不能先做出易二奇的结果来先 然再想办法过度到易二柳 好在最后还是都做出来了 
+2. OOD 设计一个Approval Application Form Trees 具体的就不说了 不难 比较麻烦一点就是不能写任何comments 还得让人一眼就开出每行是做什么的 改了一两次 他说OK 挺好的 我就当是过了 
+3. Manager bq完系统设计做一个类似Netflix，prime video的东西出来，我感觉答的还行 不像是挂在这轮了 
+4. 基本每轮都是一半时间bq 一半时间做题 蠡口易久久改版 多加了条横线 最后结果要根据离线的位置由近到远排 也不难 直接秒
+
+
+2020(1-3月)
+1. linux find
+2. LRU套了个实际问题，但是本身就是LRU
+3. HM 全程BQ - 聊的不好
+4. 数据流找中位数
+5. design Amazon item price catalog system 
+    给了三个interface：getprice(Item item, Time time);  updatePrice(Item item, Pirce price, Time time); addPrice(Item item, Pirce price, Time time);
+
+2020(1-3月)
+1.一个有口音的大叔，设计一个类似于linux里面的查找文件的数据结构，查找所有给定前缀名的文件的名称和位置。比如给app，那么如果文件中有app，apple，appl，那么要返回所有这些文件，以及他的路径
+2. 计算器，先是简单情况只有+-*/，然后如果有括号，有其他运算符号怎么办
+3. BQ
+4. 判断2个日期是否相差了一个月，面试官给了一些定义，比如2/10,3/10是正好一个月，题目比较好懂，写的时候注意和面试官沟通，分类写
+5. 设计一个预订酒店系统
+
+2020 4月
+
+1. Design a rate limiter (grokking 原题，可是没有准备）
+2. Design a scheduler system that can schedule different tasks online 
+3. coding 有一个grid, 找到里面所有的rain water path for a given starting point。 条件是water可以从比自己小于或等于的path流动。 比如：
+【99， 99， 99， 30】
+【10,   10,   10,    20】
+【10,   99,   99,    10】
+【10,   10,   10,    10】
+应该返回 【30， 20， 10， 10， 10， 10，10， 10，10， 10， 10】 和 【30， 20， 10， 10， 10， 10，10， 10，10， 10， 10】的坐标，一个是往下走 一个是往左走，所对应的坐标。 并分析最差的BIG O complexity。 
+BFS做 每一步要maintain visited for each path 
+big O 应该是全部都是一个数字， 当时没想出来，是杨辉三角的2N选N 
+
+4. design a 4-way traffic light system 完全open-ended
+BQ
+tell me about a time when you had a conflict with your manager 
+tell me about a time when you have failed to meet a deadline 
+tell me about a time when you are wrong about a technical discussion 
+tell me about a professional failure 
+
+
