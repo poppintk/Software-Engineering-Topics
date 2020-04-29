@@ -28,3 +28,36 @@ class Solution {
 15. 3Sum
 This problem is a follow-up of Two Sum, and it is a good idea to first take a look at Two Sum and Two Sum II - Input Array is Sorted.
 Note: if we going to use O(n^2) approch then we need to sort the array then use two pointers
+
+class Solution {
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i = 0; i< nums.length; i++){
+            if (i > 0 && nums[i] == nums[i - 1]) {              // skip same result
+                continue;
+            }
+            
+            int left = i + 1;
+            int right = nums.length - 1;
+            if(nums[i] > 0) break; // optimalization, by sorted we can't endup two positive number with negative sum
+            while(left < right){
+                if(nums[left] + nums[right] == -nums[i]){
+                    ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    left++;
+                    right--;
+                    while (left < right && nums[left] == nums[left - 1]) left++;  // skip same result
+                    while (left < right && nums[right] == nums[right + 1]) right--;  // skip same result
+                }
+                else if(nums[left] + nums[right] > -nums[i]){
+                    right --;
+                }else{
+                    left++;
+                }
+            }
+        }
+        return ans;       
+    }
+    
+}
