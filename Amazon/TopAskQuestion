@@ -20,3 +20,11 @@ class Solution {
         return result;
     }
 }
+
+1. Two Sum
+        167. Two Sum II - Input array is sorted (two pointers)
+        1099. Two Sum Less Than K(two pointers, modified from  Two Sum II)
+
+15. 3Sum
+This problem is a follow-up of Two Sum, and it is a good idea to first take a look at Two Sum and Two Sum II - Input Array is Sorted.
+Note: if we going to use O(n^2) approch then we need to sort the array then use two pointers
