@@ -170,7 +170,6 @@ class Solution {
                 dfs(M,visited, i);
             }
         }
-        
     }
 }
 
@@ -214,7 +213,7 @@ class Solution {
         int col = board[0].length;
         if(i < 0 || i >= row || j <0 || j >= col || board[i][j] != 'O') return;
         //NOTE:  board[i][j] == 'X' will cause overflow
-        
+        // if exist 'O' into 'G' => that's why board[i][j] != 'O' above
         board[i][j] = 'G';
         dsf(board,i-1,j);
         dsf(board,i+1,j);
