@@ -46,7 +46,8 @@ class Solution {
         
         while(left < right){
             int mid = left + (right - left)/2;
-            if(nums[mid] >= target){
+            if(nums[mid] == target) return mid;
+            if(nums[mid] > target){
                 //g(x), such that x >= target g(x)>0 (true), otherwise false
                 right = mid;
             }else{
@@ -54,8 +55,7 @@ class Solution {
             }
         }
     
-        if(left == nums.length) return -1;
-        return nums[left] == target ? left: -1;
+        return -1;
     }
 }
 
