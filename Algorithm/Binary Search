@@ -54,7 +54,7 @@ class Solution {
                 left = mid +1;
             }
         }
-    
+    	# where l is smallest number m in range [l,r) such that nums[mid] > target is true, 
         return -1;
     }
 }
