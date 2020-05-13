@@ -22,6 +22,8 @@ pq.addAll(Arrays.asList(newEdges)); // Note: syntax sugar
 API:
 static <T> List<T>	asList(T... a)
 
+i.e. List<Integer> a = Arrays.asList(1,2,3);
+
 for (char c : str.toCharArray()) { // looping String array
 
 }
