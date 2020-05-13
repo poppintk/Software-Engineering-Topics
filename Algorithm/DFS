@@ -32,7 +32,7 @@ sudoku 是每行从左边到右边
 伪代码
 Topological sorting:
 
-build graph and initialize visted[unkown,visited, visiting]
+build graph and initialize visted[not marked,visited, visiting]
  
 for each node:
     if not marked:
