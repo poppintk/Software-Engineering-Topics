@@ -1,6 +1,7 @@
 
 map.put(word, map.getOrDefault(word, 0) + 1);
 => 
+// must be either condition
 if(!map.containsKey(word)){
   map.put(word, 1);
 }else{
