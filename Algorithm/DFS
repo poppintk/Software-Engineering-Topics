@@ -332,7 +332,8 @@ class Solution {
         
         // for every column
         for(int j = 0; j < n; j++){
-            if(isInvalid(board,n,i,j)) continue; // constraint
+            if(isInvalid(board,n,i,j)) continue; // constraint 
+            //filtered out constraints
             placeQueen(board,n,i,j);
             solveQueen(board, n, i+1);
             removeQueen(board,n,i,j);
@@ -382,7 +383,8 @@ class Solution {
         
         for(char c = '1'; c <= '9'; c++){
             if(isValid(board,row,col,c)){ 
-            // 注意： 这里是在isValid code block 把true return. 如果用void backtracking
+            // 注意： 这里是在isValid code block 把true return. 即在valid 中把第一个答案return
+            // 如果用void backtracking
             //是在 if(invalid) return 掉的，参考n-queen void solveQueen() backtracking 部分
            
                 rows[row].add(c);
