@@ -1,0 +1,19 @@
+70. Climbing Stairs
+
+class Solution {
+    public int climbStairs(int n) {
+        // dp[i] : total number of steps to reach to the i
+        int[] dp = new int[n+1];
+        
+        dp[0] = 1;
+        dp[1] = 1;
+        
+        for(int i = 2; i < dp.length; i++){
+            // the choice we have is climb 1 or 2
+             // we have two base case due to choice
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
+    }
+}
+
