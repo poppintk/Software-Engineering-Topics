@@ -381,7 +381,10 @@ class Solution {
         if(board[row][col] != '.') return solve(board,nextRow,nextCol);
         
         for(char c = '1'; c <= '9'; c++){
-            if(isValid(board,row,col,c)){
+            if(isValid(board,row,col,c)){ 
+            // 注意： 这里是在isValid code block 把true return. 如果用void backtracking
+            //是在 if(invalid) return 掉的，参考n-queen void solveQueen() backtracking 部分
+           
                 rows[row].add(c);
                 cols[col].add(c);
                 boxes[(row/3)*3 + col/3].add(c);
