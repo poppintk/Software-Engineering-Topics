@@ -1,7 +1,6 @@
 
 class Knapsack {
   static int solveKnapsack(int[] profits, int[] weights, int capacity) {
-    //TODO: Write - Your - Code
     //state: capacity, number of items
     // dp[i][w]: maxiumum profit of given weight and up to i items
     // recurrance relation:
