@@ -41,6 +41,26 @@ class Solution {
 
 class Solution {
     public int minCostClimbingStairs(int[] cost) {
+        // GOAL: min cost from 0 to n-th
+        // constraint one or two steps
+        
+        if (cost == null) return 0;
+        int n = cost.length;
+        if (n == 1) return cost[0];
+
+        int[] memo = new int[n+1];
+        memo[1] = cost[0];
+        for (int i = 1; i < n; i++) {
+            memo[i+1] = Math.min(memo[i-1], memo[i]) + cost[i];
+        }
+     
+        return Math.min(memo[n-1], memo[n]);
+    }
+}
+
+
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
         // state: number of stairs
         
         // dp[i]: minCostClimbingStars at stair ith
