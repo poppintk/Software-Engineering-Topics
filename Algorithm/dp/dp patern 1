@@ -11,7 +11,7 @@ class Solution {
         for(int i = 2; i < dp.length; i++){
             // the choice we have is climb 1 or 2
              // we have two base case due to choice
-            dp[i] = dp[i-1] + dp[i-2];
+            dp[i] = dp[i-1] + dp[i-2]; // when you can not figure out the base case, try to enumerate from mimimum value
         }
         return dp[n];
     }
