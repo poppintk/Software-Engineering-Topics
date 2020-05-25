@@ -21,13 +21,17 @@ state: 上图
 用两个指针 i 和 j 从后往前遍历 s1 和 s2，如果 s1[i]==s2[j]，那么这个字符一定在 lcs 中；否则的话，s1[i] 和 s2[j] 这两个字符至少有一个不在 lcs 中，需要丢弃一个。先看一下递归解法，比较容易理解：
 
 def longestCommonSubsequence(str1, str2) -> int:
+
     def dp(i, j):
+
         # 空串的 base case
         if i == -1 or j == -1:
             return 0
+        
         if str1[i] == str2[j]:
             # 这边找到一个 lcs 的元素，继续往前找
             return dp(i - 1, j - 1) + 1
+        
         else:
             # 谁能让 lcs 最长，就听谁的
             return max(dp(i-1, j), dp(i, j-1))
