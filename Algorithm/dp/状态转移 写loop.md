@@ -31,6 +31,7 @@ for (int i = 0; i < m; i++)
 ![reverse](../img/reverse.png)
 
 // 斜着遍历数组
+
 for (int l = 2; l <= n; l++) {
     
     for (int i = 0; i <= n - l; i++) {
