@@ -4,7 +4,7 @@
  你是否能想办法算出 dp[i][j] 的值（s[i..j] 中，最长回文子序列的长度）呢？
  
  
- ![lps1](../img/twoStringDp.PNG)
- ![lps2](../img/twoStringDp.PNG)
- ![lps3](../img/twoStringDp.PNG)
+ ![lps1](../img/lps1.png)
+ ![lps2](../img/lps2.png)
+ ![lps3](../img/lps3.png)
  
