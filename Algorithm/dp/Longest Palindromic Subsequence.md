@@ -31,6 +31,10 @@ base case:
 
 根据状态转移 写loop
 
+ ![lps4](../img/lps4.png)
+ 
+  ![lps5](../img/lps5.png)
+
 
 代码
 
