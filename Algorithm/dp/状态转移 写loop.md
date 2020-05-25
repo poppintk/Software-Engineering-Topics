@@ -2,6 +2,8 @@
 
 正向遍历：
 
+![forward](../img/forward.png)
+
 int[][] dp = new int[m][n];
 for (int i = 0; i < m; i++)
     for (int j = 0; j < n; j++)
@@ -15,6 +17,8 @@ for (int i = 0; i < m; i++)
         // 计算 dp[i][j]
         
 斜向遍历：
+
+![reverse](../img/reverse.png)
 
 // 斜着遍历数组
 for (int l = 2; l <= n; l++) {
