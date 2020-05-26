@@ -39,6 +39,37 @@ def longestCommonSubsequence(str1, str2) -> int:
     # i 和 j 初始化为最后一个索引
     return dp(len(str1)-1, len(str2)-1)
 
+class Solution {
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n = text1.length();
+        int m = text2.length();
+        int[][] dp = new int[n+1][m+1];
+        
+        // recurrence relation
+        // dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]) if text1[i] != text2[j]
+        // dp[i][j] = dp[i-1][j-1] + 1 if text1[i] == text2[j]
+        
+        // final answer will be in dp[n][m]
+        // we can use forward loop
+        // base case is i == 0, j == 0 which is empty string will return 0;
+        
+        for(int i = 1; i < dp.length; i++){
+            for(int j = 1; j < dp[0].length; j++){
+                if(text1.charAt(i-1) != text2.charAt(j-1)){
+                     dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
+                }else{
+                     dp[i][j] = dp[i-1][j-1] + 1;
+                }
+            }
+        }
+        
+        return dp[n][m];
+        
+    }
+}
+
+
+
 
 对于 s1[i] 和 s2[j] 不相等的情况，至少有一个字符不在 lcs 中，会不会两个字符都不在呢？比如下面这种情况：
 
