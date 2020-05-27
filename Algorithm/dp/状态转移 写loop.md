@@ -7,7 +7,7 @@
 2、遍历的终点必须是存储结果的那个位置。(如何知道终点位置？从状态转移方程)
 
 ![transition](../img/transition.png)
-
+3,Base case
 
 正向遍历：
 
