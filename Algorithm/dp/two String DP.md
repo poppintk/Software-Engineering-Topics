@@ -1,6 +1,33 @@
 NOTE: 解决两个字符串的动态规划问题，一般都是用两个指针 i,j 分别指向两个字符串的最后，然后一步步往前走，缩小问题的规模。
 
-经典动态规划：最长公共子序列
+
+  public int findLCSLength(String s1, String s2) {
+    int[][] dp = new int[s1.length()+1][s2.length()+1];
+    
+    int maxLength = 0;
+    
+    for(int i=1; i < dp.length; i++) {
+    
+      for(int j=1; j < dp[0].length; j++) {
+      
+        if(s1.charAt(i-1) == s2.charAt(j-1)) {
+        
+          dp[i][j] = 1 + dp[i-1][j-1];
+          
+          maxLength = Math.max(maxLength, dp[i][j]);
+          
+        }
+      }
+    }
+    
+    return maxLength;
+  }
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+经典动态规划：最长公共子序列(subsequence)
 
 
 一定要明确 dp 数组的含义。对于两个字符串的动态规划问题，套路是通用的。
