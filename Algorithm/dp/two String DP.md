@@ -97,6 +97,8 @@ else:
 我一开始也有这种怀疑，其实可以这样改，也能得到正确答案，但是多此一举，因为 dp[i-1][j-1] 永远是三者中最小的，max 根本不可能取到它。
 
 ---------------------------------------------------------------------------------------------------------------------------
+  Longest Common Substring
+  
   dp[i][j]: common length up to index i in s1 and index j in s2.
 
   public int findLCSLength(String s1, String s2) {
