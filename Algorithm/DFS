@@ -330,7 +330,7 @@ class Solution {
             return;
         }// goal
         
-        // for every column
+        // for every column (backtract on row)
         for(int j = 0; j < n; j++){
             if(isInvalid(board,n,i,j)) continue; // constraint 
             //filtered out constraints
