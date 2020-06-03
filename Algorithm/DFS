@@ -450,7 +450,9 @@ perm(nums, depth, n, used, curr, ans):
         if used[i]: continue //permutation也可以用set 
         used[i] = True
         curr.push(nums[i])
+        //前序遍历(preorder travasal)的代码在进入某一个(child)节点之前的那个时间点执行，
         perm(nums, d+1, n,used, curr, ans)
+        //后序遍历(post order travasal)代码在离开某个(child)节点之后的那个时间点执行
         curr.pop()
         used[i] = False
         
