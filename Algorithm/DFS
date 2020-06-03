@@ -450,7 +450,7 @@ perm(nums, depth, n, used, curr, ans):
         if used[i]: continue //permutation也可以用set 
         used[i] = True
         curr.push(nums[i])
-        perm(nums, d+1, n, curr, ans)
+        perm(nums, d+1, n,used, curr, ans)
         curr.pop()
         used[i] = False
         
