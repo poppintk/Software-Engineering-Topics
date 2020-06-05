@@ -144,7 +144,6 @@ END 127. Word Ladder
 压缩成一维后，如何得到某一个索引上下左右的索引？
 
 773. Sliding Puzzle
-
 class Solution {
     public int slidingPuzzle(int[][] board) {
         int row = board.length;
@@ -189,7 +188,10 @@ class Solution {
         queue.add(start);
         visited.add(start);
         
-        System.out.println(start);
+        
+        Map<String,Integer> level = new HashMap<>();// for output shortest Path
+        Map<String, String> parent = new HashMap<>();// for output shortest Path
+        
         
         int step = 0;
         
@@ -197,9 +199,10 @@ class Solution {
             int size = queue.size();
             for(int k = 0; k < size; k++){
                 String curString = queue.poll();
-                
+		
                 // find the goal
                 if(curString.equals(target)){
+                    findShortestPath(level,parent,target,start);// for output shortest Path
                     return step; 
                 }
                 
@@ -212,12 +215,31 @@ class Solution {
                     // 防止走回头路
                     if(visited.contains(new_board)) continue;
                     queue.add(new_board);
+                    
+                    level.put(new_board,step); // for output shortest Path
+                    parent.put(new_board,curString);// for output shortest Path
+                    
                     visited.add(new_board);
                 }
             }
             step++;
         }
+        
         return -1;
+    }
+    
+    private List<String> findShortestPath(Map<String,Integer> level, Map<String, String> parent, String target,String start){
+        List<String> path = new ArrayList<>();
+        //System.out.println(level);
+        //System.out.println(parent);
+        String cur = target;
+        path.add(target);
+        while(parent.containsKey(cur) && !cur.equals(start)){
+            cur = parent.get(cur);
+            path.add(cur);
+        }
+        System.out.println(path);
+        return path;
     }
     
     private String swap(String str, int i, int j) {
