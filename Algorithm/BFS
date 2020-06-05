@@ -167,6 +167,8 @@ class Solution {
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
                 sb.append(board[i][j]);
+		
+		//NOTE: MAPPING two D array into one D
                 // mapping neibors , this can be used in n by m board, int this case 2 by 3
                 for(int[] dir: dirs){
                     int newI = dir[0] + i;
