@@ -122,3 +122,43 @@ find smallest number x in range [l,r] such that g(x) is true
 // ceil(p/m) == (p + m - 1) / m 
 // if using java Math.ceil((double)p/m) is a lot more slower
 k += (p + mid -1)/mid;
+
+
+class Solution {
+    public int minEatingSpeed(int[] piles, int H) {
+        // H 小时内吃完香蕉的最小速度， 我们不访成为speed （我们需要暴力破解 从最小范围试到最大范围）, 请问speed 最大可能为多少， 最小可能为多少？
+        // 最小为1， 最大为max(piles) 连续的空间线性搜索 符合条件的最小speed => 显然我们可以用2分算法的思想
+        int max = getMax(piles);
+        int left = 1; int right = max + 1;
+        
+        while(left < right){
+            int mid = left + (right -left)/2;
+            if(canFinish(piles, mid, H)){//[left, mid)
+                right = mid;
+            }else{// [mid+1,right)
+                left = mid + 1;
+            }
+        }
+        
+        return left;
+    }
+    
+    private boolean canFinish(int[] piles, int speed ,int H){
+        int time = 0;
+        for(int n: piles){
+           time += (n / speed) + ((n % speed) > 0 ? 1 : 0);
+        }
+        
+        return time <= H;
+    }
+    
+    private int getMax(int[] piles){
+        int max = -1;
+        
+        for(int i = 0; i < piles.length; i++){
+            max = Math.max(piles[i], max);
+        }
+        
+        return max;
+    }
+}
