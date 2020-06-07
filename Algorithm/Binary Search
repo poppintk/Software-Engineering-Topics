@@ -100,6 +100,9 @@ Public int binarySearch(A, val, l, r):
 			
 ----------------------------------------------------------------------------------------------------------------------------			
 leetcode 875
+reference: https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/koko-tou-xiang-jiao
+
+
 https://buptwc.com/2019/11/04/二分法系列详解/
 什么情况下用二分
 对于我们做题来说，就是怎么看一道题是二分。
