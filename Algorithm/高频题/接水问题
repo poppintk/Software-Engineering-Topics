@@ -1,0 +1,70 @@
+class Solution {
+    public int trap(int[] height) {
+        // i = min(lMax[0,i], rMax[i,length]) - height[i]
+//         int total = 0;
+//         for(int i = 0; i < height.length; i++){
+//             int lMax = -1;
+//             for(int l = 0; l <= i; l++){
+//                 lMax = Math.max(lMax, height[l]);
+//             }
+//             int rMax = -1;
+//             for(int r = i; r < height.length;r++){
+//                 rMax = Math.max(rMax, height[r]);
+//             }
+            
+//             total += Math.min(lMax, rMax) - height[i];
+//         }
+        
+        //------------------------------------------
+        //第二种办法， 备忘录
+        
+//         int total = 0;
+//         int n = height.length;
+        
+//         if(n==0) return 0;
+        
+//         int[] left = new int[n];
+//         int[] right = new int[n];
+        
+//         //base case
+//         left[0] = height[0];
+//         right[n-1] = height[n-1];
+        
+//         //从左到右边
+//         for(int l = 1; l < n; l++){
+//             left[l] = Math.max(left[l-1],height[l]);
+//         }
+//         //从右到左边
+//         for(int r = n-2; r >= 0; r--){
+//             right[r] = Math.max(right[r+1],height[r]);
+//         }
+        
+//         for(int i = 0; i < n; i++){
+//             total += Math.min(left[i], right[i]) - height[i];
+//         }
+        
+//         return total;
+        
+        //------------------------------------------
+        //第三种办法， 双指针
+        
+        int left = 0; 
+        int right = height.length - 1;
+        int total = 0;
+        int lMin = -1;
+        int rMax = -1;
+        while(left <= right){
+            lMin = Math.max(lMin, height[left]);
+            rMax =  Math.max(rMax, height[right]);
+            
+            if(lMin< rMax){
+                total += lMin - height[left];
+                left++;
+            }else{
+                total +=  rMax - height[right];
+                right--;
+            }
+        }
+        return total;
+    }
+}
