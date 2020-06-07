@@ -162,3 +162,48 @@ class Solution {
         return max;
     }
 }
+--------------------------------------------------------------------------------------------------------------------------------
+1011. Capacity To Ship Packages Within D Days
+
+class Solution {
+    public int shipWithinDays(int[] weights, int D) {
+        // min: max(weights)
+        // max: sum(weights)
+        boolean ans = canFinish(weights, 14, D);
+        System.out.println(ans);
+        //get max and sum
+        int max = 0;
+        int sum = 0;
+        for(int i = 0; i < weights.length; i++){
+            max = Math.max(weights[i], max);
+            sum += weights[i];
+        }
+        
+        int left = max;
+        int right = sum + 1;
+        
+        while(left < right){
+            int mid = left + (right - left)/2;
+            
+            if(canFinish(weights, mid, D)){ // [left,mid)
+                right = mid;
+            }else{ // [mid+1, right)
+                left = mid+1;
+            }
+        }
+        return left;
+    }
+    
+    private boolean canFinish(int[] w, int cap, int D) {
+        int i = 0;
+        for (int day = 0; day < D; day++) {
+            int maxCap = cap;
+            while ((maxCap -= w[i]) >= 0) {
+                i++;
+                if (i == w.length)
+                    return true;
+            }
+        }
+        return false;
+    }
+}
