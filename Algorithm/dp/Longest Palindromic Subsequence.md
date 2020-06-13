@@ -63,7 +63,7 @@ int longestPalindromeSubseq(string s) {
                 
             else
             
-                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);// subsequence 都是再不相等的情况下，哪边大取哪边
         }
     }
     
