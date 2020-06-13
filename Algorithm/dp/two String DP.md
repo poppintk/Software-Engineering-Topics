@@ -62,7 +62,7 @@ class Solution {
         
             for(int j = 1; j < dp[0].length; j++){
             
-                if(text1.charAt(i-1) != text2.charAt(j-1)){
+                if(text1.charAt(i-1) != text2.charAt(j-1)){ // else 即不相等的case, 这里保证了（subsequence)
                 
                      dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
                      
@@ -117,7 +117,7 @@ else:
           
           maxLength = Math.max(maxLength, dp[i][j]);
           
-        }
+        }// else 即不相等的case, 去掉后保证 连续性（substring）
       }
     }
     
