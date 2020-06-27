@@ -2,6 +2,8 @@ package main
 
 import "time"
 import "math/rand"
+// When is channel is useful?
+// producer and consumer case 
 
 func main() {
 	c := make(chan int)
