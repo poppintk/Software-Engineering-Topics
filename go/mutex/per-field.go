@@ -7,6 +7,9 @@ import "fmt"
 
 
 
+//
+when lock on shared state, make sure that property is still true in this case total := alice + bob
+we call this invariant, lock need to protect invariant being broken.
 
 func main() {
 	alice := 10000
