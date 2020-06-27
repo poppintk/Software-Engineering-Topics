@@ -24,8 +24,9 @@ func periodic() {
 		time.Sleep(1 * time.Second)
 		mu.Lock()
 		if done {
+			mu.Unlock()
 			return
 		}
-		mu.Unlock()
+		
 	}
 }
