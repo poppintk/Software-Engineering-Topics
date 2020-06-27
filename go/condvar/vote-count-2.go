@@ -24,12 +24,15 @@ func main() {
 	}
 
 	for {
+		//NOTE:
+		// Alrough, this imlementation is correct, but this while loop will be buzy waiting, in this main thread will burning 100% of cpu on runing while true.
 		mu.Lock()
 
 		if count >= 5 || finished == 10 {
 			break
 		}
 		mu.Unlock()
+		// time.Sleep(50*time.Millisecond) , help to solve, but still not perfect
 	}
 	if count >= 5 {
 		println("received 5+ votes!")
