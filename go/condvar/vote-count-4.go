@@ -21,11 +21,14 @@ func main() {
 				count++
 			}
 			finished++
-			cond.Broadcast()
+			cond.Broadcast()// wake up whatever thread is on cond.wait()
 		}()
 	}
 
 	mu.Lock()
+	//while(condition is false){
+	//	cond.wait() // it will block current thread on waiting
+	//}
 	for count < 5 && finished != 10 {
 		cond.Wait()
 	}
