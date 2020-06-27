@@ -21,7 +21,7 @@ func main() {
 				count++
 			}
 			finished++
-			cond.Broadcast()// wake up whatever thread is on cond.wait()
+			cond.Broadcast()// wake up whatever thread is on cond.wait(), we cam also use singal here but we don't cares about efficentcy
 		}()
 	}
 
