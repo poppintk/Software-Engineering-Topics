@@ -3,6 +3,14 @@ package main
 import "time"
 import "math/rand"
 
+// non-buffer channel
+// if two thread is interacting
+// thread A is sending out to channel, if channel not been received by thread B then channel gets blocked
+// thread B will be block until thread A is sending someting to channel
+
+// buffer channel
+// channel has capacity
+
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
