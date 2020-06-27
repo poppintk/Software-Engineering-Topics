@@ -7,11 +7,13 @@ import "math/rand"
 
 func main() {
 	c := make(chan int)
-
+	
+	// producer
 	for i := 0; i < 4; i++ {
 		go doWork(c)
 	}
-
+	
+	// consumer
 	for {
 		v := <-c
 		println(v)
