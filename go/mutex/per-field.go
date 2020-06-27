@@ -4,6 +4,13 @@ import "sync"
 import "time"
 import "fmt"
 
+
+
+//NOTE:
+call RPC with mutation on shared state variable is same situation as follow example
+conclusion:
+whenever we a RPC call to mutate a share state, we need a lock
+
 func main() {
 	alice := 10000
 	bob := 10000
