@@ -25,9 +25,9 @@ func main() {
 		}()
 	}
 
-	mu.Lock()
+	mu.Lock() // need to locking here
 	//while(condition is false){
-	//	cond.wait() // it will block current thread on waiting
+	//	cond.wait() // it will aquire the lock and block current thread on waiting
 	//}
 	for count < 5 && finished != 10 {
 		cond.Wait()
