@@ -13,7 +13,7 @@ func main() {
 		go func() {
 			vote := requestVote()
 			if vote {
-				count++
+				count++ // PROBLEM: Program has shared state, we need lock
 			}
 			finished++
 		}()
