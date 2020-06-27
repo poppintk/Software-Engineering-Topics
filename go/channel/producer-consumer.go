@@ -18,6 +18,7 @@ func main() {
 		v := <-c
 		println(v)
 	}
+	// NOTE: we can also achive this by using waitGroup, wait for all threads are finished
 }
 
 func doWork(c chan int) {
