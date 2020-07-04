@@ -209,4 +209,8 @@ Arrays.sort(T[]);
 - use mergeSort only requested
 - use TimSort() by default
 
+equal & ==
+hashcode
+https://developer.51cto.com/col/460/
+
 
