@@ -178,16 +178,18 @@ The major difference is that wait() releases the lock or monitor while sleep() d
 wait() is used for inter-thread communication while sleep() is used to introduce pause on execution, generally.
 
 JAVA 8 new features
-Lambda expressions,
-Method references,
-Functional interfaces,
-Stream API,
-Default methods,
-Static methods in interface,
-Optional class,
-Collectors class,
-ForEach() method,
-Type and Repating Annotations
+-Lambda expressions,
+-Method references,
+-Functional interfaces,
+-Stream API,
+-Default methods in interface,
+(Static methods in interfaces are similar to the default methods except that we cannot override these 
+methods in the classes that implements these interfaces.)
+-Static methods in interface,
+-Optional class,
+-Collectors class,
+-ForEach() method,
+-Type and Repating Annotations
 
 Microservice
 - load balancer
