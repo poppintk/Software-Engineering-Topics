@@ -223,6 +223,7 @@ Arrays.sort(T[]);
 
 equal & ==
 hashcode
+when we override equal we must also override hashcode
 https://blog.51cto.com/14226230/2422689
 
 
