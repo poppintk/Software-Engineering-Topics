@@ -1,42 +1,34 @@
 1) Java 8 low level questions
+
 2) SQL and Oracle
-3)hash map
-4)ecode and hash code
-5)Hash map vs hash table 
-6)Concurrent Hash Map, tree map
-7)Allow multiple threads Java and JVM 
+
+3) hash map
+
+4) equal and hash code
+
+5) Hash map vs hash table 
+
+6) Concurrent Hash Map, tree map
+
+7) Allow multiple threads Java and JVM 
+
 8) Off heap
+
 9) Difference between abstract class and interface Java
-10) Advantage and disadvanage of using abstract class and interface Java
+
+10) Advantage and disadvantage of using abstract class and interface Java
+
 11) Java 8 functional interface
+
 12) Volatile VS concurrency
-13)Synchronized look, The purpose of using it
-14)What’s access modifiers in java : public, private...
-15)SOAP, REST SOAP
-16)SQL Development: truncate vs delete
+
+13) Synchronized look, The purpose of using it
+
+14) What’s access modifiers in java : public, private...
+
+15) SOAP, REST SOAP
+
+16) SQL Development: truncate vs delete
+
 17) Off Heap, allocate memory...garbage collection
 
-
-Some React questions from previous other role, Don’t have any one interviewed with this team, hope anything would help.
-·         Mainly around javascript
-·         Clojure: scopes, arrow functions - explain how they're relational and what they do
-o    A function returning a function that captures the scopes
-·         ES6/7/8/9/10
-o    Adding features, away, difference between using different figments
-·         HTML5
-o    Workers/what kind/explain what a worker is
-o    HTML interface
-·         React
-o    [hard question] How to fetch data from  the backend - user closes the page, how do you prevent wasting the request/promise while the backend is already fetching it? (amounting stage with Redux Saga or Rxjs, unsubscribing) - or make a local state to resolve it.
-·         Javascript
-o    Pretty basic questions
-o    What's the difference between 2=(2 equal sign) and 3=(3 equal sign), which one is faster?
-Hardest questions:
-Querying, maps in JS, Websockets
- 
-Asked about react:  how are you going to… if you are doing a request inside a component; by the time the server is assessing the request the user closes the page what are you going to do to stop wasting the response from the backend?
-What is the difference using try catch inside a basic function/inside a regular function
-Asked  to “ create a promise” – what is going to happen if you return a promise? Make a new promise but make it a basic function – using try catch all together
- 
- 
- 
