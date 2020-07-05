@@ -6,7 +6,8 @@ Important: Always return results, otherwise callbacks won't catch the result of
 executor function - (resolve,reject)=>{}
 Handler - .then((result)=>{})
 
-The code of a promise executor and promise handlers has an "invisible try..catch" around it. If an exception happens, it gets caught and treated as a rejection automatically.
+The code of a promise executor and promise handlers has an "invisible try..catch" around it. If an exception happens, 
+it gets caught and treated as a rejection automatically.
 
 
 .catch, will catch any action failed in the chain
@@ -48,7 +49,8 @@ Clojure
 A function returning a function that captures the scopes
 
 Woker
-Web Workers are a simple means for web content to run scripts in background threads. The worker thread can perform tasks without interfering with the user interface. 
+Web Workers are a simple means for web content to run scripts in background threads. 
+The worker thread can perform tasks without interfering with the user interface. 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 
 https://www.guru99.com/javascript-interview-questions-answers.html
