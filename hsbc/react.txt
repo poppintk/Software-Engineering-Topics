@@ -1,0 +1,82 @@
+Q1. How React works? How Virtual-DOM works in React?
+React creates a virtual DOM,When state changes in a component it firstly runs a “diffing” algorithm, which identifies what has changed in the virtual DOM. 
+The second step is reconciliation, where it updates the DOM with the results of diff.
+
+Q2. What is JSX?
+JSX is a syntax extension to JavaScript and comes with the full power of JavaScript. 
+JSX produces React “elements”. You can embed any JavaScript expression in JSX by wrapping it in curly braces. After compilation, JSX expressions become regular JavaScript objects. This means that you can use JSX inside of if statements and for loops, assign it to variables, accept it as arguments, and return it from functions. 
+
+Q3. What is React.createClass?
+React.createClass allows us to generate component "classes." But with ES6, React allows us to implement component classes that use ES6 JavaScript classes. 
+ Instead of using a method from the react library, we extend an ES6 class that the library defines, Component.
+
+ Q4. What is ReactDOM and what is the difference between ReactDOM and React?
+ Prior to v0.14, all ReactDOM functionality was part of React. But later, React and ReactDOM were split into two different libraries.
+As the name implies, ReactDOM is the glue between React and the DOM. Often, we will only use it for one single thing: mounting with ReactDOM. Another useful feature of ReactDOM is ReactDOM.findDOMNode() which we can use to gain direct access to a DOM element.
+
+Q5. What are the differences between a class component and functional component?
+Class components allows us to use additional features such as local state and lifecycle hooks. Also, to enable our component to have direct access to our store and thus holds state.
+When our component just receives props and renders them to the page, this is a ‘stateless component’, for which a pure function can be used. These are also called dumb components or presentational components.
+For react 16.8, we can use react hook 
+
+Q6. What is the difference between state and props?
+props is read only within a particular react componenent
+and state is mutabal within the react component.
+but change both will trigger react re-updates
+
+
+Q7. What are controlled components?
+form elements such as <input>, <textarea>, and <select> typically maintain their own state and update it based on user input.
+The react componenent does not maintain its state inside the components, instead it pass state as props from parent componenent,
+. the componenent will keep track of the value state. if value state change will fired handler and pass newer value to the handler. so 
+parent componenent will recieve updated value.
+
+Q8. What is a higher order component?
+A higher-order component (HOC) is an advanced technique in React for reusing component logic. 
+A higher-order component is a function that takes a component and returns a new component.
+
+Q9. What is create-react-app?
+create-react-app is the official CLI (Command Line Interface) for React to create React apps with no build configuration.
+
+Q10. What is Redux?
+The basic idea of Redux is that the entire application state is kept in a single store. The store is simply a javascript object. The only way to change the state is by firing actions from your application and then writing reducers for these actions that modify the state. The entire state transition is kept inside reducers and should not have any side-effects.
+
+Q12. What is PureComponent? When to use PureComponent over Component?
+PureComponent is exactly the same as Component except that it handles the shouldComponentUpdate method for us. 
+When props or state changes, PureComponent will do a shallow comparison on both props and state. 
+Component on the other hand won't compare current props and state to next out of the box. 
+Thus, the component will re-render by default whenever shouldComponentUpdate is called.
+When comparing previous props and state to next, 
+a shallow comparison will check that primitives have the same value (eg, 1 equals 1 or that true equals true) and 
+that the references are the same between more complex javascript values like objects and arrays.
+It is good to prefer PureComponent over Component whenever we never mutate our objects.
+
+
+Q13. How Virtual-DOM is more efficient than Dirty checking?
+
+
+Q14. Is setState() is async? Why is setState() in React Async instead of Sync?
+setState() actions are asynchronous and are batched for performance gains.
+This is because setState alters the state and causes rerendering. 
+This can be an expensive operation and making it synchronous might leave the browser unresponsive. 
+Thus the setState calls are asynchronous as well as batched for better UI experience and performance.
+
+
+Q15. What is render() in React? And explain its purpose?
+ It returns a single React element which is the representation of the native DOM component.
+  If more than one HTML element needs to be rendered, then they must be grouped together inside one enclosing tag such as <form>, <group>, <div> etc. This function must be kept pure i.e., 
+ it must return the same result each time it is invoked.
+
+ Q16. What are controlled and uncontrolled components in React?
+This relates to stateful DOM components (form elements) and the difference:
+A Controlled Component is one that takes its current value through props and notifies changes through callbacks like onChange. A parent component “controls” it by handling the callback and managing its own state and passing the new values as props to the controlled component. You could also call this a “dumb component”.
+A Uncontrolled Component is one that stores its own state internally, and you query the DOM using a ref to find its current value when you need it. This is a bit more like traditional HTML.
+
+
+Q18. What is React.cloneElement? And the difference with this.props.children?
+React.cloneElement only works if our child is a single React element. For almost everything {this.props.children} is the better solution. Cloning is useful in some more advanced scenarios, where a parent send in an element and the child component needs to change some props on that element or add things like ref for accessing the actual DOM element.
+
+Q19. What is the second argument that can optionally be passed to setState and what is its purpose?
+A callback function which will be invoked when setState has finished and the component is re-rendered.
+Since the setState is asynchronous, which is why it takes in a second callback function. With this function, we can do what we want immediately after state has been updated.
+
