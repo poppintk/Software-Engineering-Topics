@@ -25,6 +25,8 @@ A Java class can implement multiple interfaces but it can extend only one abstra
 11) Java 8 functional interface
 
 12) Volatile VS concurrency
+Using volatile is yet another way (like synchronized, atomic wrapper) of making class thread safe.
+Thread safe means that a method or class instance can be used by multiple threads at the same time without any problem.
 
 13) Synchronized lock, The purpose of using it
 
