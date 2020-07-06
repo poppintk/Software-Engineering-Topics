@@ -15,6 +15,10 @@
 8) Off heap
 
 9) Difference between abstract class and interface Java
+Java interface should be implemented using keyword “implements”; 
+A Java abstract class should be extended using keyword “extends”
+A Java class can implement multiple interfaces but it can extend only one abstract class.
+
 
 10) Advantage and disadvantage of using abstract class and interface Java
 
