@@ -44,6 +44,13 @@ Public: The access level of a public modifier is everywhere. It can be accessed 
 17) Heap-Offloading, allocate memory...garbage collection
 
 
+what are optionals, streams, hash maps etc 
+
+Started off with Introduction and asked core java questions on singleton class,threading,exceptions.Then moved on to ask project related questions and some puzzles.
+
+completable future in java8  
+
+Code to find the loop in linkedlist  
 
 
 
