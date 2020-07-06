@@ -27,11 +27,11 @@ Local variables are stored on the stack
 GC
 ###https://www.youtube.com/watch?v=UnaNQgzw4zY&t=733s
 
-![gc](./img/gc1.PNG)
-![gc](./img/gc2.PNG)
-![gc](./img/gc3.PNG)
-![gc](./img/gc4.PNG)
-![gc](./img/gc5.PNG)
+#![gc](./img/gc1.PNG)
+#![gc](./img/gc2.PNG)
+#![gc](./img/gc3.PNG)
+##![gc](./img/gc4.PNG)
+#![gc](./img/gc5.PNG)
 ![gc](./img/gc6.PNG)
 ![gc](./img/gc7.PNG)
 ![gc](./img/gc8.PNG)
