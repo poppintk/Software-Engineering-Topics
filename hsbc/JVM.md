@@ -24,14 +24,9 @@ Local variables are stored on the stack
 
 ![jvm](./img/6.PNG)
 
-GC
-###https://www.youtube.com/watch?v=UnaNQgzw4zY&t=733s
+GC ###https://www.youtube.com/watch?v=UnaNQgzw4zY&t=733s
 
-#![gc](./img/gc1.PNG)
-#![gc](./img/gc2.PNG)
-#![gc](./img/gc3.PNG)
-##![gc](./img/gc4.PNG)
-#![gc](./img/gc5.PNG)
+#![gc](./img/gc1.PNG) #![gc](./img/gc2.PNG) #![gc](./img/gc3.PNG) ##![gc](./img/gc4.PNG) #![gc](./img/gc5.PNG)
 ![gc](./img/gc6.PNG)
 ![gc](./img/gc7.PNG)
 ![gc](./img/gc8.PNG)
@@ -49,6 +44,7 @@ GC
 ![gc](./img/gc20.PNG)
 
 What is Heap-Offloading ?
+https://code.google.com/archive/p/fast-serialization/wikis/QuickStartHeapOff.wiki
 
 Usually all non-temporary objects you allocate are managed by java's garbage collector.
 Although the VM does a decent job doing garbage collection, at a certain point the VM has to do a so called 'Full GC'.
