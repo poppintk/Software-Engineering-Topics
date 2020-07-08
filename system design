@@ -91,4 +91,6 @@ https://developer.51cto.com/art/202005/616606.htm
 
 
 consistent hash 解决数据分布不均匀 如果sharding 我们就需要这个算法来解决
+loadbalancer也用这个
+
 
