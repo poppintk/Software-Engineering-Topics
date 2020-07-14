@@ -18,11 +18,11 @@ public abstract class CaffeineBeverage {
     /**
      * 以下是不变的部分
      */
-    void boilWater(){
+    final void boilWater(){
         System.out.println("Boiling water");
     }
 
-    void pourInCup(){
+    final void pourInCup(){
         System.out.println("Pouring into cup");
     }
 
