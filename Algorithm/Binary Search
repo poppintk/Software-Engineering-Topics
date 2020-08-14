@@ -97,7 +97,11 @@ Public int binarySearch(A, val, l, r):
 		if(A[mid] > val) r = m;
 		else l = m + 1;	
 	return -1;
-			
+	
+	
+	
+NOTE: if input array has duplicated values, then we should never use if(arr[mid] == target) return mid;
+because it will return imediately for the abitary mid index which might not be the right answer.
 ----------------------------------------------------------------------------------------------------------------------------			
 leetcode 875
 reference: https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/koko-tou-xiang-jiao
