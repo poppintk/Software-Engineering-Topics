@@ -32,3 +32,8 @@ i.e. List<Integer> a = Arrays.asList(1,2,3);
 for (char c : str.toCharArray()) { // looping String array
 
 }
+
+convert string into char[]
+=> str.toCharArray()
+convert char[] into string
+=> String.valueOf(char[])
