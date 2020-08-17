@@ -2,7 +2,7 @@ int[] dp = new int[nums.length];
     // dp 数组全都初始化为 1
     Arrays.fill(dp, 1);
 
-
+Map<String,Integer> map = new HashMap<>();
 map.put(word, map.getOrDefault(word, 0) + 1);
 => 
 // must be either condition
