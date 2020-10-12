@@ -4,6 +4,11 @@
 91. Decode Ways
 
 坐标型  
+動態規劃方程f[i]中的下標i 表示以 序列[i] 為結尾的滿足條件的子序列的性質. f[i][j]中的下標i, j 表示以格子(i,j)為結尾的滿足條件的路徑的性質
+-最大值/最小值
+-個數
+-是否存在
+
 120. Triangle
 55. Jump Game (This can be improved by using greedy)
 152. Maximum Product Subarray
