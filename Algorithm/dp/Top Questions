@@ -2,7 +2,9 @@
 139 word break
 279. Perfect Squares
 
-坐标型  120. Triangle
+坐标型  
+120. Triangle
+55. Jump Game (This can be improved by using greedy)
 
 雙序列型
 72. Edit Distance
