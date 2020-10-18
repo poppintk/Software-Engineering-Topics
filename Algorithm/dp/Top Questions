@@ -25,12 +25,20 @@
 10. Regular Expression Matching
 
 背包型 Unbound Knapsack
+
 322. Coin Change
+
 983. Minimum Cost For Tickets
+
 92.BackPack (lintcode) items only used once, How full you can fill this backpack?
 这道题不能用 先sort 在找sum 的方式， 因为最大值可能不是来自连续的序列
+
 563. Backpack V (lintcode) items only used once, Find the number of possible fill the backpack
+
 564. Backpack VI / Combination Sum IV (lintcode), find the number of possible combinations that add up to a weight w
+
+125. Backpack II, What's the maximum value can you put into the backpack?
+pay more attention to 92 and 125
 
 
 
