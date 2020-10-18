@@ -27,6 +27,8 @@
 背包型 Unbound Knapsack
 322. Coin Change
 983. Minimum Cost For Tickets
+92.BackPack (lintcode)
+这道题不能用 先sort 在找sum 的方式， 因为最大值可能不是来自连续的序列
 
 
 位操作型
