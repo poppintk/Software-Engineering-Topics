@@ -39,6 +39,7 @@ State: dp[i][w] = 前i個物品能不能拼出重量w
 計數型背包
 求有多少種方式拼出重量target
 State: dp[i][w] = 前i個物品有多少種方式拼出重量w
+無value/price demension
 563. Backpack V (lintcode) items only used once, Find the number of possible fill the backpack
 564. Backpack VI / Combination Sum IV (lintcode),each item can be used many times. find the number of possible combinations that add up to a weight w
 
