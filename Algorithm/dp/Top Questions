@@ -48,6 +48,7 @@ init: dp[0][0] = 1; dp[0][1...w] = 0;
 最值型背包
 求能拼出的最大價值
 State: dp[i][w] = 前i個物品拼出重量w能得到的最大價值
+init: dp[0][0] = 0; dp[0][1...w] = -1;//價值為-1表示不可能
 125. Backpack II, items only used once,What's the maximum value can you put into the backpack?
 Backpack III
 
