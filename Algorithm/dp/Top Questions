@@ -31,28 +31,43 @@
 983. Minimum Cost For Tickets
 
 92.BackPack (lintcode) each item only used once 
+这道题不能用 先sort 在找sum 的方式， 因为最大值可能不是来自连续的序列
+
 可行性背包
 求不超過Target時拼出的最大重量
 State: dp[i][w] = 前i個物品能不能拼出重量w
+Recurrence: dp[i][m] = dp[i-1][m] OR dp[i-1][m - A[i-1]]
 init: dp[0][0] = true; dp[0][1...w] = false;
-这道题不能用 先sort 在找sum 的方式， 因为最大值可能不是来自连续的序列
+final ans在最後一row中，後面數過來，第一個為true的 column index
 
 計數型背包
 求有多少種方式拼出重量target
-State: dp[i][w] = 前i個物品有多少種方式拼出重量w
-init: dp[0][0] = 1; dp[0][1...w] = 0;
 無value/price demension
 563. Backpack V (lintcode) items only used once, Find the number of possible fill the backpack
+State: dp[i][w] = 前i個物品有多少種方式拼出重量w
+Recurrence: dp[i][m] = dp[i-1][m] + dp[i-1][m - A[i-1]]
+init: dp[0][0] = 1; dp[0][1...w] = 0;
+final ans at dp[n][m]
+
 564. Backpack VI / Combination Sum IV (lintcode),each item can be used many times. find the number of possible combinations that add up to a weight w
+State: dp[i] = 有多少種組合能拼出重量i
+Recurrence: dp[w] = dp[w - Ai] where i = 0....A.length-1
+init: dp[0] = 1;
+final ans at dp[w]
 
 最值型背包
 求能拼出的最大價值
+125. Backpack II, items only used once, What's the maximum value can you put into the backpack?
 State: dp[i][w] = 前i個物品拼出重量w能得到的最大價值
+Recurrence: dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - A[i-1]] + V[i-1])
 init: dp[0][0] = 0; dp[0][1...w] = -1;//價值為-1表示不可能
-125. Backpack II, items only used once,What's the maximum value can you put into the backpack?
-Backpack III
+final ans is at max(last row)
 
-
+Backpack III, items can be used many times, What's the maximum value can you put into the backpack?
+State: dp[i][w] = 前i個物品拼出重量w能得到的最大價值
+Recurrence: dp[i][w] = max(dp[i-1][w], dp[i][w-A[i-1]] + V[i-1])
+init: dp[0][0] = 0; dp[0][1...w] = -1;//價值為-1表示不可能
+final ans is at max(last row)
 
 位操作型
 
