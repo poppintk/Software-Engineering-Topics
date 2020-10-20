@@ -49,6 +49,7 @@ Recurrence: dp[i][m] = dp[i-1][m] + dp[i-1][m - A[i-1]]
 init: dp[0][0] = 1; dp[0][1...w] = 0;
 final ans at dp[n][m]
 
+562 vs 564
 564. Backpack VI / Combination Sum IV (lintcode),each item can be used many times. find the number of possible combinations that add up to a weight w
 State: dp[i] = 有多少種組合能拼出重量i
 Recurrence: dp[w] = dp[w - Ai] where i = 0....A.length-1
