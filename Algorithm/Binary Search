@@ -1,3 +1,33 @@
+
+算法题里运用2分的技巧：
+首先要把for 循环形式的暴力算法写出来， 如果算法中存在如下形式的for循环：
+// func(i) 是i的单调函数（递增递减都可以）
+int func(int i);
+
+//形如这种for循环可以用二分查找技巧优化效率
+for (int i = 0; i < n; ++i) {
+  if (func(i) == target) return i;
+}
+
+如果 func(i) 函数是在i上单调的函数， 一定可以使用二分查找技巧优化for循环。
+“在i上单调的函数” 指func(i) 的返回值随着i的增加而增加， 或者随着i的减少而减少。
+
+为什么满足这个条件就可以使用二分查找？ 因为这个逻辑和“在有序数组中查找一个元素” 是完全一样的呀！
+在有序数组nums 中查找一个数target， 是不是最简单二分查找形式？ 我们看下普通的for循环遍历算法
+// nums是一个有序数组
+int[] nums;
+//target 是要搜素的元素
+int target;
+
+//搜索target 在 nums中的索引
+for (int i = 0; i < nums.length; ++i) {
+  if(nums[i] == target) return i;
+}
+既然nums 是有序数组，你把nums[i] 看作函数调用， 是不是可以理解为nums在参数i上是单调的？ 这是不是和之前说的func(i)函数完全一样？
+
+----------------------------------------------------------------------------------------------------------------------------	
+
+
 assume all array here is increasing order
 注意用开区间或者闭区间是有 起始search range 决定的 
 比如left = 0,right = arr.length(condition 1), while(left < right) (condition2) 这是开区间 [left,right)
@@ -120,7 +150,8 @@ Public int binarySearch(A, val, l, r):
 	
 NOTE: if input array has duplicated values, then we should never use if(arr[mid] == target) return mid;
 because it will return imediately for the abitary mid index which might not be the right answer.
-----------------------------------------------------------------------------------------------------------------------------			
+-----------------------------------------------------------------------------------------------------------------------------
+		
 leetcode 875
 reference: https://labuladong.gitbook.io/algo/gao-pin-mian-shi-xi-lie/koko-tou-xiang-jiao
 
