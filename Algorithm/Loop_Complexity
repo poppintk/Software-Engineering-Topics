@@ -1,3 +1,4 @@
+case 1
 class NestedLoop {
 	public static void main(String[] args) {
 		int n = 10; // O(time complexity of the called function)
@@ -25,19 +26,55 @@ log(n) times/step
 
 2) Get dependent variable sequence
 var *= 3  or var*i where i >=2, can all treat as i = i * 2(double each time). Which all has sequence as 2^0, 2 ^1 .... 2^n where n is the # of steps from step 1.
+So sequence is  2^0, 2 ^1 .... 2^(logn)
+NOTE:
 Why sequence is 2^0, 2 ^1 .... 2^n?
 Because the relation between var(actual value) and step is 2^n where n is the # of step.
-
-So sequence is  2^0, 2 ^1 .... 2^(logn)
+We only interested in number of the actual value, because this is dependent varible will be called in inner loop.
 
 
 3) Get inner loop info, where does loop start for each time enter the loop
 in this case, j = 0 for j < var and j increase constant for every loop body.
-So for 2^1 total # of step if 2^1
-
+So for 2^1(actual dependent varibale value) the total # of step for that particular "var" is 2^1.
+How many of such var? 2^0, 2 ^1 .... 2^n. 
+So sum them up 
+2^0 + 2 ^1 +.... 2^(logn) = O(n)
 conclusion:
  Total steps for inner loop is 2^0 + 2 ^1 +.... 2^(logn) = O(n)
  Total steps for outter loop is log(n)
  
  Total complexity is O(n) + log(n)
+--------------------------------------------------------------------------------------------------------------------
+case 2:
 
+
+class NestedLoop {
+	public static void main(String[] args) {
+		int n = 10;   
+		int sum = 0; 
+		double pie = 3.14; 
+
+		for (int var = 0; var < n; var++) {   
+      		int j = 1;  
+			System.out.println("Pie: " + pie);
+			while(j < var) { 
+        	sum += 1;  
+        	j *= 2;  
+      }
+    } //end of for loop
+    System.out.println("Sum: " + sum); 
+  } //end of main
+} //end of class
+
+1) Get # of steps
+	n
+2) Get dependent variable sequence
+	1,2,3...n (actual value vs steps)
+3) inner loop info
+	start from j = 0 for j < var(dependent variable) 
+	for loop body j = j * 2
+	so steps to run each inner loop is log(var) where var is particular actual value in sequence
+	
+	Total inner loop Complexity is log(1) + log(2) + ...log(n) = log(1*2*3....*n) = O(log(n!))
+	Total outter loop complexity is O(n)
+	total runtime is O(log(n!))
