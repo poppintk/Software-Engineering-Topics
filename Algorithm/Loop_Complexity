@@ -77,4 +77,4 @@ class NestedLoop {
 	
 	Total inner loop Complexity is log(1) + log(2) + ...log(n) = log(1*2*3....*n) = O(log(n!))
 	Total outter loop complexity is O(n)
-	total runtime is O(log(n!))
+	total runtime is O(log(n!) + n) = O(log(n!))
