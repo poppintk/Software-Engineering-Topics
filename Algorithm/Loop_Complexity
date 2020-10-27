@@ -18,6 +18,8 @@ class NestedLoop {
 
 How to calculate complexity for nested loop with dependent variable?
 
+inner loop complexity + outter loop complexity
+
 1) Get # of steps for outter loop
 log(n) times/step
 
