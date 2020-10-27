@@ -78,3 +78,33 @@ class NestedLoop {
 	Total inner loop Complexity is log(1) + log(2) + ...log(n) = log(1*2*3....*n) = O(log(n!))
 	Total outter loop complexity is O(n)
 	total runtime is O(log(n!) + n) = O(log(n!))
+---------------------------------------------------------------------------------------------------------------
+case 3:
+class NestedLoop {
+	public static void main(String[] args) {
+    	int n = 10;   // O(1)
+		int sum = 0;  // O(1) 
+    	int j = 1;    // O(1)
+		double pie = 3.14; // O(1)
+		
+		for (int var = 0; var < n; var++) {  // 0(n)
+			while(j < var) { 
+        	sum += 1;  
+        	j *= 2; 
+      	}
+    } //end of for loop
+  } //end of main
+} //end of class
+
+1) Get # of steps
+	n
+2) Get dependent variable sequence
+	1,2,3...n (actual value vs steps)
+3) inner loop info
+	start from j = previous var for j < var(dependent variable) 
+	for loop body j = j * 2
+	so steps to run each inner loop is log(n) where n is from step1!
+	
+	Total inner loop Complexity is log(n) 
+	Total outter loop complexity is O(n)
+	total runtime is O(log(n) + n) = O(n)
