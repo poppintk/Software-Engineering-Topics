@@ -1,0 +1,41 @@
+class NestedLoop {
+	public static void main(String[] args) {
+		int n = 10; // O(time complexity of the called function)
+		int sum = 0; //O(1)
+		double pie = 3.14; //O(1)
+		int var = 1; //O(?)
+		while(var < n) { 
+			System.out.println("Pie: " + pie); 
+				//O(?)
+			for (int j = 1; j < var; j = j + 2) {   
+				sum++;  
+			}
+			var *= 3;  
+		} //end of while loop
+		System.out.println("Sum: " + sum); //O(1)
+	} //end of main
+} //end of class
+
+How to calculate complexity for nested loop with dependent variable?
+
+1) Get # of steps for outter loop
+log(n) times/step
+
+2) Get dependent variable sequence
+var *= 3  or var*i where i >=2, can all treat as i = i * 2(double each time). Which all has sequence as 2^0, 2 ^1 .... 2^n where n is the # of steps from step 1.
+Why sequence is 2^0, 2 ^1 .... 2^n?
+Because the relation between var(actual value) and step is 2^n where n is the # of step.
+
+So sequence is  2^0, 2 ^1 .... 2^(logn)
+
+
+3) Get inner loop info, where does loop start for each time enter the loop
+in this case, j = 0 for j < var and j increase constant for every loop body.
+So for 2^1 total # of step if 2^1
+
+conclusion:
+ Total steps for inner loop is 2^0 + 2 ^1 +.... 2^(logn) = O(n)
+ Total steps for outter loop is log(n)
+ 
+ Total complexity is O(n) + log(n)
+
