@@ -27,8 +27,10 @@ for (int i = 0; i < nums.length; ++i) {
 
 see labuladong binary search for details
 ----------------------------------------------------------------------------------------------------------------------------	
-
-
+开区间 [left,right)
+如果nums 中不存在 target值，怎么办？
+TODO
+------------------------------------------------------------------------------------------------------------------------------
 assume all array here is increasing order
 注意用开区间或者闭区间是有 起始search range 决定的 
 比如left = 0,right = arr.length(condition 1), while(left < right) (condition2) 这是开区间 [left,right)
