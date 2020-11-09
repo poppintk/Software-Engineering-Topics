@@ -108,3 +108,14 @@ class NestedLoop {
 	Total inner loop Complexity is log(n) 
 	Total outter loop complexity is O(n)
 	total runtime is O(log(n) + n) = O(n)
+	
+---------------------------------------------------------------------------------------------------------------------------
+case 4
+int a = 0;
+for (int i = 1; i < n; i++){
+	for (int j = 1; j < n / i; j++){
+		a += 1;
+	}
+}
+
+在这道题中，T(n) = n + n/2 + n/3 + n/4 + ... + n/n，而根据数学知识，这一部分求和的结果的下界是nln(n)。因此时间复杂度是O(nlogn)级别的
