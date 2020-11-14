@@ -37,3 +37,6 @@ convert string into char[]
 => str.toCharArray()
 convert char[] into string
 => String.valueOf(char[])
+
+---------------------------------------------------------------------
+Arrays.sort(numbers, comparator.reversed());// only works for Integer[] but not int[]
