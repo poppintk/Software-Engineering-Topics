@@ -43,7 +43,15 @@ inner loop complexity + outter loop complexity
 1) Get # of steps for outter loop
 log(n) because var*=3  so given n will takes log(n) steps;
 
-2) Get dependent variable sequence
+2) Get dependent variable sequence 
+How to get this? 
+consider outer loop increate rate(var = var * 2 in this case) have impact on inner loop，
+if outter loop var = 1 then innter loop will have total count 2 = 1 * 2 so 2^1
+if outter loop var = 2 then inner loop will have total count 4 = 2 * 2 so 2^2
+if outter loop var = 3 then inner loop will have total count 8 = 4 * 2 so 2^3
+....
+if outter loop var = n then inner loop will have total count 2^n
+
 var *= 3  or var*i where i >=2, can all treat as i = i * 2(double each time). Which all has sequence as 2^0, 2 ^1 .... 2^n where n is the # of steps from step 1.
 So sequence is  2^0, 2 ^1 .... 2^(logn)
 NOTE:
@@ -88,6 +96,12 @@ class NestedLoop {
 1) Get # of steps outter loop
 	n
 2) Get dependent variable sequence
+How to get this? 
+consider outer loop increate rate(var = var + 1 in this case) have impact on inner loop
+if outter loop var = 1 then inner loop total count is 1
+if outter loop var = 2 then inner loop total count is 2
+....
+if otter loop var = n then inner loop total count is n
 	1,2,3...n (actual value vs steps)
 3) inner loop info
 	start from j = 0 for j < var(dependent variable) 
@@ -117,7 +131,7 @@ class NestedLoop {
 
 1) Get # of steps outter loop
 	n
-2) Get dependent variable sequence
+2) Get dependent variable sequence? How to get this? consider outer loop increate rate(var = n + 1 in this case) have impact on inner loop
 	1,2,3...n (actual value vs steps)
 3) inner loop info
 	start from j = previous var for j < var(dependent variable) 
