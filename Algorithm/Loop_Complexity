@@ -73,8 +73,6 @@ conclusion:
  Total complexity is O(n) + log(n)
 --------------------------------------------------------------------------------------------------------------------
 case 2:
-
-
 class NestedLoop {
 	public static void main(String[] args) {
 		int n = 10;   
@@ -96,13 +94,15 @@ class NestedLoop {
 1) Get # of steps outter loop
 	n
 2) Get dependent variable sequence
-How to get this? 
+How to get this
 consider outer loop increate rate(var = var + 1 in this case) have impact on inner loop
 if outter loop var = 1 then inner loop total count is 1
 if outter loop var = 2 then inner loop total count is 2
 ....
 if otter loop var = n then inner loop total count is n
+
 	1,2,3...n (actual value vs steps)
+
 3) inner loop info
 	start from j = 0 for j < var(dependent variable) 
 	for loop body j = j * 2
@@ -131,8 +131,15 @@ class NestedLoop {
 
 1) Get # of steps outter loop
 	n
-2) Get dependent variable sequence? How to get this? consider outer loop increate rate(var = n + 1 in this case) have impact on inner loop
+2) Get dependent variable sequence
+consider outer loop increate rate(var = var + 1 in this case) have impact on inner loop
+if outter loop var = 1 then inner loop total count is 1
+if outter loop var = 2 then inner loop total count is 2
+....
+if otter loop var = n then inner loop total count is n
+
 	1,2,3...n (actual value vs steps)
+
 3) inner loop info
 	start from j = previous var for j < var(dependent variable) 
 	for loop body j = j * 2
