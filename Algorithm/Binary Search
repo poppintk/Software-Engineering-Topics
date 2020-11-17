@@ -1,4 +1,29 @@
+public int lastPosition(int[] nums, int target) {
+	if (nums == null || nums.length == 0) return -1;
 
+	int left = 0;
+	int right = nums.length - 1;
+	//Note1
+	while (left + 1 < right) {
+	    //Note2
+		int mid = left + (right - left) / 2;
+	    if (nums[mid] == target) {
+			//Note3
+			left = mid;
+	    } else if (nums[mid] < target) {
+			left = mid;
+	    } else {
+			right = mid;
+	    }
+	}
+	//Note4
+	if (nums[right] == target) return right;
+	if (nums[left] == target) return left;
+	return -1;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 算法题里运用2分的技巧：
 首先要把for 循环形式的暴力算法写出来， 如果算法中存在如下形式的for循环：
 // func(i) 是i的单调函数（递增递减都可以）
