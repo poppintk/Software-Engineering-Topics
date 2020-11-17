@@ -9,7 +9,7 @@ public int lastPosition(int[] nums, int target) {
 	    //Note2
 		int mid = left + (right - left) / 2;
 	    if (nums[mid] == target) {
-			//Note3
+			//Note3 這個指揮影響到處理重複值的時候
 			left = mid;
 	    } else if (nums[mid] < target) {
 			left = mid;
@@ -22,8 +22,24 @@ public int lastPosition(int[] nums, int target) {
 	if (nums[left] == target) return left;
 	return -1;
 }
+關於NOTE4的幾種變形
+因爲ending condition for while loop is left + 1 == right,
+所以這裏存在2個數在index left and right 并且 nums[left] < nums[right]
+1) 如果找 >= target
+if (nums[left] >= target) return left;
+if (nums[right] >= target) return right;
 
+2) 如果找 <= target
+if (nums[right] <= target) return right;
+if (nums[left] <= target) return left;
 
+3) 如果找 == target的最後一個數
+if (nums[right] == target) return right;
+if (nums[left] == target) return left;
+
+4)如果找== target的第一個數
+if (nums[left] == target) return left;
+if (nums[right] == target) return right;
 -----------------------------------------------------------------------------------------------------------------------------------------
 算法题里运用2分的技巧：
 首先要把for 循环形式的暴力算法写出来， 如果算法中存在如下形式的for循环：
