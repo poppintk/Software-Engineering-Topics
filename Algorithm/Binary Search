@@ -1,3 +1,4 @@
+// This template will avoid infinite loop
 public int lastPosition(int[] nums, int target) {
 	if (nums == null || nums.length == 0) return -1;
 
@@ -16,7 +17,7 @@ public int lastPosition(int[] nums, int target) {
 			right = mid;
 	    }
 	}
-	//Note4
+	//Note4 : ending condition left + >= right, so there are two element need to check
 	if (nums[right] == target) return right;
 	if (nums[left] == target) return left;
 	return -1;
