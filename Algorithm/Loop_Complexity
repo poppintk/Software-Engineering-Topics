@@ -41,7 +41,7 @@ How to calculate complexity for nested loop with dependent variable?
 inner loop complexity + outter loop complexity
 
 1) Get # of steps for outter loop
-log(n) times/step
+log(n) because var*=3  so given n will takes log(n) steps;
 
 2) Get dependent variable sequence
 var *= 3  or var*i where i >=2, can all treat as i = i * 2(double each time). Which all has sequence as 2^0, 2 ^1 .... 2^n where n is the # of steps from step 1.
@@ -77,15 +77,15 @@ class NestedLoop {
       		int j = 1;  
 			System.out.println("Pie: " + pie);
 			while(j < var) { 
-        	sum += 1;  
-        	j *= 2;  
-      }
+                sum += 1;  
+                j *= 2;  
+            }
     } //end of for loop
     System.out.println("Sum: " + sum); 
   } //end of main
 } //end of class
 
-1) Get # of steps
+1) Get # of steps outter loop
 	n
 2) Get dependent variable sequence
 	1,2,3...n (actual value vs steps)
@@ -101,21 +101,21 @@ class NestedLoop {
 case 3:
 class NestedLoop {
 	public static void main(String[] args) {
-    	int n = 10;   // O(1)
-		int sum = 0;  // O(1) 
-    	int j = 1;    // O(1)
+    	int n = 10;// O(1)
+		int sum = 0;// O(1) 
+    	int j = 1;// O(1)
 		double pie = 3.14; // O(1)
 		
 		for (int var = 0; var < n; var++) {  // 0(n)
 			while(j < var) { 
-        	sum += 1;  
-        	j *= 2; 
-      	}
-    } //end of for loop
+                sum += 1;  
+                j *= 2; 
+            }
+        } //end of for loop
   } //end of main
 } //end of class
 
-1) Get # of steps
+1) Get # of steps outter loop
 	n
 2) Get dependent variable sequence
 	1,2,3...n (actual value vs steps)
