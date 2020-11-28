@@ -466,7 +466,8 @@ combination(nums, depth, n, start, curr, ans):
         curr.push(nums[i])
         combination(nums, depth + 1, n, i+1, curr, ans) //注意i+1 下一个start 从i+1开始 避免重复被用
         curr.pop()
-        
+
+subSet也是combination
 subSet(nums, depth, n, start, curr, ans):
     ans.append(curr) 
     for i = start to len(nums):
