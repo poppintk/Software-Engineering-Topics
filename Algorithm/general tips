@@ -1,7 +1,10 @@
 
-Note1: difference property: leftIndex - rightIndex = diffIndex,
+Note1: difference property: rightIndex - leftIndex = diffIndex,
 this diffIndex is 1 based(start from 1...)
 if we want to get length = diffIndex + 1
 if left and right are not index base, left - right = diff
 if we want to get length = diff + 1
 length => 1 based 
+
+rightindex - leftindex + 1 = length;
+RightIndex = leftIndex - 1 + lenghth;
