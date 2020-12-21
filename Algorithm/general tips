@@ -10,7 +10,7 @@ rightindex - leftindex + 1 = length;
 RightIndex = leftIndex - 1 + lenghth;
 
 TwoD array's coordination into oneD array : k = i * cols + j
-OneD to twoD: k % cols = i, k / cols = j
+OneD to twoD: k % cols = j, k / cols = i
 
 BFS use Map<?,Integer> distance = new HashMap<>();
 Better
