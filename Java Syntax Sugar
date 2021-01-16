@@ -43,3 +43,8 @@ Arrays.sort(numbers, comparator.reversed());// only works for Integer[] but not 
 
 Collections.sort(temp); // for List<Integer>
 //Note: those are in place sort will not return anything
+Collections.sort(temp, Collections.reverseOrder())
+
+Collections.reverse(temp);
+
+
