@@ -46,5 +46,17 @@ Collections.sort(temp); // for List<Integer>
 Collections.sort(temp, Collections.reverseOrder())
 
 Collections.reverse(temp);
+----------------------------------------------------------------------------------------------
+Random r = new Random();
+r.nextInt(n); // this will return a ramdom number from [0.....n-1]
+-------------------------------------------------------------------------------------------
+TreeMap<Integer, Integer> map = new TreeMap<>();
+// from 520. Consistent Hashing II
+// ceilingKey will return the key which is equal or greater than the given key(hashcode)
+if (map.ceilingKey(hashcode) == null) return map.firstEntry().getValue();
+// ceilingEntry will return the key which is equal or greater than the given key(hashcode)
+return map.ceilingEntry(hashcode).getValue();
+
+
 
 
