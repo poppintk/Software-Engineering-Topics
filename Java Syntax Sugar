@@ -57,6 +57,18 @@ if (map.ceilingKey(hashcode) == null) return map.firstEntry().getValue();
 // ceilingEntry will return the key which is equal or greater than the given key(hashcode)
 return map.ceilingEntry(hashcode).getValue();
 
+-------------------------------------------------------------------------------------------
+Round Up a number
+8/2 = 4
+9/2 = 5
+a/b
+Math.ceil(a/b)
+OR
+int num = (a - 1) / b + 1;
 
-
-
+Round down a number 
+8/2 = 4
+9/2 = 4
+Math.floor(a/b)
+OR
+int num = a / b;
