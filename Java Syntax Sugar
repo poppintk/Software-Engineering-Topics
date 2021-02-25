@@ -1,6 +1,6 @@
 int[] dp = new int[nums.length];
-    // dp 数组全都初始化为 1
-    Arrays.fill(dp, 1);
+// dp 数组全都初始化为 1
+Arrays.fill(dp, 1);
 
 Map<String,Integer> map = new HashMap<>();
 map.put(word, map.getOrDefault(word, 0) + 1);
@@ -54,7 +54,7 @@ TreeMap<Integer, Integer> map = new TreeMap<>();
 // from 520. Consistent Hashing II
 // ceilingKey will return the key which is equal or greater than the given key(hashcode)
 if (map.ceilingKey(hashcode) == null) return map.firstEntry().getValue();
-// ceilingEntry will return the key which is equal or greater than the given key(hashcode)
+// ceilingEntry will return the entry which is equal or greater than the given key(hashcode)
 return map.ceilingEntry(hashcode).getValue();
 
 -------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ Round Up a number
 a/b
 Math.ceil(a/b)
 OR
-int num = (a - 1) / b + 1;
+int num = ((a - 1) / b) + 1;
 
 Round down a number 
 8/2 = 4
