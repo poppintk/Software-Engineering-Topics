@@ -39,6 +39,7 @@ convert char[] into string
 => String.valueOf(char[])
 
 ---------------------------------------------------------------------
+//从大到小排序
 Arrays.sort(numbers, comparator.reversed());// only works for Integer[] but not int[]
 
 Collections.sort(temp); // for List<Integer>
