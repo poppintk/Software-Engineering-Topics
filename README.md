@@ -1,4 +1,4 @@
 # notes
 Notes
-Holds personal notes on the study journey as software engineer. 
+personal notes on the study journey as software engineer. 
 The goal is "Happy coding Happy learning!"
