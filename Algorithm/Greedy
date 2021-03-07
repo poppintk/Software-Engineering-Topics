@@ -8,13 +8,47 @@ http://www.lintcode.com/problem/task-scheduler/
 
 
 55. Jump Game
-class Solution {
-     public boolean canJump(int[] nums) {
-        int curMax = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (curMax < i) return false; //mean we are not able to reach position i
-            curMax = Math.max(curMax, i + nums[i]);
+public class Solution {
+    /**
+     * @param A: A list of integers
+     * @return: A boolean
+     */
+    public boolean canJump(int[] A) {
+        // write your code here
+        if (A == null || A.length < 2) return true;
+
+        int canReach = 0;
+        for (int i = 0; i < A.length && i <= canReach; i++) {
+            
+            canReach = Math.max(A[i] + i, canReach);
+            if (canReach >= A.length - 1) return true;
         }
-        return true;  
+        return false;
+    }
+}
+----------------------------------------------------------------------------
+Jump Game II
+public class Solution {
+    /**
+     * @param A: A list of integers
+     * @return: An integer
+     */
+    public int jump(int[] A) {
+        // write your code here
+        if (A == null || A.length == 1) return 0;
+        int curMax = 0;
+        int canReach = 0;
+        int step = 0;
+        int index = 0;
+        while (index <= curMax) {
+            while (index <= curMax) {
+                canReach = Math.max(canReach, index + A[index]);
+                index++;
+            }
+            curMax = canReach;
+            step++;
+            if (curMax >= A.length - 1) return step;
+        }
+        return 0;
     }
 }
