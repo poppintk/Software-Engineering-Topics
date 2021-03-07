@@ -40,8 +40,8 @@ public class Solution {
         int canReach = 0;
         int step = 0;
         int index = 0;
-        while (index <= curMax) {
-            while (index <= curMax) {
+        while (index <= A.length && index <= curMax) {
+            while (index <= A.length && index <= curMax) {
                 canReach = Math.max(canReach, index + A[index]);
                 index++;
             }
