@@ -156,6 +156,19 @@ public class HashTable {
         table.insert("Test",4 );
         table.insert("Driver",5 );
 
+        table.insert("aaa",6 );
+        table.insert("bbb",7 );
+        table.insert("ccc",8 );
+        table.insert("ddd",9 );
+        table.insert("eee",10);
+
+        table.insert("fff", 11 );
+        table.insert("ggg",12);
+        table.insert("hhh", 13);
+        table.insert("iii",14 );
+        table.insert("jjj",15);
+
+        System.out.println("Table size is :" + table.getcurrentSize());
         if(table.isEmpty())
             System.out.println("Table is Empty");
         else
