@@ -1,5 +1,6 @@
 package hashtable;
 
+//Open Hashing
 public class HashTable {
 
     private Entry[] bucket;
