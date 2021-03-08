@@ -12,10 +12,12 @@ public class HashTable {
     int size;
 
     int slots;
+    
+    final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     public HashTable() {
         this.size = 0;
-        this.slots = 10;
+        this.slots = 16; // better be 2^power
         bucket = new ArrayList<>();
         for(int i = 0; i < slots; i++){
             bucket.add(null);
@@ -59,7 +61,7 @@ public class HashTable {
         bucket.set(index, newEntry);
 
         //Checks if array >= 60% of the array gets filled
-        if ((1.0 * size) / slots >= 0.6) {
+        if ((1.0 * size) / slots >= DEFAULT_LOAD_FACTOR) {
             List<Entry> temp = bucket;
             bucket = new ArrayList();
             slots = 2 * slots;
