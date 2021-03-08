@@ -47,6 +47,17 @@ Collections.sort(temp); // for List<Integer>
 Collections.sort(temp, Collections.reverseOrder())
 
 Collections.reverse(temp);
+
+
+public int compare(final Person a, Person b) {
+ //TODO return 1 if b should be before a 
+ //     return -1 if a should be before b
+ //     return 0 otherwise (meaning the order stays the same)
+ }
+
+a - b 
+That's in case you want to sort in ascending order : from smallest number to largest number.
+
 ----------------------------------------------------------------------------------------------
 Random r = new Random();
 r.nextInt(n); // this will return a ramdom number from [0.....n-1]
