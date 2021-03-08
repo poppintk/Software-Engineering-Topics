@@ -90,11 +90,9 @@ public class HashTable {
     }
 
 
-    public Integer delete(String key) {
-        //Find index
-        int index = hashFunc(key);
-
+    public void delete(String key) {
         // Get head of the chain for that index
+        int index = hashFunc(key);
         Entry head = bucket[index];
 
         //Find the key in capacity
@@ -108,18 +106,12 @@ public class HashTable {
                     prev.setNext(head.getNext());
                 else // prev == null -> we on the head
                     bucket[index] = head.getNext();
-
-                return head.getValue();
+                return;
             }
             // Else keep moving in chain
             prev = head;
             head = head.getNext();
         }
-
-        // If key does not exist
-        return null;
-
-
     }
 
 
@@ -173,7 +165,5 @@ public class HashTable {
             System.out.println("Table is Empty");
         else
             System.out.println("Table is not Empty");
-
     }
-
 }
