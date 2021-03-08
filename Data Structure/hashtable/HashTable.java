@@ -60,7 +60,7 @@ public class HashTable {
         newEntry.setNext(head);
         bucket.set(index, newEntry);
 
-        //Checks if array >= 60% of the array gets filled
+        //Checks if array >= 75% of the array gets filled
         if ((1.0 * size) / slots >= DEFAULT_LOAD_FACTOR) {
             List<Entry> temp = bucket;
             bucket = new ArrayList();
