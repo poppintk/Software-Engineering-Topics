@@ -3,19 +3,12 @@
 //merge sort
 class Solution {
     public int[] sortArray(int[] nums) {
-        return mergeSort(nums, 0, nums.length-1);
+        if (nums == null|| nums.length == 0) return new int[0];
+        
+        return mergeSort(nums, 0, nums.length - 1);
     }
-    // note: startIndex, endIndex
-    public int[] mergeSort(int[] nums,int startIndex, int endIndex){
-
-       if (endIndex == startIndex)  return new int[]{nums[startIndex]};
-       int midIndex = (startIndex + endIndex)/2;
-       
-       // divide
-       int[] left = mergeSort(nums,startIndex,midIndex);
-       int[] right = mergeSort(nums,midIndex + 1,endIndex);
-
-       // merge
+    
+    private int[] merge(int[] left, int[] right) {
        int l = 0;
        int r = 0;
        int i = 0;
@@ -40,74 +33,110 @@ class Solution {
             r++;
             i++;
         }
+
         return res;
     }
+    public int[] mergeSort(int[] nums,int startIndex, int endIndex){
+       if (endIndex == startIndex)  return new int[]{nums[startIndex]};
+       int midIndex = (startIndex + endIndex)/2;
+       
+       // divide
+       int[] left = mergeSort(nums,startIndex,midIndex);
+       int[] right = mergeSort(nums,midIndex + 1,endIndex);
+
+      
+       return merge(left, right);
+    }
+}
 -------------------------------------------------------------------------------------------------------------------------
 // quick sort
-class QuickSort { 
-    Random random = new Random();
- 
-    void sort(int arr[], int low, int high){ 
-        if(low >= high) return;
-        // ramdomized
-        int pivotIndex = random.nextInt(high + 1 -low) + low; (inclusive high and low)
-        swap(arr, pivotIndex, high);
-        // find the partition  
-        int pi = partition(arr, low, high); // edge case: low + 1 = high , must have two element in arr at least
-        sort(arr, low, pi-1); //note: not includes pi
-        sort(arr, pi+1, high); //note: not includes pi
+public class Solution {
+    /**
+     * @param A: an integer array
+     * @return: nothing
+     */
+    public void sortIntegers2(int[] A) {
+        if (A == null || A.length == 0) return;
+        quickSort(A, 0, A.length - 1);
+    }
+    
+    private void quickSort(int[] A, int start, int end) {
+        if (start >= end) return;
 
+        int left = start, right = end;
+        // 1. pivot, A[start], A[end]
+        // get value not index
+        int pivot = A[(start + end) / 2];
+
+        // 2. left <= right not left < right
+        // why? ending condition of loop is left > right, recursion interval is [start, right] and [left, end], has conflict area. 
+        // So will cause stack overflow
+        while (left <= right) {
+            // 3. A[left] < pivot not A[left <= pivot]
+            while (left <= right && A[left] < pivot) {
+                left++;
+            }
+            while (left <= right && A[right] > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                int temp = A[left];
+                A[left] = A[right];
+                A[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        quickSort(A, start, right);
+        quickSort(A, left, end);
     }
-  }
-  // kth statistical element
-  public static int kthSmallest(int[] arr, int low, int high, int k) { 
-        if (low > high) return arr[low];
-        // ramdomized
-        int pivotIndex = random.nextInt(high + 1 -low) + low;(inclusive high and low)
-        swap(arr, pivotIndex, high);  
-        
-        // find the partition  
-        int p = partition(arr,low,high); 
-  
-        // if partition value is equal to the kth position,  
-        // return value at k. 
-        if(partition == k)// NOTE: HERE FOR Kth ELEMENT, NOTE: base condition low > high
-            return arr[partition];     
-        // if partition value is less than kth position, 
-        // search right side of the array. 
-        else if(partition < k ) 
-            return kthSmallest(arr, partition + 1, high, k ); 
-              
-        // if partition value is more than kth position,  
-        // search left side of the array. 
-        else
-            return kthSmallest(arr, low, partition-1, k );          
-    } 
-    
-    private void swap(int[] nums, int a, int b) {
-        int temp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = temp;
+}
+
+public class Solution {
+    public int kthLargestElement(int k, int[] nums) {
+        if (nums == null) {
+            return -1;
+        }
+
+        return quickSelect(nums, 0, nums.length - 1, k);
     }
-    
-    // NOTE: This function does not garrantee that elements before pivot element is in sorted order
-    // only garrantee that everything before pivot is less than pivot
-    public int partition(int arr[], int low, int high) { 
-        int pivot = arr[high];
-        int i = low; // keep tracking of first element which >= pivot
-        for (int j=low; j < high; j++){ 
-            // If current element is smaller than the pivot 
-            if (arr[j] < pivot) { 
-                // swap arr[i] and arr[j] 
-                swap(arr,i,j);
+
+    private int quickSelect(int[] nums, int start, int end, int k) {
+        if (start == end) return nums[start];
+
+        int i = start, j = end;
+        int pivot = nums[(i + j) / 2];
+
+        while (i <= j) {
+            while (i <= j && nums[i] > pivot) {
                 i++;
-            } 
-        } 
-        // Note: index i will be latest i which >= pivot
-        // swap arr[i] and arr[high] (or pivot) 
-        swap(arr, i,high);
-        return i; 
-    } 
+            }
+            while(i <= j && nums[j] < pivot) {
+                j--;
+            }
+            if (i <= j) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        /*
+         * ending loop will have following interval
+         * [start.... j][j...i][i...end]
+         */
+
+        if (start + k - 1 <= j) {
+            return quickSelect(nums, start, j, k);
+        }
+
+        if (start + k - 1 >= i) {
+            return quickSelect(nums, i, end, k - (i - start));
+        }
+
+        return nums[j + 1];
+    }
 }
 
 
