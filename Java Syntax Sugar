@@ -1,3 +1,22 @@
+ PriorityQueue<Integer> queue = new PriorityQueue<Integer>(3, new Comparator() {
+      @Override
+      public int compare(Integer o1, Integer o2) {
+          return o1 - o2;
+      }
+  });
+  
+  PriorityQueue<Integer> queue1 new PriorityQueue<Integer>(3,(a, b) -> a - b);
+  
+
+public int compare(final Person a, Person b) {
+ //TODO return 1 if b should be before a 
+ //     return -1 if a should be before b
+ //     return 0 otherwise (meaning the order stays the same)
+ }
+
+a - b 
+That's in case you want to sort in ascending order : from smallest number to largest number.
+----------------------------------------------
 int[] dp = new int[nums.length];
 // dp 数组全都初始化为 1
 Arrays.fill(dp, 1);
@@ -48,15 +67,6 @@ Collections.sort(temp, Collections.reverseOrder())
 
 Collections.reverse(temp);
 
-
-public int compare(final Person a, Person b) {
- //TODO return 1 if b should be before a 
- //     return -1 if a should be before b
- //     return 0 otherwise (meaning the order stays the same)
- }
-
-a - b 
-That's in case you want to sort in ascending order : from smallest number to largest number.
 
 ----------------------------------------------------------------------------------------------
 Random r = new Random();
