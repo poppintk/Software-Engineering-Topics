@@ -714,3 +714,44 @@ class Solution {
 
 END 22. Generate Parentheses
 ----------------------------------------------------------------------------------------------------------------------------
+Different template
+Note: backtracking on current node not on next node
+
+public static int shoppingPatterns(int nodes, int edges, int[] productFrom, int[] productTo) {
+        Map<Integer, Set<Integer>> graph = buildGraph2(nodes, edges, productFrom, productTo);
+        Set<List<Integer>> trios = new HashSet<>();
+        List<Integer> path = new ArrayList<>();
+        boolean[] visited = new boolean[nodes + 1];
+        for (int i = 1; i <= nodes; i++) {
+            if (visited[i]) continue;
+            dfsTrio(trios, path, visited, graph, i);
+        }
+        System.out.println(trios);
+
+        return 0;
+    }
+
+    private static void dfsTrio(Set<List<Integer>> trios, List<Integer> path, boolean[] visited, Map<Integer, Set<Integer>> graph, int node) {
+        if (path.size() == 3 && visited[node] && node == path.get(0)) {
+            Collections.sort(path);
+            trios.add(new ArrayList<>(path));
+            return;
+        }
+
+        if (path.size() == 3) return;
+
+        // note: different from other dfs template
+        // and this question cannot use regualr dfs template
+        visited[node] = true;
+        path.add(node);
+
+        for (int neibor : graph.get(node)) {
+            // skip bidrectional cycle
+            if (neibor == node) continue;
+            dfsTrio(trios, path, visited, graph, neibor);
+        }
+
+        visited[node] = false;
+        path.remove(path.size() - 1);
+
+    }
