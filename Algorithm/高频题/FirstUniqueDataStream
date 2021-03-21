@@ -1,0 +1,75 @@
+First Unique in a Data Stream
+
+这类问题要求只访问一遍， 如果不是只访问一遍可以用hashMap 访问一遍然后 再找第一个count 为一的就是答案
+
+所以这类问题只能用DataStream来做， 
+1）需要Map<key, ListNode> keyToPrev, 这里 listNode 为手动写的single LinkedList
+这里key 因题目而异， 如果问的是First Unique in a String,那么key 就是Character
+ListNode 需要存储 value 和 next (其实key也需要，只是不用那么麻烦).
+注意，这里每一key指向的是single linkedList 的前一个Node
+
+2） 需要 Set<Integer> duplicate
+用这个来tracking 哪些进来的key 是已经重复过的
+
+3）ListNode dummy 来表示head, 所以当要return 第一个的时候是 dummy.next的node才是第一个
+
+4）ListNode tail 来指向最后面一个Node 注意绝不是null， 即使是初始化状态也是指向dummy node
+
+
+public class ListNode {
+  char value;
+  ListNode next;
+  public ListNode(char value) {
+    this.value = value;
+  }
+}
+
+public class DataStream {
+  private Map<Character, ListNode> keyToPrev;
+  private Set<Character> duplicates;
+  ListNode dummy;
+  ListNode tail;
+  DataStream() {
+    keyToPrev = new HashMap<>();
+    duplicates = new HashSet<>();
+    dummy = new ListNode('.');
+    tail = dummy;
+  }
+
+  public void add(char c) {
+    // 检查是否重复
+    if (duplicates.contains(c)) return;
+    // 如果 map 中没有， 就加到尾巴 然后"return!"
+    if (!keyToPrev.containsKey(c)) {
+      tail.next = new ListNode(c);
+      keyToPrev.put(c, tail);
+      tail = tail.next;
+      return;
+    }
+    duplicates.add(c);
+    // 如果map中有， 就从map中移除 以及对应的ListNode
+
+    ListNode prev = keyToPrev.get(c);
+    keyToPrev.remove(c);
+    prev.next = prev.next.next;
+    if (prev.next != null) {
+       // 比如 map{b->A, c->B}   linkedList A->B->C  假设被删除的是b, prev是A
+       // 先删除 map的b => map{c->B} linkedList A->B->C
+       // 在删除 linkedList => map{c->A} linkedList A->C 
+       // 更新指针 prev.next.val 指向prev => c->A
+      keyToPrev.put(prev.next.value, prev);
+    } else {
+      // 如果prev.next 为null 那么prev 就是最后一个ListNode， 让 tail 指向它
+      tail = prev;
+    }
+  }
+
+  public int firstUnique() {
+    if (dummy.next == null) return -1;
+    return dummy.next.value;
+  }
+}
+
+
+
+
