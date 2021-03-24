@@ -1,4 +1,39 @@
 package unionfind;
+// 万能union find 模版
+ class UnionFind{
+        HashMap<Integer, Integer> father = new HashMap<Integer, Integer>();
+        UnionFind(int n, int m) {
+            for (int i = 0 ; i < n; i++) {
+                for (int j = 0 ; j < m; j++) {
+                    int id = converttoId(i,j,m);
+                    father.put(id, id); 
+                }
+            }
+        }
+        int compressed_find(int x) {
+            int parent =  father.get(x);
+            while (parent!=father.get(parent)) {
+                parent = father.get(parent);
+            }
+            int temp = -1;
+            int fa = x;
+            while (fa!=father.get(fa)) {
+                temp = father.get(fa);
+                father.put(fa, parent) ;
+                fa = temp;
+            }
+            return parent;
+        }
+        
+        void union(int x, int y) {
+            int fa_x = compressed_find(x);
+            int fa_y = compressed_find(y);
+            if (fa_x != fa_y)
+                father.put(fa_x, fa_y);
+        }
+    }
+
+
 
 public class UnionFind {
 
