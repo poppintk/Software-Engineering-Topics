@@ -2,6 +2,9 @@ package unionfind;
 // 万能union find 模版
  class UnionFind{
         HashMap<Integer, Integer> father = new HashMap<Integer, Integer>();
+        int converttoId(int x, int y, int m) {
+             return x * m + y;
+        }
         UnionFind(int n, int m) {
             for (int i = 0 ; i < n; i++) {
                 for (int j = 0 ; j < m; j++) {
