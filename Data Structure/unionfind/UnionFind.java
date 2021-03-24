@@ -14,7 +14,7 @@ package unionfind;
             }
         }
         int compressed_find(int x) {
-            int parent =  father.get(x);
+            int parent =  x;
             while (parent!=father.get(parent)) {
                 parent = father.get(parent);
             }
