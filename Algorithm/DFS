@@ -21,10 +21,14 @@ if search only one solution then bool dfs()
 
 Sudoku solver vs n-queen
 backtracking的时机
+
 n-queen 是一行一行搜的
-diag1 key = (i + j);
+diag1 key = (i + j); 
+// 这条斜线左下往右上的， 假设当前是从（0.0）开始的第一条斜线 k，那么i + j = k 即 0 + 0 = 0 
 diag2 key = (j - i + (n - 1));
+// 假设n 为 3这条斜线是左上往右下的， 假设当前是从（1，0）开始的第二条斜线index 1, 0 - 1 + (2) = 1
 total diag line: 2*n-1
+
 sudoku 是每行从左边到右边
 （row/3)*3 + col/3
 -------------------------------------------------------------------------------------------------------------------------
