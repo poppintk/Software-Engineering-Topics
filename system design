@@ -27,3 +27,6 @@ Distributed Lock (Redison - Redis based distributed lock framework)
    - CountDownLatch
    
    
+Distributed Session issue:
+   1) cannot share on different domain
+   2) Load balancing to arbitrary machine and that machine not guarrantee have the previous stored session
