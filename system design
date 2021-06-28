@@ -1,4 +1,4 @@
-distributed cache:
+Distributed Cache:
 
 Common cache system issues:
 1)缓存雪崩 Cache Avalanche
@@ -14,3 +14,16 @@ Common cache system issues:
   Solution: Use locks, if distributed then use distributed locks
   
   
+Cache update issues:
+   Double write: when data is updated, write to update both DB and cache. 
+   Lazy Loading: when data is updated, firstly update DB data then delete cache.
+   under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
+   
+  
+Distributed Lock (Redison - Redis based distributed lock framework)
+   - Reentrance Lock
+   - ReadWrite Lock
+   - Semaphore
+   - CountDownLatch
+   
+   
