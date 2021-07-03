@@ -39,4 +39,15 @@ Tweeter use two approach
   normal user use 2) super start user use 1)
   
   
+  How to describe system performance?
+  Batch system -> throughput
+  Online system -> response time (latency + proccess time)
+  
+  percentiles
+    -> p95(95%)
+    -> p99(99%)
+    -> p999(99.9%)
+    
+  
+  
   
