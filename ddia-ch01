@@ -1,0 +1,34 @@
+Load parameter: A parameter is used to describe the system load.
+different systems required different load parameter. it can be  request/sec send to web server
+it can be read write ratio that database, and daily active user in chating system.
+it can be cache hit rate for the cache system.
+
+
+Tweeter for example,
+1) publish tweet - users can send tweet to server (avg 4.6k request/sec, peak 12k request/sec)
+
+2) get timeline - fetch all tweet from following users (300k request/sec)
+
+Tweeter use two approach
+1) pull model
+  publish tweet - when users publish tweet, all tweets are saved on their tweet table.
+  
+  get timeline - current user actively calling get timeline api to get all tweet from following users(slow requires lots of join, if data volumn is large)
+  
+  Cons: too slow
+  Pros: less pressure on the writing compare to push model
+  
+2) push model
+  publish tweet - when users publish tweet, all tweets are saved on their tweet and all followed user's tweet table.
+  Since write to db is slow so this required MQ to write Asyc to the db.
+  
+  How to improve write to db? (Naive approach is use db, better way is use cache)  
+  
+  for every user, Tweeter maintained timeline cache. so when a user publish tweet,
+  all tweets are saved on the cache.
+  
+  get timeline - current user actively calling get timeline api to get all tweet from users(fetch data from the cache)
+  
+  
+  
+  
