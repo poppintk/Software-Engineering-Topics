@@ -30,5 +30,13 @@ Tweeter use two approach
   get timeline - current user actively calling get timeline api to get all tweet from users(fetch data from the cache)
   
   
+  Tweeter use approach 1) earilier then switch to 2) as data size grow larger.
+  2) is better than 1). but 2) still not perfect.
+  
+  Star effect issue, if a super star user publish a tweet, it will consume huge computation power to do.
+  in such a case, it is better to separe normal user and super star user.
+  
+  normal user use 2) super start user use 1)
+  
   
   
