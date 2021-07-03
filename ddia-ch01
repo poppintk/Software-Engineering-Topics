@@ -25,7 +25,7 @@ Tweeter use two approach
   How to improve write to db? (Naive approach is use db, better way is use cache)  
   
   for every user, Tweeter maintained timeline cache. so when a user publish tweet,
-  all tweets are saved on the cache.
+  all tweets are firstly send to MQ then fan out deliver tweets to all the cache.
   
   get timeline - current user actively calling get timeline api to get all tweet from users(fetch data from the cache)
   
