@@ -1,0 +1,10 @@
+OLTP:
+LSM:
+ adv: faster writing speed
+ disa: SSTable compression will also consuming the disk IO, so it will
+ slow down the read/write operation, on avg no impact.
+ but on some percentile it matters.
+ 
+B-tree:
+ adv: faster reading speed, stable on percentile
+ 
