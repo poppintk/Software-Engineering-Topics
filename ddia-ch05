@@ -1,0 +1,23 @@
+Distributed Data
+
+Shared-nothing architecture == horizontal scale == scale out
+
+Replica VS Partitioning
+
+Purpose of replica
+1) geographcally distributed(close to user and reduce latency)
+2) one service down and no impact to entire system
+3) allowing scale out read and increase throughput
+
+
+three popular replication algorithm:
+1) single leader
+2) multi-leader
+3) leader less
+
+things need to consider:
+1) sync vs async
+2) how to deal with failure in repica
+
+leader-base replication OR master/slave replication
+
