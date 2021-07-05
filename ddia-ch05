@@ -20,4 +20,16 @@ things need to consider:
 2) how to deal with failure in repica
 
 leader-base replication OR master/slave replication
+- one of repilica is leader and insert data send to leader then send data change to all replica
+- replicas are read replicas
+- clients can read data from leader or replicas
 
+Replication asynchronously will cause eventually consitent issue
+Replication synchronously will cause entire system stop
+semi-synchronous: one of follow is replication synchronously and rest of the replications are 
+done asynchronously. if current synchronous replication become unavailable then choose one from asynchronous replications becone the new synchronous replications
+
+Set up new replication
+1) get db snapshot from master db.
+2) copy data from db snapshot to new replicaiton
+3) connect new replication to the master db and pull from log sequence number from the Postgres
