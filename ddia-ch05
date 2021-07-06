@@ -33,3 +33,21 @@ Set up new replication
 1) get db snapshot from master db.
 2) copy data from db snapshot to new replicaiton
 3) connect new replication to the master db and pull from log sequence number from the Postgres
+
+Replication out of sync
+from replica log can figure out the last transaction, so replica can connect to master and request
+all data changes after last transaction.
+
+Master unavailable
+- need to choose a new leader from replicas and failover need to be done.
+1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
+we think master is unavailable.
+2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
+. Here we need consense algorithm like raft
+3) reconfigure system allow client to send write request to new leader node. if old leader come back, might still
+think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
+
+Issues might occus:
+if use async replication, i
+
+
