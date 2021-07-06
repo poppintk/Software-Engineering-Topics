@@ -47,7 +47,20 @@ we think master is unavailable.
 3) reconfigure system allow client to send write request to new leader node. if old leader come back, might still
 think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
 
-Issues might occus:
-if use async replication, i
+failover issues might occus:
+if use async replication, the new master might lose the last data from old master.
+The reason is new master are chosen from the outdated salves. and now old master come back.
+simply just drop old master. this might not gurrantee that database is durable.
+
+Replication implementation
+1) statement based replication
+Master database record down every statement and send them to all slaves.
+we need to make sure all statements are determinisstic statement.
+- db trigger or procedure might genertate data inconsistent. 
+- Now() function are nondeterministic.
+- update statements executed on different order might generate different result.
+
+
+
 
 
