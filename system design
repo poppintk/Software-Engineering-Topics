@@ -34,3 +34,12 @@ Distributed Lock (Redison - Redis based distributed lock framework)
 Distributed Session issue:
    1) cannot share on different domain
    2) Load balancing to arbitrary machine and that machine not guarrantee have the previous stored session
+   
+   
+Oauth2 flow for web server:
+   1) client browser click on the Oauth2 login icon, Request to third party for the login with redirect URL(for web server)
+   2) Users input their third party login
+   3) After authenticate third party authorization server redirect back to the URL(web server) with access token(code)
+   4) The web server now can call POST request ask for public protected user information. Note the POST body requires access token(code) just return
+   CLIENT_ID, CLIENT_KEY those can be access from the third party
+   5) public protected information is returned
