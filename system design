@@ -1,7 +1,8 @@
 Distributed Cache:
 
 Use case:
-system requires low real-time and allow eventually consistent
+- System requires low real-time and allow eventually consistent
+- Read more and write less
 
 Common cache system issues:
 1)缓存雪崩 Cache Avalanche
