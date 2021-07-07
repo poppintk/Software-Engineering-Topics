@@ -49,7 +49,7 @@ Oauth2 flow for web server:
    
  Distributed session issues:
    1) different domains, session cannot be shared among different domains
-      
+      but session can be share among its sub-domain(zi yun ming)
    
    2) in distributed system, load balancer might routing to different machine, and current machine might not have session.
       solution: 
