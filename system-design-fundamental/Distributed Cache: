@@ -1,0 +1,60 @@
+
+Use case:
+- System requires low real-time and allow eventually consistent
+- Read more and write less
+
+Common cache system issues:
+   Cache read issue:
+      1) Cache Avalanche
+         All cache keys TTL expires at the same time, So all the requests go to DB => DB down
+         Solution: Adding randomly TTL to the cache keys
+
+      2) Cache Penetration
+        User requests the key does not exist on the DB, so the key must not in the cache as well, So all the requests go to DB => DB down
+        Solution: 1)Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
+
+      3) Hotspot Invalid
+        There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
+        Solution: Use locks, if distributed then use distributed locks
+  
+  
+Cache update issues(write):
+   Double write: when data is updated, write to update both DB and cache. 
+   Lazy Loading: when data is updated, firstly update DB data then delete cache.
+   under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
+   
+   - what if system requires strong consistency? (depends on senerio)
+      - Distributed locking service will reduce efficiency(network call)
+      - use Canal for MySQL
+      - Write more read less senerio, use read from DB directly
+      
+      conclusion: 
+         if system write more and read less requires strong consistency => no cache 
+         if system read more and write less requires storng consistency => use distributed lock or Canal for MYSQL
+      
+   Best practice: lazy loading: database.set(key,user); cache.delete(key)
+   
+   
+   
+  
+Distributed Lock (Redison - Redis based distributed lock framework)
+   - Reentrance Lock
+   - ReadWrite Lock
+   - Semaphore
+   - CountDownLatch
+   
+   
+Spring cache
+   cons:
+      cache read:
+         - Cache Penetration: cache-null-value = true
+         - Hotspot Invalid: local locking, by default no locking, require set sync = true
+         - Cache Avalanche: use only TTL 
+      cache write(cache update):
+         - use only TTL for eventually consistent
+   
+   
+Distributed Session issue:
+   1) cannot share on different domain
+   2) Load balancing to arbitrary machine and that machine not guarrantee have the previous stored session
+   
