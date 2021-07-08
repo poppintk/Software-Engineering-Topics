@@ -49,7 +49,7 @@ Spring cache
    cons:
       cache read:
          - Cache Penetration: cache-null-value = true
-         - Hotspot Invalid: local locking
+         - Hotspot Invalid: local locking, by default no locking, require set sync = true
          - Cache Avalanche: use only TTL 
       cache write(cache update):
          - 
