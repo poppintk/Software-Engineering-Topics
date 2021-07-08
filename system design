@@ -6,15 +6,15 @@ Use case:
 
 Common cache system issues:
    Cache read issue:
-      1)缓存雪崩 Cache Avalanche
+      1) Cache Avalanche
          All cache keys TTL expires at the same time, So all the requests go to DB => DB down
          Solution: Adding randomly TTL to the cache keys
 
-      2)缓存穿透 Cache Penetration
+      2) Cache Penetration
         User requests the key does not exist on the DB, so the key must not in the cache as well, So all the requests go to DB => DB down
         Solution: 1)Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
 
-      3)缓存击穿 Hotspot Invalid
+      3) Hotspot Invalid
         There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
         Solution: Use locks, if distributed then use distributed locks
   
