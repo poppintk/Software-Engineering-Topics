@@ -1,0 +1,46 @@
+Message Queue:
+use case:
+   1) asyc task
+   2) decoupling between services
+   3) controll the trafic on peak time, in order to protect downstream services
+concepts:
+   1) message broker
+   2) destination
+JMS(Java Message Service) Java base Message queue
+- base on JVM message broker standard. ActiveMQ, HornetMQ are JMS implementation
+
+AMQP(advanced Message Queuing Protocol)
+- Advanced message queue protocol, JMS compatible
+- RabbitMQ is AMQP implementation
+
+RabbitMQ:
+   Message:
+      message body: not public accessible
+      message head: routing-key, priority, delivery-mode(durable)
+   Publisher:
+      Message producer, send message to exchange of Message queue application
+   Exchange:
+      use for receiving producer's message and routing those message to correct queue
+      4 types: direct(default), fanout, topic, and headers
+   
+   Queue:
+      use for keeping message until messages are sent to consumer. A message can be sent to many queues.
+      messages are waiting for consumer to take them away
+  
+   Binding:
+      binding exchange and queue (can be many to many)
+      
+   Consumer
+   
+   Virtual host:
+      represent whole bunch of exchanges, queue and binding with separant excution environment
+   
+   Broker:
+      many of virtual host together
+   
+   Connection:
+      in Rabbit Queue only on TCP connection is created
+   
+   Channel:
+      use multiplexing bidirectional channel in the TCP connection. AMQP command is sent through channel, 
+      Whatever publish, subscribe and receving messages all sent through channel.
