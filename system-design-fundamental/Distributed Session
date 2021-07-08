@@ -1,0 +1,38 @@
+Distributed session issues:
+   1) different domains, session cannot be shared among different domains
+      but session can be share among its sub-domain(zi yun ming)
+   
+   2) in distributed system, load balancer might routing to different machine, and current machine might not have session.
+      solution: 
+         1) session replicate syncronously between web servers.
+            pros:
+               web-server(tomcat) supports it, need to config
+            cons:
+               - session replecate synconously need network transmission as result lower the cluster performance
+               - session cannot horizontally scale if session size too big
+               - in distributed system, this approach not work well
+          2) save session on client side
+             pros:
+               web server now does not need to sotre session inforamtion. uses save their session information on cookie.
+             
+             cons:
+               - each every session need to be stored data insize cookie, cookie size limitation is 4KB, cannot store big inforamtion
+               - cookie is unsecured and likely be hacked
+           
+           3) hash consistent so that every request will hash to same web server
+               pros: 
+                  - only required nginx configration, no code required
+                  - all web server horizontally scale
+               cons:
+                  - when adding/remove new webservers rehashing required, and some users might hash to wrong session
+                  
+            4) Storage: Database/Redis
+               Pros:
+                  - safe
+                  - allow horizontally scale (sharding by key)
+                  - web server restart wont lost data
+                  
+               cons:
+                  - required additional network access.
+                  - Redis get data still slower than get data from memory directly
+      
