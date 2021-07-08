@@ -5,23 +5,29 @@ Use case:
 - Read more and write less
 
 Common cache system issues:
-1)缓存雪崩 Cache Avalanche
-   All cache keys TTL expires at the same time, So all the requests go to DB => DB down
-   Solution: Adding randomly TTL to the cache keys
+   Cache read issue:
+      1)缓存雪崩 Cache Avalanche
+         All cache keys TTL expires at the same time, So all the requests go to DB => DB down
+         Solution: Adding randomly TTL to the cache keys
 
-2)缓存穿透 Cache Penetration
-  User requests the key does not exist on the DB, so the key must not in the cache as well, So all the requests go to DB => DB down
-  Solution: 1)Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
+      2)缓存穿透 Cache Penetration
+        User requests the key does not exist on the DB, so the key must not in the cache as well, So all the requests go to DB => DB down
+        Solution: 1)Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
+
+      3)缓存击穿 Hotspot Invalid
+        There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
+        Solution: Use locks, if distributed then use distributed locks
   
-3)缓存击穿 Hotspot Invalid
-  There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
-  Solution: Use locks, if distributed then use distributed locks
   
-  
-Cache update issues:
+Cache update issues(write):
    Double write: when data is updated, write to update both DB and cache. 
    Lazy Loading: when data is updated, firstly update DB data then delete cache.
    under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
+   
+   - Distributed locking service will reduce efficiency(network call)
+   Best practice:
+      lazy loading: database.set(key,user); cache.delete(key)
+   
    
   
 Distributed Lock (Redison - Redis based distributed lock framework)
@@ -29,6 +35,16 @@ Distributed Lock (Redison - Redis based distributed lock framework)
    - ReadWrite Lock
    - Semaphore
    - CountDownLatch
+   
+   
+Spring cache
+   cons:
+      cache read:
+         - Cache Penetration: cache-null-value = true
+         - Hotspot Invalid: local locking
+         - Cache Avalanche: use only TTL 
+      cache write(cache update):
+         - 
    
    
 Distributed Session issue:
