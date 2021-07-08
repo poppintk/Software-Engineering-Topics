@@ -109,5 +109,10 @@ Oauth2 flow for web server:
                   - required additional network access.
                   - Redis get data still slower than get data from memory directly
       
-               
+      
+      SMS API protection:
+         Why? public API need be called too often
+         - one workable solution is use Redis to save key-value pair key is the phone number and the value is SMS code + current system time
+         - Rate limiter can also work
+    
           
