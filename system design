@@ -52,7 +52,7 @@ Spring cache
          - Hotspot Invalid: local locking, by default no locking, require set sync = true
          - Cache Avalanche: use only TTL 
       cache write(cache update):
-         - 
+         - use only TTL for eventually consistent
    
    
 Distributed Session issue:
