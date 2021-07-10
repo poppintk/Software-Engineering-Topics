@@ -33,6 +33,7 @@ one or more request to API and generate the same output. For example users click
       1 delete token firstly or delete token afterwards
         1) delete token firstly, then retry logic still have previous token, => none of request is executed
         2) delete afterwards, bussiness logic ran, but network delay, no token is deleted => request is double executed
+        3) it is better delete token first, if calling failed, just re-calling request to get token 
       2 token GET and DELETE must be atomic operation
         String luaScript = "if redis.call(\"get\", KEYS[1]) == ARGV[1] then return redis.call(\"del\", KEYS[1]) else return 0 end";
         Note: if return 0 then no bussness logic should be executed.
