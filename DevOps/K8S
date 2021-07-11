@@ -1,5 +1,6 @@
 Architecture: Single master, master slave
 
+
 Components:
   Master:
     1) Kube-api server:
@@ -20,4 +21,17 @@ Components:
         c) Endpoints Controller: used for adding endpoints(server or Pod)
         d) Service Account & Token Controllers: create default account and API token for the new naming space
         
-  Node:
+  Node: running on a machine
+    NOTE: Pods are group of containers
+    
+    1) Container Runtime (by default it's docker but can also use other container technology)
+    2) Kubelet
+      - the agent manager for Node
+      - it manage container lifecycle and also manage Volume(CSI) and network(CNI)
+    3) Kube-proxy
+      - provide internal service discovery and load balancer for service
+      
+    4) Fluentd
+      - monitor for collecting logs from cluster
+    
+
