@@ -1,1 +1,23 @@
+Architecture: Single master, master slave
 
+Components:
+  Master:
+    1) Kube-api server:
+      - the entrance for external system to interact with K8S
+      - provide authentication, authorization, access control and API register and discovery
+    
+    2) etcd
+      - key value based database for K8S as all data cluster backend database
+      - K8S cluster etcd database usually need a backup plan 
+    
+    3) Kube-scheduler
+      - monitoring those newly created Pods and manage to schedule nodes to run Pods
+      - it must use master to schedule all K8S cluster operations
+    
+    4) Kube-controller-manager
+        a) Node Contorller: response and alert issues on the nodes
+        b) Replication Controller: used for every replication controller to maintain correct number of Pods
+        c) Endpoints Controller: used for adding endpoints(server or Pod)
+        d) Service Account & Token Controllers: create default account and API token for the new naming space
+        
+  Node:
