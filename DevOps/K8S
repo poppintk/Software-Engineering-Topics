@@ -1,4 +1,4 @@
-Architecture: Single master, master slave
+Architecture:  master slave (Single master or Multiple master)
 
 
 Components:
@@ -21,6 +21,7 @@ Components:
         c) Endpoints Controller: used for adding endpoints(server or Pod)
         d) Service Account & Token Controllers: create default account and API token for the new naming space
         
+        
   Node: running on a machine
     NOTE: Pods are group of containers
     
@@ -34,4 +35,8 @@ Components:
     4) Fluentd
       - monitor for collecting logs from cluster
     
-
+    
+Pods are group of containers
+Deployment: group of services
+Service: group of Pods <expose servicer then external system can have access>
+Ingress controller: load balacing<nginx implemention>
