@@ -38,5 +38,6 @@ Components:
     
 Pods are group of containers
 Deployment: group of services
-Service: group of Pods <expose servicer then external system can have access>
+Service: group of Pods <expose servicer then external system can have access to>
 Ingress controller: load balacing<nginx implemention>
+
