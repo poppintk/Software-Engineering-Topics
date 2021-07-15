@@ -10,13 +10,22 @@ processA() {
   C();
 }
 
-1)
-if call B() RPC fail we can throw Exception to trigger rollback,
+1) if call B() RPC fail we can throw Exception to trigger rollback,
 but what if B() just network delay? in that case, if B has change someting in the DB and we rollback changes on A.
 This will be issue. Because we expect all should rollback.
 
 2) calling failed on C(), in such case B(0 will never rollback
 
+network delay issue + distributed machine => Distributed Transaction
 
+Local Transaction
+ACID
+1) Atomicity
+2) Consistency
+A:1000 B: 1000 => A transfer 100 to B => A:900 B:1000. Violates consistency because before transfer,A + B = 2000 and after transfer A + B = 1900
+3) Isolation
+4) Durability: As long as transaction commit, data should be on the disk
+
+On local transaction, mutlple operations share the same connection to database, so any exception occurs we can rollback all operations on database
 
 
