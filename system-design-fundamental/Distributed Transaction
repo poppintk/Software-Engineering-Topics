@@ -1,0 +1,22 @@
+Data inconsistant issue with local transactional rollback on Exception
+
+Assume we have three service : A,B and C
+their calling chain is A -> B -> C
+example :
+in A service 
+processA() {
+  doSomeWork();
+  B();
+  C();
+}
+
+1)
+if call B() RPC fail we can throw Exception to trigger rollback,
+but what if B() just network delay? in that case, if B has change someting in the DB and we rollback changes on A.
+This will be issue. Because we expect all should rollback.
+
+2) calling failed on C(), in such case B(0 will never rollback
+
+
+
+
