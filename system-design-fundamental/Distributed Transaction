@@ -66,10 +66,48 @@ Spring @transactional drawback:
   Raft algorithm gurrantee CP
   http://thesecretlivesofdata.com/raft/
   
+  # Issue CP
+  For most large distributed system(Ecommerce like Amazon) in industry, required AP and sacrifice Consistency. Because availibity is more important than consistency
+  
+  # BASE theorem
+  Extension to the CAP. The idea is for the most of distributed system, 
+  we cannot gurrantee the strong consistency, but can gurrantee the weak consistency and eventually consistency.
+  
+    1) Basically Available (BA)
+      Allowing some of the system lose availability (like response time increase). Note system is not absolutely unvailalbe
+    
+    2) Soft State(S)
+      true - have data
+      false - not exist data
+      middle state - data replication
+      The system existing middle state and this middle state will not impact on system availability. Time delay on sync replication. MySQL async replication is also a example 
+    
+    3) Eventual Consistency(E)
+      Eventually consistency is special case of weak consistency
+      
   
   
+  # Strong consistency, weak consistency and strong consistency
+  
+  1）Strong consistency
+    After inserting/updating data, following reading must have the most recent updated data 
+  2) Weak consistency
+    After inserting/updating data, following reading allow to have time delay to get the most recent updated data OR the following reading cannot get the most recent updated data
+  3) Eventually consistency
+    After inserting/updating data, following reading allow to have time delay to get the most recent updated data.
+    
+    
+  # Distributed transaction 
+  1) 2PC(2 phase commit) refer #287
+    - Not great for high concurrent system, low performance
+    - 3PC 
+  2) TCC (Try Confirm Cancel)
+    - Hard transaction: follow ACID theorem, Strong consistency
+    - Soft transaction: follow BASE theorem, Weak consistency
+    - need developer to develope three logic Try, Confirm and Cancel
+    
+  3) Soft Transaction - use MQ try best to send, if failed retry (Allow high concurrent)
+  4) Soft Transaction - MQ + Eventually consistency(Async confirmation)  (Allow high concurrent)
   
   
-
-  
-  
+ 
