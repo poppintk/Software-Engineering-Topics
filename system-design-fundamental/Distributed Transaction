@@ -98,7 +98,8 @@ Spring @transactional drawback:
     
     
   # Distributed transaction 
-  1) 2PC(2 phase commit) refer #287
+  1) 2PC(2 phase commit) refer #287 
+    - Seata implementation
     - Not great for high concurrent system, low performance
     - 3PC 
   2) TCC (Try Confirm Cancel)
