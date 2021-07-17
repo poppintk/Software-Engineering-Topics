@@ -1,3 +1,6 @@
+
+## Local Transaction
+
 Data inconsistant issue with local transactional rollback on Exception
 
 Assume we have three service : A,B and C
@@ -43,7 +46,7 @@ Spring @transactional drawback:
   How to resolve? Use proxy object to call tranction method. use <spring-boot-starter-apo> see #284 for detail
   
   
-  ## Distributed transaction
+  ## Distributed Transaction
   
   CAP theorem
   
