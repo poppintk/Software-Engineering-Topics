@@ -45,6 +45,18 @@ Spring @transactional drawback:
   
   ## Distributed transaction
   
+  CAP theorem
+  
+  C - Consistency
+    All system replications at the same time should have same value
+  A - Availability
+    Service node(s) goes down, system still operate as usual
+  P - Partition tolerance
+    Separate system into different region like one data center in China and one in US
+    The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes,
+    continue to provide consistency and availability
+  
+  
 
   
   
