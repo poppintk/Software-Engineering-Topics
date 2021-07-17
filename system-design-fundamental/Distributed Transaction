@@ -51,13 +51,23 @@ Spring @transactional drawback:
   CAP theorem
   
   C - Consistency
-    All system replications at the same time should have same value
+    All system nodes at the same time should keep same value
   A - Availability
     Service node(s) goes down, system still operate as usual
   P - Partition tolerance
     Separate system into different region like one data center in China and one in US
     The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes,
     continue to provide consistency and availability
+  
+  
+  in distribute system, we gurrantee AP and CP because P is required for most of the distributed system
+  It's impossible to maintained CA distributed system, like everything in a single machine.(Not a distributed system)
+  
+  Raft algorithm gurrantee CP
+  http://thesecretlivesofdata.com/raft/
+  
+  
+  
   
   
 
