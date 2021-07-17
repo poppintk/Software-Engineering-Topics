@@ -29,3 +29,22 @@ A:1000 B: 1000 => A transfer 100 to B => A:900 B:1000. Violates consistency beca
 On local transaction, mutlple operations share the same connection to database, so any exception occurs we can rollback all operations on database
 
 
+Isolation level (Ranking lowest to highest):
+  1) Read Uncommited
+  2) Read Commited
+  3) Repeatable Read(MySQL default)
+  4) Serializable
+  
+Spring local transaction propagation -> determine whether or not inside the methods call should share a transaction or separate transaction
+
+Spring @transactional drawback:
+  1) Under same class transactional methods call each, transactional only work for transactional method at top level, all transaction setting 
+  like propagation and timeout setting will not take affect for lower level transaction mothods, because @transactional use proxy pattern.
+  How to resolve? Use proxy object to call tranction method. use <spring-boot-starter-apo> see #284 for detail
+  
+  
+  ## Distributed transaction
+  
+
+  
+  
