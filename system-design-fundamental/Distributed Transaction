@@ -17,7 +17,7 @@ processA() {
 but what if B() just network delay? in that case, if B has change someting in the DB and we rollback changes on A.
 This will be issue. Because we expect all should rollback.
 
-2) calling failed on C(), in such case B(0 will never rollback
+2) C() failed, in such case B() will never rollback
 
 network delay issue + distributed machine => Distributed Transaction
 
