@@ -100,15 +100,17 @@ Spring @transactional drawback:
   # Distributed transaction 
   1) 2PC(2 phase commit) refer #287 
     - Seata implementation
-    - Not great for high concurrent system, low performance
+    - Not great for high concurrent system, low performance. The best use case backlog admin system.
     - 3PC 
   2) TCC (Try Confirm Cancel)
     - Hard transaction: follow ACID theorem, Strong consistency
     - Soft transaction: follow BASE theorem, Weak consistency
     - need developer to develope three logic Try, Confirm and Cancel
+    - Not great for high concurrent system, low performance.
     
   3) Soft Transaction - use MQ try best to send, if failed retry (Allow high concurrent)
-  4) Soft Transaction - MQ + Eventually consistency(Async confirmation)  (Allow high concurrent)
+  4) Soft Transaction - reliable MQ + Eventually consistency(Async confirmation)  (Allow high concurrent)
+  - good for high conccurrent scenerio
   
   
  
