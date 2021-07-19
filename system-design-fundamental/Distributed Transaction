@@ -111,6 +111,11 @@ Spring @transactional drawback:
   3) Soft Transaction - use MQ try best to send, if failed retry (Allow high concurrent)
   4) Soft Transaction - reliable MQ + Eventually consistency(Async confirmation)  (Allow high concurrent)
   - good for high conccurrent scenerio
+  - issue on using scheduler jobs, assuming 30mins per trigger. then worse case could be 59 mins and best case is 30 mins.
+    solution: Dead letter exhange MQ
+    - use two MQ, one MQ for 5 mintues delay queue and another MQ for receiving delay message. The delay queue will set TTL with 5mins delay.
+    after 5mins,  the message will route to the second MQ and the second MQ will be consume by consumer.
+    
   
   
  
