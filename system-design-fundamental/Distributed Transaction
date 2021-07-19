@@ -116,6 +116,26 @@ Spring @transactional drawback:
     - use two MQ, one MQ for 5 mintues delay queue and another MQ for receiving delay message. The delay queue will set TTL with 5mins delay.
     after 5mins,  the message will route to the second MQ and the second MQ will be consume by consumer. The consumer will do the rollback logic. (Eventually consistency)
     
-  
-  
+   - How to ensure reliable MQ?
+    issues:
+      1) Message lost: 
+        a) message sent, but due to network lost
+          - try catch and retry
+          - logging (new table in database for logging)
+          - schedule job resend unsuccessful message
+         b) Message arrive Broker, Broker need to write into disk, but before writting to disk, service down
+          - publisher also need callback, after confirm successful then change database message status
+         c) Auto-ACK, The consumer received message, but not yet mark ACK, service down
+          - Must mannually ACK and after confirming consumed successfully then remove message. if failue then noACK and re-push back to queue
+      2) Message duplicated
+        a) The consumer consumer message successfully and transaction commited. the machine down right on the ack so that ack not go through. Broker message re-send message
+        from unack status to ready status and send to other consumers
+        b) message consume failed but due to retry and double sending message
+        soluction: Idempodence
+      3) Message backlog
+        a) consumer unavaible 
+        b) consumer consuming speed less than producer produce
+        Soluction:
+          - more consumers
+          - create message consuming service, firstly batch saving message into database then offline processing
  
