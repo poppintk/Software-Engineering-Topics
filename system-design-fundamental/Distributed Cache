@@ -19,8 +19,8 @@ Common cache system issues:
   
   
 Cache update issues(write):
-   Double write: when data is updated, write to update both DB and cache. 
-   Lazy Loading: when data is updated, firstly update DB data then delete cache.
+   Double write: when data is updated, write to update both DB and cache. (Note: order matters)
+   Lazy Loading: when data is updated, firstly update DB data then delete cache. (Note: order matters)
    under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
    
    - what if system requires strong consistency? (depends on senerio)
