@@ -118,6 +118,11 @@ Spring @transactional drawback:
     - use two MQ, one MQ for 5 mintues delay queue and another MQ for receiving delay message. The delay queue will set TTL with 5mins delay.
     after 5mins,  the message will route to the second MQ and the second MQ will be consume by consumer. The consumer will do the rollback logic. (Eventually consistency)
     
+    - what can be in the dead letter queue?
+      1) message reject by consumer and reject() with requeue false
+      2) TTL expired
+      3) Queue is at full capacity
+    
    - How to ensure reliable MQ?
     issues:
       1) Message lost: 
