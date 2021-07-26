@@ -16,3 +16,7 @@ Oauth2 flow for web server:
       - Rate limiter can also work
     
           
+
+Scaling
+   - sharding is great for scaling write.
+   - for scaling read, might not needed because we can use cache for this feature
