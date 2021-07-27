@@ -44,3 +44,16 @@ RabbitMQ:
    Channel:
       use multiplexing bidirectional channel in the TCP connection. AMQP command is sent through channel, 
       Whatever publish, subscribe and receving messages all sent through channel.
+      
+      
+      
+      
+   ## Reliable Message Queue
+   in order to guarrantee message won't lose, we can use transaction, but performance will decrease 250 times.
+   therefore we use confirm callback instead
+   
+   Producer   -------->   | Broker Exchange ----> Queue | ------>  Consumer
+
+Producer ---> Broker confirmCallback
+Exchange ---> Queue returnCallback
+Queue ---> Consumer ack
