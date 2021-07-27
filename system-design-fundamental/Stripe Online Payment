@@ -1,0 +1,10 @@
+
+Customer ---> Client(Browser) ----> Server  -----> Stripe
+
+1) customer provides card details and clicks Pay button
+2) client call stripe.createPaymentMethod
+3) Returns PaymentMethod to client
+4) client Finalizes payment with order details and PaymentMethod ID to server
+5) server call to Stripe with POST /v1/payment_intentsconfirm=true
+6) stripe attempts payment
+7) Stripe returns new PaymentIntent with status "succeeded"
