@@ -48,12 +48,15 @@ RabbitMQ:
       
       
       
-   ## Reliable Message Queue
-   in order to guarrantee message won't lose, we can use transaction, but performance will decrease 250 times.
+## Reliable Message Queue
+   in order to guarrantee message won't lose, we can use transaction, but throughput will be decreased by a factor of 250
    therefore we use confirm callback instead
+   
+   NOTE: reliable => need table to store message in the database with status(NOT SEND, SEND, QUEUED, CONSUMED) like a log
+   then use callback to keep tracking status. if some message not deliver successful then required scheduler job to re-run.
    
    Producer   -------->   | Broker Exchange ----> Queue | ------>  Consumer
 
-Producer ---> Broker confirmCallback
-Exchange ---> Queue returnCallback
+Producer ---> Broker (confirmCallback, triggered as long as broker receives, if cluster only triggers when all broker receive)
+Exchange ---> Queue (returnCallback, triggered when message FAIL to deliver to the queue)
 Queue ---> Consumer ack
