@@ -60,3 +60,25 @@ RabbitMQ:
 Producer ---> Broker (confirmCallback, triggered as long as broker receives, if cluster only triggers when all broker receive)
 Exchange ---> Queue (returnCallback, triggered when message FAIL to deliver to the queue)
 Queue ---> Consumer ack
+
+General issues on MQ?
+      1) Message lost: 
+        a) message sent, but due to network lost
+          - try catch and retry
+          - logging (new table in database for logging)
+          - schedule job resend unsuccessful message
+         b) Message arrive Broker, Broker need to write into disk, but before writting to disk, service down
+          - publisher also need callback, after confirm successful then change database message status
+         c) Auto-ACK, The consumer received message, but not yet mark ACK, service down
+          - Must mannually ACK and after confirming consumed successfully then remove message. if failue then noACK and re-push back to queue
+      2) Message duplicated
+        a) The consumer consume message successfully and transaction commited. the machine down right on the ack so that ack not go through. Broker message re-send message
+        from unack status to ready status and send to other consumers
+        b) message consumed failed but due to retry and double sending message
+        soluction: Idempodence
+      3) Message backlog
+        a) consumer unavaible 
+        b) consumer consuming speed less than producer produce
+        Soluction:
+          - more consumers
+          - create message consuming service, firstly batch saving message into database then offline processing
