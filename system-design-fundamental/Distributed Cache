@@ -2,6 +2,7 @@
 Use case:
 - System requires low real-time and allow eventually consistent
 - Read more and write less
+- Scale read for system
 
 Common cache system issues:
    Cache read issue:
