@@ -60,6 +60,13 @@ RabbitMQ:
 Producer ---> Broker (confirmCallback, triggered as long as broker receives, if cluster only triggers when all broker receive)
 Exchange ---> Queue (returnCallback, triggered when message FAIL to deliver to the queue)
 Queue ---> Consumer ack
+   1) by default auto-ack, as long as consumer consumed then message will be removed from MQ
+      issue:
+         if more messages delievered and only one message processed, at this moment machine down => message lose
+         Solution: consumer manually ack. as long as message not call ack(), the message will be on unacked status. if consumer service down then message will be re-push to MQ
+   2) How to ack:
+      channel.basicAck(deliveryTag, false); //ack, should be called bussiness logic process successfully
+      channel.basicNack(deliveryTag, false, true);// not ack
 
 General issues on MQ?
       1) Message lost: 
