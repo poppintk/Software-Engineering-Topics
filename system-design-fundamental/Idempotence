@@ -1,5 +1,5 @@
 1) What is Idempotence?
-one or more request to API and generate the same output. For example users click on payment, no matter how many times users clicked it will not cause double pay.
+one or more request to API and generate the same output. For example users click on payment, no matter how many times users clicks on it and it will not cause double pay.
 * Retry is key factor cause the Idemopotence
 
 2) Use case:
