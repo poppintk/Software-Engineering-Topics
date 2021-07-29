@@ -1,5 +1,11 @@
 Architecture:  master slave (Single master or Multiple master)
 
+Feature:
+-self healing
+-secret management
+-service discovery and load balancing
+-horizontal scaling 
+
 Use case:
  1) Microservices
  2) Lift and shift
