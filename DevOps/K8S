@@ -1,5 +1,11 @@
 Architecture:  master slave (Single master or Multiple master)
 
+Use case:
+ 1) Microservices
+ 2) Lift and shift
+ 3) Cloud Native Network Functions
+ 4) Machine learning
+ 5) CI/CD
 
 Components:
   Master:
@@ -37,7 +43,7 @@ Components:
     
     
 Pods are group of containers
-Deployment: group of services
 Service: group of Pods <expose servicer then external system can have access to>
+Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
 
