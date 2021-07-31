@@ -1,3 +1,4 @@
+https://stripe.com/blog/payment-api-design
 
 Customer ---> Client(Browser) ----> Server  -----> Stripe
 
@@ -25,3 +26,7 @@ Token(includes card details) and Charge
 ACH debit (money transaction are not finalized immediately)
 Token(includes card details and bank account details) and Charge(pending state)
 Users ran their order filfillment logic days later, when they received a webhook indicating that charge had succeeded
+
+
+BitCoins
+Token(includes card details and bank account details) + BitcoinReceiver and Charge(pending state)
