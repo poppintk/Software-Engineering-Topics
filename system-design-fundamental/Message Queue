@@ -92,5 +92,9 @@ General issues on MQ?
           
           
  How to scale?
-   - to scale the throughput for RabbitMQ can use RabbitMq sharding plugin ( scale for throughput)
+   - to scale the throughput for RabbitMQ can use RabbitMq sharding plugin or use nginx to balance load ( scale for throughput)
    - fanout (scale for the consumers)
+
+ Resilience?
+   master slave, sync data between master and slave
+   
