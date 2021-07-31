@@ -89,3 +89,8 @@ General issues on MQ?
         Soluction:
           - more consumers
           - create message consuming service, firstly batch saving message into database then offline processing
+          
+          
+ How to scale?
+   - to scale the throughput for RabbitMQ can use RabbitMq sharding plugin ( scale for throughput)
+   - fanout (scale for the consumers)
