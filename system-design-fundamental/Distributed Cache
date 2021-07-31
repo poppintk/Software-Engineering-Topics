@@ -46,7 +46,19 @@ Cache update issues(write):
    Best practice: lazy loading: database.set(key,user); cache.delete(key)
    
    
-   
+Redis Cluster:
+   1) Sharding
+      a) client side sharding
+         pros: easy
+         cons: if one Redis down client side don't know
+      b) Proxy sharding
+         
+      c) Redis-cluster(offical support)
+          with consistent hashing
+  2) Replications
+      Redis-cluster(offical support)
+
+  
   
 Distributed Lock (Redison - Redis based distributed lock framework)
    - Reentrance Lock
