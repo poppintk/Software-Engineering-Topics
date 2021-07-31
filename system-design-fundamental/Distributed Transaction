@@ -73,6 +73,9 @@ Spring @transactional drawback:
   Extension to the CAP. The idea is for the most of distributed system, 
   we cannot gurrantee the strong consistency, but can gurrantee the weak consistency and eventually consistency.
   
+  Although most NoSQL takes BASE priciples, they are learning from or moving toward ACID. e.g. Google Spanner provides strong consistency. 
+  MongoDB 4.0 adds support for multi-document ACID transactions
+  
     1) Basically Available (BA)
       Allowing some of the system lose availability (like response time increase). Note system is not absolutely unvailalbe
     
