@@ -30,3 +30,14 @@ Users ran their order filfillment logic days later, when they received a webhook
 
 BitCoins
 Token(includes card details and bank account details) + BitcoinReceiver and Charge(pending state)
+
+
+
+
+WebHooks
+
+Webhooks allow you to monitor for updates to charges associated with your account. 
+You might use webhooks to update a database record when a payment succeeds or to email a customer when a payment has been confirmed.
+
+
+
