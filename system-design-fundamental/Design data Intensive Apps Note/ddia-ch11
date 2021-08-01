@@ -1,3 +1,9 @@
+This Chapter discuss Stream source(User events, Sensor input, Database streaming)
+talks about how to deliever streaming data(Through message delivery directly, mesasge broker and log-based message broker)
+finally how to process streaming data
+
+#How to deliever streaming data
+
 Message System
   use cases:
     - weather sensor peridically measurement
@@ -69,7 +75,8 @@ Partition logs
     
     
     
-
+When consumer can not catch up with producer
+  
 
 
   
