@@ -20,3 +20,58 @@ Message System
 
 Message Broker(Message Queue)
   
+Multiple consumers
+  1) load balance
+    each message is load balacner to ONE of consumers.
+    if there are dependent relations existing in events, then load balance might be issue. because due to crash on one of consumer the message will re-send to other consumer
+    this will break the original sequence.
+    
+    
+  2) fan-out
+    each message is delivered to all its consumers
+    
+  we can combine load balance and fan-out 
+  
+Confirm and Re-send
+  - consumer not yet process the message or consumer only process the partial. In order to make sure message won't lose.
+  MQ use the acknowledgments(consumer must tell the MQ message is processed sucessfully)
+  
+  - if consumer is unavailbe at the moment, then MQ will re-send the message to another avaible consumer(Watch out of the case of Idempotence)
+
+Partition logs
+  log-baseed message brokers(Kafka)
+    each partition on different machine and each partition has it's log
+    a topic is group of partition with same kinds of message
+    each message within the partition has mononic offset (therefore. the message is sequence within a partition)
+    
+    
+  log-based message brokers VS JMS/AMQP
+    When message sequence is unimportant and allow to parallel processing USE JMS/AMQP
+    When required high throughput and process quickly and event order matters, USE log-based message broker
+    
+  Load Balance also work
+    one consumer on odd offset
+    and another consumer on even offset 
+    
+    
+    
+  Consumer offset
+    in log-based MQ, when message is consumed the message is not deleted, instead, consumer will increase its offset number
+    all offset less then the consumer current offset => message processed
+    
+    if a consumer is unavailable then MQ will re-send to another consumer and new consumer will consumer the data from last offset.
+    if other consumer already consume the data but not yet update to broker. it could end up the double process
+    
+    
+  disk consumption
+    in log-base MQ, use the circular buffer, so those log data will be recycle if out of the disk space.
+    example 6TB disk space, throughput is 150MB/s. After 11 hours it will be full.
+    
+    
+    
+
+
+
+  
+
+  
