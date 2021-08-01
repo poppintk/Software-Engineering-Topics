@@ -48,7 +48,7 @@ Partition logs
   log-baseed message brokers(Kafka)
     each partition on different machine and each partition has it's log
     a topic is group of partition with same kinds of message
-    each message within the partition has mononic offset (therefore. the message is sequence within a partition)
+    each message within the partition has mononic offset in the log (therefore. the message is sequence within a partition)
     
     
   log-based message brokers VS JMS/AMQP
