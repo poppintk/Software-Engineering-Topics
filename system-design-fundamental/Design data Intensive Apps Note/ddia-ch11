@@ -1,0 +1,22 @@
+Message System
+  use cases:
+    - weather sensor peridically measurement
+    - monitoring system 
+    - user actions(order)
+
+  Issues:
+    1) if producer sending message faster than consumers can process?
+      Solution:
+        - drop message
+        - put on the buffer queue
+        - backpressure(flow control, blocking producer to send more of message)
+
+
+    2) Node(MQ) is unavailble
+        - durable write to disk or/and relicas
+          traoff lower throughput and higher latency
+
+  Note that, not all system requires reliable MQ, for example weather sensor measurement data is not so important for every data to be sent
+
+Message Broker(Message Queue)
+  
