@@ -20,11 +20,13 @@ Message System
 
     2) Node(MQ) is unavailble
         - durable write to disk or/and relicas
-          traoff lower throughput and higher latency
+      
 
   Note that, not all system requires reliable MQ, for example weather sensor measurement data is not so important for every data to be sent
 
+Producer send message to consumer directly
 Message Broker(Message Queue)
+  
   
 Multiple consumers
   1) load balance
@@ -52,6 +54,9 @@ Partition logs
     
     
   log-based message brokers VS JMS/AMQP
+    AMQP: after ackownledge -> message is deleted
+    Log-based: after ackownledge -> offset is increased by one
+    
     When message sequence is unimportant and allow to parallel processing USE JMS/AMQP
     When required high throughput and process quickly and event order matters, USE log-based message broker
     
