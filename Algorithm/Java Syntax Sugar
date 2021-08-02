@@ -8,6 +8,13 @@
   PriorityQueue<Integer> queue1 new PriorityQueue<Integer>(3,(a, b) -> a - b);
   
 
+
+a.compareTo(b) 
+// return -1 if a less than b
+// return 0 if a equals to b
+// return 1 if a is greater than b
+
+
 public int compare(final Person a, Person b) {
  //TODO return 1 if b should be before a 
  //     return -1 if a should be before b
