@@ -112,4 +112,41 @@ Kafka
    
    Kafka require third party tool for the service discovery, recommmended Zookeeper
    
+   
+   Why Kafka allows high throughput?
+      - zero copy
+      - sequential write
+      - pre-fetch
+      - post-write (in buffer, then aggregate to disk)
+      - segment logs
+      - batch process
+      - compression 
+  
+  Where is offset stored in Kafka?
+      - eariler version on Zookeeper
+      - later version on Kafka cluster(zookeeper topic(_consumer_offset))
+      - customized (Redis or DB)
+      
+  How consumers consume data from the Kafka?
+      - Poll (Consumers and Broker system has different throughput, use poll let consumer decide when consumer is ready to take next data)
+      
+  How Kafka guarantee data won't lose or prevent dulicated consume?
+      Producer:
+         - Producer sync sending data and ACK = -1(all)
+      Broker Cluster:
+         - Replicate sync between leader and followers
+      Consumer:
+         - when Kafka rebalance, data might lose. Solutions?
+         - Maintain customized offset(use Lower level API)
+         
+  Where is Kafka medadata stored?
+      - Zookeeper (/controller, /cluster, /consumer /broker)
+  
+  Why use Kafka?
+      - high throughput, sequential order and consumers easy
+      
+      
+  
+  
+   
 
