@@ -98,3 +98,16 @@ General issues on MQ?
  Resilience?
    master slave, sync data between master and slave
    
+   
+   
+##################################################################################################
+Kafka
+   Broker: one kafka server is one broker
+   Partition: a partition is a sequence queue, each message in the queue has a sequential id(offset)
+   Topic: group of partition
+   Offset: the sequential id in the partition
+   Consumer Group: group of consumers, consumers in a same group can only fetch data from a topic exactly once (there is no overlaping in fetched data).But multiple groups can fetch to same topic at the same time.
+   
+   Kafka require third party tool for the service discovery, recommmended Zookeeper
+   
+
