@@ -53,3 +53,11 @@ Service: group of Pods <expose servicer then external system can have access to>
 Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
 
+each Pod has its own IP(can use duplicated port consumed by other Pods)
+each Service has its own domain(can use duplicated port consumed by other Services)
+NodePort cannot be duplicated
+
+NodePort - port exposed on the host machine(Postman can reach)
+targetPort - This is the actual port on which your application is running inside the container.
+port - port for service and redirect to targetPort
+
