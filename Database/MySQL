@@ -41,20 +41,24 @@ check all locked tables
 
 
 MyISAM
+
+    ReadWriteLock:
+    read and read OK
+    read and write exclusive
+    write and write exclusive
+
     case #1 add table read lock:
-        session1: add table mylock read; // OK 
+        session1: lock table mylock read; // OK 
         session1: select * from mylock; // OK
+        session1: update mylock set name='a2' where id = 1; // Error table 'mylock' was locked, Note: current session1 cannot update
+        session1: select * from book; // Note: Cannot read other table, Error, session1 cannot read other table, Reason MySQL want you to clean up current lock operation
+        
         session2: select * from my lock; // OK
-
-        session1: update mylock set name='a2' where id = 1; // Error table 'mylock' was locked
-        session1: select * from book; // Error, session1 cannot read other table, Reason MySQL want you to clean up current lock operation
-
         session2: update mylock set name='a3' where id=1; // Not a error but blocking(waiting for lock to release)
-
         session1: unlock tables;
         session2: previously blocking => unblocked, and continue to updated
 
-        conclusion: Given MyISAM engine, adding Table Read Lock, it will block other processes to read the locked table, also it will blocking other processes to write the table.
+        conclusion: Given MyISAM engine, adding Table Read Lock, it will blocking other processes to write the table, allow other processes to read.
         only after Read Lock is released, then it will continue to execute other processes write to the table 
 
 
@@ -63,9 +67,9 @@ MyISAM
         session1: lock table mylock write; // OK 
         session1: select * from mylock; // OK
         session1: update mylock set name='a4' where id = 1 // OK
-        select * from book; //  Error, same as read lock. session1 cannot read other table, Reason MySQL want you to clean up current lock operation
+        session1: select * from book; // Note: Cannot read other table, Error, same as read lock. session1 cannot read other table, Reason MySQL want you to clean up current lock operation
 
-        session2: select * from book; // Blocking, wait for session1 to release lock
+        session2: select * from mylock; // Blocking, wait for session1 to release lock Note: WriteLock will blocking Update as well
 
         session1 unlock tables; // OK
         session2: // Unblocked from waiting and continue to execute
@@ -76,8 +80,8 @@ MyISAM
 
 
     MyISAM:
-        Before execute select statement, it will manuaully add Table Read Lock to the target table.
-        Before execute update insert delete operations, it will manuually add the Table Write Lock to the target table.
+        Before execute select statement, it will automatically add Table Read Lock to the target table.
+        Before execute update insert delete operations, it will automatically add the Table Write Lock to the target table.
 
     ***Read Lock will block Write, but it will NOT block read. whereas write lock will block both read and write 
 
