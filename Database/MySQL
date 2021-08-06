@@ -1,0 +1,126 @@
+Mysql
+
+ Storage engine
+
+ MyISAM
+ InnoDB
+
+
+MyISAM  vs InnoDB
+InnoDB has row-level locking. MyISAM only has full table-level locking.
+InnoDB has what is called referential integrity which involves supporting foreign keys (RDBMS) and relationship constraints, MyISAM does not (DMBS).
+InnoDB supports transactions, which means you can commit and roll back. MyISAM does not.
+InnoDB is more reliable as it uses transactional logs for auto recovery. MyISAM does not.
+
+
+SQL performance slow?
+    1) sql statement is not optimazed
+    2) index not applid
+    3) queyr including too many joins
+    4) Sql server configuration setting (buffer, thread number)
+
+SQL execution order
+    FROM > ON > WHERE = JOIN > GROUP BY > HAVING > SELECT > DISTINCT > ORDER BY > LIMIT
+
+
+Locks
+    types:
+        1) write(exclusive locks) and read(share locks) Locks
+        2) table locks, row locks and page locks
+
+manuaully adding table read or write locks
+    lock table <TABLE NAME> read/write
+    unlock table <TABLE NAME>
+
+check all locked tables
+    show open tables
+
+    show status like 'table%'
+
+
+
+
+MyISAM
+    case #1 add table read lock:
+        session1: add table mylock read; // OK 
+        session1: select * from mylock; // OK
+        session2: select * from my lock; // OK
+
+        session1: update mylock set name='a2' where id = 1; // Error table 'mylock' was locked
+        session1: select * from book; // Error, session1 cannot read other table, Reason MySQL want you to clean up current lock operation
+
+        session2: update mylock set name='a3' where id=1; // Not a error but blocking(waiting for lock to release)
+
+        session1: unlock tables;
+        session2: previously blocking => unblocked, and continue to updated
+
+        conclusion: Given MyISAM engine, adding Table Read Lock, it will block other processes to read the locked table, also it will blocking other processes to write the table.
+        only after Read Lock is released, then it will continue to execute other processes write to the table 
+
+
+
+    case #2 lock table write lock: 
+        session1: lock table mylock write; // OK 
+        session1: select * from mylock; // OK
+        session1: update mylock set name='a4' where id = 1 // OK
+        select * from book; //  Error, same as read lock. session1 cannot read other table, Reason MySQL want you to clean up current lock operation
+
+        session2: select * from book; // Blocking, wait for session1 to release lock
+
+        session1 unlock tables; // OK
+        session2: // Unblocked from waiting and continue to execute
+
+        conclusion: Given MyISAM engine, adding Table Write Lock, it will blocking other processes to read and write from the locked table. only after Write Lock is released, 
+        then it will continue exectue other processes Read Write operation
+
+
+
+    MyISAM:
+        Before execute select statement, it will manuaully add Table Read Lock to the target table.
+        Before execute update insert delete operations, it will manuually add the Table Write Lock to the target table.
+
+    ***Read Lock will block Write, but it will NOT block read. whereas write lock will block both read and write 
+
+
+    MyISAM is write first, therefore it is not idea for high conccurrent scenerio
+
+
+
+InnoDB:
+    // demo Read your own write 
+    session1: set autocommit = 0; // OK
+    session2: set autocommit = 0; // OK
+    session1: select * from test_innodb_lock; // OK
+    session1: update test_innodb_lock set b='4001' where a = 4; // OK
+    session1: select * from test_innodb_lock; // OK reading b = 4001(read your own write)
+    session2: select * from test_innodb_lock // OK reading b = 4000  
+
+    session1: commit;
+    session2: commit; 
+    session2: select * from test_innodb_lock // OK reading b = 4001 
+
+
+
+    session1: update test_innodb_lock set b = '4002' where a = 4; // OK
+    session1: select * from test_innodb_lock; // OK
+    session2: update test_innodb_lock set b='4003' where a = 4; // Blocking
+    session1: commit; => session2 start to execute
+    session2: commit;
+
+    session1: select * from test_innodb_lock; // OK a = 4 b = 4003
+    session2: select * from test_innodb_lock; // OK a= 4 b = 4003
+
+
+    session1: update test_innodb_lock set b = '4005' where a = 4; // OK
+    session2: update test_innodb_lock set b = '9001' where a = 9; // OK
+    session1: commit;
+    session2: commit;
+
+    session1: select * from test_innodb_lock; // OK a = 4 b = 4005 , a= 9 b = 9001
+    session2: select * from test_innodb_lock; // OK a = 4 b = 4005 , a= 9 b = 9001
+
+
+
+
+
+
