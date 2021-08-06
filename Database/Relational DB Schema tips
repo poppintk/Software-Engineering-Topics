@@ -1,10 +1,29 @@
-one to one 
-  can use foreigh key to refer to another table primary key and with unique constraint on foreigh key
+Normalization
+  one to one 
+    can use foreigh key to refer to another table primary key and with unique constraint on foreigh key
 
-one to many 
-  usually use foreign key to refer to another table primary key
-  Note: one to many, the table on the "many" side  will store the foreign key 
+  one to many 
+    usually use foreign key to refer to another table primary key
+    Note: one to many, the table on the "many" side  will store the foreign key 
+
+  one to one
+    use the intermedia table to foreign key refer to other primary keys
+
+  Pros: will have less duplicated information on columns
+  Cons: require extrat time to perform the join
   
-one to one
-  use the intermedia table to foreign key refer to other primary keys
+Denormalization
+  compose everything together 
+  Cons: will have duplicated information on Columns
+  Pros: no need to join
   
+  
+  
+Index
+  Pros: depends on the use case to add the index for better query performance
+  Cons: slower writing speed and more space for storing index data structure
+  
+  multiple column index
+  
+  
+
