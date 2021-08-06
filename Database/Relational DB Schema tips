@@ -1,0 +1,10 @@
+one to one 
+  can use foreigh key to refer to another table primary key and with unique constraint on foreigh key
+
+one to many 
+  usually use foreign key to refer to another table primary key
+  Note: one to many, the table on the "many" side  will store the foreign key 
+  
+one to one
+  use the intermedia table to foreign key refer to other primary keys
+  
