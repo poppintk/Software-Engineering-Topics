@@ -26,4 +26,15 @@ Index
   multiple column index
   
   
-
+  
+Optimistic locking vs Pessimistic locking
+  both can solve race condition
+  Optimistic use version control, so it is great for read more scenerio
+  Pessimistic use locking, due to locking will blocking other operation, it is not great for reading. it is great for write more scenerio
+  
+  
+Sharding
+  - How you query the data, then how you decide the sharding key (Tables requires normalized)
+  - Can use shardingProxy to sharding the database, Note that sharding detail are transparent to all services
+  
+  
