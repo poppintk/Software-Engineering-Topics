@@ -99,8 +99,8 @@ InnoDB:
     session2: commit; 
     session2: select * from test_innodb_lock // OK reading b = 4001 
 
-
-
+####################################################################################
+    // demo Row Lock basic
     session1: update test_innodb_lock set b = '4002' where a = 4; // OK
     session1: select * from test_innodb_lock; // OK
     session2: update test_innodb_lock set b='4003' where a = 4; // Blocking
@@ -118,9 +118,80 @@ InnoDB:
 
     session1: select * from test_innodb_lock; // OK a = 4 b = 4005 , a= 9 b = 9001
     session2: select * from test_innodb_lock; // OK a = 4 b = 4005 , a= 9 b = 9001
+######################################################################################
+    // The index not working, cause the Row Lock become Table Lock
+    session1: update test_innodb_lock set b = '4000' where a = 4; // OK
+    session2: update test_innodb_lock set b = '9000' where a = 9; // OK
+    session1: commit;
+    session2: commit;
+    session1: select * from test_innodb_lock; // OK a = 4 b = 4000 , a= 9 b = 9000
+    session2: select * from test_innodb_lock; // OK a = 4 b = 4000 , a= 9 b = 9000
+
+    // Now assume single column index on a(number) and b(varchar) respectively
+
+    session1: update test_innodb_lock set a = 41 where b = '4000'; // OK    
+    session2: update test_innodb_lock set a = 9 where b = '9001'; // OK
+    session1: commit;
+    session2: commit;
+
+    // everything ok  and no locks
+    session1: update test_innodb_lock set a = 41 where b = 4000; // OK, BUT this generate the Table Level Lock. because index not working on b = 4000(missing ''), so index won't work => Row Lock become Table Level Lock!! 
+    session2: update test_innodb_lock set b = '9002' where a = 9; // Blocking due to session1 Table Lock
+    session1: commit; => release the lock and session2 continue to execute
 
 
 
+Gap Lock
+    session1: set autocommit = 0; // OK
+    session2: set autocommit = 0; // OK
+    
+    session1: update test_innodb_lock set b='0629' where a > 1 and a < 6; // OK,  assume there is no record for a = 2
+    session2: insert into test_innodb_lock values(2, '2000'); // Blocking
+    session1: commit; // => session2 start to execute
+    session2: commit;
+    session1：select * from test_innodb_lock // OK，  reading a = 2 b = 2000 included
+
+    conclusion: when update/delete/insert within the range, then innoDB will lock all range
+
+
+How to mannualy lock a row?
+session1: begin; 
+session1: select * from test_innodb_lock where a = 8 for update; // lock particular row
+session1: // do something
+
+session2: update test_innodb_lock set b='xxx' where a = 8; // blocking
+
+session1: commit; // session2 continue to execute
+session2: select * from test_innodb_lock; // OK
+session2: commit;
+
+
+InnoDB is better than MyISAM due to transaction support and Row Lock
+
+useful command:
+show status like 'innodb_row_lock%';
+returns =>
+
+*innodb_row_lock_current_waits: number of currently waiting for the row lock
+*innodb_row_lock_time: total locking time from system start 
+*innodb_row_lock_waits: total locks waiting for since the system start
+*innodb_row_lock_time_avg: avg time for each waiting for the row lock
+
+innodb_row_lock_time_max: the longest waiting time for the row lock since system start
+ 
+
+Row Locks Conclusion:
+1) try to make all data query through index, to avoid no index cause the row lock become table locks
+2) designing index, try to make the lock as small as possible
+3) try to reduce the query range condition to avoid Gap Lock
+4) reduce the transaction operation size, and recude the locking time
+5）reduce the transaction isolation level as much as possible
 
 
 
+MySQL Replications
+    Master Slave Replications
+        1) master write its changes to binary logs
+        2) Slave copy master bin log to relay log
+        3) Slave apply those changes from relay log to its database
+    Note: mysql replication is async and serialized 
