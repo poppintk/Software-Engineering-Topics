@@ -57,5 +57,6 @@ Tips for SQL schema design:
   1) Normalization base on requirement as needed
   2) Vertical Sharding base on functionality
   3) Index
+  Note: When desgining a schema as long as above rules are applied, then horizaontal scaling should be alright by using sharding database and table partitioning
 
 
