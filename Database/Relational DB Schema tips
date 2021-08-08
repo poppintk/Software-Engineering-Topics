@@ -51,3 +51,11 @@ Performance Optimaize
       AFAIK full re-partitioning would be needed to increase the partition count. Certainly a non-trivial activity.
 
   Note: Can use shardingProxy to Horizontal Sharding and Table Horizontal partitioning, Note that sharding detail are transparent to all services
+
+
+Tips for SQL schema design:
+  1) Normalization base on requirement as needed
+  2) Vertical Sharding base on functionality
+  3) Index
+
+
