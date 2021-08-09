@@ -1,11 +1,12 @@
 1) What is Idempotence?
 one or more request to API and generate the same output. For example users click on payment, no matter how many times users clicks on it and it will not cause double pay.
-* Retry and distributed system is key factor cause the Idemopotence
+* Retry and distributed system is key factor cause the Idemopotence， Single service due to network delay could also possible end up processing twice
+
 
 2) Use case:
   1) users click on payment button
   2) url return back the payment url
-  3) Microservices RPC call with retry (retry will cause Idemotence, if single service then there is no ideompotence)
+  3) Microservices RPC call with retry (retry will cause Idemotence)
 
 3) SQL and Idempotence:
   SQL is idempotence in many operations, but not all operation are idempotence.
