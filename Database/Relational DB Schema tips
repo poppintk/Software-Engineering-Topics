@@ -6,7 +6,7 @@ Normalization
     usually use foreign key to refer to another table primary key
     Note: one to many, the table on the "many" side  will store the foreign key 
 
-  one to one
+  many to many
     use the intermedia table to foreign key refer to other primary keys
 
   Pros: will have less duplicated information on columns
