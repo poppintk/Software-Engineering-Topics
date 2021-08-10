@@ -198,4 +198,6 @@ MySQL Replications
         1) master write its changes to binary logs
         2) Slave copy master bin log to relay log
         3) Slave apply those changes from relay log to its database
-    Note: mysql replication is async and serialized 
+    Note: mysql replication is async so read write separation might end up data inconsistency.
+    Solution: Read your own write, reading the data from the master, assume master is only node for the write.
+    
