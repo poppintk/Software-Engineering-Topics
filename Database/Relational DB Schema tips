@@ -20,6 +20,16 @@ Denormalization
 Optimistic locking vs Pessimistic locking
   both can solve race condition
   Optimistic use version control, so it is great for read more scenerio
+      Version Control:
+        UPDATE goods_sale SET count = #{record.count}, data_version = data_version + 1
+        WHERE goods_sale_id = #{record.goodsSaleId} AND data_version = 0
+        Note: on appllication code require infinite re-try until table updated
+        
+      Conditional Control:
+        UPDATE `wms_ware_sku` SET stock_locked = stock_locked + #{num}
+        WHERE sku_id=#{skuId} AND ware_id= #{wareId} AND stock - stock_locked >= #{num}
+        
+        
   Pessimistic use locking, due to locking will blocking other operation, it is not great for reading. it is great for write more scenerio
 
 ################################################################
