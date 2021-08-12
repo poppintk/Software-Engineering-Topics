@@ -1,3 +1,23 @@
 Security communication is essential part of payment process
+we can use HTTPS protocol to hiden the sensitive information, but still have issue on what if message is modified by hacker(hacker did not know what's in the message but just mutate the sent message)
 
 
+Symmetric Encryption 
+- one private key for both encryption and decryption
+- Blowfish, AES, RC4, DES, RC5, and RC6 are examples of symmetric encryption. The most widely used symmetric algorithm is AES-128, AES-192, and AES-256
+
+Asymmetric Encryption
+- one private key and one public key
+- encrypt message with private key => use public key to decrypt
+- encrypt message with public key => use private key to decrypt
+- RSA, Elgamal
+
+
+solution by Alipay:
+  - 2 pairs of keys (2 public keys and 2 private keys)
+  - one pair keys(1 public key and 1 private key) for one directional communication and another pair of keys for opposite communication
+  - above operation did not resolve issue if during the network transmition, what if message is modified by hacker? Solution: digital signature
+  - Digital Signature (additional encryted information on protected sensetive information)
+     example: 
+     - before calling API payment/order=12345&money=100, client encrypt order=12345&money=100 with public key into sign=jdsasdfasdf then send this message
+     - when payment platform recieved message use the private key to decrypt the signature to verify the url params == signature(after decripted message)
