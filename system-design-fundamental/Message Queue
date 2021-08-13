@@ -89,7 +89,8 @@ General issues on MQ?
         Soluction:
           - more consumers
           - create message consuming service, firstly batch saving message into database then offline processing
-          
+      4) Consumer Server might crash if poll too many message to process(beyond its machine limitation)
+         Solution: config the prefetch size base on machine ablility
           
  How to scale?
    - to scale the throughput for RabbitMQ can use RabbitMq sharding plugin or use nginx to balance load ( scale for throughput)
