@@ -1,6 +1,5 @@
 Security communication is essential part of payment process
-we can use HTTPS protocol to hiden the sensitive information, but still have issue on what if message is modified by hacker(hacker did not know what's in the message but just mutate the sent message)
-
+We can use HTTPS protocol to hide the sensitive information, but what if message is modified by hacker(hacker did not know what's in the message but still mutate the message)
 
 Symmetric Encryption 
 - one private key for both encryption and decryption
