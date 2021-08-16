@@ -1,6 +1,6 @@
 Distributed session issues:
    1) different domains, session cannot be shared among different domains
-      but session can be share among its sub-domain(zi yun ming)
+      but session can be share among its sub-domain
    
    2) in distributed system, load balancer might routing to different machine, and current machine might not have session.
       solution: 
@@ -36,3 +36,9 @@ Distributed session issues:
                   - required additional network access.
                   - Redis get data still slower than get data from memory directly
       
+      
+      
+      
+      Token VS Session
+         Token uses CPU computation time trade for the space
+         Session uses space 
