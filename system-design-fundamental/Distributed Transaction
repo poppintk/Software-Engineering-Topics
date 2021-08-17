@@ -99,6 +99,23 @@ Spring @transactional drawback:
   3) Eventually consistency
     After inserting/updating data, following reading allow to have time delay to get the most recent updated data.
     
+    - Read-after-write consistency(read your writes consistency)
+      a typical issue occurs on async replication
+      This is a guarantee that if the user reloads the page, they will always see the most recent updates they submitted themselves. It make no promises about other users.
+      Solutions:
+        1) read it from the leader
+        2) track the time of the last update and, for one minute after the last update, make all reads from the leader
+        3) remember the timestamp of its most recent write, reads for that user reflects updates at least until that timestamp
+      
+    - Monotonic Reads
+      a typical issue occurs on async replication
+      This is a guarantee that user won't read the older value(moving backward in time). It’s a lesser guarantee than strong consistency, but a stronger guarantee than eventual consistency.
+      one solution: mapping ID(module by ID) to same replication for the read 
+      
+    - consistent prefix reads
+      a typical issue occurs on sharding
+      This is a gurrantee that if write base on particular sequence order, then any users reading from the data will appear in the same sequence order as data write into.
+      one solution:  make sure that any writes that are causally related to each other are written to the same partition
     
   # Distributed transaction 
   1) 2PC(2 phase commit) refer #287 
