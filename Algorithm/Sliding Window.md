@@ -30,6 +30,7 @@ public int slidingWindow(String s, String t){
 			//进行窗口内数据的一系列更新
 			。。。
 		}
+		// satisfy the condition, update answer
 	}
 }
 
