@@ -1,0 +1,12 @@
+Template: 
+
+Stack<Integer> stack = new Stack<>();
+for (int i = 0; i <= heights.length; i++) {
+    int curt = (i == heights.length) ? -1 : heights[i]; // -1 HERE (MAX_VALUE OR MIN_VALUE) IF Bussiness logic requires to pop all information out of the stack
+    while (!stack.isEmpty() && curt <= heights[stack.peek()]) {
+       stack.pop();
+       // DO SOMETHING for less/greater on both left and right case
+    }
+    // DO SOMETHING for next greater number
+    stack.push(i);
+}
