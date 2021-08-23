@@ -43,5 +43,52 @@ class Solution {
     }
 
     // use trie
+    
+    public class Trie {
+        public class TrieNode {
+            char c;
+            Map<Character, TrieNode> children = new HashMap<>();
+            boolean hasWord;
+            TrieNode(char c) {
+                this.c = c;
+            }
+        }
 
+        private TrieNode root;
+        public Trie() {
+            root = new TrieNode('.');
+        }
+
+        public void insert(String word) {
+            TrieNode cur = null;
+            Map<Character, TrieNode> curChildren = root.children;
+            char[] wordArray = word.toCharArray();
+            for (int i = 0; i < wordArray.length; i++) {
+                char c = wordArray[i];
+                if (!curChildren.containsKey(c)) curChildren.put(c, new TrieNode(c));
+
+                cur = curChildren.get(c);
+                curChildren = cur.children;
+
+                if (i == wordArray.length - 1) {
+                    cur.hasWord = true;
+                }
+            }
+        }
+
+        public TrieNode searchNode(String word) {
+            TrieNode cur = null;
+            Map<Character, TrieNode> curChildren = root.children;
+            char[] wordArray = word.toCharArray();
+            for (int i = 0; i < wordArray.length; i++) {
+                char c = wordArray[i];
+                if (!curChildren.containsKey(c)) return null;
+
+                cur = curChildren.get(c);
+                curChildren = cur.children;
+            }
+            return cur; // if require exactly search, need to check cur.hasWord
+        }
+
+    }
 }
