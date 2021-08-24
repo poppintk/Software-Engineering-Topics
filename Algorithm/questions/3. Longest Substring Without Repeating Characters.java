@@ -10,7 +10,6 @@ class Solution {
         while (right < s.length()) {
             char c = s.charAt(right);
             visited.put(c, visited.getOrDefault(c, 0) + 1);
-            right++;
             
             while (visited.get(c) == 2) {
                 char lc = s.charAt(left);
@@ -21,7 +20,8 @@ class Solution {
                 left++;
             }
             // satisfy the condition
-            ans = Math.max(ans, right - left);
+            ans = Math.max(ans, right - left + 1);
+            right++;
         }
         
         return ans;
