@@ -1,4 +1,5 @@
 class Solution {
+    // monotonic stack
     public String removeDuplicateLetters(String S) {
         Stack<Integer> stack = new Stack<>();
         
@@ -18,6 +19,6 @@ class Solution {
         return sb.toString();
     }
     // "cbacdcbc" = > "acdb"
-    // 1) 字母可能只出现一次 acdb d这里就出现一次，如果就出现一次不管顺序
-    // 2) 字母可能重复， c 出现了很多次，只能被记录一次
+    // 1) character can only appears once, "acdb" where 'd'here only sppears once. if only sppears once then we don't care
+    // 2) character can be duplicated, c appears multiple times, and it can only be tracked once
 }
