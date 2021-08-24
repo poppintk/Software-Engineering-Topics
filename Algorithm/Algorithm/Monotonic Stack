@@ -1,12 +1,12 @@
 Template: 
 
 Stack<Integer> stack = new Stack<>();
-for (int i = 0; i <= heights.length; i++) {
+for (int i = 0; i <= heights.length; i++) { // i is the right wall
     int curt = (i == heights.length) ? -1 : heights[i]; // -1 HERE (MAX_VALUE OR MIN_VALUE) IF Bussiness logic requires to pop all information out of the stack
     while (!stack.isEmpty() && curt <= heights[stack.peek()]) { 
         // while loop condition curt <= stack.peek() => 1) increasing order in stack 2) pop out "current" the mountain top
         // while loop condition curt >= stack.peek() => 1) decreasing order in stack 2) pop out "current" the valley bottom
-       stack.pop();
+       stack.pop(); // top or bottom, stack.peek() now is left wall
        // DO SOMETHING for less/greater on both left and right case
     }
     // DO SOMETHING for next greater number
