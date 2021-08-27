@@ -6,12 +6,12 @@ class Solution {
         
         Arrays.sort(nums);
         List<Integer> path = new ArrayList<>();
-        dfs(nums, target, ans, path, 0);
+        dfs(nums, target, ans, path, 0, 4);
     
         return ans;
     }
     
-    private void dfs(int[] nums, int target, List<List<Integer>> ans, List<Integer> path, int from) {
+    private void dfs(int[] nums, int target, List<List<Integer>> ans, List<Integer> path, int from, int k) {
         if (target == 0 && path.size() == 4) {
             ans.add(new ArrayList<>(path));
             return;
@@ -19,12 +19,13 @@ class Solution {
         if (path.size() > 4) return;
         for (int i = from; i < nums.length; i++) {
             if (i != from && nums[i - 1] == nums[i]) continue;
+            if (nums[from] * k > target || target > nums[nums.length - 1] * k) continue;
+            
             path.add(nums[i]);
-            dfs(nums, target - nums[i], ans, path, i + 1);
+            dfs(nums, target - nums[i], ans, path, i + 1, k - 1);
             path.remove(path.size() - 1);
         }
     }
-}
 // reduce to O(n^3) using divide and conquer
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
