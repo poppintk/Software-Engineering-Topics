@@ -1,4 +1,5 @@
 class Solution {
+    // 26 vs 27 difference? sorted and unsorted 
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         

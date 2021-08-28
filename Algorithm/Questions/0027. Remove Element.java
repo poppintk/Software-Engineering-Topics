@@ -1,4 +1,5 @@
 class Solution {
+    // 26 vs 27 difference? sorted and unsorted 
     public int removeElement(int[] nums, int val) {
         if (nums == null || nums.length == 0) return 0;
         
