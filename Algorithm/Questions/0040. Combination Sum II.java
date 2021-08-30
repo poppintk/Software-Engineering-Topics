@@ -17,7 +17,7 @@ class Solution {
         }
         
         for (int i = from; i < nums.length; i++) {
-            if (i != from && nums[i] == nums[i - 1]) continue;
+            if (i != from && nums[i] == nums[i - 1]) continue; // Not fromIndex and if two consective numbers are same skip
             if (target - nums[i] < 0) continue;
             path.add(nums[i]);
             dfs(nums, target - nums[i], ans, path, i + 1);    
