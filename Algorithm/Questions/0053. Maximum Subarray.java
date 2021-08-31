@@ -1,4 +1,5 @@
 class Solution {
+    // TODO : DIVIDE AND CONQUER
     public int maxSubArray(int[] nums) {
         // let dp[i] be the maximum contiguous value ending at i
         // dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
