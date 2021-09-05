@@ -12,7 +12,7 @@ class Solution {
                 int bottom = stack.pop();
                 if (stack.isEmpty()) break;
                 int left = stack.peek();
-                int w = i - left - 1;
+                int w = i - left - 1; // left index is height of left wall, we interested in interval [left + 1, right - 1]
                 int h = Math.min(height[left], height[i]) - height[bottom];
                 ans += h * w;
             }
