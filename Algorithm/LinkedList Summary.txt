@@ -1,0 +1,17 @@
+1) reverse linkedlist
+lc 206,23, 25, 92, 143
+
+2) merge linkedlist
+LC 2, 23, 21, 445
+
+3) cycle
+LC 141, 142, 287
+
+4) delete node
+LC 203, 19, 82, 83, 237
+
+5) structure change
+LC 426, 61, 86, 109, 114, 328
+
+6) traverse linkedList
+LC 234, 160, 138
