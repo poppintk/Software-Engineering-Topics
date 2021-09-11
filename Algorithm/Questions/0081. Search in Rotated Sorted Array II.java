@@ -7,9 +7,9 @@ class Solution {
         
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] == nums[left]) {
+            if (nums[mid] == nums[left]) {  // NOTE
                 left++;
-            } else if (nums[mid] == nums[right]) {
+            } else if (nums[mid] == nums[right]) {  // NOTE
                 right--;
             } 
             // find which part is currently in
