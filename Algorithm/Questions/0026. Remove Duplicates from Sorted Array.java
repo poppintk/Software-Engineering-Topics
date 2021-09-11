@@ -1,12 +1,12 @@
 class Solution {
-    // 26 vs 27 difference? sorted and unsorted 
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         
-        int preIdx = 0; // point to the last unique item
+        int preIdx = 0; // first unique item
         for (int i = 0; i < nums.length; i++) {
-            if (nums[preIdx] != nums[i]) {
-                nums[++preIdx] = nums[i]; // Note: override value occurs after different values occurs
+            if (i != 0 && nums[i - 1] != nums[i]) {
+                preIdx++;
+                nums[preIdx] = nums[i];
             }
         }
         
