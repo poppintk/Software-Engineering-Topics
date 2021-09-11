@@ -20,7 +20,7 @@ class Solution {
         
         
         while (fast != null) {
-            while (fast.next != null && fast.val == fast.next.val) {
+            while (fast.next != null && fast.val == fast.next.val) { // in array representation, this is nums[i] == nums[i + 1]
      		    fast = fast.next;    //while loop to find the last node of the dups.
             }
             if (slow.next != fast) { //duplicates detected. if has duplicate fast not should not equal to slow
