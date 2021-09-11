@@ -24,7 +24,7 @@ class Solution {
         if (numEnd == 0) return head;
         
         ListNode fast = head;
-        while (fast.next != null && numEnd != 0) {
+        while (fast.next != null && numEnd > 0) {
             numEnd--;
             fast = fast.next;
         }
