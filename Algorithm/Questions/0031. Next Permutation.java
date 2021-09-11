@@ -29,16 +29,20 @@ class Solution {
         reverseSort(nums, i + 1, nums.length - 1);
     }
 
-    public void swap(int[] nums, int i, int j){
+    private void swap(int[] nums, int i, int j){
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
 
-    public void reverseSort(int[] nums, int start, int end){   
-        if(start > end)
+    private void reverseSort(int[] nums, int left, int right){   
+        if(left > right)
             return;
-        for(int i = start; i <= (end+start)/2; i++)
-            swap(nums, i, start + end - i);
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+            
     }
 }
