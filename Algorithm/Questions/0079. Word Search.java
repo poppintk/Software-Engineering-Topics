@@ -14,7 +14,7 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                visited[i][j] = true;
+                visited[i][j] = true; // NOTE
                 if (backTracking(visited, board, word, 0, i, j)) return true;
                 visited[i][j] = false;
             }
@@ -35,7 +35,7 @@ class Solution {
             if (!isValid(x, y, board, word)) continue;
             
             if (visited[x][y]) continue;
-            visited[x][y] = true;
+            visited[x][y] = true;  // NOTE
             if (backTracking(visited, board, word, index + 1, x, y)) return true;
             visited[x][y] = false;
         }
