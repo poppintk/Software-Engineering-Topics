@@ -12,19 +12,19 @@ class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) return head;
         
-        ListNode dummy = new ListNode(-1);
+        ListNode dummy = new ListNode(Integer.MIN_VALUE);
         dummy.next = head;
-        ListNode cur = dummy.next;
-        ListNode prev = cur;
+        ListNode fast = dummy;
+        ListNode slow = fast;
         
-        while (cur != null) {
-            while(cur != null && cur.next != null && cur.val == cur.next.val) { // find last node is duplicated
-                cur = cur.next;
+        while (fast != null) {
+            while(fast.next != null && fast.val == fast.next.val) { // find last node is duplicated
+                fast = fast.next;
             }
             
-            prev.next = cur.next;
-            prev = prev.next;
-            cur = cur.next;
+            slow.next = fast.next;
+            slow = slow.next;
+            fast = fast.next;
         }
         
         
