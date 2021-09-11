@@ -9,6 +9,6 @@ for (int i = 0; i <= heights.length; i++) { // i is the right wall
        stack.pop(); // top or bottom, stack.peek() now is left wall
        // DO SOMETHING for less/greater on both left and right case
     }
-    // DO SOMETHING for next greater number
+    // DO SOMETHING for next greater number or next smaller
     stack.push(i);
 }
