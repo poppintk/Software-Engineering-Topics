@@ -1,5 +1,5 @@
 1) reverse linkedlist
-lc 206,23, 25, 92, 143
+LC 206,23, 25, 92, 143
 
 2) merge linkedlist
 LC 2, 23, 21, 445
