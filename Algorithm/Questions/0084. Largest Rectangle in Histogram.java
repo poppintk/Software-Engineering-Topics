@@ -44,6 +44,9 @@ class Solution {
     }
 
     // base on brute forece version 2, we can optimaze solution by using monotonic stack
+    // vs 42 trap water  difference: 1) loop i <= height.length and with -1 when i == height.length
+    // 2) if left wall is empty then use current i as width
+    // 3) width i - stack.peek() - 1
     public int largestRectangleArea(int[] heights) {
         if (heights == null || heights.length == 0) return 0;
 

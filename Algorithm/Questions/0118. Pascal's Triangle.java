@@ -1,4 +1,5 @@
 class Solution {
+    // matrix[i][j] = matrix[i - 1][j] + matrix[i - 1][j - 1]
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans  = new ArrayList<>();
         if (numRows == 0){

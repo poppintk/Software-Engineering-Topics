@@ -29,8 +29,7 @@ class Solution {
         cur = n1;
         ListNode prev = null;
         int i = 0;
-        while (cur != null) {
-            if (i == k) break;
+        while (cur != null && i < k) {
             ListNode next = cur.next;
             cur.next = prev;
             prev = cur;
