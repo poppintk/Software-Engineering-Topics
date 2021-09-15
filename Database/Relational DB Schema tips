@@ -30,7 +30,7 @@ Optimistic locking vs Pessimistic locking
         WHERE sku_id=#{skuId} AND ware_id= #{wareId} AND stock - stock_locked >= #{num}
         
         
-  Pessimistic use locking, due to locking will blocking other operation, it is not great for reading. it is great for write more scenerio
+  Pessimistic use locking, due to locking，it has extra cost on maintain locks, it is not great for reading. it is great for write more scenerio
 
 ################################################################
 Performance Optimaize
