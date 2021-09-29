@@ -1,6 +1,8 @@
 class Solution {
     public boolean canPartition(int[] nums) {
-        // similar to 0, 1 backpack
+        // similar to 0/1 knapsack
+        // this questions can apply 0/1 knapsack because if there exist a subset, then found such subset form a sum / 2, then another half subset can form a sum / 2 immediately
+        // if partition into k sum then 0/1 knapsack is not longer hold 
         int sum = 0;
         for (int n : nums) {
             sum += n;
