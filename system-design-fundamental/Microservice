@@ -1,10 +1,19 @@
 Service Discovery and Service Register
+  (Eureka stopped)
+  - Nacos
+  - Consul 
+  - Zookeeper
+  
+Service Bus
   - Nacos
 
 Service Configuration Center
+  - Config
   - Nacos
   
 Circuit break & Rate Limiter & Service Downgrade
+  - Hystrix(stoped)
+  - resilience4j (popular in NA)
   - Sentinel
           Circut Break
           A service cal B service API, due to network issue or B service issue so that keep waiting. using circuit break allows B to return the downgraded data right away.
@@ -28,12 +37,16 @@ Circuit break & Rate Limiter & Service Downgrade
 
   
 API Gateway
-  - Spring Cloud Gateway
+  - Zuul (Stoped) 
+  - Spring Gateway
   
 LoadBalance
   - Spring Cloud Ribbon(open feign has integrated Ribbon)
 
 RPC Call
+  - Ribbon (in maintence)
+  - LoadBalancer
+  - Feign (stoped)
   - Spring open feign
 
 Service Trace
