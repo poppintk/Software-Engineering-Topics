@@ -30,6 +30,9 @@ Circuit break & Rate Limiter & Service Downgrade
 API Gateway
   - Spring Cloud Gateway
   
+LoadBalance
+  - Spring Cloud Ribbon(open feign has integrated Ribbon)
+
 RPC Call
   - Spring open feign
 
