@@ -72,7 +72,7 @@ Service Call
             - index = current_count % number of instances
             - available_instance_list.get(index)
             - how to ensure the thread safety?
-              it use CAS and Atomicvalue
+              it use AtomicValue CAS + spin lock (why not use lock, answer: CAS + spin lock faster)
             
         - Spring Eureka client has dependency of Ribbon
      
