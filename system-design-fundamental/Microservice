@@ -64,6 +64,17 @@ API Gateway
 Service Call
   - Ribbon (in maintence, open feign has integrated Ribbon)
     - local load balancer(Balance load over microservices) VS Nginx (Balance load over the servers)
+    - scope: in microservice client side to enable loadbalance 
+      how?
+        - get all avaible service(i.e. IP address) from the Service Dicovery Center
+        - it provides Round Robin, Random....
+          Round Robin
+            - index = current_count % number of instances
+            - available_instance_list.get(index)
+            
+        - Spring Eureka client has dependency of Ribbon
+     
+    
   - LoadBalancer
   - Feign (stoped)
   - Spring open feign
