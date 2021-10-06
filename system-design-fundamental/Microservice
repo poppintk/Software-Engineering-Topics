@@ -7,7 +7,7 @@ Service Discovery and Service Register
       Get service information(i.e. Map, key is service name and value is IP address) from the Eureka 
     - Resilence 
       - More instances of Eureka service register each other, and require all microservice register to all Eureka during service initialiation
-      - AP(CAP)
+      - AP(CAP) JAVA
       
     1) Start Eureka server
     2) Start microservices and reigster them into Eureka with service name
@@ -16,11 +16,12 @@ Service Discovery and Service Register
     5) Consumer will cache IP address in its JVM memory, by default it will be refreshed 30 seconds
   
   - Zookeeper
-    - CP(CAP)
+    - CP(CAP) JAVA
+    
+  - Consul
+    - CP(CAP) GO
     
   - Nacos
-  
-  - Consul 
  
   
 Service Bus
