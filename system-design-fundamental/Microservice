@@ -71,6 +71,8 @@ Service Call
           Round Robin
             - index = current_count % number of instances
             - available_instance_list.get(index)
+            - how to ensure the thread safety?
+              it use CAS and Atomicvalue
             
         - Spring Eureka client has dependency of Ribbon
      
