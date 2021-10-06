@@ -1,5 +1,18 @@
 Service Discovery and Service Register
-  (Eureka stopped)
+  - Eureka (stopped)
+    - Service Register
+      Registering services information(i.e. service name and IP address) into Eureka server
+    - Service Discovery
+      Get service information(i.e. Map, key is service name and value is IP address) from the Eureka 
+    - Resilence 
+      More instances of Eureka service register each other, and require all microservice register to all Eureka during service initialiation
+      
+    1) Start Eureka server
+    2) Start microservices and reigster them into Eureka with service name
+    3) Consumer services use target service name to get RPC call remote server IP address
+    4）After get the IP address of removed microservice then use HttpClient call the remove service
+    5) Consumer will cache IP address in its JVM memory, by default it will be refreshed 30 seconds
+  
   - Nacos
   - Consul 
   - Zookeeper
