@@ -59,12 +59,11 @@ Circuit break & Rate Limiter & Service Downgrade
 API Gateway
   - Zuul (Stoped) 
   - Spring Gateway
-  
-LoadBalance
-  - Spring Cloud Ribbon(open feign has integrated Ribbon)
 
-RPC Call
-  - Ribbon (in maintence)
+
+Service Call
+  - Ribbon (in maintence, open feign has integrated Ribbon)
+    - local load balancer(Balance load over microservices) VS Nginx (Balance load over the servers)
   - LoadBalancer
   - Feign (stoped)
   - Spring open feign
