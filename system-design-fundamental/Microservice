@@ -33,6 +33,9 @@ Service Configuration Center
   
 Circuit Break & Rate Limiter & Service Fallback
   - Hystrix(stopped)
+    - service consumer and service producer all require Hystrix for their API
+    - fallback trigger when current API exception occurs or dependencies service timeout
+    
   - resilience4j (popular in NA)
   - Sentinel
        Circuit Break
@@ -63,10 +66,32 @@ Circuit Break & Rate Limiter & Service Fallback
           constraint on traffic controll, like 1000 QPS
 
   
-API Gateway
-  - Zuul (Stoped) 
+Service Gateway
+  - Zuul (Stopped)
+  
   - Spring Gateway
-
+    Client send request to pring cloud gateway, then Gateway handler Mapping find the matched route by predicate, and sent request to gateway web handler
+      web handler will base on the filter chain to request to actual service to execute the logic then return 
+      NOTE: Filer has two kinds of filter chains
+      - pre
+        used for validate paramaters, permission checking, traffic monitoring, log output and potocol transfer
+      - post
+        used for formatting response body, formatting response header, log output and trafic monitoring
+        
+    - Route
+    - Predicate
+      -support operation
+        Before, After, Between, Cookie, Header, Host, Method, Path, Query
+    - Filter (can use for modifing the before request and after request)
+    example:
+      gateway:
+        routes:
+          - id: ware_route
+            uri: lb://gulimall-ware
+            predicates:
+              - Path=/api/member/**
+            filters:
+              - RewritePath=/api/(?<segment>.*), /$\{segment}  
 
 Service Call
   - RestTemplate
