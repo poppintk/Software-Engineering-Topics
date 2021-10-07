@@ -25,10 +25,20 @@ Service Discovery and Service Register
  
   
 Service Bus
+  What? Bus support two Message Queue Broker, RabbitMQ and Kafka
+  
   - Nacos
 
 Service Configuration Center
-  - Config
+  Config Server (for Application.yml)
+  - Spring Cloud Config
+    - Client side
+    - Server side: Config Server + git(keep tracking config change history)
+    - How to resolve client dynamically refetch changes in git repo?
+      - add actuator dependency to client pom.xml
+      - @RefreshScope in client
+      - requires manually make POST call to client side
+ 
   - Nacos
   
 Circuit Break & Rate Limiter & Service Fallback
@@ -70,20 +80,29 @@ Service Gateway
   - Zuul (Stopped)
   
   - Spring Gateway
-    Client send request to pring cloud gateway, then Gateway handler Mapping find the matched route by predicate, and sent request to gateway web handler
+    WHAT? Client send request to pring cloud gateway, then Gateway handler Mapping find the matched route by predicate, and sent request to gateway web handler
       web handler will base on the filter chain to request to actual service to execute the logic then return 
       NOTE: Filer has two kinds of filter chains
-      - pre
-        used for validate paramaters, permission checking, traffic monitoring, log output and potocol transfer
-      - post
-        used for formatting response body, formatting response header, log output and trafic monitoring
         
     - Route
     - Predicate
-      -support operation
+      - Supported Operation
         Before, After, Between, Cookie, Header, Host, Method, Path, Query
     - Filter (can use for modifing the before request and after request)
-    example:
+      - Lifecyle
+        - pre
+          used for validate paramaters, permission checking, traffic monitoring, log output and potocol transfer
+        - post
+          used for formatting response body, formatting response header, log output and trafic monitoring
+       
+      - Types
+        - GatewayFilter
+        - GlobalFilter
+      
+      - Customize Filter
+        implements GlobalFilter, Ordered
+      
+    - Example:
       gateway:
         routes:
           - id: ware_route
