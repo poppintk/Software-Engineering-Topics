@@ -25,7 +25,9 @@ Service Discovery and Service Register
  
   
 Service Bus
-  What? Spring Stream support two Message Queue Broker, RabbitMQ and Kafka. 
+  - Spring Stream   
+    - What? Spring Stream support two Message Queue Broker, RabbitMQ and Kafka. 
+    - group and message persistence 
    
   
   - Nacos
