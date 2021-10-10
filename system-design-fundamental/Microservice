@@ -33,7 +33,7 @@ Service Discovery and Service Register
         2) configure applicaiton.properties in the Nacos/conf/ folder
         3) configure cluster.conf in the Nacos/conf/ folder (allow the Nacos to know other Nacos server in same cluster)
         4) modify Nacos startup.sh in the Nacos/bin/ folder, allow it accept different port number
-        5) Configure Nginx and enable it as load balancer
+        5) Configure Nginx nginx.conf udner nginx/conf folder and enable it as load balancer (set upstream and root)
         6) Now we have 1 Nginx + 3 more Nacos server + 1 MySQL
  
   
@@ -73,18 +73,10 @@ Service Configuration Center
         - set "namespace" in boostrap.yml NOTE: here use the hashcode!
         
 Circuit Break & Rate Limiter & Service Fallback
-  - Hystrix(stopped)
-    - service consumer and service producer all require Hystrix for their API
-    - fallback trigger when current API exception occurs or dependencies service timeout
-    
-  - resilience4j (popular in NA)
-  - Sentinel
        Circuit Break
           Service on its maximum throughput capacity, it will stop service then call the fallback method to give friendly message
-          - process
-            - trigger break and stop service then trigger fallback
-            - recover service
-
+          - process: trigger break => stop service => trigger fallback => recover service
+    
        Fallback
           Service not able to execute in normal processing piepline and instead, it will return fallback message/data to all callers.
           i.e. Service currently not available please retry soon
@@ -94,7 +86,7 @@ Circuit Break & Rate Limiter & Service Fallback
             - Circuit Break trigger Service fallback
             - threadPool/semaphore full also trigger fallback
 
-        Circut Breaker vs Fallback
+       Circut Breaker vs Fallback
           same:
             - for availability and reliability, stoping the service
             - user eventually all see some part of feature unavailable
@@ -103,8 +95,23 @@ Circuit Break & Rate Limiter & Service Fallback
             - downgrade for entire system concerns, stop some service to release resource
 
 
-        RateLimiter:
+       RateLimiter:
           constraint on traffic controll, like 1000 QPS
+          
+  - Hystrix(stopped)
+    - requires monitoring server
+    - service consumer and service producer all require Hystrix for their API
+    - fallback trigger when current API exception occurs or dependencies service timeout
+    
+    
+  - resilience4j (popular in NA)
+  - Sentinel
+    - dependent service/component, 
+    - Great UI support and can configure settings via UI
+    - QPS vs Thread number 
+      QPS request per second(limit request), thread number(limit thread number) 
+    - sentinel does not support half open state
+    
 
   
 Service Gateway
