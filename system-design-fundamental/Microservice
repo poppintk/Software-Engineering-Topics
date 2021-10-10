@@ -22,6 +22,9 @@ Service Discovery and Service Register
     - CP(CAP) GO
     
   - Nacos
+    - why Nacos by default supports load balance? it use Ribbon internally
+    - AP + CP(can switch)
+    
  
   
 Service Bus
@@ -43,6 +46,11 @@ Service Configuration Center
       - requires manually make POST call to client side
  
   - Nacos
+    - ${spring.application.name}-${spring.profile.active}-${spring.cloud.nacos.config.file-extension} => Dataid in NACOS
+      - spring.application.name is application name
+      - spring.profile.active is pro/dev(spring.profiles.activ=dev) NOTE: This cannot be empty
+      - spring.cloud.nacos.config.file-extension is <yaml>/properties
+    
   
 Circuit Break & Rate Limiter & Service Fallback
   - Hystrix(stopped)
@@ -120,9 +128,9 @@ Service Call
     ClientHTTP lib
   - Ribbon (in maintence, open feign has integrated Ribbon)
     - local load balancer(Balance load over microservices) VS Nginx (Balance load over the servers)
-    - scope: in microservice client side to enable loadbalance 
+    - scope: in microservice client side to enable loadbalance(@LoadBalance on the configration bean<method returning RestTemplate>) 
       how?
-        - get all avaible service(i.e. IP address) from the Service Dicovery Center
+        - get all avaible service(i.e. IP address) from the Service Dicovery Center then pick one IP from the target service
         - it provides Round Robin, Random....
           Round Robin
             - index = current_count % number of instances
