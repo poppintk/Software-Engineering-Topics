@@ -25,14 +25,22 @@ Service Discovery and Service Register
     - why Nacos by default supports load balance? it use Ribbon internally
     - AP + CP(can switch)
     
+    - Cluster and persistent configuration(Important)
+      - request -> Nginx cluster -> Nacos cluster -> MySQL cluster  
+      - by default NACOS single node uses its embeded database "Derby" to store the configration information (cluster environment has distributed issue)
+      - how to setup Nacos cluster?
+        1) Linux server configure mysql database(inside Nacos/conf/schema.sql file contains MySQL runtime schema, copy it and apply to MySQL db)
+        2) configure applicaiton.properties in the Nacos/conf/ folder
+        3) configure cluster.conf in the Nacos/conf/ folder (allow the Nacos to know other Nacos server in same cluster)
+        4) modify Nacos startup.sh in the Nacos/bin/ folder, allow it accept different port number
+        5) Configure Nginx and enable it as load balancer
+        6) Now we have 1 Nginx + 3 more Nacos server + 1 MySQL
  
   
 Service Bus
   - Spring Stream   
     - What? Spring Stream support two Message Queue Broker, RabbitMQ and Kafka. 
     - group and message persistence 
-   
-  
   - Nacos
 
 Service Configuration Center
@@ -45,13 +53,25 @@ Service Configuration Center
       - @RefreshScope in client
       - requires manually make POST call to client side
  
-  - Nacos
+  - Nacos (required some configure on boostrap.yml)
     - ${spring.application.name}-${spring.profile.active}-${spring.cloud.nacos.config.file-extension} => Dataid in NACOS
       - spring.application.name is application name
       - spring.profile.active is pro/dev(spring.profiles.activ=dev) NOTE: This cannot be empty
       - spring.cloud.nacos.config.file-extension is <yaml>/properties
-    
-  
+      
+    - loading configuration
+      - DataID solution
+        - use "spring.profiles.active=xxx" to load different configuration files on NACOS
+      - Group solution
+        - default DEFAULT_GROUP
+        - same DataID but different group in NACOS
+        - set "group" in boostrap.yml
+        
+      - Namespace solution
+        - default "public"
+        - Same DataID and same Group but different namespace in NACOS
+        - set "namespace" in boostrap.yml NOTE: here use the hashcode!
+        
 Circuit Break & Rate Limiter & Service Fallback
   - Hystrix(stopped)
     - service consumer and service producer all require Hystrix for their API
