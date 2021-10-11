@@ -111,6 +111,9 @@ Circuit Break & Rate Limiter & Service Fallback
     - QPS vs Thread number 
       QPS request per second(limit request), thread number(limit thread number) 
     - sentinel does not support half open state
+    - blockHandler(violate the rule configured in UI) and fallback(java run time exception)
+      - NOTE: in case both occurs(blockHandler and fallback), blockHandler has higher priority than fallback
+    - Sentienl using Nacos as persistence solution, the dependency is sentinel-datasource-nacos 
     
 
   
@@ -174,12 +177,28 @@ Service Call
     encapsulate Feign: Annotation + Interface
       - open feign by default loadbalance is enabled
       - by default open feign timeout setting is 1s, how to change this? by configure Ribbon property(it uses Ribbon) 
-      
-  
+      - open feign will retry if failed
+
+
+Distributed Transaction 
+  - Seata
+    - concepts:
+      - global unique transactional ID
+      - 3 components
+        - Transaction Coordinator TC (Seata server)
+        - Transaction Manager TM (Bussiness logic, @GlobalTransactional)
+        - Resource Manamger RM (DB layer)
+      how?
+        1) TM request starting a global transaction and generate a global unique transaction ID XID
+        2) XID broadcast in the calling chain
+        3) RM registered branch to TC  
+        4) After RM registered, TM start global commit and rollback regarding to the XID
+        5) TC dispatched commit or rollback to all branches under the same XID
 
 Service Trace
   - Sleuth
 
 Vistualize Service Trace
   - Zipkin(Twitter)
+  
 
