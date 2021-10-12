@@ -26,13 +26,13 @@ Service Discovery and Service Register
     - AP + CP(can switch)
     
     - Cluster and persistent configuration(Important)
-      - request -> Nginx cluster -> Nacos cluster -> MySQL cluster  
-      - by default NACOS single node uses its embeded database "Derby" to store the configration information (cluster environment has distributed issue)
-      - how to setup Nacos cluster?
+      - Request -> Nginx cluster -> Nacos cluster -> MySQL cluster  
+      - By default NACOS single node uses its embeded database "Derby" to store the configration information (cluster environment has distributed issue)
+      - How to setup Nacos cluster?
         1) Linux server configure mysql database(inside Nacos/conf/schema.sql file contains MySQL runtime schema, copy it and apply to MySQL db)
-        2) configure applicaiton.properties in the Nacos/conf/ folder
-        3) configure cluster.conf in the Nacos/conf/ folder (allow the Nacos to know other Nacos server in same cluster)
-        4) modify Nacos startup.sh in the Nacos/bin/ folder, allow it accept different port number
+        2) Configure applicaiton.properties in the Nacos/conf/ folder
+        3) Configure cluster.conf in the Nacos/conf/ folder (allow the Nacos to know other Nacos server in same cluster)
+        4) Modify Nacos startup.sh in the Nacos/bin/ folder, allow it accept different port number
         5) Configure Nginx nginx.conf udner nginx/conf folder and enable it as load balancer (set upstream and root)
         6) Now we have 1 Nginx + 3 more Nacos server + 1 MySQL
  
@@ -40,7 +40,7 @@ Service Discovery and Service Register
 Service Bus
   - Spring Stream   
     - What? Spring Stream support two Message Queue Broker, RabbitMQ and Kafka. 
-    - group and message persistence 
+    - Group and message persistence 
   - Nacos
 
 Service Configuration Center
@@ -49,9 +49,9 @@ Service Configuration Center
     - Client side
     - Server side: Config Server + git(keep tracking config change history)
     - How to resolve client dynamically refetch changes in git repo?
-      - add actuator dependency to client pom.xml
+      - Add actuator dependency to client pom.xml
       - @RefreshScope in client
-      - requires manually make POST call to client side
+      - Requires manually make POST call to client side
  
   - Nacos (required some configure on boostrap.yml)
     - ${spring.application.name}-${spring.profile.active}-${spring.cloud.nacos.config.file-extension} => Dataid in NACOS
@@ -64,13 +64,13 @@ Service Configuration Center
         - use "spring.profiles.active=xxx" to load different configuration files on NACOS
       - Group solution
         - default DEFAULT_GROUP
-        - same DataID but different group in NACOS
-        - set "group" in boostrap.yml
+        - Same DataID but different group in NACOS
+        - Set "group" in boostrap.yml
         
       - Namespace solution
         - default "public"
         - Same DataID and same Group but different namespace in NACOS
-        - set "namespace" in boostrap.yml NOTE: here use the hashcode!
+        - Set "namespace" in boostrap.yml NOTE: here use the hashcode!
         
 Circuit Break & Rate Limiter & Service Fallback
        Circuit Break
@@ -87,10 +87,10 @@ Circuit Break & Rate Limiter & Service Fallback
             - threadPool/semaphore full also trigger fallback
 
        Circut Breaker vs Fallback
-          same:
+          Same:
             - for availability and reliability, stoping the service
             - user eventually all see some part of feature unavailable
-          difference:
+          Difference:
             - Circuit breaker is callee on issue, then trigger base on the rule
             - downgrade for entire system concerns, stop some service to release resource
 
