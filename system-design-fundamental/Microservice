@@ -1,41 +1,204 @@
 Service Discovery and Service Register
+  WHY? to simplify the RPC
+  - Eureka (stopped)
+    - Service Register
+      Registering services information(i.e. service name and IP address) into Eureka server
+    - Service Discovery
+      Get service information(i.e. Map, key is service name and value is IP address) from the Eureka 
+    - Resilence 
+      - More instances of Eureka service register each other, and require all microservice register to all Eureka during service initialiation
+      - AP(CAP) JAVA
+      
+    1) Start Eureka server
+    2) Start microservices and reigster them into Eureka with service name
+    3) Consumer services use target service name to get RPC call remote server IP address
+    4）After get the IP address of removed microservice then use HttpClient call the remove service
+    5) Consumer will cache IP address in its JVM memory, by default it will be refreshed 30 seconds
+  
+  - Zookeeper
+    - CP(CAP) JAVA
+    
+  - Consul
+    - CP(CAP) GO
+    
+  - Nacos
+    - why Nacos by default supports load balance? it use Ribbon internally
+    - AP + CP(can switch)
+    
+    - Cluster and persistent configuration(Important)
+      - Request -> Nginx cluster -> Nacos cluster -> MySQL cluster  
+      - By default NACOS single node uses its embeded database "Derby" to store the configration information (cluster environment has distributed issue)
+      - How to setup Nacos cluster?
+        1) Linux server configure mysql database(inside Nacos/conf/schema.sql file contains MySQL runtime schema, copy it and apply to MySQL db)
+        2) Configure applicaiton.properties in the Nacos/conf/ folder
+        3) Configure cluster.conf in the Nacos/conf/ folder (allow the Nacos to know other Nacos server in same cluster)
+        4) Modify Nacos startup.sh in the Nacos/bin/ folder, allow it accept different port number
+        5) Configure Nginx nginx.conf udner nginx/conf folder and enable it as load balancer (set upstream and root)
+        6) Now we have 1 Nginx + 3 more Nacos server + 1 MySQL
+ 
+  
+Service Bus
+  - Spring Stream   
+    - What? Spring Stream support two Message Queue Broker, RabbitMQ and Kafka. 
+    - Group and message persistence 
   - Nacos
 
 Service Configuration Center
-  - Nacos
-  
-Circuit break & Rate Limiter & Service Downgrade
-  - Sentinel
-          Circut Break
-          A service cal B service API, due to network issue or B service issue so that keep waiting. using circuit break allows B to return the downgraded data right away.
-          in this case, A not longer waiting for B to execute. This will not imapct the excution chain.
+  Config Server (for Application.yml)
+  - Spring Cloud Config
+    - Client side
+    - Server side: Config Server + git(keep tracking config change history)
+    - How to resolve client dynamically refetch changes in git repo?
+      - Add actuator dependency to client pom.xml
+      - @RefreshScope in client
+      - Requires manually make POST call to client side
+ 
+  - Nacos (required some configure on boostrap.yml)
+    - ${spring.application.name}-${spring.profile.active}-${spring.cloud.nacos.config.file-extension} => Dataid in NACOS
+      - spring.application.name is application name
+      - spring.profile.active is pro/dev(spring.profiles.activ=dev) NOTE: This cannot be empty
+      - spring.cloud.nacos.config.file-extension is <yaml>/properties
+      
+    - loading configuration
+      - DataID solution
+        - use "spring.profiles.active=xxx" to load different configuration files on NACOS
+      - Group solution
+        - default DEFAULT_GROUP
+        - Same DataID but different group in NACOS
+        - Set "group" in boostrap.yml
+        
+      - Namespace solution
+        - default "public"
+        - Same DataID and same Group but different namespace in NACOS
+        - Set "namespace" in boostrap.yml NOTE: here use the hashcode!
+        
+Circuit Break & Rate Limiter & Service Fallback
+       Circuit Break
+          Service on its maximum throughput capacity, it will stop service then call the fallback method to give friendly message
+          - process: trigger break => stop service => trigger fallback => recover service
+    
+       Fallback
+          Service not able to execute in normal processing piepline and instead, it will return fallback message/data to all callers.
+          i.e. Service currently not available please retry soon
+          Use cases:
+            - program exception
+            - timeout
+            - Circuit Break trigger Service fallback
+            - threadPool/semaphore full also trigger fallback
 
-        Downgrade
-          entire website on the high peak, service pressure increase. base on the bussiness logic and traficc. now stop the service and return downgrade data to all callers. 
-
-
-        Circut Breaker vs Downgrade
-          same:
+       Circut Breaker vs Fallback
+          Same:
             - for availability and reliability, stoping the service
             - user eventually all see some part of feature unavailable
-          difference:
+          Difference:
             - Circuit breaker is callee on issue, then trigger base on the rule
             - downgrade for entire system concerns, stop some service to release resource
 
 
-        RateLimiter:
-          traffic controll
+       RateLimiter:
+          constraint on traffic controll, like 1000 QPS
+          
+  - Hystrix(stopped)
+    - requires monitoring server
+    - service consumer and service producer all require Hystrix for their API
+    - fallback trigger when current API exception occurs or dependencies service timeout
+    
+    
+  - resilience4j (popular in NA)
+  - Sentinel
+    - dependent service/component, 
+    - Great UI support and can configure settings via UI
+    - QPS vs Thread number 
+      QPS request per second(limit request), thread number(limit thread number) 
+    - sentinel does not support half open state
+    - blockHandler(violate the rule configured in UI) and fallback(java run time exception)
+      - NOTE: in case both occurs(blockHandler and fallback), blockHandler has higher priority than fallback
+    - Sentienl using Nacos as persistence solution, the dependency is sentinel-datasource-nacos 
+    
 
   
-API Gateway
-  - Spring Cloud Gateway
+Service Gateway
+  - Zuul (Stopped)
   
-RPC Call
+  - Spring Gateway
+    WHAT? Client send request to pring cloud gateway, then Gateway handler Mapping find the matched route by predicate, and sent request to gateway web handler
+      web handler will base on the filter chain to request to actual service to execute the logic then return 
+      NOTE: Filer has two kinds of filter chains
+        
+    - Route
+    - Predicate
+      - Supported Operation
+        Before, After, Between, Cookie, Header, Host, Method, Path, Query
+    - Filter (can use for modifing the before request and after request)
+      - Lifecyle
+        - pre
+          used for validate paramaters, permission checking, traffic monitoring, log output and potocol transfer
+        - post
+          used for formatting response body, formatting response header, log output and trafic monitoring
+       
+      - Types
+        - GatewayFilter
+        - GlobalFilter
+      
+      - Customize Filter
+        implements GlobalFilter, Ordered
+      
+    - Example:
+      gateway:
+        routes:
+          - id: ware_route
+            uri: lb://gulimall-ware
+            predicates:
+              - Path=/api/member/**
+            filters:
+              - RewritePath=/api/(?<segment>.*), /$\{segment}  
+
+Service Call
+  - RestTemplate
+    ClientHTTP lib
+  - Ribbon (in maintence, open feign has integrated Ribbon)
+    - local load balancer(Balance load over microservices) VS Nginx (Balance load over the servers)
+    - scope: in microservice client side to enable loadbalance(@LoadBalance on the configration bean<method returning RestTemplate>) 
+      how?
+        - get all avaible service(i.e. IP address) from the Service Dicovery Center then pick one IP from the target service
+        - it provides Round Robin, Random....
+          Round Robin
+            - index = current_count % number of instances
+            - available_instance_list.get(index)
+            - how to ensure the thread safety?
+              it use AtomicValue CAS + spin lock (why not use lock, answer: CAS + spin lock faster)
+            
+        - Spring Eureka client has dependency of Ribbon
+  
+  - Feign (stopped)
+    encapsulate RestTemplate + Ribbon
+    
   - Spring open feign
+    encapsulate Feign: Annotation + Interface
+      - open feign by default loadbalance is enabled
+      - by default open feign timeout setting is 1s, how to change this? by configure Ribbon property(it uses Ribbon) 
+      - open feign will retry if failed
+
+
+Distributed Transaction 
+  - Seata
+    - concepts:
+      - global unique transactional ID
+      - 3 components
+        - Transaction Coordinator TC (Seata server)
+        - Transaction Manager TM (Bussiness logic, @GlobalTransactional)
+        - Resource Manamger RM (DB layer)
+      how?
+        1) TM request starting a global transaction and generate a global unique transaction ID XID
+        2) XID broadcast in the calling chain
+        3) RM registered branch to TC  
+        4) After RM registered, TM start global commit and rollback regarding to the XID
+        5) TC dispatched commit or rollback to all branches under the same XID
 
 Service Trace
   - Sleuth
 
 Vistualize Service Trace
   - Zipkin(Twitter)
+  
 
