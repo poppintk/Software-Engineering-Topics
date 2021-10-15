@@ -1,4 +1,5 @@
 class Solution {
+    // single day to buy one stock and choosing a different day in the future to sell that stock. (only one transaction)
     public int maxProfit(int[] prices) {
         int min = Integer.MAX_VALUE;
         int profit = 0;
