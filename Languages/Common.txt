@@ -1,0 +1,11 @@
+Async/Sync VS Blocking/Non-blocking 
+
+Difference: Callee & Caller 
+
+1) Async/Sync: Whether or not Caller will wait for Callee to finish callee's execution. 
+    Sync means Caller will wait for Callee to finish 
+    Async means Caller will NOT wait for Callee to finish and Caller continue to execute
+
+2) Blocking/Non-blocking: Whether or not Callee will return immediately to Caller. 
+    Blocking means Callee will NOT return immediately to Caller, Callee will execute its logic then return result to Caller.
+    Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not yet started OR finish execuate its logic)
