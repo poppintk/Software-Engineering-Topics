@@ -83,7 +83,7 @@ General issues on MQ?
         from unack status to ready status and send to other consumers
         b) message consumed failed but due to retry and double sending message
         soluction: Idempodence
-      3) Message backlog
+      3) Message Pressure on consumer/subscribe server side
         a) consumer unavaible 
         b) consumer consuming speed less than producer produce
         Soluction:
