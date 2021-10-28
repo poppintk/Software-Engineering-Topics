@@ -9,3 +9,11 @@ Difference: Callee & Caller
 2) Blocking/Non-blocking: Whether or not Callee will return immediately to Caller. 
     Blocking means Callee will NOT return immediately to Caller, Callee will execute its logic then return result to Caller.
     Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not yet started OR finish execuate its logic)
+
+
+Reactive Programming
+
+BackPressure:
+If we imagine we were being streamed tweets from twitter, it would then be up to the upstream(Services send tweets) to decide what to do. If tweets were coming in but there are no requests from the downstream(Services consume the tweets), then the upstream could drop items, store them in a buffer, or some other strategy.
+
+Essentially, this is reactive pull backpressure. We are requesting the upstream to only push a certain amount of elements, and only when we are ready.
