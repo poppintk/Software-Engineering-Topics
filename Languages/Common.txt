@@ -1,19 +1,26 @@
 Async/Sync VS Blocking/Non-blocking 
+    Main difference: Callee & Caller 
 
-Difference: Callee & Caller 
+    1) Async/Sync: Whether or not Caller will wait for Callee to finish callee's execution. 
+        Sync means Caller will wait for Callee to finish 
+        Async means Caller will NOT wait for Callee to finish and Caller continue to execute
 
-1) Async/Sync: Whether or not Caller will wait for Callee to finish callee's execution. 
-    Sync means Caller will wait for Callee to finish 
-    Async means Caller will NOT wait for Callee to finish and Caller continue to execute
-
-2) Blocking/Non-blocking: Whether or not Callee will return immediately to Caller. 
-    Blocking means Callee will NOT return immediately to Caller, Callee will execute its logic then return result to Caller.
-    Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not yet started OR finish execuate its logic)
+    2) Blocking/Non-blocking: Whether or not Callee will return immediately to Caller. 
+        Blocking means Callee will NOT return immediately to Caller, Callee will execute its logic then return result to Caller.
+        Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not        yet started OR finish execuate its logic)
 
 
 Reactive Programming
+    CompleteFuture
+        It will create a sub thread to execute the subtask immediately
+    Reactor
+        it will create a subthread to execute the subtask only when subscribe
+
+
 
 BackPressure:
-If we imagine we were being streamed tweets from twitter, it would then be up to the upstream(Services send tweets) to decide what to do. If tweets were coming in but there are no requests from the downstream(Services consume the tweets), then the upstream could drop items, store them in a buffer, or some other strategy.
+    If we imagine we were being streamed tweets from twitter, it would then be up to the upstream(Services send tweets) to decide what to do. If tweets were coming in but there are no requests from the downstream(Services consume the tweets), then the upstream could drop items, store them in a buffer, or some other strategy.
 
-Essentially, this is reactive pull backpressure. We are requesting the upstream to only push a certain amount of elements, and only when we are ready.
+    Essentially, this is reactive pull backpressure. We are requesting the upstream to only push a certain amount of elements, and only when we are ready.
+
+
