@@ -11,16 +11,23 @@ Async/Sync VS Blocking/Non-blocking
 
 
 Reactive Programming
-    CompleteFuture
-        It will create a sub thread to execute the subtask immediately
-    Reactor
-        it will create a subthread to execute the subtask only when subscribe
+    
+    - Observable + Subscriber + Subscription
+    
+    - Functional Programming
+    
+    - CompleteFuture vs Reactor
+        CompleteFuture
+            It will create a sub thread to execute the subtask immediately
+        Reactor
+            it will create a subthread to execute the subtask only when it is subscribed(Lazy)
 
+    - BackPressure:
+        Senerio:
+        The speed that data pushed by publisher is faster than subscriber can pull
+        
+        If we imagine we were being streamed tweets from twitter, it would then be up to the upstream(Services send tweets) to decide what to do. If tweets were coming in but there are no requests from the downstream(Services consume the tweets), then the upstream could drop items, store them in a buffer, or some other strategy.
 
-
-BackPressure:
-    If we imagine we were being streamed tweets from twitter, it would then be up to the upstream(Services send tweets) to decide what to do. If tweets were coming in but there are no requests from the downstream(Services consume the tweets), then the upstream could drop items, store them in a buffer, or some other strategy.
-
-    Essentially, this is reactive pull backpressure. We are requesting the upstream to only push a certain amount of elements, and only when we are ready.
+        Essentially, this is reactive pull backpressure. We are requesting the upstream(producer) to only push a certain amount of elements, and only when we are ready.
 
 
