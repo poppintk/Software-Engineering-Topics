@@ -37,11 +37,28 @@ Reactive Programming
 Spring MVC
     Request/Response Flow:            |--------------------------------------|
         Request(->)/Response(<-) <->  |Servelet Container(Tomacat) ThreadPool|  <-> thread1 <-> Filter <-> Dispacher Servlet <-> RequestMapping and HandlerMapping <-> Controller <-> Service <-> Remote Database/Remote API       
+    
+    Limit on the number of Concurrent users
         Thread Per Request Model: each request come in with one thread to handle
         configure through server.tomcat.max-threads
         by default: 200 concurrent connections
-    Issue:
-        each thread take some space in memory and horizontal scaling requires more machines(additional cost)
-    
-Spring WebFlux(Moving away from Thread Per Request Model)
         
+    Synchronous and Blocking:
+        - each thread take some space in memory and horizontal scaling requires more machines(additional cost)
+        - if there is I/O operation like reading something from DB then need to wait, and current thread must wait for reading db operation done
+        cannot be used by other things (inefficent use of resources)
+    
+        Better use with:
+            - Callback and Future
+                - Callback pass the method as parameter and bad for code maintainability(Complex)
+                - Future hard to compose multiple asynchronous operations
+            - Completable Future
+                - Easy to compose multiple Asynchronous operations
+                - Not a great fit asynchronous call with multiple items
+            
+   No Back Pressure support, say we have one API will return all items. Now there are huge data set in database.
+   if read them all application will be crashed with OUT OF MEMORY error and client might be overwhelmed with huge data
+        
+     
+Spring WebFlux(Moving away from Thread Per Request Model)
+       
