@@ -14,7 +14,9 @@ Async/Sync VS Blocking/Non-blocking
 
 Reactive Programming
     
-    - Observable + Subscriber + Subscription
+    - Observable + Subscriber + Subscription (Moving away from Thread per Request Model)
+    
+    - Asynchronous and Non Blocking
     
     - Functional Programming
     
