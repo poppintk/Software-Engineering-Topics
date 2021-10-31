@@ -10,6 +10,8 @@ Async/Sync VS Blocking/Non-blocking
         Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not        yet started OR finish execuate its logic)
 
 
+
+
 Reactive Programming
     
     - Observable + Subscriber + Subscription
@@ -31,3 +33,15 @@ Reactive Programming
         Essentially, this is reactive pull backpressure. We are requesting the upstream(producer) to only push a certain amount of elements, and only when we are ready.
 
 
+
+Spring MVC
+    Request/Response Flow:            |--------------------------------------|
+        Request(->)/Response(<-) <->  |Servelet Container(Tomacat) ThreadPool|  <-> thread1 <-> Filter <-> Dispacher Servlet <-> RequestMapping and HandlerMapping <-> Controller <-> Service <-> Remote Database/Remote API       
+        Thread Per Request Model: each request come in with one thread to handle
+        configure through server.tomcat.max-threads
+        by default: 200 concurrent connections
+    Issue:
+        each thread take some space in memory and horizontal scaling requires more machines(additional cost)
+    
+Spring WebFlux(Moving away from Thread Per Request Model)
+        
