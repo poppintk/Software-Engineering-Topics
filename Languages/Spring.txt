@@ -63,7 +63,11 @@ Spring MVC
         
      
 Spring WebFlux(Moving away from Thread Per Request Model)
-
+    How it works?
+        Request/Response <-> Server <-> RouterFunction <-> HandlerFunction
+            RouterFunction is similar to @RequestMapping
+            HandlerFunction is similar to body of method which be annotated with "@RequestMapping", it has parameters of ServerRequest and ServerResponse
+        
     Specification
         1) Publisher
             - represent data source
