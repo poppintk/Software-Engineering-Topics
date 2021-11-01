@@ -63,4 +63,40 @@ Spring MVC
         
      
 Spring WebFlux(Moving away from Thread Per Request Model)
-       
+
+    Specification
+        1) Publisher
+            - represent data source
+            public interface Publiser<T> {
+                public void subscribe(Subscriber<? super T> s);
+            }
+        2) Subscriber
+        
+            public interface Subscriber<T> {
+                public void onNext(T t);
+                public void onError(Throwable t);
+                public void onComplete();
+                public void onSubscribe(Subscription s);
+            }
+            
+        3) Subscription
+            public interface Subscription {
+                public void request(long n);
+                public void cancel();
+            }
+            
+            
+        Publisher/Subscriber Event Flow
+            1) Subscriber subscribe to Publisher
+            
+            // step 2-3 is to make contract between Subsciber and Publisher how much data to send
+            2) Publisher sent Subscription object to Subscriber
+            3) Subscriber request(n) to Publisher, by default request all data in data stream (Back pressure)
+            
+            4) Publisher sent onNext(data) to Subscriber for n event data
+            5) Publisher call onComplete to Subscriber after all data sent
+        
+        4) Processor
+            public interface Processor<T, R> extends Subscriber<T>, Publiser<R> {}
+
+
