@@ -1,0 +1,36 @@
+In disbuted system global unique Id is most common issue that needs to resolve.
+
+Distributed ID must be: 1) Global unique: there must be only identifier in the entire system and must not be duplicated 2) Security: if ID is contious and malicious user is too easy to guess what's next id, like order id then milicious user can fetch data they want 3) high availability: ID generator system must be high availability and high performance to 4) sharding support: generatedID must support sharding mechanism
+
+Global unique ID generator implementation strategies: 1) Database auto increment sequence or field genrated ID
+Pros:
+Base on database system and low cost, easy, with minimal code implementation
+Cons: 1) highly depends on DB, DB will become the bottle neck of entire system and
+when it come to db migration or need to support different type of DB. This will become harder to support 2) Single point Failure. under situation like no sharding situation 3) data inconsistency: under the master-slaves(replication), there could exist data inconsistency when master failover to one of slaves(id is generated twice) 4) harder for extension: under higher thoughput requirement, single database cannot filfull requirement
+
+            improvement:
+                1) have multiple master DB and each master DB support different numbers in skip
+                    i.e. Master1 support 1,4,7, 10
+                    Master2 support 2, 5, 8, 11
+                    Master3 support 3, 6, 9
+                    in this way can recude the heavy load on DB
+
+
+    2) UUID: consist of 5 part i.e. 550e8400-e29b-41d4-a716-44665544000
+        Pros:
+            Easy, local generated, API calling friendly, high performance, no network cost, no performance issue
+            Global unique, and good support in database migration and data merge scenario
+
+        Cons:
+            - higher storate cost (UUID length)
+            - in most case UUID is stored as string in dababase(slow query time), so avoid to use it as the primary key
+            - UUID is unordered sequence and it is not great support for SQL dabase use B+ tree, Slower insertion time
+            - not human readable
+        improvement:
+            solve human reable
+                - use UUID to int64 algorithm
+            solve unordered sequence
+                - NHibernate proved Comb algorithm (combined guid/timestamp). keep GUID 10 bytes and use another 6 bytes to represent GUID generated time
+
+    3) Redis generated ID
+
