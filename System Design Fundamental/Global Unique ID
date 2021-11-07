@@ -32,5 +32,24 @@ when it come to db migration or need to support different type of DB. This will 
             solve unordered sequence
                 - NHibernate proved Comb algorithm (combined guid/timestamp). keep GUID 10 bytes and use another 6 bytes to represent GUID generated time
 
-    3) Redis generated ID
+    3) Redis as ID generator
+        when use DB to generate ID not meeting performance requirement, we could use Redis as ID generator.
+        for example:
+            assume that we have 5 redis servers and each skip step in a single server is 5
 
+            Redis A：1,6,11,16,21
+            Redis B：2,7,12,17,22
+            Redis C：3,8,13,18,23
+            Redis D：4,9,14,19,24
+            Redis E：5,10,15,20,25
+
+            once this is configure then it is not mutable in the future, but usually 3-5 servers are good enough
+
+        Pros:
+            performance are better than DB approach, generated ID are order sequence(good for pagenation)
+        Cons:
+            Required Redis and increase system complexity
+            requires some coding and configration
+            not great support of increasing throughput
+
+    4) Twitter snowflake algorithm
