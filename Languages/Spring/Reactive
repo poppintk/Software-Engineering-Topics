@@ -1,1 +1,34 @@
 Reative Stream are immutable
+
+Flux.delayElements(Duration.ofMillis(unit)); // delay for unit time 
+
+
+Map()
+  - one to one transformation
+  - Does the simple transformation form T to V
+  - Sync transformation
+  - Does not support transformations taht returns Publisher
+
+flatMap() 
+  - one to N transformations
+    i.e. "ALEX" -> ["A", "L", "E", "X"]
+  - Does more than just transformation. Subscribes to Flux or Mono that's part of the transformation and then flattens it and sends it downstream
+  - Async transformation (due to async when no gurrantee the ordering)
+  - Use it with transformations that returns Publisher
+  
+concatMap()
+  - similar to flatMap(), the only difference is concatMap will preserve the ordering even it's async operations. it will wait for the all async operations to preserve the ordering
+  - use concatMap() if ordering matter
+  
+
+flatMap in Mono
+  - use it when the transformation return a Mono(i.e. Mono<List<String>>)
+    String s -> Mono<List<String>>
+  
+  - Returns a Mono<T>
+  
+  - Use flatMap if the transformation involves making a REST API call or any kind of functionality that can be done asynchronously
+ 
+  
+flatMapMany() in Mono
+  - works
