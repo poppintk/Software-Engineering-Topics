@@ -14,6 +14,7 @@ Debug setting for error trace
     - Java Agent that runs alongside your app
     - It collects the stack trace information of each operator without any performance overhead(PRD)
     - Use it in SpringBoot
+      - requires to import the dependency of reactor-tools
       - call ReactorDebugAgent.init(); in your main function
       - in the test case method should also call ReactorDebugAgent.processExistingClasses();
 
@@ -26,7 +27,7 @@ Map()
   - one to one transformation
   - Does the simple transformation form T to V
   - Sync transformation
-  - Does not support transformations taht returns Publisher
+  - Does not support transformations that returns Publisher
 
 flatMap() 
   - one to N transformations
