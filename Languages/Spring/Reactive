@@ -15,6 +15,7 @@ Debug setting for error trace
     - It collects the stack trace information of each operator without any performance overhead(PRD)
     - Use it in SpringBoot
       - call ReactorDebugAgent.init(); in your main function
+      - in the test case method should also call ReactorDebugAgent.processExistingClasses();
 
 
 
