@@ -1,5 +1,23 @@
 Reative Stream are immutable
 
+Debug setting for error trace
+  Hooks.onOperatorDebug()
+    - on DEV use Hooks.onOperatorDebug() in Main method
+    - avoid to use it on PRD as it may slow down the performance of the app
+    
+  checkpoint()
+    - on your functional calling chain call the checkpoint("point")
+    - drawback of this approach is we need to call this function everywhere!
+    
+  ReactorDebugAgent
+    - This is recommended option for debugging exceptions in project Reactor
+    - Java Agent that runs alongside your app
+    - It collects the stack trace information of each operator without any performance overhead(PRD)
+    - Use it in SpringBoot
+      - call ReactorDebugAgent.init(); in your main function
+
+
+
 Flux.delayElements(Duration.ofMillis(unit)); // delay for unit time 
 
 
