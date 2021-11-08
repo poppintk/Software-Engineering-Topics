@@ -31,4 +31,68 @@ flatMap in Mono
  
   
 flatMapMany() in Mono
-  - works
+  - similar to flatMap in Mono, only difference is return Flux<T>
+  
+  
+transform()
+  - Used to transform from one type to another (increase Reuseability)
+  - Accepts Function Functional Interface
+    - Function Functional Interface got released as part of Java 8
+    - Input- Publisher(Flux or Mono)
+    - Output - Publisher(Flux or Mono)
+
+defaultIfEmpty()
+  - there exist empty element in Flux or Mono
+  - in such case we use defaultIfEmpty("default")
+
+switchIfEmpty() 
+  - similar to defaultIfEmpty() except it pass a lambda function, map a Flux to Flux or Mono to Mono
+  
+  
+  
+Combining Flux & Mono
+
+contact() & concatWith()
+  - combine two reactive streams into one Flux
+  - concatenation of Reactive Streams happends in a sequence
+    - First one is subscribed first and completes
+    - Second one is subscribed after that and then completes
+  - concat() - static method in Flux
+  - concatWith() - instance method in Flux and Mono
+  
+  
+merge() & mergeWith()
+  - Both the publisher are subscribed at the same time
+    - Publishers are subscribed eagerly and the merge happen in an interleaved fashion 
+      Flux 1 -> A, B, C
+      Flux 2 -> E, F, G
+        -> A,E,B,F,C,G
+    - concat() subscribes to Publishers in a sequence
+  - merge() - static method in Flux
+  - mergeWith() - instance method in Flux and Mono
+  
+  
+  mergeSequential()
+    - combine two Publishers (Flux) into one
+    - Static method in Flux
+    - Both the publishers are subscribed at the same time
+      - Publishers are subscribed eagerly
+      - Even though the puglishers are subscribed eagerly the merge happens in a sequence
+      
+  zip() & zipWith()
+   - zip two publishers together
+    i.e.
+      abcFlux = FLux.just("A", "B", "C");
+      defFlux = Flux.jsut("D", "E", "F");
+      return Flux.zip(abcFlux, defFlux, (first, second) -> first + second); // "AD", "BE", "CF"
+   - Waits for all the Publishers involved in the transformation to emit one element
+    - Continues until one publisher sends an OnComplete event
+    
+  - zip() 
+    - static method in Flux
+    - can merge up to 2 to 8 Publishers into one
+  - zipWith() 
+    - instance method in Flux and Mono
+    - merge two Publisher into one
+    
+    
