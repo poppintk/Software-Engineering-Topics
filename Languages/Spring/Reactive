@@ -1,5 +1,8 @@
 Reative Stream are immutable
 
+Use buffer(10).flatMap(batch -> serviceCall(batch))
+// it will process 10 each time and keep connection open 
+
 Debug setting for error trace
   Hooks.onOperatorDebug()
     - on DEV use Hooks.onOperatorDebug() in Main method
@@ -24,13 +27,15 @@ Flux.delayElements(Duration.ofMillis(unit)); // delay for unit time
 
 
 Map()
-  - one to one transformation
+  - For basic transformation Non-IO operations
+  - One to one transformation
   - Does the simple transformation form T to V
   - Sync transformation
   - Does not support transformations that returns Publisher
 
-flatMap() 
-  - one to N transformations
+flatMap()
+  - For IO operations
+  - One to N transformations
     i.e. "ALEX" -> ["A", "L", "E", "X"]
   - Does more than just transformation. Subscribes to Flux or Mono that's part of the transformation and then flattens it and sends it downstream
   - Async transformation (due to async when no gurrantee the ordering)
@@ -100,6 +105,9 @@ merge() & mergeWith()
       - Even though the puglishers are subscribed eagerly the merge happens in a sequence
       
   zip() & zipWith()
+   Note: when using zip in a case that 10 api calls and one call fail, it will not clean up heap memory immediately
+   as solution always using zipDealyError() will wait for all calls and clean up heap memory
+  
    - zip two publishers together
     i.e.
       abcFlux = FLux.just("A", "B", "C");
