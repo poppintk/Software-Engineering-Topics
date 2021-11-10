@@ -122,5 +122,30 @@ merge() & mergeWith()
   - zipWith() 
     - instance method in Flux and Mono
     - merge two Publisher into one
+
+
+doOn*CallBacks
+    - those operators allow you to peek into the events that are emitted by the Publisher(Flux or Mono)
+    - Those are also called non - side effect operators
+        - they don't change the original sequence at all
+    - some of operators:
+        - doOnSubscribe(): Invoked for every new subscription from the subscriber
+        - doOnNext(): Invoked for every element that's emitted from the publisher
+        - doOnComplete(): Invoked when the Completion signal is sent from the publisher
+        - doOnError(): Invoked when an exception signal is sent from the publisher
+        - doFinally(): Invoked in a successful or error scenario
+
+    - when to use doOn*CallBack operators?
+        - used for debugging an issue in your local environment
+        - send a notificaiton when the reactive sequence completes or errors out
     
+Exception Handling in Project Reactor
+  1) Recover from an Exception
+    - onErrorReturn()
+    - onErrorResume()
+    - onErrorContinue()
+  
+  2) Take an Action and throw the Exception
+    - onErrorMap()
+    - doOnError()
     
