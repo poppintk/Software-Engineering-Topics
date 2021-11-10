@@ -142,10 +142,19 @@ doOn*CallBacks
 Exception Handling in Project Reactor
   1) Recover from an Exception
     - onErrorReturn()
+      - provode single default value as fallback
     - onErrorResume()
+      - Lambda Function interface, take a exception as input and output Publisher 
     - onErrorContinue()
-  
+      - Lambda BiConsumer interface, takes exception and value that triggerd the error
   2) Take an Action and throw the Exception
     - onErrorMap()
+      - Catches the exception
+      - Transforms the exception from one type to another
+      - Does not recover from the exception
+      
     - doOnError()
-    
+      - Catches the exception
+      - Take an action when an Exception occurs in the pipeline
+      - Does not modify the Reactive Stream
+      - Error still gets propagated to the caller
