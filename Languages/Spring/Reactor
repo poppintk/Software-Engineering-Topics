@@ -152,9 +152,33 @@ Exception Handling in Project Reactor
       - Catches the exception
       - Transforms the exception from one type to another
       - Does not recover from the exception
+      - throw new Exception() in the body, not return
       
     - doOnError()
       - Catches the exception
       - Take an action when an Exception occurs in the pipeline
       - Does not modify the Reactive Stream
       - Error still gets propagated to the caller
+
+Retry, retryWhen() and repeat()
+  1) retry()
+    - Use this operator to retry failed exceptions
+    - When to use it?
+       - Code interacts with external systems through network
+         e.g. Resful API calls and DB calls
+    - retry() : Retry the failed exception indefinitely
+    - retry(n) : retry the failed exception "n" number of times where n is long value
+  2) retryWhen
+    - retryWhen() is more advanced compared to retry(), support exponential backoff
+    - Conditionally perform retry on specific exceptions
+    
+  3) repeat()
+    - Used to repreat an existing sequence
+    - This operator gets invoked after the onCompletion() event from the existing sequence
+    - Use it when you have an use-case to subscribe to same publisher again
+    - This operator works as long as No Exception is thrown
+    - repeat() : Subscribes to the publisher indefinitely
+    - repeat(n) : Subscribes to the publisher "N" times
+    
+
+
