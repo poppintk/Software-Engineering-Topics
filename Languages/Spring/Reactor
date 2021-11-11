@@ -180,5 +180,31 @@ Retry, retryWhen() and repeat()
     - repeat() : Subscribes to the publisher indefinitely
     - repeat(n) : Subscribes to the publisher "N" times
     
-
-
+Reactor Execution Model
+Note: in Reactor any code with delay operations(from Reactor) and that code will be handled by different threads.
+  delay Operfactions(from Reactor) will swtiched to parallel thread which controlled by Scheduler.
+  
+  - Reactor Execution model is determined by Scheduler
+  - Scheduler is an interface which is part of the Project Reactor
+  - Similar to ExecutorService in Java which takes care of scheduling and executing tasks
+  - By default the data flows in the thread where the subscribe() was invoked
+  
+  Scheduler Options
+    - Schedulers is a factory class that can be used to switch the threads in the reactive pipeline execution
+    - Schedulers.parallel()
+      - it has a fixed pool of workers. No of threads = No of CPU cores in your machine
+      - The time based operators use this by default(delayElements(), interval())
+    - Schedulers.boundElastic()
+      - it has a bounded elastic thread pool of worker
+      - The no of threads can grow based on the need. It can increase up to 10X no of CPU cores
+      - This is ideal for making Blocking IO calls
+    - Schedulers.single()
+      - A single resuable thread for executing the tasks
+      
+  pulblishOn(Scheduler s)
+    - This operator is used to hop the Thread of execution of reactive pipleline from one to another
+    - When to use publishOn(Scheduler s)?
+      - Never block the thread in reactive programming
+      - Blocking operation in the reactive pipeline can be performed after publishOn operator
+      - The thread of execution is determined by the Scheduler that passed to it
+    
