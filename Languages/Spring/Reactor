@@ -1,5 +1,10 @@
 Reative Stream are immutable
 
+How perform conditional logic in Reactor?
+use filter() and map()/flatMap()/ flatMapMany()
+see this example https://rangle.io/blog/rxjs-where-is-the-if-else-operator/
+
+
 Use buffer(10).flatMap(batch -> serviceCall(batch))
 // it will process 10 each time and keep connection open 
 
