@@ -219,6 +219,10 @@ Note: in Reactor any code with delay operations(from Reactor) and that code will
       - when blocking code is part of the libarary where publishOn() is not added to it
         - Use subscribeOn() to influence the upstream to switch the tread
     
-    
-    
-    
+
+Push Model: servers that initiate(who did it on first) inforamtion updates to clients
+Pull Model: clients that initiate requests to servers        
+Issue on Push Model
+  1) Publisher overwhelmed with more data than the subscriber can handle
+  2) data might be pushed at a faster rate than the subscriber can handle
+   
