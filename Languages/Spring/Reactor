@@ -207,4 +207,18 @@ Note: in Reactor any code with delay operations(from Reactor) and that code will
       - Never block the thread in reactive programming
       - Blocking operation in the reactive pipeline can be performed after publishOn operator
       - The thread of execution is determined by the Scheduler that passed to it
+    - Operators after publishOn() call will use the same thread comming from the Scheduler(like ExecutorService)
+    - publishOn() influences the Thread downstream(operation after publishOn())
+  
+  subscribeOn(Scheduler s)
+    - This operator is used to hop the Thread of execution of the reactive pipeline from one to another
+    - subscibeOn() is used to influence the thread upstream&downstream(operation before also after)
+      - It influences the operators above the subscribeOn() to switch the thread
+    - subscribeOn() impacts the whole reactive pipeline 
+    - When to use it?
+      - when blocking code is part of the libarary where publishOn() is not added to it
+        - Use subscribeOn() to influence the upstream to switch the tread
+    
+    
+    
     
