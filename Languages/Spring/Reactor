@@ -227,7 +227,32 @@ Note: in Reactor any code with delay operations(from Reactor) and that code will
 
 Push Model: servers that initiate(who did it on first) inforamtion updates to clients
 Pull Model: clients that initiate requests to servers        
-Issue on Push Model
-  1) Publisher overwhelmed with more data than the subscriber can handle
-  2) data might be pushed at a faster rate than the subscriber can handle
+  - Issue on Push Model
+    1) Publisher overwhelmed with more data than the subscriber can handle
+    2) data might be pushed at a faster rate than the subscriber can handle
+  
+  - onBackPressueDrop()
+    - Overrides the subscribers request and requests for unbounded data
+    - It stores all the data in an interal queue
+    - Drops the remaining elements that are not needed by the subscriber
+    - This operator helps to track the items that are not needed by the subscriber
+    
+  - onBackPressureBuffer()
+    - Overrides the subscribers request and requests for unfounded data
+    - It stores all the data in an internal queue
+    - Buffers the remaining elements that are not needed by the subscriber
+    - The advantage is that the following requests after the initial request for data
+    from the subscriber does not need to go all the way to the publisher
    
+  - onBackPressureError()
+    - Overrides the subscribers request and requests for unbounded data
+    - It stores all the data in an internal queue
+    - Throws an OverflowException when the publisher sends more data than the subscriber's requested amount
+    
+    
+Data parallelism in Reactor
+  Note: Reactive Flow is sequential by default
+  - ParallelFlux
+    - The idea behind ParallelFlux is to leverage the multi-core processors that we have in today's hardware
+    - MultiCore = Process multiple things at the same time
+    - use .parallel().runOn(Schedulers.parallel()) How is this defferent from subscribeOn(Schedulers.parallel())
