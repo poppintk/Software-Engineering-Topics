@@ -1,0 +1,13 @@
+Image
+    # download image
+    docker pull nginx
+
+    # download specific image
+    docker pull redis:6.2.4
+
+    # check all downloaded images
+    docker images
+
+    # remove docker image 
+    docker rmi <IMAGE ID>
+
