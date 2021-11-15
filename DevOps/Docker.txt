@@ -11,3 +11,31 @@ Image
     # remove docker image 
     docker rmi <IMAGE ID>
 
+Container
+    docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+    # -d  -> Runing docker container in background
+    # --restart=always -> rebooting docker also restart container
+    # -p -> IP mapping from <RUNNING MACHINE> to <CONTAINER> 
+    docker run --name=mynginx  -d  --restart=always -p 88:80 nginx
+
+    # check all running containers
+    docker ps
+    
+    # check all containers(including stopped container)
+    docker ps -a
+
+    # delete container 
+    docker rm  <CONTAINER_ID>/<NAME>
+    
+    # force to deleting container are currently running  
+    docker rm -f mynginx   
+
+    # Stop container
+    docker stop <CONTAINER_ID>/<NAME>
+    
+    # restart container
+    docker start <CONTAINER_ID>/<NAME>
+
+    # update container setting 
+    docker update <CONTAINER_ID>/<NAME> --restart=always
