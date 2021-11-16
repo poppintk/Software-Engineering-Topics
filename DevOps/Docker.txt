@@ -39,3 +39,10 @@ Container
 
     # update container setting 
     docker update <CONTAINER_ID>/<NAME> --restart=always
+
+
+Change Application Setting inside Container 
+    # enter into application inside container 
+    docker exec -it 容器id  /bin/bash
+    
+
