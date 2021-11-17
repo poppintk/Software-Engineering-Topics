@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=Fi9pgrMlQZY&list=PLhW3qG5bs-L_ZCOA4zNPSoGbnVQ-rp_dG&index=2
+
 Jenkinsfile
   - it is Pipeline(Build > Deploy > Test > Release) as a code
     - start Jenkins
@@ -8,4 +10,15 @@ Jenkinsfile
   - A jenkinsfile can be written using two types of syntax - Declarative and Scripted.
   Both are written with Groovy but have diff structure
   
+  
+Setup Jenkins on Tomcat
+  - Tomcat 5+
+  - Java 7 + 
+  - steps:
+    - download Tocat and unzip and place tomcat folder at any location
+    - Copy&Place the the jenkins.war file inside tomcat/webapps folder
+    - Goto terminal
+      - goto tomcat/bin directory
+      - give all files appropriate permission
+    - start Tomcat: ./startup.sh
   
