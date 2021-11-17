@@ -1,0 +1,11 @@
+Jenkinsfile
+  - it is Pipeline(Build > Deploy > Test > Release) as a code
+    - start Jenkins
+    - install Pipeline Plugin
+    - create a new job
+    - create or get Jenkinsfile in Pipeline section
+    - Run and check output
+  - A jenkinsfile can be written using two types of syntax - Declarative and Scripted.
+  Both are written with Groovy but have diff structure
+  
+  
