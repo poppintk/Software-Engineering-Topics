@@ -21,4 +21,5 @@ Setup Jenkins on Tomcat
       - goto tomcat/bin directory
       - give all files appropriate permission
     - start Tomcat: ./startup.sh
-  
+    - verify it tomcat started: localhost:8080
+    - verify it jenkins is running: localhost:8080/jenkins
