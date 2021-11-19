@@ -42,7 +42,28 @@ Container
 
 
 Change Application Setting inside Container 
-    # enter into application inside container 
-    docker exec -it 容器id  /bin/bash
-    
+    1) Change internal setting
+        # enter into application inside container 
+        docker exec -it 容器id  /bin/bash
+    2) Mounting to external setting 
+        docker run --name=mynginx   \
+        -d  --restart=always \
+        -p  88:80 -v /data/html:/usr/share/nginx/html:ro  \
+        nginx
+
+
+Commit Changes
+    1)  Commit to local docker (like git local repo)
+
+    docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+    docker commit -a "MESSAGE HERE"  -m "YOUR CHANGE" 341d81f7504f guignginx:v1.0
+
+    2) Image Transfer 
+        # packaging docker container into tar files
+        docker save -o abc.tar guignginx:v1.0
+
+        # share tar files with other machine and other machine can load this tar file into its container local repo
+        docker load -i abc.tar
+
+
 
