@@ -102,3 +102,34 @@ Pushing to Remote Repo
     # Now other machine can pull
     docker pull leifengyang/guignginx:v1.0
 
+
+Build Application with docker
+    
+    1) setup Dockerfile in project 
+        simple example:
+            FROM openjdk:8-jdk-slim
+            LABEL maintainer=leifengyang
+            COPY target/*.jar   /app.jar
+            ENTRYPOINT ["java","-jar","/app.jar"]
+
+    2) Running the command build application into images
+        docker build -t java-demo:v1.0 .
+    
+    3) run application in docker
+        docker run -d -p 8080:8080 --name myjava-app java-demo:v1.0 
+        
+       if need to share image
+            # login docker hub
+            docker login
+
+            # naming old imange
+            docker tag java-demo:v1.0  leifengyang/java-demo:v1.0
+
+            # pushing to docker hub
+            docker push leifengyang/java-demo:v1.0
+
+            # other machine now can pull it
+            docker pull leifengyang/java-demo:v1.0
+
+            # ohter machine now can run it
+            docker run -d -p 8080:8080 --name myjava-app java-demo:v1.0 
