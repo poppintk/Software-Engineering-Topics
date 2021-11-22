@@ -105,7 +105,7 @@ Pushing to Remote Repo
 
 Build Application with docker
     
-    1) setup Dockerfile in project 
+    1) Setup Dockerfile in project 
         simple example:
             FROM openjdk:8-jdk-slim
             LABEL maintainer=leifengyang
@@ -115,7 +115,7 @@ Build Application with docker
     2) Running the command build application into images
         docker build -t java-demo:v1.0 .
     
-    3) run application in docker
+    3) Run application in docker
         docker run -d -p 8080:8080 --name myjava-app java-demo:v1.0 
         
        if need to share image
@@ -128,8 +128,19 @@ Build Application with docker
             # pushing to docker hub
             docker push leifengyang/java-demo:v1.0
 
-            # other machine now can pull it
+            # Other machine now can pull it
             docker pull leifengyang/java-demo:v1.0
 
-            # ohter machine now can run it
+            # Other machine now can run it
             docker run -d -p 8080:8080 --name myjava-app java-demo:v1.0 
+            
+     4) Deploy middleware
+            docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+            # Start redis with customized settings
+
+            docker run -v /data/redis/redis.conf:/etc/redis/redis.conf \
+            -v /data/redis/data:/data \
+            -d --name myredis \
+            -p 6379:6379 \
+            redis:latest  redis-server /etc/redis/redis.conf
