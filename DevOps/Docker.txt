@@ -1,14 +1,14 @@
 Image
-    # download image
+    # Download image
     docker pull nginx
 
-    # download specific image
+    # Download specific image
     docker pull redis:6.2.4
 
-    # check all downloaded images
+    # Check all downloaded images
     docker images
 
-    # remove docker image 
+    # Remove docker image 
     docker rmi <IMAGE ID>
 
 Container
@@ -19,25 +19,25 @@ Container
     # -p -> IP mapping from <RUNNING MACHINE> to <CONTAINER> 
     docker run --name=mynginx  -d  --restart=always -p 88:80 nginx
 
-    # check all running containers
+    # Check all running containers
     docker ps
     
-    # check all containers(including stopped container)
+    # Check all containers(including stopped container)
     docker ps -a
 
-    # delete container 
+    # Delete container 
     docker rm  <CONTAINER_ID>/<NAME>
     
-    # force to deleting container are currently running  
+    # Force to deleting container are currently running  
     docker rm -f mynginx   
 
     # Stop container
     docker stop <CONTAINER_ID>/<NAME>
     
-    # restart container
+    # Restart container
     docker start <CONTAINER_ID>/<NAME>
 
-    # update container setting 
+    # Update container setting 
     docker update <CONTAINER_ID>/<NAME> --restart=always
 
 
@@ -84,14 +84,14 @@ Commit Changes
 
 
 Pushing to Remote Repo 
-    # tagname is version number
+    # The tagname is version number
     docker tag local-image:tagname new-repo:tagname
     docker push new-repo:tagname
 
-    # change old image name into new name that repo requires
+    # Change old image name into new name that repo requires
     docker tag guignginx:v1.0 leifengyang/guignginx:v1.0
 
-    # login docker hub
+    # Login docker hub
     docker login       
     docker logout
 
