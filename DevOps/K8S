@@ -61,3 +61,9 @@ NodePort - port exposed on the host machine(Postman can reach)
 targetPort - This is the actual port on which your application is running inside the container.
 port - port for service and redirect to targetPort
 
+------------------------
+ETCD Storage
+ - v2 is in memory database and v3 is local database
+ - K8S cluster using Etcd v3 and v2 has been deprecated in K8S v1.11
+
+
