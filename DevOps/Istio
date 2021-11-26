@@ -1,0 +1,6 @@
+Istio is a "Service Mesh"
+
+A Service Mesh is an extra layer of software you deploy alongside your Kubernetes cluster
+
+Kubernetes not good at expose details intercommunication between pods(S )
+
