@@ -15,3 +15,7 @@ Traffic Management
     -Deploy a new version of a software component(for us, new image)
     but only make that new image "live" for a percentage of the time 
     Most of the time, the old version is the one being used (A/B testing)
+  
+  VirtualService(Routing Configuration)
+    - A VirtualService enables us to configure custom routing rules to the service mesh
+    
