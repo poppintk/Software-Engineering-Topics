@@ -4,4 +4,14 @@ A Service Mesh is an extra layer of software you deploy alongside your Kubernete
 
 Kubernetes not good at expose details intercommunication between pods(S )
 
-Envoy == Proxy == SideCar == Running as contianer
+
+Telemetry
+  Envoy == Proxy == SideCar == Running as contianer
+  Jeager(UI inteface for distributed trace)
+  Kiali(UI interface for distribted trace)
+
+Traffic Management
+  Canaries
+    -Deploy a new version of a software component(for us, new image)
+    but only make that new image "live" for a percentage of the time 
+    Most of the time, the old version is the one being used (A/B testing)
