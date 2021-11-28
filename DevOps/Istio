@@ -4,3 +4,4 @@ A Service Mesh is an extra layer of software you deploy alongside your Kubernete
 
 Kubernetes not good at expose details intercommunication between pods(S )
 
+Envoy == Proxy == SideCar == Running as contianer
