@@ -7,7 +7,7 @@ Kubernetes not good at expose details intercommunication between pods(S )
 
 Telemetry
   Envoy == Proxy == SideCar == Running as contianer
-  Jeager(UI inteface for distributed trace)
+  Jeager(UI inteface of Istio)
   Kiali(UI interface for distribted trace)
 
 Traffic Management
@@ -19,3 +19,5 @@ Traffic Management
   VirtualService(Routing Configuration)
     - A VirtualService enables us to configure custom routing rules to the service mesh
     
+  DestinationRule
+    - Configuration of Istio Load Balancing, Defining which pods should be part of each subset
