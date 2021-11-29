@@ -49,7 +49,7 @@ Components:
     
     
 Pods are group of containers
-Service: How we discover IP address of the individual pod
+Service: How we discover IP address of the individual pod(Could be cluster of pods)
 Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
 
