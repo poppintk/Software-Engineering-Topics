@@ -4,14 +4,17 @@ A Service Mesh is an extra layer of software you deploy alongside your Kubernete
 
 Kubernetes not good at expose details intercommunication between pods(S )
 
+Envoy == Proxy == SideCar == Running as contianer
+
+The proxies run after a container makes a request
 
 Telemetry
-  Envoy == Proxy == SideCar == Running as contianer
   Jeager(UI inteface of Istio)
   Kiali(UI interface for distribted trace)
 
 Traffic Management
   Canaries
+    Note: This traffic is going through proxy(SideCar)
     -Deploy a new version of a software component(for us, new image)
     but only make that new image "live" for a percentage of the time 
     Most of the time, the old version is the one being used (A/B testing)
@@ -30,11 +33,18 @@ Load Balancing
 Gateways
   Kubernete provide ingress as Gateway and Istio uses Istio Gateway
   Why Istio Gateway?
-  
+    Because when request coming from F/E(external request) is calling the url directly and it is not going through the Proxy. as result, the "Traffic Management - Canaries" 
+    are not take effect. Solution to this we need "Istio Ingress Gateway" which is edge proxy 
   
 Dark Releases
 
 Fault Injection
 
 Circuit Breaking
-
+  Cascading failure
+    - one part of system failure trigger series of microservices failure in the chain
+    - when entire system goes down, hard to find out root cause in entire complex system
+  
+  
+  
+  
