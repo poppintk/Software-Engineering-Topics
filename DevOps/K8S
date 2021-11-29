@@ -15,32 +15,35 @@ Use case:
 
 Components:
   Master:
-    1) Kube-api server:
-      - the entrance for external system to interact with K8S
-      - provide authentication, authorization, access control and API register and discovery
+    1) kubectl command line inteface 
+    2) Web UI
     
-    2) etcd
+    3) etcd
       - key value based database for K8S as all data cluster backend database
       - K8S cluster etcd database usually need a backup plan 
     
-    3) Kube-scheduler
+    4) Kube-scheduler
       - monitoring those newly created Pods and manage to schedule nodes to run Pods
       - it must use master to schedule all K8S cluster operations
     
-    4) Kube-controller-manager
+    5) Kube-controller-manager
         a) Node Contorller: response and alert issues on the nodes
         b) Replication Controller: used for every replication controller to maintain correct number of Pods
         c) Endpoints Controller: used for adding endpoints(server or Pod)
         d) Service Account & Token Controllers: create default account and API token for the new naming space
-        
+    
+    6) Kube-api server:
+     Note: all components above interacts with Kube-api
+      - the entrance for external system to interact with K8S
+      - provide authentication, authorization, access control and API register and discovery
         
   Node: running on a machine
     NOTE: Pods are group of containers
     
-    1) Container Runtime (by default it's docker but can also use other container technology)
+    1) Container (by default it's docker but can also use other container technology)
     2) Kubelet
       - the agent manager for Node
-      - it manage container lifecycle and also manage Volume(CSI) and network(CNI)
+      - interact with container engine directly and manage container liefcycle
     3) Kube-proxy
       - provide internal service discovery and load balancer for service
       
@@ -48,7 +51,7 @@ Components:
       - monitor for collecting logs from cluster
     
     
-Pods are group of containers
+Pod are group of containers
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
 Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
