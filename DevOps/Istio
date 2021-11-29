@@ -21,3 +21,20 @@ Traffic Management
     
   DestinationRule
     - Configuration of Istio Load Balancing, Defining which pods should be part of each subset
+
+Load Balancing
+  Is it possible to use the weighted destination rules to make a single user "stick" to a canary? No, as of late 2019
+  But it supports Consistent Hashing!
+  
+  
+Gateways
+  Kubernete provide ingress as Gateway and Istio uses Istio Gateway
+  Why Istio Gateway?
+  
+  
+Dark Releases
+
+Fault Injection
+
+Circuit Breaking
+
