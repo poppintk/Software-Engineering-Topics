@@ -33,7 +33,7 @@ Components:
         d) Service Account & Token Controllers: create default account and API token for the new naming space
     
     6) Kube-api server:
-     Note: all components above interacts with Kube-api
+     Note: all components mentioned above(as well as KubeProxy, Kubelet) interacts with Kube-api
       - the entrance for external system to interact with K8S
       - provide authentication, authorization, access control and API register and discovery
         
