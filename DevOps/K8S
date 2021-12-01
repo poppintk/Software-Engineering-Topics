@@ -1,5 +1,7 @@
 Architecture:  master slave (Single master or Multiple master)
 
+K8S requires Node number to be odd number >= 3
+
 Feature:
 -self healing
 -secret management
@@ -28,12 +30,12 @@ Components:
     
     5) Kube-controller-manager
         a) Node Contorller: response and alert issues on the nodes
-        b) Replication Controller: used for every replication controller to maintain correct number of Pods
+        b) Replication Controller: maintain correct number of replication Pods
         c) Endpoints Controller: used for adding endpoints(server or Pod)
         d) Service Account & Token Controllers: create default account and API token for the new naming space
     
     6) Kube-api server:
-     Note: all components mentioned above(as well as KubeProxy, Kubelet) interacts with Kube-api
+     Note: all components mentioned above(as well as KubeProxy, Kubelet) interacts with Kube-api. this might be the performance bottleneck (existing solution in K8S)
       - the entrance for external system to interact with K8S
       - provide authentication, authorization, access control and API register and discovery
         
@@ -46,10 +48,17 @@ Components:
       - interact with container engine directly and manage container liefcycle
     3) Kube-proxy
       - provide internal service discovery and load balancer for service
+      - write rules into IPTABLES, IPVS to implement service mapping for the access
       
     4) Fluentd
       - monitor for collecting logs from cluster
-    
+      
+    5) plugins
+       - CoreDNS: create a domain IP mapping for SVC in clusters
+       - DashBoard: prove K8S a web interface
+       - Ingress Controller: K8S officially only provides 4th layer proxy and Ingress could provide up to 7th layer proxy
+       - Fedetation: A management controller for all K8S clusters
+       - Prometheus: monior of K8S cluster
     
 Pod are group of containers
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
