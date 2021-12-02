@@ -30,7 +30,7 @@ Components:
     
     5) Kube-controller-manager
         a) Node Contorller: response and alert issues on the nodes
-        b) Replication Controller: maintain correct number of replication Pods
+        b) Replication Controller: maintain expected number of replications
         c) Endpoints Controller: used for adding endpoints(server or Pod)
         d) Service Account & Token Controllers: create default account and API token for the new naming space
     
@@ -60,7 +60,17 @@ Components:
        - Fedetation: A management controller for all K8S clusters
        - Prometheus: monior of K8S cluster
     
-Pod are group of containers
+    
+Pod
+  - Pod are group of containers
+  - within a same Pod two conainers are able to comunicate via PAUSE(shared network stack) 
+
+
+ReplicationController & ReplicaSet & Deployment
+  - ReplicationController:  maintain expected number of replications
+  - ReplicaSet: same as ReplicationController in new version K8S. better sytax support
+  - it is recommended that use ReplicaSet alone with Deployment. because ReplicaSet does not support rolling-update but deployment supports it
+
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
 Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
