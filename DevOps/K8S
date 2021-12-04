@@ -71,6 +71,13 @@ ReplicationController & ReplicaSet & Deployment
   - ReplicaSet: same as ReplicationController in new version K8S. better sytax support
   - it is recommended that use ReplicaSet alone with Deployment. because ReplicaSet does not support rolling-update but deployment supports it
 
+HPA(Horizontal Pod Autoscaling)
+StatefulSet: docker for stateless application. StatefulSet is for stateful appllication like database
+DaemonSet:ensure all node (or some) running a replication of Pod
+Job and CronJob
+ - Job one time running task, i.e. batch task
+ - Cron Job: task running on specific time 
+
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
 Deployment: group of services
 Ingress controller: load balacing<nginx implemention>
