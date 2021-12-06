@@ -84,6 +84,7 @@ Job and CronJob
 
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
   - Load balancer on top of group of Pods(deployment)
+  - if need to expose it to external access, Service type need to NodePort
 
 
 Deployment: alone with RC(replicaSet) to maintain expected number of replications on Pods(group of Pods)
