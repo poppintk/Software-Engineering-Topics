@@ -23,6 +23,8 @@ Components:
     3) etcd
       - key value based database for K8S as all data cluster backend database
       - K8S cluster etcd database usually need a backup plan 
+      - v2 is in memory database and v3 is local database
+      - K8S cluster using Etcd v3 and v2 has been deprecated in K8S v1.11
     
     4) Kube-scheduler
       - monitoring those newly created Pods and manage to schedule nodes to run Pods
@@ -67,12 +69,13 @@ Pod
   - Pod and Pod communication on different Node is via Overlay Network(Flannel + etcd)
   - Pod and Pod communication on same Node via networkbridge, no need Flannel
   - Pod and service communication is via IPtables(newer version use LVS)
-  - External access to Pod requires Service node port
+  - External access to Pod requires Service NodePort(NodePort cannot be duplicated)
 
 
 ReplicationController & ReplicaSet & Deployment
   - ReplicationController:  maintain expected number of replications
-  - ReplicaSet: same as ReplicationController in new version K8S. better sytax support
+  - ReplicaSet: same as ReplicationController in new version K8S. better sytax support. 
+    - it use label to controll the Pod
   - it is recommended that use ReplicaSet alone with Deployment. because ReplicaSet does not support rolling-update but deployment supports it
 
 HPA(Horizontal Pod Autoscaling)
@@ -94,15 +97,19 @@ Ingress controller: load balacing<nginx implemention>
 
 each Pod has its own IP(can use duplicated port consumed by other Pods)
 each Service has its own domain(can use duplicated port consumed by other Services)
-NodePort cannot be duplicated
 
-NodePort - port exposed on the host machine(Postman can reach)
+
+NodePort - port exposed on the host machine(external app can access)
 targetPort - This is the actual port on which your application is running inside the container.
 port - port for service and redirect to targetPort
 
 ------------------------
-ETCD Storage
- - v2 is in memory database and v3 is local database
- - K8S cluster using Etcd v3 and v2 has been deprecated in K8S v1.11
-
+Cluster resource category
+  nameSpace: default
+  
+  cluster level:role
+  
+  metadata: HPA
+  
+  
 
