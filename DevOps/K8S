@@ -64,8 +64,10 @@ Components:
 Pod
   - Pod are group of containers
   - within a same Pod two conainers are able to comunicate via PAUSE(shared network stack) 
-  - Pod and Pod communication is via Overlay Network(Flannel + etcd)
-  - Pod and service communication is via Tptables
+  - Pod and Pod communication on different Node is via Overlay Network(Flannel + etcd)
+  - Pod and Pod communication on same Node via networkbridge, no need Flannel
+  - Pod and service communication is via IPtables(newer version use LVS)
+  - External access to Pod requires Service node port
 
 
 ReplicationController & ReplicaSet & Deployment
