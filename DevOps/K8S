@@ -112,4 +112,24 @@ Cluster resource category
   metadata: HPA
   
   
+YAML Properties
+Required field to define a pod
+-------------------------------------------------------------------------------------
+|  PARAMETER                      |  TYPE     | DESC
+|  version                        |  String   | K8S API version
+|  kind                           |  String   | resource type in k8s, i.e. Pod
+|  metadata                       |  Object   | metadata object
+|  metadata.name                  |  String   | metadata name i.e. Pod's name
+|  metadata.namespace             |  String   | metadata namespace
+|  Spec                           |  Object   | detail of defined object
+|  spec.containers[]              |  List     | list of container for spec object
+|  spec.containers[].name         |  String   | define the name of container
+|  spec.containers[].image        |  String   | define used image name
+--------------------------------------------------------------------------------------
+Optional
+|spec.containers[].imagePullPolicy|  String   | image pull strategy 1) always: pull from online repo 2) never: pull from local repo 3)ifNotPresent: if local pull local if not pull online 
+|spec.containers[].command[]      |  List     | define command to run while starting docker      
+|spec.containers[].args[]         |  List     | define command argument for command to run while starting docker
+|spec.containers[].workingDir     |  String   | define working directory of docker
+
 
