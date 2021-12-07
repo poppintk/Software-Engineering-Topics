@@ -90,7 +90,7 @@ Service: How we discover IP address of the individual pod(Could be cluster of po
   - if need to expose it to external access, Service type need to NodePort
 
 
-Deployment: alone with RC(replicaSet) to maintain expected number of replications on Pods(group of Pods)
+Deployment: alone with RC(replicaSet) to maintain expected number of replications on Pods(Could be cluster of Pods)
 
 
 Ingress controller: load balacing<nginx implemention>
@@ -131,5 +131,17 @@ Optional
 |spec.containers[].command[]      |  List     | define command to run while starting docker      
 |spec.containers[].args[]         |  List     | define command argument for command to run while starting docker
 |spec.containers[].workingDir     |  String   | define working directory of docker
+-------------------------------------------------------------------------------------
+
+kubectl explain Pod
+kubectl describe <Pod Name> : see information in the Pod
+kubectl log <Pod Name> -c <Container name> : see log in the particular container within a Pod
+-----------------------------------------------------------------
+|                        Pod Lifecycle                          |
+| ______________________________________________________________| 
+|  Init Container  |         |<---        Liveness           -->|
+|  <-------------> |         |<---Readiness-->|        |<-Stop->|
+| PAUSE network    |<---             Main Container         --->|
+|                  |<-Start->|                                  |
 
 
