@@ -143,5 +143,14 @@ kubectl log <Pod Name> -c <Container name> : see log in the particular container
 |  <-------------> |         |<---Readiness(init state)-->|  |<-Stop->|
 | PAUSE network    |<---             Main Container               --->|
 |                  |<-Start->|                                        |
+-----------------------------------------------------------------------
+Pod status:
+  - Pending: one or more of container image not yet created
+  - Running: Pod has been binded to a node and all containers in that Pod has bee created. But at least a container is running or on restart status
+  - Succeeded: all containers in a Pod has been terminated successfully and not longer requires restart
+  - Failed: container is terminated or exit with non-zero status(fail signal)
+  - Unknown: can not detect status of Pod and usually it lose network connection
+  
+  
 
 
