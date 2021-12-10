@@ -145,6 +145,17 @@ kubectl log <Pod Name> -c <Container name> : see log in the particular container
 | PAUSE network    |<---             Main Container               --->|
 |                  |<-Start->|                                        |
 -----------------------------------------------------------------------
+K8S Health Check Detection:
+  - readiness probes
+  - liveness probes
+  - starup probes
+
+Detection types:
+  - exec : set up Linux commands and use its return status to check whether container is healthy or not
+  - httpGet : send get http request to the url to check 
+  - tcp connetion : base on whehter able to establish tcp connection as condition to check 
+
+
 Pod status:
   - Pending: one or more of container image not yet created
   - Running: Pod has been binded to a node and all containers in that Pod has bee created. But at least a container is running or on restart status
