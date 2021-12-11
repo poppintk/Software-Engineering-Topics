@@ -79,6 +79,11 @@ ReplicationController & ReplicaSet & Deployment
   - it is recommended that use ReplicaSet alone with Deployment. because ReplicaSet does not support rolling-update but deployment supports it
 
 Deployment: alone with RC(replicaSet) to maintain expected number of replications on Pods(Could be cluster of Pods)
+                Deployment
+              /           \
+      ReplicaSet          ReplicaSet
+     /        \           /        \
+   Pod       Pod         Pod      Pod
 HPA(Horizontal Pod Autoscaling): apply on top of deployment to scale up/down (HPA + resource management i.e. CPU usage)
 StatefulSet: docker for stateless application. StatefulSet is for stateful appllication like database
 DaemonSet:ensure all node (or some) running a replication of Pod
@@ -89,7 +94,9 @@ Job and CronJob
 Service: How we discover IP address of the individual pod(Could be cluster of pods)
   - Load balancer on top of group of Pods(deployment)
   - if need to expose it to external access, Service type need to NodePort
-
+            Service
+           /   |   \ 
+        Pod   Pod  Pod
 
 
 
@@ -163,5 +170,3 @@ Pod status:
   - Failed: container is terminated or exit with non-zero status(fail signal)
   - Unknown: can not detect status of Pod and usually it lose network connection
   
-
-
