@@ -1,1 +1,21 @@
 http://www.cs.utsa.edu/~cs3443/uml/uml.html
+
+
+Tips on abstracting logic/parameter using interface.
+
+parameter can be abstracting by using interface.
+example:
+  public interface Flyable {
+    boolean canFly()
+  }
+  
+  public class Bird implement Flyable {
+      
+      private boolean isFlyable;
+      
+      @Override
+      canFly() {
+        return this.isFlyable
+      }
+  }
+
