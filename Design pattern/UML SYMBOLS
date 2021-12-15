@@ -9,7 +9,18 @@ example:
     boolean canFly()
   }
   
-  public class Bird implement Flyable {
+  public class WhiteBird implement Flyable {
+      
+      private boolean isFlyable;
+      
+      @Override
+      canFly() {
+        return this.isFlyable
+      }
+  }
+  
+  
+  public class AngryBird implement Flyable {
       
       private boolean isFlyable;
       
@@ -19,3 +30,9 @@ example:
       }
   }
 
+  testmethod(Flyable flyable) {
+  
+    if (flyable.canFly) {
+      // your logic
+    }
+  }
