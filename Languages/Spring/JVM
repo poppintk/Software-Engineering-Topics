@@ -1,0 +1,6 @@
+Class Files -> Class Loader subsystem  -> Runtime Data Area -> Runtime engine
+
+Hotspot JVM has method Area, Other JVMs don't have it
+
+Class Loader subsystem
+  - 
