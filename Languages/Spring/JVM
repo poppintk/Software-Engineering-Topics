@@ -1,6 +1,18 @@
-Class Files -> Class Loader subsystem  -> Runtime Data Area -> Runtime engine
+Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
 Hotspot JVM has method Area, Other JVMs don't have it
 
 Class Loader subsystem
+  NOTE: ClassLoader only loard the class file and whether or not it is excutable depends on Execution Engine
+  - Loading
+    - binary stream -> method area -> entrace of Class loarder (generate the class in the reflection API)
+    - supports:
+      - loading from internet
+      - loading from local files
+      - loading from jar 
+      - generated at runtime -> dynamic proxy
+  - Linking
+    - verify
+    - Prepare
+    - Resolve
   - 
