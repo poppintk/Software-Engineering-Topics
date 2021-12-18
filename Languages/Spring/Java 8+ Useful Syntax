@@ -1,0 +1,11 @@
+Optional
+  get rid of condition checking for null
+  - Optional.ofNullable(something)
+    .map(Object::getField)
+    .orElse(DEFAULT_VALUE);
+    
+Stream 
+  - Arrays.asList().stream()
+    .map()
+    .collect(Collections.toList());
+
