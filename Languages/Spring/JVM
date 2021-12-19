@@ -15,4 +15,5 @@ Class Loader subsystem
     - verify
     - Prepare
     - Resolve
-  - 
+  - Initialization
+    - clinit(() class init
