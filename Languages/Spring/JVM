@@ -17,3 +17,23 @@ Class Loader subsystem
     - Resolve
   - Initialization
     - clinit(() class init
+  
+  - types
+    BootstrapClassLoader (default path jre/lib)
+            |
+    ExtensionClassLoader (default path jre/lib/ext)
+            |
+    AppClassLoader (default path classpath)
+    
+    - Boo
+    - ExtensionClassLoader  - 
+    - AppClassLoader- 
+
+    
+    - Bootstrap class loader
+      - implemented in C++
+      - all java core class(package with java, javax or sun) use the Boostrap class loader. i.e. String.getClassloader() -> null
+    - User-defined classloader extends Boostrap class loader 
+      - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
+
+    
