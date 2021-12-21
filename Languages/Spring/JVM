@@ -3,7 +3,7 @@ Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 Hotspot JVM has method Area, Other JVMs don't have it
 
 Class Loader subsystem
-  NOTE: ClassLoader only loard the class file and whether or not it is excutable depends on Execution Engine
+  NOTE: ClassLoader only load the class file and whether or not it is excutable depends on Execution Engine
   - Loading
     - binary stream -> method area -> entrace of Class loarder (generate the class in the reflection API)
     - supports:
@@ -35,5 +35,6 @@ Class Loader subsystem
       - all java core class(package with java, javax or sun) use the Boostrap class loader. i.e. String.getClassloader() -> null
     - User-defined classloader extends Boostrap class loader 
       - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
+
 
     
