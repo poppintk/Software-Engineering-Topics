@@ -26,8 +26,7 @@ Class Loader subsystem
     AppClassLoader (default path classpath)
     
     - Boo
-    - ExtensionClassLoader  - 
-    - AppClassLoader- 
+    - ExtensionClassLoader  
 
     
     - Bootstrap class loader
