@@ -25,9 +25,6 @@ Class Loader subsystem
             |
     AppClassLoader (default path classpath)
     
-    - Boo
-
-    
     - Bootstrap class loader
       - implemented in C++
       - all java core class(package with java, javax or sun) use the Boostrap class loader. i.e. String.getClassloader() -> null
