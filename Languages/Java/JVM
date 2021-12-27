@@ -1,3 +1,14 @@
+History:
+- Sun Classic VM (Intepreter only) 
+- HotSpot VM (Oracle or OpenJDK) 
+  - Intereter + JIT (cache hot code) 
+- Exact VM
+- JRockit VM
+- IBM J9 VM
+- Azul VM and BEA LiquidVM
+- Apache Harmony
+- Microsoft JVM and Taobao JVM
+
 Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
 Hotspot JVM has method Area, Other JVMs don't have it
