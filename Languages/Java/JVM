@@ -7,7 +7,8 @@ History:
 - IBM J9 VM
 - Azul VM and BEA LiquidVM
 - Apache Harmony
-- Microsoft JVM and Taobao JVM
+- Microsoft JVM
+- Taobao JVM
 
 Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
