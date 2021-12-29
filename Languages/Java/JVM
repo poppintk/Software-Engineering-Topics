@@ -67,3 +67,10 @@ Class Loader subsystem
         - set apporprate number of threads
         - use the middleware to increase program efficiency like Cache or MQ
         
+    Performance Metrics
+      - Response time
+      - throughput
+        in GC, total running time = program running time + GC running time
+        throughput is 1 - 1/(1 + n). -XX:GCTimeRatio=n
+      - currency
+      - memory(Stack) usage
