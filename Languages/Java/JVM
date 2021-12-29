@@ -44,4 +44,26 @@ Class Loader subsystem
       - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
 
 
+    -----------------------------------------
+    Purpose of JVM performance tuning: reduce OOM(out of memory) and full GC cycle in order to improve response time and throughput
     
+    How?
+      1) Performance monitoring
+        - GC cycle high frequency
+        - CPU load too high
+        - OOM
+        - Memory leak
+        - Dead lock
+        - Program response time too long
+       2) performance analyze
+        - utilize command tools like jstack, jmap, jinfo 
+        - dump out stack file and use memory tools analyze the file
+        - use Ali Arthas or Jconsole, JVisualVM to check JVM condition
+        - Jstack check stack information
+       3) Perforamnce tuning
+        - add apporprate member size and choose right GC base on scenerio
+        - optimizing code and controll the memory usage 
+        - add more machine and reduce nodes pressue
+        - set apporprate number of threads
+        - use the middleware to increase program efficiency like Cache or MQ
+        
