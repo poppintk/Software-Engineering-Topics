@@ -75,6 +75,20 @@ Class Loader subsystem
       - currency
       - memory(Stack) usage
       
-    Tools
-      - command line
-        - 
+    Tools command line
+      - jps: check JVM running process 
+      - jstat: monioring all running status, it can show local/remote process class load, memory usage, GC and JIT compile information
+        - options
+          class load: -class 
+          GC: 
+            -gc
+              
+          JIT: 
+            -compiler 
+            -printcompliation
+          
+      - jinfo: real time checking and modifying JVM configuration
+      - jmap: export memory image file and memory usage
+      - jhat: JDK stack analyze tool
+      
+      use jps to get the process id and use jstat to show details
