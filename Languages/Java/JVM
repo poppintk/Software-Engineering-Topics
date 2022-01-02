@@ -138,3 +138,18 @@ Tools command line
       
 ------------------------------------------------------------------------------
 GUI Tools
+  JDK
+  - jConsole
+  - VisualVM
+  - JMC
+  
+  - eclipse MAT
+  - JProfiler
+  - Arthas
+  - Java Mission Control
+  - Btrace
+  - Flame Graphs
+  
+  
+  
+  
