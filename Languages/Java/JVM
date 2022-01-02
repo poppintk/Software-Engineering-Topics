@@ -1,3 +1,5 @@
+Two factor causes OOM: 1) heap size too small 2) memory leak
+
 History:
 - Sun Classic VM (Intepreter only) 
 - HotSpot VM (Oracle or OpenJDK) 
@@ -108,6 +110,7 @@ Tools command line
           The OOM is likely happen any soon
 
           How to detect memory leak?
+          
           use find minmium value of OU from different time interval, if the OU sample value keeps increasing. it means there is potential
           memory leak issue
 
