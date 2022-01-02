@@ -115,8 +115,17 @@ Class Loader subsystem
             -compiler 
             -printcompliation
           
-      - jinfo: real time checking and modifying JVM configuration
+      - jinfo: real time checking and modifying JVM configuration, can used for checking default settings
+        
       - jmap: export memory image file and memory usage
-      - jhat: JDK stack analyze tool
+        - options:
+          - dump: generate dump file
+            - manually, jmap -dump:live,format=b,file=<FILE_LOCATION>
+            - automatically, -XX:HeapDumpPath=<FILE_LOCATION> AND -XX:+HeapDumpOnOutMemoryError
+          - heap: output all heap memory space info
+          - histo: output heap mempry space statics info
+          NOTE: jmap vs jstat jmap time point and jstat on time interval
+          
+      - jhat: JDK heap analyze tool
       
       use jps to get the process id and use jstat to show details
