@@ -74,58 +74,67 @@ Class Loader subsystem
         throughput is 1 - 1/(1 + n). -XX:GCTimeRatio=n
       - currency
       - memory(Stack) usage
+------------------------------------------------------------------------------
+Tools command line
+  - jps: check JVM running process 
+  - jstat: monioring all running status, it can show local/remote process class load, memory usage, GC and JIT compile information
+    - options
+      class load: -class 
+      GC: 
+        -gc parameters (jstat -gc, -gcutil, -gccause)
+          - SOC: the first Survivor section size in bytes
+          - S1C: the second Survivor section size in bytes
+          - S0U: the first Survivor section used size in bytes
+          - S1U: the second Survivor section used size in bytes
+          - EC: The Eden section size in bytes
+          - EU: The Eden section used size in bytes
+
+          - OC: The Old section size in bytes
+          - OU: The Old section used size in bytes
+
+          - MC: The method section size in bytes
+          - MU: The method section used size
+          - CCSC: The compressed class section size
+          - CCSU: The compressed class section used size
+
+          - YGC: The number of Young GC since running
+          - YGCT: The young gc time consumption 
+          - FGC: The number of Full GC since running
+          - FGCT: The Full GC time consumption
+          - GCT: The total time of GC
+
+          expereince: percentage ratio = (row1.GCT - row2.GCT) / (row1.program running time - row2.program running time)
+          if percentage ratio is greater than 20%, it means our heap memory under pressure. if this value is beyond 90% then
+          The OOM is likely happen any soon
+
+          How to detect memory leak?
+          use find minmium value of OU from different time interval, if the OU sample value keeps increasing. it means there is potential
+          memory leak issue
+
+      JIT: 
+        -compiler 
+        -printcompliation
+
+  - jinfo: real time checking and modifying JVM configuration, can used for checking default settings
+
+  - jmap: export memory image file and memory usage
+    - options:
+      - dump: generate dump file
+        - manually, jmap -dump:live,format=b,file=<FILE_LOCATION>
+        - automatically, -XX:HeapDumpPath=<FILE_LOCATION> AND -XX:+HeapDumpOnOutMemoryError
+      - heap: output all heap memory space info
+      - histo: output heap mempry space statics info
+      NOTE: jmap vs jstat jmap time point and jstat on time interval
+
+  - jhat: JDK heap analyze tool(used with jmap)
+    -removed in JDK9 JDK10, prefer VisualVM
+
+  - jstack: generate snapshot of stack of each thread
+    - great for detect dead lock
+
+  - jcmd: can do everything above except jstack
+
+  use jps to get the process id and use jstat to show details
       
-    Tools command line
-      - jps: check JVM running process 
-      - jstat: monioring all running status, it can show local/remote process class load, memory usage, GC and JIT compile information
-        - options
-          class load: -class 
-          GC: 
-            -gc parameters (jstat -gc, -gcutil, -gccause)
-              - SOC: the first Survivor section size in bytes
-              - S1C: the second Survivor section size in bytes
-              - S0U: the first Survivor section used size in bytes
-              - S1U: the second Survivor section used size in bytes
-              - EC: The Eden section size in bytes
-              - EU: The Eden section used size in bytes
-              
-              - OC: The Old section size in bytes
-              - OU: The Old section used size in bytes
-              
-              - MC: The method section size in bytes
-              - MU: The method section used size
-              - CCSC: The compressed class section size
-              - CCSU: The compressed class section used size
-              
-              - YGC: The number of Young GC since running
-              - YGCT: The young gc time consumption 
-              - FGC: The number of Full GC since running
-              - FGCT: The Full GC time consumption
-              - GCT: The total time of GC
-              
-              expereince: percentage ratio = (row1.GCT - row2.GCT) / (row1.program running time - row2.program running time)
-              if percentage ratio is greater than 20%, it means our heap memory under pressure. if this value is beyond 90% then
-              The OOM is likely happen any soon
-              
-              How to detect memory leak?
-              use find minmium value of OU from different time interval, if the OU sample value keeps increasing. it means there is potential
-              memory leak issue
-              
-          JIT: 
-            -compiler 
-            -printcompliation
-          
-      - jinfo: real time checking and modifying JVM configuration, can used for checking default settings
-        
-      - jmap: export memory image file and memory usage
-        - options:
-          - dump: generate dump file
-            - manually, jmap -dump:live,format=b,file=<FILE_LOCATION>
-            - automatically, -XX:HeapDumpPath=<FILE_LOCATION> AND -XX:+HeapDumpOnOutMemoryError
-          - heap: output all heap memory space info
-          - histo: output heap mempry space statics info
-          NOTE: jmap vs jstat jmap time point and jstat on time interval
-          
-      - jhat: JDK heap analyze tool
-      
-      use jps to get the process id and use jstat to show details
+------------------------------------------------------------------------------
+GUI Tools
