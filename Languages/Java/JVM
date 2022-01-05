@@ -147,6 +147,12 @@ GUI Tools
   - JMC
   
   - eclipse MAT
+    - Shallow heap
+      The total memory consumption by a object(excluding actual size of value)
+    - Retained heap
+      The total memory consumption by a object(including actual size of value and the value is only reference by this object)
+    - object size
+      size of variable + all referenced size
   - JProfiler
   - Arthas
   - Java Mission Control
