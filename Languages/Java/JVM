@@ -150,9 +150,13 @@ GUI Tools
     - Shallow heap
       The total memory consumption by a object(excluding actual size of value)
     - Retained heap
-      The total memory consumption by a object(including actual size of value and the value is only reference by this object)
+      The total memory consumption by a object(including actual size of value and the value is only referenced by this object)
     - object size
       size of variable + all referenced size
+      
+    - Dominator Tree
+      Dominator: the only node that must need to traverse in order to get next nodes 
+      
   - JProfiler
   - Arthas
   - Java Mission Control
@@ -160,5 +164,53 @@ GUI Tools
   - Flame Graphs
   
   
+  - Memory Leak      NO    YES  NO
+    still in used?   YES.  YES. NO
+    still needed?    YES.  NO.  NO
+    
+  - Out of memory
+  Memory Leak cause out of memory
   
-  
+  Memory Leak cases:
+    1) static Collection class, static will make its lifecycle as same as JVM.
+      public class MemoryLeak {
+        static List list = new ArrayList();
+        
+        public void oomTests() {
+          Object obj = new Object(); // obj here never got recycled
+          list.add(obj);
+        }
+      }
+   
+   2) Singleton, static will make its variable lifecycle as same as JVM
+   3) internal class hold reference of outter class, outter class will never got recycled
+   4) all connection resource like database connection, network connection and IO connection, require connection.close()
+   5) inapporate variable scoop
+      public class UsingRandom {
+        private String msg; // this msg here not get recycled even function reciveMsg() return
+        public void receiveMsg() {
+          readFromNet(); // get data from network and save it in msg
+          saveDB(); // save msg data into db
+        }
+      }
+      
+   6) change fields that computed by hash code, due to hashcode fields change -> the old reference in Map will never got recycled -> moemory Leak
+   7) Cache Leak
+      
+      
+      public class MapTest {
+        static Map wMap = new WeakHashMap(); // WeakHashMap if the key is not referenced by object othan than WeakHashMap itself, then got recycled
+        static Map map = new HashMap();
+        
+        public static void main(String[] args) {
+          init();
+          testWeakHashMap();
+          testHashMap();
+        } 
+      }
+       
+        
+   8) Listener and callback, if client register callback and not display cancel then it will accumulate inside memory and lead to memory leak
+   Solution: save them in WeakHashMap()
+   
+   
