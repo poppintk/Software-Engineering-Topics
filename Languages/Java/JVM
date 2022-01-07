@@ -146,7 +146,7 @@ GUI Tools
   - VisualVM
   - JMC
   
-  - eclipse MAT
+  - eclipse MAT (for eclipse)
     - Shallow heap
       The total memory consumption by a object(excluding actual size of value)
     - Retained heap
@@ -157,7 +157,7 @@ GUI Tools
     - Dominator Tree
       Dominator: the only node that must need to traverse in order to get next nodes 
       
-  - JProfiler
+  - JProfiler (similar to eclipse MAT but for Intelij)
   - Arthas
   - Java Mission Control
   - Btrace
@@ -213,4 +213,13 @@ GUI Tools
    8) Listener and callback, if client register callback and not display cancel then it will accumulate inside memory and lead to memory leak
    Solution: save them in WeakHashMap()
    
-   
+--------------------------------------------
+Memory Leak case study
+ public Object pop() {
+    if (size == 0)
+      throw new EmptyStackException();
+      
+    Object result = elements[--size];
+    elements[size] = null; // This is needed to tell program to free this memory
+    return result;
+ }
