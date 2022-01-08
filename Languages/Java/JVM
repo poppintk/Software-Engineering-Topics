@@ -1,5 +1,6 @@
 Two factor causes OOM: 1) heap size too small 2) memory leak
 
+
 History:
 - Sun Classic VM (Intepreter only) 
 - HotSpot VM (Oracle or OpenJDK) 
@@ -11,6 +12,8 @@ History:
 - Apache Harmony
 - Microsoft JVM
 - Taobao JVM
+
+JVM not only binding to JAVA any other languague can compile to .class file can be excuted on JVM
 
 Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
