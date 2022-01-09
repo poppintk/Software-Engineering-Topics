@@ -14,6 +14,7 @@ History:
 - Taobao JVM
 
 JVM not only binding to JAVA any other languague can compile to .class file can be excuted on JVM
+NOTE: This study notes are base on HotSpot JVM
 
 Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
