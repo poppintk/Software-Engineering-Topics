@@ -16,9 +16,15 @@ History:
 JVM not only binding to JAVA any other languague can compile to .class file can be excuted on JVM
 NOTE: This study notes are base on HotSpot JVM
 
-Class Files -> Class Loader subsystem  -> Runtime Data Area -> Execution engine
+.Java file --compile--> .class Files ---load-> Class Loader subsystem  -> Runtime Data Area -> Execution engine
 
 Hotspot JVM has method Area, Other JVMs don't have it
+
+JVM terminated condition:
+  - Program finshed excuted
+  - Program running with Exception or Error
+  - OS Error cause the JVM to stop
+  - Thread call Runtime's or System's exit() method
 
 Class Loader subsystem
   NOTE: ClassLoader only load the class file and whether or not it is excutable depends on Execution Engine
