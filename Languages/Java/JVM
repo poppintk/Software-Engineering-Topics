@@ -1,4 +1,4 @@
-Two factor causes OOM: 1) heap size too small 2) memory leak
+Two Reasons causes OOM: 1) heap size too small 2) memory leak
 
 
 History:
