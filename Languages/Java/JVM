@@ -13,12 +13,13 @@ History:
 - Microsoft JVM
 - Taobao JVM
 
-JVM not only binding to JAVA any other languague can compile to .class file can be excuted on JVM
+JVM not only binding to JAVA any other languagues can compile to .class file can be excuted on JVM
 NOTE: This study notes are base on HotSpot JVM
-
-.Java file --compile--> .class Files ---load-> Class Loader subsystem  -> Runtime Data Area -> Execution engine
-
 Hotspot JVM has method Area, Other JVMs don't have it
+
+.Java file --compile--> .class Files ---load-> Class Loader Subsystem  -> Runtime Data Area -> Execution engine
+
+F/E compile: complie .java file into .class file
 
 JVM terminated condition:
   - Program finshed excuted
@@ -27,7 +28,22 @@ JVM terminated condition:
   - Thread call Runtime's or System's exit() method
 
 Class Loader subsystem
-  NOTE: ClassLoader only load the class file and whether or not it is excutable depends on Execution Engine
+  - Loading
+    - BootStrap
+    - Extension ClassLoader
+    - Application ClassLoader
+  - Linking
+    - Verify
+      - file format verify, matadata verify, bytecode verify and Symbolic verify
+    - Prepare
+      - init value for static variable in method area and instance variables are in heap. Note: the value of final static variable is assigned during compile time 
+    - Resolve
+      - converting the symbolic reference into direct reference in constant pool
+  - Initialization
+    - run clinit() 
+    
+    
+    
   - Loading
     - binary stream -> method area -> entrace of Class loarder (generate the class in the reflection API)
     - supports:
@@ -35,12 +51,7 @@ Class Loader subsystem
       - loading from local files
       - loading from jar 
       - generated at runtime -> dynamic proxy
-  - Linking
-    - verify
-    - Prepare
-    - Resolve
-  - Initialization
-    - clinit(() class init
+    
   
   - types
     BootstrapClassLoader (default path jre/lib)
@@ -52,7 +63,7 @@ Class Loader subsystem
     - Bootstrap class loader
       - implemented in C++
       - all java core class(package with java, javax or sun) use the Boostrap class loader. i.e. String.getClassloader() -> null
-    - User-defined classloader extends Boostrap class loader 
+    - User-defined classloader extends BoostrapClassLoader 
       - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
 
 
