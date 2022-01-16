@@ -65,9 +65,33 @@ Class Loader subsystem
       - all java core class(package with java, javax or sun) use the Boostrap class loader. i.e. String.getClassloader() -> null
     - User-defined classloader extends BoostrapClassLoader 
       - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
+-----------------------------------------------------------------------------------
+Java Stack potential Errors
+  - StackOverflowError
+    - running program needs space more than the JVM stack maximum allow
+    - can change by -Xss
+  - OutOfMemboryError
+    - when creating new thread no enough memory space to create its stack area then will throw the OutOfMeoryError
 
+Heap
 
-    -----------------------------------------
+Method Area(Metadata Area)
+
+Threads
+  - PC Register
+  - Native Stack
+  - Stack
+      Stack Frame(per each method)
+        Local Variable Table
+          - as long as object instance directly or indirectly referenced by the LVT(Local Variable Table), then this object can not be GC'ed
+        Operand Stack
+          - Top-of-Stack Caching 
+            cache all stack top element on CPU register to increase performance
+        Dynamic Linking (occured during the Linking Resolve stage)
+          - converting the symbolic reference into direct reference in constant pool is called Linking
+          - Linking during the program running time called Dynamic Linking, whereas Linking during the compile time called Static Linking
+
+-----------------------------------------
     Purpose of JVM performance tuning: reduce OOM(out of memory) and full GC cycle in order to improve response time and throughput
     
     How?
