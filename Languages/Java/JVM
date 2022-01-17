@@ -74,12 +74,23 @@ Java Stack potential Errors
     - when creating new thread no enough memory space to create its stack area then will throw the OutOfMeoryError
 
 Heap
-
+  - all object instances and arrays live inside heap and they can be GC'ed
+  - Young/new(Eden + Survivor1 + Survivor2) | Old/Tenure | Perm(before JDK7)/Meta(after JDK 8)
+  -  -XX:MetaspaceSize for Meta, -XXMaxPermSize for Perm  
+  - configuration for Young GEN + Old GEN
+    - -Xmx = -XX:MaxHeapSize, over this size will throw OutOfMemoryError
+    - -Xms = -XX:InitialHeapSize
+    - usually -Xmx and -Xms are same number to ensure after GC don't need to re-compute heap size as result to improve performance
+    - by default -Xms = RAM / 64 and -Xmx = RAM / 4
+    
+    
+  
 Method Area(Metadata Area)
 
 Threads
   - PC Register
   - Native Stack
+    A native method is a Java method whose implementation is provided by non-java code
   - Stack
       Stack Frame(per each method)
         Local Variable Table
