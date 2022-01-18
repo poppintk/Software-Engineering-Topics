@@ -65,11 +65,19 @@ Thread
   unit - the time unit for the keepAliveTime
   workQueue - the queue to use for holding tasks before they are executed
   threadFactory - the factory to use when the executor creates a new thread
-  handler - reject policy callback, the handler to use when execution is blocked because the thread bounds and queue capacities are reached
+  handler - reject policy callback triggers when maximumPoolSize is reached
   
-  
-  ThreadPoolExecutor executor = new ThreadPoolExecutor();
-  
+  int maximumPoolSize = 200;
+  int keepAliveTime = 10; // second
+  ThreadPoolExecutor executor = new ThreadPoolExecutor(
+      maximumPoolSize,
+      10,
+      TimeUnit.SECONDS,
+      new LinkedBlockingDeque<>(10000),
+      Executors.defaultThreadFactory(),
+      new ThreadPoolExecutor.AbortPolicy());
+Q: one ThreadExecutor, coreSize: 7, maxSize:20 and queue: 50, reject Policy: AbortPolicy. Now 100 tasks concurrency calls go in. How it allocate?
+7 tasks will be executed immediately, 50 tasks waited on queue, and 13 theads will be created and run 13 tasks and remainding 30 will be rejected
   
 
 CompletableFuture
