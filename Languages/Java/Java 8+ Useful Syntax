@@ -9,3 +9,30 @@ Stream
     .map()
     .collect(Collections.toList());
 
+CompletableFuture
+
+  ExecutorService executor = Executors.newFixedThreadPool(10);
+  // runAsync -> not require return value
+  CompletableFuture.runAsync(() -> {
+    // code implementation
+  }, executor);
+
+  // supplyAsync -> require return value
+  CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+    return 2;
+  }, executor).handle((res, exception) -> {
+    System.out.println("result is : " + res + "Exception is: " + exception);
+    if (exception == null) return -1;
+    return 1;
+  });
+
+  Integer return = future.get();
+
+  Sequantial order
+    thenApply() -> have return value and have access to previous return value
+    thenAccept() -> have access to previou return value
+    thenRun() -> no return value and no access to previous return value
+    
+  Multiple tasks at same time
+    allOf() trigger when all of tasks are finished
+    anyOf() trigger when either one of task is done 
