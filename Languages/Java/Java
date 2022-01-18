@@ -1,0 +1,101 @@
+Optional
+  get rid of condition checking for null
+  - Optional.ofNullable(something)
+    .map(Object::getField)
+    .orElse(DEFAULT_VALUE);
+    
+Stream 
+  - Arrays.asList().stream()
+    .map()
+    .collect(Collections.toList());
+    
+Thread
+  1) extends Thread
+  
+    public static void main(String[] args) {
+      Thread01 t = new Thread01();
+      t.start();// run thread
+    }
+  
+    pulbic static class Thread01 extends Thread {
+      public void run() {
+        int i = 10 / 2;
+        // no return value
+      }
+    }
+  
+  2) Implement Runable
+  
+  public static void main(String[] args) {
+      Runable01 runable01 = new Runable01();
+      new Thread(runable01).start();// run thread
+  }
+   
+  public static class Runable01 implements Runable {
+    @Override
+    public void run() {
+      int i = 10 / 2;
+    }
+  }
+  
+  3) Callable
+  
+  public static void main(String[] args) {
+      FutureTask<Integer> futureTask = new FutureTask<>(new Callable01());
+      new Thread(futureTask).start();
+      
+      Integer result = futureTask.get();
+  }
+  
+  public static class Callable01 implements Callable<Integer> {
+    @Override
+    public Integer call() {
+       int i = 10 / 2;
+       return i;
+    }
+  }
+  4) ThreadExecutor 
+  ExecutorService service = Executors.newFixedThreadPool(10);
+  service.execute(new Runable01())
+  
+  7 parameters
+  corePoolSize - base number of threads
+  maximumPoolSize - maximum number of threads
+  keepAliveTime - when the number of threads is greater than the core, this is the maximum time that excess idle threads will wait for new tasks before terminating
+  unit - the time unit for the keepAliveTime
+  workQueue - the queue to use for holding tasks before they are executed
+  threadFactory - the factory to use when the executor creates a new thread
+  handler - the handler to use when execution is blocked because the thread bounds and queue capacities are reached
+  
+  
+  ThreadPoolExecutor executor = new ThreadPoolExecutor();
+  
+  
+
+CompletableFuture
+
+  ExecutorService executor = Executors.newFixedThreadPool(10);
+  // runAsync -> not require return value
+  CompletableFuture.runAsync(() -> {
+    // code implementation
+  }, executor);
+
+  // supplyAsync -> require return value
+  CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+    return 2;
+  }, executor).handle((res, exception) -> {
+    System.out.println("result is : " + res + "Exception is: " + exception);
+    if (exception == null) return -1;
+    return 1;
+  });
+
+  Integer return = future.get();
+
+  Sequantial order
+    thenApply() -> have return value and have access to previous return value
+    thenAccept() -> have access to previou return value
+    thenRun() -> no return value and no access to previous return value
+    
+  Multiple tasks at same time
+    allOf() trigger when all of tasks are finished
+    anyOf() trigger when either one of task is done 
