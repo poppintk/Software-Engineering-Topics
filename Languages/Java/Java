@@ -79,6 +79,9 @@ Thread
 Q: one ThreadExecutor, coreSize: 7, maxSize:20 and queue: 50, reject Policy: AbortPolicy. Now 100 tasks concurrency calls go in. How it allocate?
 7 tasks will be executed immediately, 50 tasks waited on queue, and 13 theads will be created and run 13 tasks and remainding 30 will be rejected
   
+Executors.newCachedThreadPool() core is 0 and all threads are recyclable
+Executors.newFixedThreadPool() fixed size of threadPool
+
 
 CompletableFuture
 
