@@ -8,7 +8,7 @@ Stream
   - Arrays.asList().stream()
     .map()
     .collect(Collections.toList());
-    
+---------------------------
 Thread
   1) extends Thread
   
@@ -54,6 +54,7 @@ Thread
        return i;
     }
   }
+  
   4) ThreadExecutor 
   ExecutorService service = Executors.newFixedThreadPool(10);
   service.execute(new Runable01())
@@ -81,7 +82,6 @@ Q: one ThreadExecutor, coreSize: 7, maxSize:20 and queue: 50, reject Policy: Abo
   
 Executors.newCachedThreadPool() core is 0 and all threads are recyclable
 Executors.newFixedThreadPool() fixed size of threadPool
-
 
 CompletableFuture
 
