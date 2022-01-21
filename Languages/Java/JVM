@@ -66,13 +66,6 @@ Class Loader subsystem
     - User-defined classloader extends BoostrapClassLoader 
       - User-defined class loader user system class loarder.  UserDefinedClass.getClassloader() -> app class loader
 -----------------------------------------------------------------------------------
-Java Stack potential Errors
-  - StackOverflowError
-    - running program needs space more than the JVM stack maximum allow
-    - can change by -Xss
-  - OutOfMemboryError
-    - when creating new thread no enough memory space to create its stack area then will throw the OutOfMeoryError
-
 Heap
   - all object instances and arrays live inside heap and they can be GC'ed
   - Young/new(Eden + Survivor1 + Survivor2) | Old/Tenure | Perm(before JDK7)/Meta(after JDK 8)
@@ -92,6 +85,13 @@ Threads
   - Native Stack
     A native method is a Java method whose implementation is provided by non-java code
   - Stack
+      Java Stack potential Errors
+        - StackOverflowError
+          - running program needs space more than the JVM stack maximum allow
+          - can change by -Xss
+        - OutOfMemboryError
+          - when creating new thread no enough memory space to create its stack area then will throw the OutOfMeoryError
+      
       Stack Frame(per each method)
         Local Variable Table
           - as long as object instance directly or indirectly referenced by the LVT(Local Variable Table), then this object can not be GC'ed
