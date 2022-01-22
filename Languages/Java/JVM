@@ -75,6 +75,10 @@ Heap
     - -Xms = -XX:InitialHeapSize
     - usually -Xmx and -Xms are same number to ensure after GC don't need to re-compute heap size as result to improve performance
     - by default -Xms = RAM / 64 and -Xmx = RAM / 4
+  - -XX:NewRatio=2: new and old ratio is 1 : 2
+  - -XX:SurvivorRatio is the ratio of the "eden" space and one survivor space.
+  - -XX:MaxTenuringThreshold is threshold that object can move to Old/Tenure space
+  
     
     
   
