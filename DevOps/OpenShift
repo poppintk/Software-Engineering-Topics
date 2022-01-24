@@ -1,0 +1,8 @@
+Architecture
+  Components 
+    Openshift Container Registry(OCR) ----(pull)---> Images ----(build)---> Container ---(deploy)---> POD ----> Deployments----> Service
+            ^
+            |
+    Openshift CI/CD   <---- SCM(Source Code Management System) <---- Users & Projects  (Openshift web console) 
+    
+    
