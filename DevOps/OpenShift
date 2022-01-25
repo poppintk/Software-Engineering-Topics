@@ -6,3 +6,31 @@ Architecture
     Openshift CI/CD   <---- SCM(Source Code Management System) <---- Users & Projects  (Openshift web console) 
     
     
+Management Tools
+  - Web Console
+  - CLI
+  - Restful API
+
+Projects & Users
+  - Project build on top of K8S namespace and all projects are isolated
+  - Openshift uses OAuth server to "Allow All" by default 
+    - configured by "etc/openshift/master/master-config.yaml"
+  - Users
+    - Regular user - developer
+    - System - system:admin system:master
+    - Service - system:serviceaccount:proj1:db_user
+    
+ - commands 
+   oc get projects
+   oc get users
+   
+   
+SCM, Builds and Deployments in OPENSHIFT
+  - Openshift will do following work automatically, no additional configuration is needed
+  Build
+    - Create build (given git url) -> Download Source -> Build Image -> Push to Docker Registry -> 
+  Deployment
+    - Deploy image from Docker Registry to K8S cluster (Note that Openshift yaml format is different from K8S)
+    
+
+    
