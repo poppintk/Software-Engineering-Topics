@@ -1,6 +1,12 @@
-Two Reasons causes OOM: 1) heap size too small 2) memory leak
-
-
+Two Reasons causes OOM: 
+  1) heap size too small 
+  2) memory leak
+  Step to debug OOM
+    1) use memory mapping tools like Eclipse Memory Analyzer to analyze on dump file. The focus is to confirm whether memory object
+    is needed - to determined whether is due to Memory Leak or Memory Overflow
+    2) if it is due to Memory Leak then use tools check reference of leaked object to GC roots
+    3) if exist Memory Overflow, then increase -Xmx and -Xms
+    
 History:
 - Sun Classic VM (Intepreter only) 
 - HotSpot VM (Oracle or OpenJDK) 
@@ -82,7 +88,12 @@ Heap
     
     
   
-Method Area(Metadata Area)
+Method Area(Metaspace)
+  - A independent memory space (not inside the heap), it is on local memory space not on the virtual space
+  - XX:MetaspaceSize(default size is 21MB) AND XX:MaxMetaspaceSize(default size is -1, no limit)
+  - MetaspaceSize is increased/decrease over time, it triggers Full GC then see if space is enough, if space not enough then will increase Size.
+  and if too much space then it also will automatically decrease over time. Recommmend to set it on relative high value to lower GC frequency
+  
 
 Threads
   - PC Register
