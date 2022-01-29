@@ -32,9 +32,12 @@ SCM, Builds and Deployments in OPENSHIFT
   Deployment
     - Deploy image from Docker Registry to K8S cluster (Note that Openshift yaml format is different from K8S)
     
-
-Build Strategy
-  1) Dokcer Build use docker.file 
-  2) Source-To-Image(S2I)
-  3) Custom Strategy
-Image Streams: resolves issue that third party docker registry have inconsistent lastest version
+  
+  Build
+    Source: git repo url
+    Build Strategy
+      1) Dokcer Build use docker.file 
+      2) Source-To-Image(S2I)
+      3) Custom Strategy
+    Output to image registry
+      Image Streams: resolves issue that third party docker registry have updated lastest version
