@@ -36,8 +36,49 @@ SCM, Builds and Deployments in OPENSHIFT
   Build
     Source: git repo url
     Build Strategy
-      1) Dokcer Build use docker.file 
+      1) Dokcer Build use Dockerfile, if this strategy is chosen then it requires Dockerfile in the project repo 
       2) Source-To-Image(S2I)
       3) Custom Strategy
     Output to image registry
       Image Streams: resolves issue that third party docker registry have updated lastest version
+      
+    TriggerBuild
+      - above configurations are for manually process
+      - trigger will be execute at the time that events(Could be push changes to codebase) take place
+      
+      
+---------------------------------------------------------------------------------------------------
+      
+Example build-config.yaml
+
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "example-webapp-docker"
+spec:
+  runPolicy: "Serial"
+  triggers:
+    - type: "GitHub"
+    github:
+      secret: "b32345esdfgllnhljj"
+    - type: "Generic"
+      generic:
+        secret: "458sd9g0hsdfss"
+    - type: "ImageChange"
+  source:
+    git:
+      uri: "https://github.com/example-web-docker.git"
+      
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: "DockerImage"
+        name: "ubuntu:15.04"
+        
+    output:
+      to:
+        kind: "ImageStreamTag"
+        name: "simple-webapp:lastest"
+        
+  ---------------------------------------------------------------------------------
