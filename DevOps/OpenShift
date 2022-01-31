@@ -81,4 +81,48 @@ spec:
         kind: "ImageStreamTag"
         name: "simple-webapp:lastest"
         
-  ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Example deployment-config.yaml
+
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: sample-webapp-docker
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: sample-webapp-docker
+    strategy:
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: sample-webapp-docker
+          deploymentconfig: sample-webapp-docker
+      spec:
+        containers:
+          - image: myproject/sample-webapp-docker
+            imagePullPolicy: Always
+            name: sample-webapp-docker
+            ports:
+              - containerPort: 8080
+                protocol: TCP
+                
+  triggers:
+    - imageChangeparams:
+        automatic: true
+        containerNames:
+          - sample-webapp-docker
+        from:
+          kind: ImageStreamTag
+          name: 'sample-webapp-docker:lastest'
+          namespace: myproject
+        lastTriggerdImage: >-
+          172.30.1.1:5000/myproject/sample-webapp-docker@sha256:asdfasdgasdf545679847541361d5a1f6d496a1sdf1
+      type: ImageChange
+      
+    - type:ConfigChange  
+      
+
+
+
