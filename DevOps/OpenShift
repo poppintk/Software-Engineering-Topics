@@ -82,6 +82,11 @@ spec:
         name: "simple-webapp:lastest"
         
 ---------------------------------------------------------------------------------
+Deployment 
+  image <- containers <- pods <- Replication controller <- Deployment controller (deployment-config.yaml is where config replication and deployment)
+
+
+
 Example deployment-config.yaml
 
 apiVersion: apps.openshift.io/v1
@@ -122,7 +127,30 @@ spec:
       type: ImageChange
       
     - type:ConfigChange  
-      
+------------------------------------------------------
+Networking
+  Service: same as K8S, each service has its cluster IP. 
+  Route: help service expose to external users
+    - Load Balancing
+      - source
+      - roundrobin
+      - leastconn
+
+Example service-config.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-webapp-docker
+spec:
+  selector:
+    deploymentconfig: simple-webapp-docker
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
 
 
+Example route-config.yml
 
