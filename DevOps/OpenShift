@@ -44,7 +44,7 @@ SCM, Builds and Deployments in OPENSHIFT
       
     TriggerBuild
       - above configurations are for manually process
-      - trigger will be execute at the time that events(Could be push changes to codebase) take place
+      - trigger will be execute at the time that events(Could be push changes to codebase) take place by using Repo "WebHooks"(A http request to request a task to run)
       
       
 ---------------------------------------------------------------------------------------------------
@@ -82,75 +82,5 @@ spec:
         name: "simple-webapp:lastest"
         
 ---------------------------------------------------------------------------------
-Deployment 
-  image <- containers <- pods <- Replication controller <- Deployment controller (deployment-config.yaml is where config replication and deployment)
-
-
-
-Example deployment-config.yaml
-
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
-metadata:
-  name: sample-webapp-docker
-spec:
-  replicas: 1
-  selector:
-    deploymentconfig: sample-webapp-docker
-    strategy:
-      type: Rolling
-    template:
-      metadata:
-        labels:
-          app: sample-webapp-docker
-          deploymentconfig: sample-webapp-docker
-      spec:
-        containers:
-          - image: myproject/sample-webapp-docker
-            imagePullPolicy: Always
-            name: sample-webapp-docker
-            ports:
-              - containerPort: 8080
-                protocol: TCP
-                
-  triggers:
-    - imageChangeparams:
-        automatic: true
-        containerNames:
-          - sample-webapp-docker
-        from:
-          kind: ImageStreamTag
-          name: 'sample-webapp-docker:lastest'
-          namespace: myproject
-        lastTriggerdImage: >-
-          172.30.1.1:5000/myproject/sample-webapp-docker@sha256:asdfasdgasdf545679847541361d5a1f6d496a1sdf1
-      type: ImageChange
-      
-    - type:ConfigChange  
-------------------------------------------------------
-Networking
-  Service: same as K8S, each service has its cluster IP. 
-  Route: help service expose to external users
-    - Load Balancing
-      - source
-      - roundrobin
-      - leastconn
-
-Example service-config.yml
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: simple-webapp-docker
-spec:
-  selector:
-    deploymentconfig: simple-webapp-docker
-  ports:
-  - name: 8080-tcp
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-
-
-Example route-config.yml
+Deployments
 
