@@ -153,3 +153,57 @@ spec:
 
 
 Example route-config.yml
+
+
+template = catalog is where composing above config
+
+Example template-config.yaml
+apiVersion: v1
+kind: Template
+metadata: 
+  name: custom-app
+objects:
+- apiVersion: v1
+  kind: Secret
+  <...code hidden...>
+  
+- apiVersion: v1
+  kind: Service
+  <...code hidden...>
+  
+- apiVersion: v1
+  kind: Service
+  <...code hidden...>
+  
+- apiVersion: v1
+  kind: Route
+  <...code hidden...>
+  
+  
+- apiVersion: v1
+  kind: BuildConfig
+
+
+- apiVersion: v1
+  kind: DeploymentConfig
+  <...code hidden...>
+  
+- apiVersion: v1
+  kind: DeploymentConfig
+  <...code hidden...>
+  
+  
+- apiVersion: v1
+  kind: ImageStream
+  <...code hidden...>
+  
+parameters:
+  - displayName: "Namespace"
+    name: "NAMESPACE"
+    
+    
+How to create template via CLI?  oc create -f template-config.yml
+Not sure how to create pariticular kind of yml file? oc export service db
+  
+  
+  
