@@ -1,64 +1,70 @@
 Distributed Data
 
+Scalability 
+Fault Tolerance/Availability - Replication
+Delay - Applications are deployed on the data center that closer to users 
+
+
 Shared-nothing architecture == horizontal scale == scale out
 
 Replica VS Partitioning
 
 Purpose of replica
-1) geographcally distributed(close to user and reduce latency)
-2) one service down and no impact to entire system
-3) allowing scale out read and increase throughput
+1) geographcally distributed(close to user so that reduce latency)
+2) High availability
+3) scale for reading 
 
 
 three popular replication algorithm:
 1) single leader
 2) multi-leader
-3) leader less
-
-things need to consider:
-1) sync vs async
-2) how to deal with failure in repica
+3) leaderless
 
 leader-base replication OR master/slave replication
-- one of repilica is leader and insert data send to leader then send data change to all replica
-- replicas are read replicas
-- clients can read data from leader or replicas
+  - one of repilica is leader and insert data send to leader then send data change(replication log or change stream) to all replicas
+  - replicas are read replicas
+  - clients can read data from leader or replicas, only the leader can do the write operation
 
-Replication asynchronously will cause eventually consitent issue
-Replication synchronously will cause entire system stop
-semi-synchronous: one of follow is replication synchronously and rest of the replications are 
-done asynchronously. if current synchronous replication become unavailable then choose one from asynchronous replications becone the new synchronous replications
+  - some of databases uses: PostgreSQL, MySQL, MongoDB, RethinkDB and ESpresso
+  - some of middlewares uses: Kafka and RabbitMQ
+
+How to replica change? sync vs async (most of database hardcoded in one of them)
+  Replication asynchronously will cause eventually consitent issue
+  Replication synchronously will cause entire system slow or stop
+  semi-synchronous: one of follow is replication synchronously and rest of the replications are 
+  done asynchronously. if current synchronous replication become unavailable then choose one from asynchronous replications become the new synchronous replications
 
 Set up new replication
-1) get db snapshot from master db.
-2) copy data from db snapshot to new replicaiton
-3) connect new replication to the master db and pull from log sequence number from the Postgres
+  1) get db snapshot from master db.
+  2) copy data from db snapshot to new replicaiton
+  3) connect new replication to the master db and pull from log sequence offset number from the db
+    (in PostgreSQL it is sequence nubmer LSN AND in MySQL it's binlog)
 
 Replication out of sync
-from replica log can figure out the last transaction, so replica can connect to master and request
-all data changes after last transaction.
+  from replica log can figure out the last transaction, so replica can connect to master and request
+  all data changes after last transaction.
 
 Master unavailable
-- need to choose a new leader from replicas and failover need to be done.
-1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
-we think master is unavailable.
-2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
-. Here we need consense algorithm like raft
-3) reconfigure system allow client to send write request to new leader node. if old leader come back, might still
-think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
+  - need to choose a new leader from replicas and failover need to be done.
+  1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
+  we think master is unavailable.
+  2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
+  . Here we need consense algorithm like raft
+  3) reconfigure system allow client to send write request to new leader node. if old leader come back, might still
+  think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
 
 failover issues might occus:
-if use async replication, the new master might lose the last data from old master.
-The reason is new master are chosen from the outdated salves. and now old master come back.
-simply just drop old master. this might not gurrantee that database is durable.
+  if use async replication, the new master might lose the last data from old master.
+  The reason is new master are chosen from the outdated salves. and now old master come back.
+  simply just drop old master. this might not gurrantee that database is durable.
 
 Replication implementation
-1) statement based replication
-Master database record down every statement and send them to all slaves.
-we need to make sure all statements are determinisstic statement.
-- db trigger or procedure might genertate data inconsistent. 
-- Now() function are nondeterministic.
-- update statements executed on different order might generate different result.
+  1) statement based replication
+  Master database record down every statement and send them to all slaves.
+  we need to make sure all statements are determinisstic statement.
+  - db trigger or procedure might genertate data inconsistent. 
+  - Now() function are nondeterministic.
+  - update statements executed on different order might generate different result.
 
 
 
