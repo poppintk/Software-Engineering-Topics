@@ -10,15 +10,14 @@ Shared-nothing architecture == horizontal scale == scale out
 Replica VS Partitioning
 
 Purpose of replica
-1) geographcally distributed(close to user so that reduce latency)
-2) High availability
-3) scale for reading 
-
+  1) geographcally distributed(close to user so that reduce latency)
+  2) High availability
+  3) scale for reading 
 
 three popular replication algorithm:
-1) single leader
-2) multi-leader
-3) leaderless
+  1) single leader
+  2) multi-leader
+  3) leaderless
 
 leader-base replication OR master/slave replication
   - one of repilica is leader and insert data send to leader then send data change(replication log or change stream) to all replicas
