@@ -44,28 +44,43 @@ Replication out of sync
   all data changes after last transaction.
 
 Master unavailable
-  - need to choose a new leader from replicas and failover need to be done.
+  - choose a new leader from replicas and "failover" from its relicas need to be done.
   1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
   we think master is unavailable.
   2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
   . Here we need consense algorithm like raft
-  3) reconfigure system allow client to send write request to new leader node. if old leader come back, might still
+  3) reconfigure system allow client to send write request to new leader node. if old leader come back, it might still
   think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
 
 failover issues might occus:
-  if use async replication, the new master might lose the last data from old master.
-  The reason is new master are chosen from the outdated salves. and now old master come back.
-  simply just drop old master. this might not gurrantee that database is durable.
-
-Replication implementation
-  1) statement based replication
-  Master database record down every statement and send them to all slaves.
-  we need to make sure all statements are determinisstic statement.
-  - db trigger or procedure might genertate data inconsistent. 
-  - Now() function are nondeterministic.
-  - update statements executed on different order might generate different result.
+  1) if use async replication, the new master might lose the last data from old master.
+  The reason is new master is chosen from the outdated salves. and now old master come back. 
+  old master contains additional updated information than new master, it ends up with conflict for new master to write.
+  How to resolve such issue?
+  Simply discard the changes in old master, but it will break durable expectation
+  
+  2) timeout too short might cause unnecessary failover
+  3) too nodes think they are the leader- Split Brain
 
 
+Replication Log implementation
+  All implemented by Database System
+  1) Statement Based Replication
+    - Nondeterministic statement like Now() will generate different effect on differnt replica
+    - AUTO INCREMENT or UPDATE...WHERE <SOME CONDITION> need to make sure they get excuted at same order 
+    - Side effect statement like (trigger, user defined function) might have different side effect on each replicas
+    - too many edge cases
+  
+  2) WAL(Write Ahead Log)
+    - send WAL to replicas and replicas apply WAL 
+    - Disavantage is that WAL is low level design usually decoupled with storage engine and difference in each version. As result end up 
+    more complexity on operation
+    
+  3) Logical Log Replication (Record Row Base Replication)
+    - example MySQL BinaryLog
+
+  4) Trigger based Replication
+    
 
 
 
