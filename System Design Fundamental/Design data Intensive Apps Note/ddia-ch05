@@ -60,7 +60,7 @@ failover issues might occus:
   Simply discard the changes in old master, but it will break durable expectation
   
   2) timeout too short might cause unnecessary failover
-  3) too nodes think they are the leader- Split Brain
+  3) two nodes think they are the leader- Split Brain
 
 
 Replication Log implementation
@@ -73,7 +73,7 @@ Replication Log implementation
   
   2) WAL(Write Ahead Log)
     - send WAL to replicas and replicas apply WAL 
-    - Disavantage is that WAL is low level design usually decoupled with storage engine and difference in each version. As result end up 
+    - Disavantage is that WAL is low level design usually decoupled with storage engine and different implementation in each version. As result end up 
     more complexity on operation
     
   3) Logical Log Replication (Record Row Base Replication)
@@ -90,8 +90,8 @@ Replication Delay Issues
     - due to async, will cause eventually consistency (weak guarantee)
     - Read Your Own Write Consistency OR read-after-write consistency: it is a gurrantee that user will get the latest update they committed
         number of ways to achieve read-after-write consistency
-          - on social media, personal information can only modify by the user own self, then we can make when user reading from his/her profile reading information from master db
-            if other user wants to read this user information, then read from replicas. in such a way we gurrantee user always see the latest update they committed.
+          - on social media, personal profile can only modify by the user herself/himself, then we can make when user reading from his/her profile reading information from master db
+            if other user wants to read this user information, then read from replicas. in such a way we gurrantee user always see the latest update he/she committed.
           - if all information can be modified by all users, then we can track of last modify time, if last modify from now is less than one minutes then read from master db. Otherwise read from replicas
           - client store the latest update(write) timestamp/ sequence number, then read from replicas see if timestamp/ sequence number mathced. if not matched then read from other replicas or wait replicas to catch up with master db
           - Another complex case: same user request from different devices like(mobile phone and desktop web)
@@ -104,3 +104,15 @@ Replication Delay Issues
            - make sure each user always read from same replica each time. How to do that? Hasing on user ID to choose the replica.
      
     - Consistent Prefix Reads
+
+
+Summary for each consistency occurs in scenario
+  - Async replication, user write first then read from the replica which not catch up from latest update from master db due to delay
+   Eventually Consistency, Read Your Own Write Consistency 
+  
+  - Async replication, user write first then user first read from updated replica and then read from the replica which not catch up from latest update from master db due to delay
+    Monotonic Reads
+
+
+
+
