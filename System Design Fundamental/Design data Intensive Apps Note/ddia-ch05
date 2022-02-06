@@ -7,8 +7,6 @@ Delay - Applications are deployed on the data center that closer to users
 
 Shared-nothing architecture == horizontal scale == scale out
 
-Replica VS Partitioning
-
 Purpose of replica
   1) geographcally distributed(close to user so that reduce latency)
   2) High availability
@@ -19,100 +17,105 @@ three popular replication algorithm:
   2) multi-leader
   3) leaderless
 
-leader-base replication OR master/slave replication
-  - one of repilica is leader and insert data send to leader then send data change(replication log or change stream) to all replicas
-  - replicas are read replicas
-  - clients can read data from leader or replicas, only the leader can do the write operation
+Leader-base Replication OR Master/Slave Replication
+    - one of repilica is leader and insert data send to leader then send data change(replication log or change stream) to all replicas
+    - replicas are read replicas
+    - clients can read data from leader or replicas, only the leader can do the write operation
 
-  - some of databases uses: PostgreSQL, MySQL, MongoDB, RethinkDB and ESpresso
-  - some of middlewares uses: Kafka and RabbitMQ
+    - some of databases uses: PostgreSQL, MySQL, MongoDB, RethinkDB and ESpresso
+    - some of middlewares uses: Kafka and RabbitMQ
 
-How to replica change? sync vs async (most of database hardcoded in one of them)
-  Replication asynchronously will cause eventually consitent issue
-  Replication synchronously will cause entire system slow or stop
-  semi-synchronous: one of follow is replication synchronously and rest of the replications are 
-  done asynchronously. if current synchronous replication become unavailable then choose one from asynchronous replications become the new synchronous replications
+  How to replica change? sync vs async (most of database hardcoded in one of them)
+    Replication asynchronously will cause eventually consitent issue
+    Replication synchronously will cause entire system slow or stop
+    semi-synchronous: one of follow is replication synchronously and rest of the replications are 
+    done asynchronously. if current synchronous replication become unavailable then choose one from asynchronous replications become the new synchronous replications
 
-Set up new replication
-  1) get db snapshot from master db.
-  2) copy data from db snapshot to new replicaiton
-  3) connect new replication to the master db and pull from log sequence offset number from the db
-    (in PostgreSQL it is sequence nubmer LSN AND in MySQL it's binlog)
+  Set up new replication
+    1) get db snapshot from master db.
+    2) copy data from db snapshot to new replicaiton
+    3) connect new replication to the master db and pull from log sequence offset number from the db
+      (in PostgreSQL it is sequence nubmer LSN AND in MySQL it's binlog)
 
-Replication out of sync
-  from replica log can figure out the last transaction, so replica can connect to master and request
-  all data changes after last transaction.
+  Replication out of sync
+    from replica log can figure out the last transaction, so replica can connect to master and request
+    all data changes after last transaction.
 
-Master unavailable
-  - choose a new leader from replicas and "failover" from its relicas need to be done.
-  1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
-  we think master is unavailable.
-  2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
-  . Here we need consense algorithm like raft
-  3) reconfigure system allow client to send write request to new leader node. if old leader come back, it might still
-  think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
+  Master unavailable
+    - choose a new leader from replicas and "failover" from its relicas need to be done.
+    1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
+    we think master is unavailable.
+    2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
+    . Here we need consense algorithm like raft
+    3) reconfigure system allow client to send write request to new leader node. if old leader come back, it might still
+    think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
 
-failover issues might occus:
-  1) if use async replication, the new master might lose the last data from old master.
-  The reason is new master is chosen from the outdated salves. and now old master come back. 
-  old master contains additional updated information than new master, it ends up with conflict for new master to write.
-  How to resolve such issue?
-  Simply discard the changes in old master, but it will break durable expectation
-  
-  2) timeout too short might cause unnecessary failover
-  3) two nodes think they are the leader- Split Brain
+  failover issues might occus:
+    1) if use async replication, the new master might lose the last data from old master.
+    The reason is new master is chosen from the outdated salves. and now old master come back. 
+    old master contains additional updated information than new master, it ends up with conflict for new master to write.
+    How to resolve such issue?
+    Simply discard the changes in old master, but it will break durable expectation
 
-
-Replication Log implementation
-  All implemented by Database System
-  1) Statement Based Replication
-    - Nondeterministic statement like Now() will generate different effect on differnt replica
-    - AUTO INCREMENT or UPDATE...WHERE <SOME CONDITION> need to make sure they get excuted at same order 
-    - Side effect statement like (trigger, user defined function) might have different side effect on each replicas
-    - too many edge cases
-  
-  2) WAL(Write Ahead Log)
-    - send WAL to replicas and replicas apply WAL 
-    - Disavantage is that WAL is low level design usually decoupled with storage engine and different implementation in each version. As result end up 
-    more complexity on operation
-    
-  3) Logical Log Replication (Record Row Base Replication)
-    - example MySQL BinaryLog
-
-  4) Trigger based Replication
-    - advantage: No Application level code required
-    - disadvantage: Trigger Based Replication usualy requires more cost and easier to go wrong
-
-Replication Delay Issues  
-  1) geographcally distributed(close to user so that reduce latency)
-  2) scale for reading 
-    - good use case for application write less and read more scenario
-    - due to async, will cause eventually consistency (weak guarantee)
-    - Read Your Own Write Consistency OR read-after-write consistency: it is a gurrantee that user will get the latest update they committed
-        number of ways to achieve read-after-write consistency
-          - on social media, personal profile can only modify by the user herself/himself, then we can make when user reading from his/her profile reading information from master db
-            if other user wants to read this user information, then read from replicas. in such a way we gurrantee user always see the latest update he/she committed.
-          - if all information can be modified by all users, then we can track of last modify time, if last modify from now is less than one minutes then read from master db. Otherwise read from replicas
-          - client store the latest update(write) timestamp/ sequence number, then read from replicas see if timestamp/ sequence number mathced. if not matched then read from other replicas or wait replicas to catch up with master db
-          - Another complex case: same user request from different devices like(mobile phone and desktop web)
-            - this will make the timestamp/sequence number approach difficult, because one device don't know what happened on another device.
-            we need a centre storage to keep tracking of timestamp/sequence number
-
-    - Moving Backward in time : frist reading route to the updated replicas and next time reading route to outdated replicas
-        - Monotonic Reads: it is a gurrantee that reading data from old value, and after that you won't get a value which older than last time you see
-          number of ways to achieve Monotonic Reads
-           - make sure each user always read from same replica each time. How to do that? Hasing on user ID to choose the replica.
-     
-    - Consistent Prefix Reads
+    2) timeout too short might cause unnecessary failover
+    3) two nodes think they are the leader- Split Brain
 
 
-Summary for each consistency occurs in scenario
-  - Async replication, user write first then read from the replica which not catch up from latest update from master db due to delay
-   Eventually Consistency, Read Your Own Write Consistency 
-  
-  - Async replication, user write first then user first read from updated replica and then read from the replica which not catch up from latest update from master db due to delay
-    Monotonic Reads
+  Replication Log implementation
+    All implemented by Database System
+    1) Statement Based Replication
+      - Nondeterministic statement like Now() will generate different effect on differnt replica
+      - AUTO INCREMENT or UPDATE...WHERE <SOME CONDITION> need to make sure they get excuted at same order 
+      - Side effect statement like (trigger, user defined function) might have different side effect on each replicas
+      - too many edge cases
+
+    2) WAL(Write Ahead Log)
+      - send WAL to replicas and replicas apply WAL 
+      - Disavantage is that WAL is low level design usually decoupled with storage engine and different implementation in each version. As result end up 
+      more complexity on operation
+
+    3) Logical Log Replication (Record Row Base Replication)
+      - example MySQL BinaryLog
+
+    4) Trigger based Replication
+      - advantage: No Application level code required
+      - disadvantage: Trigger Based Replication usualy requires more cost and easier to go wrong
+
+  Replication Delay Issues  
+    1) geographcally distributed(close to user so that reduce latency)
+    2) scale for reading 
+      - good use case for application write less and read more scenario
+      - due to async, will cause eventually consistency (weak guarantee)
+      - Read Your Own Write Consistency OR read-after-write consistency: it is a gurrantee that user will get the latest update they committed
+            Solutions: 
+            - on social media, personal profile can only modify by the user herself/himself, then we can make when user reading from his/her profile reading information from master db
+              if other user wants to read this user information, then read from replicas. in such a way we gurrantee user always see the latest update he/she committed.
+            - if all information can be modified by all users, then we can track of last modify time, if last modify from now is less than one minutes then read from master db. Otherwise read from replicas
+            - client store the latest update(write) timestamp/ sequence number, then read from replicas see if timestamp/ sequence number mathced. if not matched then read from other replicas or wait replicas to catch up with master db
+            - Another complex case: same user request from different devices like(mobile phone and desktop web)
+              - this will make the timestamp/sequence number approach difficult, because one device don't know what happened on another device.
+              we need a centre storage to keep tracking of timestamp/sequence number
+
+      - Moving Backward in time : frist reading route to the updated replicas and next time reading route to outdated replicas
+          - Monotonic Reads: it is a gurrantee that reading data from old value, and after that you won't get a value which older than last time you see
+             Solution:
+             - make sure each user always read from same replica each time. How to do that? Hasing on user ID to choose the replica.
+
+      - Consistent Prefix Reads: it is a gurrantee that write data and read data in a same sequence under condition that Async Replication + partition
+        Simple solution:
+          - ensure all write into the same partition(???? WILL COME BACK TO THIS)
+
+  Summary for each consistency occurs in scenario
+    - Async replication, user write first then read from the replica which not catch up from latest update from master db due to delay
+     Eventually Consistency, Read Your Own Write Consistency 
+
+    - Async replication, user write first then user first read from updated replica and then read from the replica which not catch up from latest update from master db due to delay
+      Monotonic Reads
+
+    - Async replication + partition
+      Consistent Prefix Reads
 
 
 
+Multi-Master Replication
 
