@@ -119,3 +119,12 @@ Leader-base Replication OR Master/Slave Replication
 
 Multi-Master Replication
 
+Leaderless
+  - No Master db and allow all replicas directly receive all client write into
+  - Dynamo is based on leaderless replication, DynamoDB uses single-leader replication
+  - How to this architecture resolve one replica outdated?
+    1) Read Repair: during the read from all replicas and compare count of each value(old/new value), higher count wins
+    2) Anti-entropy Process: A process running in background try to fix the outdated data
+  - Read Write Quorum (Idea is "Higher count wins")
+    
+
