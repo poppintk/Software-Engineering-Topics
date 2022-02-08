@@ -1,0 +1,16 @@
+Partition
+
+Skew: unbalanced distributed data to each partition
+Hot Spot: The hotest skew data
+
+How to resolve above issue?
+  - Randomization
+    - when it comes to search, we don't know which partition the data is located, which end up global search all partitions
+  - Parition base on key range
+    
+  - partition base on Hashcode
+    Disadvantage: lost the efficency on range search, in case of range search, MongoDB will send to all partitions to get search result 
+    Advantage: reduce the "Skew" and "Hot Spot" issue (NOTE: not completely resolve)
+    what if we need range search? use Cassandra
+    
+  -
