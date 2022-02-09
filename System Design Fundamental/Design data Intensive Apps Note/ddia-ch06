@@ -1,4 +1,4 @@
-Partition
+Partition/Sharding
 
 Skew: unbalanced distributed data to each partition
 Hot Spot: The hotest skew data
@@ -7,10 +7,35 @@ How to resolve above issue?
   - Randomization
     - when it comes to search, we don't know which partition the data is located, which end up global search all partitions
   - Parition base on key range
+    Diavantage: if primary key is timestamp, for example we assign all sensor data within one day write into same db partition then this is hot skew data
+      in order to resolve skew issue in sensor data, we can use sensor name or id as part of primary key 
     
   - partition base on Hashcode
     Disadvantage: lost the efficency on range search, in case of range search, MongoDB will send to all partitions to get search result 
     Advantage: reduce the "Skew" and "Hot Spot" issue (NOTE: not completely resolve)
     what if we need range search? use Cassandra
     
-  -
+
+Data Skew issue can not be resolved completely
+  - even use of consistent hashing in extremly case, for example Social Media, A celebrate with Million of fans, A event can make
+  lots of write to same primary key (User ID or comment ID).
+  
+Sharding and Secondary index
+  - Document-based
+    - Each partition create a secondary index base on its own data(Local index)
+    - Disadvantage: particular data might not in same partition, if require search on this data then require send query to all partition then aggregate(scatter/gather)
+    - Example DB: Cassandra, Elasticsearch
+  - Term-based
+    - create a secondary index on all partition data and secondary index should also partitioned to different nodes
+    - Pros: more efficient to read due to globally indexed and not quired send query to each partition then aggregate
+    - Cons: less efficient to write due to one single write now will impact on multiple parition write
+    - usually globally index are done by async -> delay
+    
+  
+Partition Rebalancing
+  - over the time database volumn grows
+  How to rebalance?
+    - Hash mode N (Terriable Idea)
+    - Fixed number of partition
+    
+    
