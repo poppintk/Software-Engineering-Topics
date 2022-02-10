@@ -1,0 +1,15 @@
+Transaction
+
+ACID
+  - Atomicity
+  - Consistency
+  - Isolation
+  - Durability
+  
+NOTE: A system if not in ACID then it is in BASE
+
+BASE
+  - Basically Available
+  - Soft State
+  - Eventual Consistency
+  
