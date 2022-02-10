@@ -1,11 +1,53 @@
 Transaction
 
 ACID
-  - Atomicity: all or nothing
-  - Consistency
-  - Isolation
-  - Durability
+  - Atomicity: run all operations or nothing
+  - Consistency: total value before operation and after oepration should be the same
+  - Isolation: Multiple different isolcations levels
+  - Durability: once transaction committed it can not lose
   
+  
+ISOLATION LEVEL
+    any of isolcation level will not cause "Dirty Writes"
+    
+    Drity Writes: Transaction A rollback x = 1 also rollback B's change on x
+               Time -------------------------------------------------------->
+      Transaction A: read x = 1 |                                      | write x = 3, rollback, read x = 1
+      Transaction B:             read x = 1, write x = 2, commit x = 2 |
+      result x = 1
+      ----------------------------------------------------------------------------------------------------
+    
+    Four isolcation levels: 
+    - Read Uncommitted: Read other tranction not yet committed data ---> "Dirty Reads" issue
+      Dirty Reads: One transaction reads another transaction uncommitted data 
+               Time -------------------------------------------------------->
+      Transaction A: read x = 1, write x = 2 |              | rollback, read x = 1
+      Transaction B:                          read x = 2|
+      ----------------------------------------------------------------------------------------------------
+      Solution: Read Committed
+    
+    
+    - Read Committed:  Read other tranction committed data ---> "Non-repeatable Reads" issue
+      Non-repeatable Reads: A transaction Read to same data, there is value difference between first read and final read
+                     Time -------------------------------------------------------->
+      Transaction A: read x = 1 |                                      | read x = 2
+      Transaction B:             read x = 1, write x = 2, commit x = 2 |
+      ----------------------------------------------------------------------------------------------------
+      Solution: Repeatable Committed
+    
+    - Repeatable Read: if there is a transaction reading this data, other transaction can not write to this data, but can read still ----> "Phantom Reads" issue
+      Phantom Reads: when transaction reads a range (x < 5), due to other transaction insertion, the returned result set is different between first read and final read
+      
+                    Time -------------------------------------------------------->
+      Transaction A: read x < 5 = [1,2,3] |                                      | read x < 5 = [1, 2, 3, 4]
+      Transaction B:                          Insert x = 4, commit                
+      ----------------------------------------------------------------------------------------------------
+      Solution: Serializable
+    
+    - Serializable: All transactions are executed one after another
+
+
+
 NOTE: A system if not in ACID then it is in BASE
 
 BASE
