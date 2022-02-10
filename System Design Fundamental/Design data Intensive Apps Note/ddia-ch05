@@ -126,5 +126,6 @@ Leaderless
     1) Read Repair: during the read from all replicas and compare count of each value(old/new value), higher count wins
     2) Anti-entropy Process: A process running in background try to fix the outdated data
   - Read Write Quorum (Idea is "Higher count wins")
+  - in leaderless architecture, it is application responsibility to deal with rollback logic
     
 
