@@ -5,17 +5,19 @@ Hot Spot: The hotest skew data
 
 How to resolve above issue?
   - Randomization
-    - when it comes to search, we don't know which partition the data is located, which end up global search all partitions
-  - Parition base on key range
+    when it comes to search, we don't know which partition the data is located, which end up global search all partitions
+    
+  - Parition base on key range(Note: key has order sequence, can be sorted)
     Diavantage: if primary key is timestamp, for example we assign all sensor data within one day write into same db partition then this is hot skew data
       in order to resolve skew issue in sensor data, we can use sensor name or id as part of primary key 
     
-  - partition base on Hashcode
+  - partition base on Hashcode (Consistent Hashing)
     Disadvantage: lost the efficency on range search, in case of range search, MongoDB will send to all partitions to get search result 
     Advantage: reduce the "Skew" and "Hot Spot" issue (NOTE: not completely resolve)
     what if we need range search? use Cassandra
     
-
+  Note: we can use both Hashcode based + Parition base partition, use the prefix of primary key to consistent hash partition and rest of suffix of primmary key to get target already sorted order
+  
 Data Skew issue can not be resolved completely
   - even use of consistent hashing in extremly case, for example Social Media, A celebrate with Million of fans, A event can make
   lots of write to same primary key (User ID or comment ID).
