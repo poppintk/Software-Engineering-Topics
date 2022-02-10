@@ -45,7 +45,10 @@ ISOLATION LEVEL
       Solution: Serializable
     
     - Serializable: All transactions are executed one after another
-
+    
+    NOTE: 
+    MySQL default Repeatable Read
+    Oracle default Read committed
 
 
 NOTE: A system if not in ACID then it is in BASE
