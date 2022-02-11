@@ -10,7 +10,7 @@ ACID
 ISOLATION LEVEL
     any of isolcation level will not cause "Dirty Writes"
     
-    Drity Writes: Transaction A rollback x = 1 also rollback B's change on x
+    Drity Writes: The next transaction B overwrite the value in previous transaction A
                Time -------------------------------------------------------->
       Transaction A: read x = 1 |                                      | write x = 3, rollback, read x = 1
       Transaction B:             read x = 1, write x = 2, commit x = 2 |
@@ -33,9 +33,9 @@ ISOLATION LEVEL
       Transaction A: read x = 1 |                                      | read x = 2
       Transaction B:             read x = 1, write x = 2, commit x = 2 |
       ----------------------------------------------------------------------------------------------------
-      Solution: Repeatable Committed
+      Solution: Repeatable Read
     
-    - Repeatable Read: if there is a transaction reading this data, other transaction can not write to this data, but can read still ----> "Phantom Reads" issue
+    - Repeatable Read: if there is a transaction reading this data, other transaction can not write to this data, but can read still, by using snapshot isolation ----> "Phantom Reads" issue
       Phantom Reads: when transaction reads a range (x < 5), due to other transaction insertion, the returned result set is different between first read and final read
       
                     Time -------------------------------------------------------->
@@ -49,6 +49,14 @@ ISOLATION LEVEL
     NOTE: 
     MySQL default Repeatable Read
     Oracle default Read committed
+
+    
+How to stop Dirty Write?
+  use row-level lock, only one transaction have the object lock, another transaction write opertion need to wait until lock is released
+
+How to stop Dirty Read?
+  
+
 
 
 NOTE: A system if not in ACID then it is in BASE
