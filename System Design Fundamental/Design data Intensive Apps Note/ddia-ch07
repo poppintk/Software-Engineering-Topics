@@ -28,14 +28,14 @@ ISOLATION LEVEL
     
     
     - Read Committed:  Read other tranction committed data ---> "Non-repeatable Reads" issue
-      Non-repeatable Reads: A transaction Read to same data, there is value difference between first read and final read
+      Nonrepeatable Reads/Read Skew: A transaction Read to same data, there is value difference between first read and final read
                      Time -------------------------------------------------------->
       Transaction A: read x = 1 |                                      | read x = 2
       Transaction B:             read x = 1, write x = 2, commit x = 2 |
       ----------------------------------------------------------------------------------------------------
       Solution: Repeatable Read
     
-    - Repeatable Read: if there is a transaction reading this data, other transaction can not write to this data, but can read still, by using snapshot isolation ----> "Phantom Reads" issue
+    - Repeatable Read/Snapshot Isolation: if there is a transaction reading this data, other transaction can not write to this data, but can read still ----> "Phantom Reads" issue
       Phantom Reads: when transaction reads a range (x < 5), due to other transaction insertion, the returned result set is different between first read and final read
       
                     Time -------------------------------------------------------->
@@ -54,8 +54,8 @@ ISOLATION LEVEL
 How to stop Dirty Write?
   use row-level lock, only one transaction have the object lock, another transaction write opertion need to wait until lock is released
 
-How to stop Dirty Read?
-  
+Implementation of Sanpshot Isolation
+  use row-level lock, not blocking read but blocking other transaction's 
 
 
 
