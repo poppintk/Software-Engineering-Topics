@@ -3,7 +3,7 @@ Transaction
 ACID
   - Atomicity: run all operations or nothing
   - Consistency: total value before operation and after oepration should be the same
-  - Isolation: Multiple different isolcations levels
+  - Isolation: Multiple different isolcations levels for transaction
   - Durability: once transaction committed it can not lose
   
   
@@ -48,15 +48,11 @@ ISOLATION LEVEL
     
     NOTE: 
     MySQL default Repeatable Read
-    Oracle default Read committed
+    Oracle,PostgreSQL default Read committed
 
     
 How to stop Dirty Write?
   use row-level lock, only one transaction have the object lock, another transaction write opertion need to wait until lock is released
-
-Implementation of Sanpshot Isolation
-  use row-level lock, not blocking read but blocking other transaction's 
-
 
 
 NOTE: A system if not in ACID then it is in BASE
