@@ -45,8 +45,8 @@ Leader-base Replication OR Master/Slave Replication
     - choose a new leader from replicas and "failover" from its relicas need to be done.
     1) confirm master is unavailable , most system use timeout, if no response time out for example over 30 sec
     we think master is unavailable.
-    2) choose a new leader, new leader node is the node has newst data replica. let all the nodes agree the new leader
-    . Here we need consense algorithm like raft
+    2) choose a new leader, new leader node is the node has the newest data replica. let all the nodes agree the new leader
+    . Here we need consense algorithm like Raft
     3) reconfigure system allow client to send write request to new leader node. if old leader come back, it might still
     think it's the master. system need to make sure old leader ackowledge the new leader and old leader become the new slave
 
@@ -55,10 +55,10 @@ Leader-base Replication OR Master/Slave Replication
     The reason is new master is chosen from the outdated salves. and now old master come back. 
     old master contains additional updated information than new master, it ends up with conflict for new master to write.
     How to resolve such issue?
-    Simply discard the changes in old master, but it will break durable expectation
+    Simply discard the changes in old master, but it will break durable contract
 
     2) timeout too short might cause unnecessary failover
-    3) two nodes think they are the leader- Split Brain
+    3) two nodes think they are the leader - Split Brain issue
 
 
   Replication Log implementation
@@ -75,7 +75,7 @@ Leader-base Replication OR Master/Slave Replication
       more complexity on operation
 
     3) Logical Log Replication (Record Row Base Replication)
-      - example MySQL BinaryLog
+      - example MySQL Binary Log
 
     4) Trigger based Replication
       - advantage: No Application level code required
@@ -88,9 +88,9 @@ Leader-base Replication OR Master/Slave Replication
       - due to async, will cause eventually consistency (weak guarantee)
       - Read Your Own Write Consistency OR read-after-write consistency: it is a gurrantee that user will get the latest update they committed
             Solutions: 
-            - on social media, personal profile can only modify by the user herself/himself, then we can make when user reading from his/her profile reading information from master db
+            - on social media, personal profile can only be modified by the user herself/himself, then we can make sure user reading his/her profile from master db
               if other user wants to read this user information, then read from replicas. in such a way we gurrantee user always see the latest update he/she committed.
-            - if all information can be modified by all users, then we can track of last modify time, if last modify from now is less than one minutes then read from master db. Otherwise read from replicas
+            - if all information can be modified by all users, then we can track of the latest modify time, if the latest modify from now is less than one minutes then reading from master db. Otherwise read from replicas
             - client store the latest update(write) timestamp/ sequence number, then read from replicas see if timestamp/ sequence number mathced. if not matched then read from other replicas or wait replicas to catch up with master db
             - Another complex case: same user request from different devices like(mobile phone and desktop web)
               - this will make the timestamp/sequence number approach difficult, because one device don't know what happened on another device.
@@ -99,7 +99,7 @@ Leader-base Replication OR Master/Slave Replication
       - Moving Backward in time : frist reading route to the updated replicas and next time reading route to outdated replicas
           - Monotonic Reads: it is a gurrantee that reading data from old value, and after that you won't get a value which older than last time you see
              Solution:
-             - make sure each user always read from same replica each time. How to do that? Hasing on user ID to choose the replica.
+             - make sure each user always reading from same replica each time. How to do that? Hasing on user ID to choose the replica.
 
       - Consistent Prefix Reads: it is a gurrantee that write data and read data in a same sequence under condition that Async Replication + partition
         Simple solution:
@@ -109,7 +109,7 @@ Leader-base Replication OR Master/Slave Replication
     - Async replication, user write first then read from the replica which not catch up from latest update from master db due to delay
      Eventually Consistency, Read Your Own Write Consistency 
 
-    - Async replication, user write first then user first read from updated replica and then read from the replica which not catch up from latest update from master db due to delay
+    - Async replication, routing to different replicas (routing to sometimes updated replica and sometimes outdated replica)
       Monotonic Reads
 
     - Async replication + partition
