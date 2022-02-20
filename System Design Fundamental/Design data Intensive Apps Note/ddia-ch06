@@ -1,5 +1,7 @@
 Partition/Sharding
 
+For large set of data and the system requires high thoughput we need Partition/Sharding
+
 Skew: unbalanced distributed data to each partition
 Hot Spot: The hotest skew data
 
