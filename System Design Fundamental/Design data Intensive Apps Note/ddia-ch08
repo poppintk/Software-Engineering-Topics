@@ -1,0 +1,16 @@
+Partial Failure: in distributed system some part of system could run into issue or failure unexpected, but the rest of system is working fine.
+Nonderterministic: unpredictable, not even sure whether request is sent through network
+
+TCP/IP is not so reliable even though it hides package lost, duplicates and re-arrange pakcage slice but all those operations cause network delay.
+
+Unreliable Network
+  a) Request lost
+    - Request lost(someone cut the network cable)
+    - Request on queue (due to reciver on it's limit)
+  b) remote server node unavaialbe
+    - remote server node unavaialbe (shutdown or down)
+    - remote server node temporary stop response(due to long time garbage collection)
+  c)response lost
+    - remote server node has process request but network reposne lost (maybe due to network Switch wrong configration)
+    - remote server node has process request but response is develivery in a delay (network or your own machine at its limit)
+  
