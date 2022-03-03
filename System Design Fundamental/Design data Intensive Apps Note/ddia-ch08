@@ -2,6 +2,8 @@ Partial Failure: in distributed system some part of system could run into issue 
 Nonderterministic: unpredictable, not even sure whether request is sent through network
 
 TCP/IP is not so reliable even though it hides package lost, duplicates and re-arrange pakcage slice but all those operations cause network delay.
+TCP/IP only confirm that package is deliveried to machine, but on that machine there is no gurrantee that msg is processed by server applicaiton
+
 
 Unreliable Network
   a) Request lost
@@ -13,4 +15,8 @@ Unreliable Network
   c)response lost
     - remote server node has process request but network reposne lost (maybe due to network Switch wrong configration)
     - remote server node has process request but response is develivery in a delay (network or your own machine at its limit)
+  
+  A solution to those issue is by using Timeout
+  
+
   
