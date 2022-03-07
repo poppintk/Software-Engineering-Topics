@@ -1,0 +1,6 @@
+Consensus: All nodes agree on something happened
+
+Consistency is not free, usually the stronger consistent the worse in performance
+
+Linearizability: The Strongest guarrantee, all replica behavave the same and look like a one replica
+
