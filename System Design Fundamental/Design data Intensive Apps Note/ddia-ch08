@@ -22,6 +22,8 @@ Unreliable Network
     1) timeout too soon, applicaiton process twice
     2) System is on its limit and one of node is temporary slow due to high traffic load, it will make situation worse. it will cause cascading failure(all nodes declaire that not available)
     
+  A better solution is dynamically timeout
   
+  Unreliable Clock
 
   
