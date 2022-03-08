@@ -2,7 +2,37 @@ Consensus: All nodes agree on something happened
 
 Consistency is not free, usually the stronger consistent the worse in performance
 
-Linearizability/Atomic consistency/Strong Consistent/immediate consistency/external consistency: 
-A guarrantee that the value reading is the most recency, all replica behavave the same and look like a one replica
-
 single master, Multiple masters and Leaderless all have data inconsistent issue
+
+
+
+Linearizability/Atomic consistency/Strong Consistent/immediate consistency/external consistency: 
+  A guarrantee that the value reading is the most recency, all replica behavave the same and look like a one replica
+  - any continuesly read should also return the new value base on new value reading from last read 
+  - base on time sequence
+  
+
+Liearizability Use Case
+  Single Master- Leader election and Locking
+    one approach to choose leader is by using lock. No matter how this locking is implemented, it must be lieanrizability: all nodes must agree on which node has the lock at the moment
+  
+  Unique Constraint 
+    DB has unique constraint, for example userID and email address must be uniquely indicate a user. However, in file storage service two users can create same files or user, one of them must 
+    failed. one easy way is by using lock, locking the username when one user is registering
+  
+Different work flow processing on different rate of speed issue
+  
+  User --- 1.upload image ---> Web Server --- 2. store full-size image---> File Storage
+                                |                                            | 5. fetch full-size image from File storage
+                             3. send message                                 | 6. store resized image to File storage
+                                |                                            |
+                             Message Queue --- 4. deliver message --->  Image Resizer
+  
+  NOTE: message queue processing faster than File storage internal replica speed, it could end up that when 5) is processed but 2) still not yet done. as a result 5) fetch image is coming from old image or nothing.
+  Solution: Read your own write, reading from master 
+  
+  
+  
+  
+  
+  
