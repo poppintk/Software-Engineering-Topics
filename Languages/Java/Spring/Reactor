@@ -1,5 +1,12 @@
 Reative Stream are immutable
 
+using retrieve other than exchange when using webClient
+if using exchange make sure that you have exception covered
+
+using zipDelayError other than zip
+  in case of error, lots of things not garbage collected
+
+
 How perform conditional logic in Reactor?
 use filter() and map()/flatMap()/ flatMapMany()
 see this example https://rangle.io/blog/rxjs-where-is-the-if-else-operator/
@@ -32,14 +39,14 @@ Flux.delayElements(Duration.ofMillis(unit)); // delay for unit time
 
 
 Map()
-  - For basic transformation Non-IO operations
+  - For basic transformation Non-IO operations(for CPU related task)
   - One to one transformation
   - Does the simple transformation form T to V
   - Sync transformation
   - Does not support transformations that returns Publisher
 
 flatMap()
-  - For IO operations
+  - For IO operations, create a thread pool (For IO related task) 
   - One to N transformations
     i.e. "ALEX" -> ["A", "L", "E", "X"]
   - Does more than just transformation. Subscribes to Flux or Mono that's part of the transformation and then flattens it and sends it downstream
