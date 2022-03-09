@@ -37,4 +37,9 @@ How to Implement linearizability System
   
   
   
+CAP
+  C - Linearizability consistency
+  A - Availability
+  P - network partition (one of fault)
+  Note: CAP thoery concept not so helpful from system design perspective, it is only consider one consistency model and one fault
   
