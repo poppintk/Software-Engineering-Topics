@@ -34,8 +34,7 @@ Linearizability Use Case
   
 How to Implement linearizability System
   
-  Linearizability is for single object(single partition), mutiple partition is different problem (distributed transaction and concenses)
-  
+  Linearizability is for single object(single partition), mutiple partitions(divide DB object into multile objects) is different problem (distributed transaction and concenses)
   
   
 CAP
@@ -44,10 +43,21 @@ CAP
   P - network partition (one of fault)
   Note: CAP thoery concept not so helpful from system design perspective, it is only consider one consistency model and one fault
   
-Causally - A gurrantee that reason is happening from result, it is weaker consistency model than linearizability.
-Linearizability is bad on performance but we still can have Causally and better performance. How? use version nubmer(sequence number of timestamp)
+Consistent with Causally - A gurrantee that reason is happening from result, it is weaker consistency model than linearizability.
+Linearizability is bad on performance but we still can have Consistent with Causally and better performance. How? use version nubmer(sequence number OR timestamp) to ensure ordering
 
 
+Lamport Timestamp
 
 
+Total Order Broadcast/Atomic Broadcast
+  - reliable delivery
+  - totally ordered delivery
+  
+  
+Distributed Transaction and Concenses 
+  Consenses use case
+    - Leader election
+    - Atomic commit 
+      let all nodes agree on transaction result: either rollback/commit
 
