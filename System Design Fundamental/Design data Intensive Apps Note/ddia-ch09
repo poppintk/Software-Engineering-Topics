@@ -61,3 +61,15 @@ Distributed Transaction and Concenses
     - Atomic commit 
       let all nodes agree on transaction result: either rollback/commit
 
+
+Two-Phase commit
+  A algorithm that used for atomic transaction commit across multiple nodes
+  
+  Coordinator  |  write data       write data    |  Prepare           | Commit            |
+  Database1    |    \_/ ok           \   / ok    |   \_/ ok  \   / ok |  \_/ ok \   / ok  |
+  Database2    |                      \_/        |            \_/     |          \_/      |
+               |---------------------------------|------Phase1--------|--------Phase2-----|
+  
+  Any exception occurs on phase1 and 2 will cause rollback to all nodes
+  
+  
