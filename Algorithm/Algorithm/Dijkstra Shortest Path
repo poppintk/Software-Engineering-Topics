@@ -1,3 +1,9 @@
+Dijkstra Shortest path is one of Greedy Algorithm
+Greedy Algorithm Runtime analysis differs in case by case.
+For Graph problem usually can use this pattern to start analyze the runtime:
+- total runtime of Vertex + total runtime of Edges
+- usually greedy algorithm will use of data structure Heap, we can study how data add to heap and remove from heap to help calculate runtime
+
 complexity runtime analysis:
   - total runtime for Vertice's
   - total runtime for Edges
