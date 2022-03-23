@@ -66,10 +66,18 @@ Two-Phase commit
   A algorithm that used for atomic transaction commit across multiple nodes
   
   Coordinator  |  write data       write data    |  Prepare           | Commit            |
-  Database1    |    \_/ ok           \   / ok    |   \_/ ok  \   / ok |  \_/ ok \   / ok  |
+  Database1    |    \_/ ok           \   / ok    |   \_/ ok  \   / ok |  \_/ ok \   / ok  | 
   Database2    |                      \_/        |            \_/     |          \_/      |
                |---------------------------------|------Phase1--------|--------Phase2-----|
-  
+  Note: participants are Database1 and Database2
+  How?
+    1) appliation request a transaction ID from coordinator, this transaction ID is globally unique
+    2) Writing: application will write to each participant with transaction ID. any issues(node down or request timeout) will rollback
+    3) Prepare: coordinator send a request for commit preparation. any failure or timeout will cause coordinator send a request to participant for rollback transaction
+    4) Prepare: participants make a confirmation YES or NO upon any failures(power failure or space no enough) condition that participant still able to commit transaction.
+    5) when coordinator received confirmation from all participants, coordinator will write commit/rollback decision into disk ---- commit point
+    6) once commit point is made, the coordinator will send commit/rollback request to all parcipants regardless any failure or timeout. in case of failure or timeout, retry will performed until send successfully
+    
   Any exception occurs on phase1 and 2 will cause rollback to all nodes
   
   
