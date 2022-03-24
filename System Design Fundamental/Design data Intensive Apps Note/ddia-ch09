@@ -78,6 +78,10 @@ Two-Phase commit
     5) when coordinator received confirmation from all participants, coordinator will write commit/rollback decision into disk ---- commit point
     6) once commit point is made, the coordinator will send commit/rollback request to all parcipants regardless any failure or timeout. in case of failure or timeout, retry will performed until send successfully
     
-  Any exception occurs on phase1 and 2 will cause rollback to all nodes
+    Diasavantage: what if coordinator failure before request send?
+    before commit point is made, participants can terminate transaction. but once participants send out confirmation "YES", if coordinator expereince falure, then the only that 
+    participants can do is waiting. participants in status of in double or uncertain. once coordinator come back then read restore from the commit log
+    
+    
   
   
