@@ -51,8 +51,8 @@ Lamport Timestamp
 
 
 Total Order Broadcast/Atomic Broadcast
-  - reliable delivery
-  - totally ordered delivery
+  - reliable delivery: if msg get deliveried and it will be deliveried to all nodes, usually done by retry if network issue
+  - totally ordered delivery: msg will be deliveried in same order to each node
   
   
 Distributed Transaction and Concenses 
