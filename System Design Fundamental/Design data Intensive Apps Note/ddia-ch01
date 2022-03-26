@@ -9,6 +9,8 @@ Tweeter for example,
 
 2) get timeline - fetch all tweet from following users (300k request/sec)
 
+the main issue on tweeter is on fan-out issue, like each user can follow many other users and each user can be followed by other uses
+
 Tweeter use two approach
 1) pull model
   publish tweet - when users publish tweet, all tweets are saved on their tweet table.
