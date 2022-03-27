@@ -1,0 +1,16 @@
+Batch System 
+
+
+Online System
+  - like Database, Cache, Search Index and Web Server
+  - measurement metrics, response time
+  
+Batch System (offline system) 
+  - input large number of data and run a job to process it and output some data. it usually takes couple mins up to couple days. No user will wait for job done, usually run on scheduled time
+  - measurement metrics, throughput
+  
+Streaming System(Real time system)
+  - A system between Online system and Batch system
+  
+  
+MapReduce
