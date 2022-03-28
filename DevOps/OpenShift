@@ -1,3 +1,45 @@
+Core Concepts
+  Builds
+    - A build is the process of transforming input parameters into a resulting object. Most often, the process is used to transform input parameters or source code into a runnable image. A BuildConfig object is the definition of the entire build process.
+
+  Pipelines
+    - A pipeline is a build strategy allows developers to define a Jenkins pipeline for execution by the Jenkins pipeline plugin. The build can be started, monitored, and managed by OpenShift Container Platform in the same way as any other build type.
+    Pipeline workflows are defined in a Jenkinsfile, either embedded directly in the build configuration, or supplied in a Git repository and referenced by the build configuration.
+    - The first time a project defines a build configuration using a Pipeline strategy, OpenShift Container Platform instantiates a Jenkins server to execute the pipeline. Subsequent Pipeline build configurations in the project share this Jenkins server.
+
+  Image Streams
+    - An image stream comprises any number of Docker-formatted container images identified by tags. It presents a single virtual view of related images, similar to an image repository, and may contain images from any of the following:
+      - Its own image repository in OpenShift Container Platform’s integrated registry
+      - Other image streams
+      - Image repositories from external registries
+
+
+  Deployments
+    - Deployments are an Open Shift enhancement underpinned by the key Kubernetes concept of a Replication Controllers. 
+
+  Replication Controller
+    - A replication controller ensures that a specified number of replicas of a pod are running at all times. If pods exit or are deleted, the replication controller acts to instantiate more up to the defined number. Likewise, if there are more running than desired, it deletes as many as necessary to match the defined amount.
+    = A replication controller configuration consists of:
+      - The number of replicas desired (which can be adjusted at runtime).
+      - A pod definition to use when creating a replicated pod.
+      - A selector for identifying managed pods.
+
+  Deployment
+    - Building on replication controllers, OpenShift Container Platform adds expanded support for the software development and deployment lifecycle with the concept of deployments. In the simplest case, a deployment just creates a new replication controller and lets it start up pods. However, OpenShift Container Platform deployments also provide the ability to transition from an existing deployment of an image to a new one and also define hooks to be run before or after creating the replication controller.
+    - The OpenShift Container Platform DeploymentConfiguration object defines the following details of a deployment:
+      - The elements of a ReplicationController definition.
+      - Triggers for creating a new deployment automatically.
+      - The strategy for transitioning between deployments.
+      - Life cycle hooks.
+      - Each time a deployment is triggered, whether manually or automatically, a deployer pod manages the deployment (including scaling down the old replication controller, scaling up the new one, and running hooks). The deployment pod remains for an indefinite amount of time after it completes the deployment in order to retain its logs of the deployment. When a deployment is superseded by another, the previous replication controller is retained to enable easy rollback if needed.
+
+  Routes
+    -  OpenShift Container Platform route exposes a service at a host name, like www.example.com, so that external clients can reach it by name.
+
+  Templates
+    - An OpenShift template (in json or yaml format) describes all the above objects (container, images, pod, service, build, image stream, deployment, route, etc) to build and deploy a service. 
+-----------------------------------------------------------------------
+
 Architecture
   Components 
     Openshift Container Registry(OCR) ----(pull)---> Images ----(build)---> Container ---(deploy)---> POD ----> Deployments----> Service
