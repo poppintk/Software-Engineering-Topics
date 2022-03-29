@@ -1,4 +1,4 @@
-Batch System 
+Batch System/Distributed Computing
 
 
 Online System
@@ -14,3 +14,6 @@ Streaming System(Real time system)
   
   
 MapReduce
+  Note: MapReduce base on File System, like its input file and output file all in the GFS/HDFS. no necessary to save mapped local disk in GFS/HDFS, 
+  if it is missing due to failure then re-mapping
+  
