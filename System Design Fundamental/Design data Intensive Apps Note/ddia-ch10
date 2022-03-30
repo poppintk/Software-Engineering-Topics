@@ -17,3 +17,17 @@ MapReduce
   Note: MapReduce base on File System, like its input file and output file all in the GFS/HDFS. no necessary to save mapped local disk in GFS/HDFS, 
   if it is missing due to failure then re-mapping
   
+  - STEPS
+    1) Input
+    2) Split
+    3) Map (coding part, input parameters: key content address, value is content)
+    4) Transfer
+      Master node will take care of Transfer, how?
+        - each node running Map task will do partition sort(quick sort) on the mapped output and decide which Reducer that partiton chunks are sent to 
+        - each node running Reducer task receives partition chunks and do k-way merge(merge partiton data into list for the same key) 
+    5) Reduce (coding part, input parameters: key recieved from step 3, value is iterator or list for the same key)
+    6) Output
+    
+    NOTE: is it the more Reducer the better? Ans: NO, The number of keys is maximum number of Reducer, beyond that it is wasted
+    
+    
