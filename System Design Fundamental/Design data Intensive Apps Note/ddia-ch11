@@ -1,6 +1,10 @@
-This Chapter discuss Stream source(User events, Sensor input, Database streaming)
-talks about how to deliever streaming data(Through message delivery directly, mesasge broker and log-based message broker)
-finally how to process streaming data
+Streaming System
+  - What?
+    - Producuer/publisher/sender send event to consumer/buscribers/recipients
+    - input source is boudless
+    - Asynchronours 
+    
+    
 
 #How to deliever streaming data
 
@@ -8,13 +12,13 @@ Message System
   use cases:
     - weather sensor peridically measurement
     - monitoring system 
-    - user actions(order)
+    - user actions(order checkout application)
 
   Issues:
     1) if producer sending message faster than consumers can process?
       Solution:
         - drop message
-        - put on the buffer queue
+        - put on the buffer queue/write to local disk(decrease throughput)
         - backpressure(flow control, blocking producer to send more of message)
 
 
@@ -24,9 +28,14 @@ Message System
 
   Note that, not all system requires reliable MQ, for example weather sensor measurement data is not so important for every data to be sent
 
-Producer send message to consumer directly
-Message Broker(Message Queue)
+
+Message Broker/Message queue
   
+
+Message Broker vs Database
+  - when message gets deliveried, msg will be deleted
+  - database supports index and message queue only support match topic or subscribed subset
+
   
 Multiple consumers
   1) load balance
@@ -38,13 +47,12 @@ Multiple consumers
   2) fan-out
     each message is delivered to all its consumers
     
-  we can combine load balance and fan-out 
+  Note: we can combine load balance and fan-out 
   
-Confirm and Re-send
-  - consumer not yet process the message or consumer only process the partial. In order to make sure message won't lose.
-  MQ use the acknowledgments(consumer must tell the MQ message is processed sucessfully)
-  
-  - if consumer is unavailbe at the moment, then MQ will re-send the message to another avaible consumer(Watch out of the case of Idempotence)
+Confirm and Re-send 
+  - consumer could be unavailable any time. MQ use the acknowledgments(consumer must tell the MQ message is processed sucessfully)
+  - when combineing with load balance on consumer. re-send behaviour could end up consumer consumer not consume events in original sequence that events produced
+
 
 Partition logs
   log-baseed message brokers(Kafka)
