@@ -10,6 +10,8 @@ Batch System (offline system)
   - measurement metrics, throughput
   
 Streaming System(Real time system)
+  - like Message Queue 
+  - measurement metrics, throughput
   - A system between Online system and Batch system
   
   
