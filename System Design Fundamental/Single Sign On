@@ -1,0 +1,17 @@
+
+How to prevent url being Ddos attack? one solution is using phone verification mechanism and store verification code in the Redis
+
+Normal way
+    username password register 
+        send username, password -> memberService: store password (with salt) and username into database 
+        
+    username password login 
+        send username, password -> memberService.find(username, password) find username and password matching in the database 
+
+Oauth social
+    social user register & login (Note: Oauth doesn't require register)
+    implement the success callback for specific social auth in the controller i.e.(@GetMapping("/oauth2.0/google/success"))
+    The body of controller will call specific social auth i.e.(HttpResponse response = HttpUtils.doPost("https://oauth2.googleapis.com", "/token", "POST", null, null, map);)
+    Get the social user info from the social auth payload -> member service: 
+    1) if already have the user info in the database then update expiryTime and accessToken and return expiryTime and accessToken  
+    2) if first time user, then store social user information into database including accessToken andexpiryTime
