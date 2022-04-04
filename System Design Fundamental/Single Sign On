@@ -1,12 +1,12 @@
+How to prevent url being DDOS attack on user register? one solution is using phone verification mechanism and store verification code in the Redis
 
-How to prevent url being Ddos attack? one solution is using phone verification mechanism and store verification code in the Redis
-
-Normal way
+Traditional way
     username password register 
-        send username, password -> memberService: store password (with salt) and username into database 
+        send username, password -> memberService: store password (with salt) and username into database -> redirect to login page
         
     username password login 
         send username, password -> memberService.find(username, password) find username and password matching in the database 
+        -> store user information in session -> redirect to callback page 
 
 Oauth social
     social user register & login (Note: Oauth doesn't require register)
