@@ -1,14 +1,18 @@
 How to prevent url being DDOS attack on user register? one solution is using phone verification mechanism and store verification code in the Redis
 
-Traditional way
+Traditional way (session base)
     username password register 
         send username, password -> memberService: store password (with salt) and username into database -> redirect to login page
         
     username password login 
         send username, password -> memberService.find(username, password) find username and password matching in the database 
         -> store user information in session -> redirect to callback page 
+    NOTE: on each protected resource, need to verify session
+    
 
-Oauth social
+    
+    
+Oauth social (token base)
     social user register & login (Note: Oauth doesn't require register)
     implement the success callback for specific social auth in the controller i.e.(@GetMapping("/oauth2.0/google/success"))
     The body of controller will call specific social auth i.e.(HttpResponse response = HttpUtils.doPost("https://oauth2.googleapis.com", "/token", "POST", null, null, map);)
