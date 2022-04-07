@@ -10,8 +10,8 @@ Traditional way (session base)
         
     username password login 
         send username, password -> memberService.find(username, password) find username and password matching in the database 
-        -> store user information in session (store session in Redis for distributed system) -> redirect to callback page 
-    NOTE: on each protected resource, need to verify cookie information is passing from request with Redis
+        -> store user information in cookie and return to F/E user , also store user session in Redis with expiryTime-> redirect to callback page 
+    NOTE: before access to each protected resource, need to verify cookie information is passing from request with Redis session
     
 
     
@@ -23,3 +23,9 @@ Oauth social (token base)
     Get the social user info from the social auth payload -> member service: 
     1) if already have the user info in the database then update expiryTime and accessToken and return expiryTime and accessToken  
     2) if first time user, then store social user information into database including accessToken andexpiryTime
+
+
+Session based authentication: 
+    Because the sessions are stored in the server’s memory, scaling becomes an issue when there is a huge number of users using the system at once.
+Token based authentication: 
+    There is no issue with scaling because token is stored on the client side. Token is solution trade Running time instead of space
