@@ -1,3 +1,7 @@
+User --(login in)--> Auth Server --(ticket)--> User --(ticket)--> Protected Resource ---(verify ticket)---> AuthServer
+
+
+
 How to prevent url being DDOS attack on user register? one solution is using phone verification mechanism and store verification code in the Redis
 
 Traditional way (session base)
@@ -7,7 +11,7 @@ Traditional way (session base)
     username password login 
         send username, password -> memberService.find(username, password) find username and password matching in the database 
         -> store user information in session (store session in Redis for distributed system) -> redirect to callback page 
-    NOTE: on each protected resource, need to verify session
+    NOTE: on each protected resource, need to verify cookie information is passing from request with Redis
     
 
     
