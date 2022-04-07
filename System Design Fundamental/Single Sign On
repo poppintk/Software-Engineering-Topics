@@ -6,7 +6,7 @@ Traditional way (session base)
         
     username password login 
         send username, password -> memberService.find(username, password) find username and password matching in the database 
-        -> store user information in session -> redirect to callback page 
+        -> store user information in session (store session in Redis for distributed system) -> redirect to callback page 
     NOTE: on each protected resource, need to verify session
     
 
