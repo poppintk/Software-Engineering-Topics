@@ -1,19 +1,32 @@
 User --(login in)--> Auth Server --(ticket)--> User --(ticket)--> Protected Resource ---(verify ticket)---> AuthServer
 
+             
+            | ----> Protected Resource 1 -------->
+User -------------> Protected Resource 2 -------->  AuthServer
+            | ----> Protected Resource 3 -------->
 
 
 How to prevent url being DDOS attack on user register? one solution is using phone verification mechanism and store verification code in the Redis
 
-Traditional way (session base)
+Traditional way 
     username password register 
         send username, password -> memberService: store password (with salt) and username into database -> redirect to login page
         
-    username password login 
+    username password login (session base)
         send username, password -> memberService.find(username, password) find username and password matching in the database 
         -> store user information in cookie and return to F/E user , also store user session in Redis with expiryTime-> redirect to callback page 
-    NOTE: before access to each protected resource, need to verify cookie information is passing from request with Redis session
+        
+    username password login (token base)
+         send username, password -> memberService.find(username, password) find username and password matching in the database 
+        -> create a JWT token and store in cookie and return to F/E user -> redirect to callback page 
+        
+    NOTE: before access to each protected resource, need to verify cookie information is passing from request with Redis session/token verify
     
-
+    Comparision
+        Session based authentication: 
+            Because the sessions are stored in the server’s memory, scaling becomes an issue when there is a huge number of users using the system at once.
+        Token based authentication: 
+            There is no issue with scaling because token is stored on the client side. Token is solution trade Running time instead of space
     
     
 Oauth social (token base)
@@ -25,7 +38,3 @@ Oauth social (token base)
     2) if first time user, then store social user information into database including accessToken andexpiryTime
 
 
-Session based authentication: 
-    Because the sessions are stored in the server’s memory, scaling becomes an issue when there is a huge number of users using the system at once.
-Token based authentication: 
-    There is no issue with scaling because token is stored on the client side. Token is solution trade Running time instead of space
