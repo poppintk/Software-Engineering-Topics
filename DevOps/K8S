@@ -154,7 +154,9 @@ kubectl log <Pod Name> -c <Container name> : see log in the particular container
 -----------------------------------------------------------------------
 K8S Health Check Detection:
   - readiness probes: Container readiness check, used for checking container whether able to received traffic. Only when this status is ready then it is added to Service
+    Container whether or not ready to take the traffic input
   - liveness probes: Container alive check, like health heart beat check or deadlock check 
+    Container whether or not still operating
   - starup probes: startup check, avoid some contianer requires longer startup time which to be terminated. Only when this check passed then other two checking will go on 
 
 Detection types:
