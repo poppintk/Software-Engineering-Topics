@@ -1,0 +1,83 @@
+The main foucs of OOD is having Viable solution - Viability
+
+NOs:
+  1) base on personal assumption/understanding about the system and judge how the system should be (Should communicate first)
+  2) Assuming question is OOD or SD or Algorithm (Should ask clairfication quesiton)
+  3) Oh, wait a second, I think I can optimize the process by modifying/removing this class
+  4) Did not test your test case whether your solution is viable
+  
+S.O.L.I.D
+
+Single Responsibility principle: A class should only have one reason to change it OR a class should only serve one duty
+            e.g.
+              public class AreaCalculator {
+                private float result;
+                public float calculateArea(Shape s) {}
+                public String printAreaAccurateToOneDecimalPlace() {} // AreaCalculator shouldn't carry print responsibility
+              }
+
+Open close principle: Open to extension, close to modification
+            e.g.
+              public class AreaCalculator {
+                public float calculateArea(Triangle t) {} // many same method with different input parameters
+                public float calculateArea(Rectangle r) {}
+              }
+              
+              Better:
+              public class AreaCalculator {
+                public float calculateArea(Shape s) {}
+              }
+    
+    
+    
+Liskov substitution principle: any children class should be able to substitute its base class or parent class(focus on the class behaviour, e.g. methods or attributes)
+            e.g.
+              public class Shape {
+                abstract public float calculateVolumn();
+                abstract public float calculateArea();
+              }
+    
+              public class Rectangle extends Shape {} // Rectangle doesn't have Volumn, Note: behaviour of Rectangle class is not same as Shape here
+              public class Cube extends Shape {}
+    
+Interface segregation principle: any class should not force it to implement a interface that it never used
+            e.g.
+              public interface Shape {
+                public float calculateVolumn();
+                public float calculateArea();
+              }
+
+              public class Rectangle implements Shape {} // Rectangle doesn't have Volumn, Note: Rectangle also override the calculateVolumn() method
+              public class Cube implements Shape {}
+    
+ Dependency inversion principle: abstraction should not rely on concrete implementation, and concrete implementation should reply on abstraction.
+  concrete class should implement interface or abstracted class AND all those details implementation be addressed inside the each concrete class
+            e.g.
+              public class AreaCalculator {
+                private float result;
+                public float getResult() {return this.result;}
+                public float calculateArea(Shape s) {
+                  if (s == Triangle) {this.result = b*h / 2;}
+                  else if (s == Rectangle) {this.result = l * w;}
+                }
+              }
+
+              Better:
+              public class AreaCalculator {
+                private float result;
+                public float getResult() {return this.result;}
+                public float calculateArea(Shape s) {
+                  s.calculateArea(); // all detail implementation is inside the each concrete class and each class implement Shape
+                }
+              }
+    
+ ---------------------------------------------------------------------------------------------------------------------------
+ 5C's Approach
+ Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
+ Core Objects - define relevant classes and class relationship(mapping relation)
+ Cases - define all scenario and all use cases(features)
+ Classes - use UML diagram to fill in the methods or attributes of each class
+ Correctness - check design and verify it's viable solution
+ 
+    
+    
