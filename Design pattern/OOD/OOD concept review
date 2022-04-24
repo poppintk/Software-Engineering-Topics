@@ -72,12 +72,38 @@ Interface segregation principle: any class should not force it to implement a in
               }
     
  ---------------------------------------------------------------------------------------------------------------------------
+ Access modifier in UML
+ package: only avaialbe in same package
+ public: +
+ private: -
+ protected: # also accessiable by its children class  
+ 
+ When we have function return void, How do we determine the running state? e.g. how to know your program run successfully? like having some feedback?
+ Exception: note that, Exception handling is better than using the status code in OOD 
+ 
  5C's Approach
  Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
+    What - using noun to derive it's attributes
+    How - asking question regarding rules to get the correct direction. e.g. throw your naive solution and see the feedback
+    Who - optinal
+    
  Core Objects - define relevant classes and class relationship(mapping relation)
- Cases - define all scenario and all use cases(features)
+    1) base on the target system thinking about its input/output
+    2) base on the core object and linearly determine its relevant classes
+    
+ Cases - define all scenarios/use cases(features)
+    This is where state the use cases of system that you and your peer agrees on, should state all use cases for you to figure out solution and 
+    also it is helpful for you later on to verify it
+    How to derive use class?
+    go through each of core objects determine the use cases.
+    end of this session, asking your peer. those are the usu cases I have so far, do I miss anything?
+ 
  Classes - use UML diagram to fill in the methods or attributes of each class
+    draw UML diagram
+    How?
+    go through all use cases 
+ 
  Correctness - check design and verify it's viable solution
  
-    
+ 
     
