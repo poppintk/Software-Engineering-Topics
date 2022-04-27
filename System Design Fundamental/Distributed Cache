@@ -2,7 +2,8 @@
 Use case:
 - System requires low real-time and allow eventually consistent
 - Read more and write less
-- Scale read for system
+- Scale read for syste
+- protection for DB in high QPS scenrio like seckill system, because DB normally support lower QPS than cache 
 
 Common cache system issues:
    Cache read issue:
