@@ -104,6 +104,9 @@ Interface segregation principle: any class should not force it to implement a in
     How? go through all use cases 
  
  Correctness - check design and verify it's viable solution
- 
+    validate use cases
+    follow good practice
+    S.O.L.I.D
+    Design pattern
  
     
