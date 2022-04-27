@@ -6,8 +6,9 @@ User -------------> Protected Resource 2 -------->  AuthServer
             | ----> Protected Resource 3 -------->
 
 
-How to prevent url being DDOS attack on user register? one solution is using phone verification mechanism and store verification code in the Redis
-
+How to prevent url being DDOS attack on user register? 
+  - one solution is using phone verification mechanism and store verification code in the Redis
+  - Rate limiter on IP address
 Traditional way 
     username password register 
         send username, password -> memberService: store password (with salt) and username into database -> redirect to login page
