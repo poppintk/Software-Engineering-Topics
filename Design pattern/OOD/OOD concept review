@@ -84,8 +84,8 @@ Interface segregation principle: any class should not force it to implement a in
  5C's Approach
  Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
     What - using noun to derive it's attributes
-    How - asking question regarding rules to get the correct direction. e.g. throw your naive solution and see the feedback
-    Who - optinal
+    How - asking easy question regarding rules to get the correct direction. e.g. throw your naive solution and see the feedback
+    Who - optional
     
  Core Objects - define relevant classes and class relationship(mapping relation)
     1) base on the target system thinking about its input/output
