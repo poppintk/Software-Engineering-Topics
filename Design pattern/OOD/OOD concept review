@@ -100,8 +100,8 @@ Interface segregation principle: any class should not force it to implement a in
  
  Classes - use UML diagram to fill in the methods or attributes of each class
     draw UML diagram
-    How?
-    go through all use cases 
+    Why? Minimal Viable Product
+    How? go through all use cases 
  
  Correctness - check design and verify it's viable solution
  
