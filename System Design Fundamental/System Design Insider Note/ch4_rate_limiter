@@ -1,14 +1,16 @@
+This article focus on the Application level(HTTP layer) rate limiter
+
 Rate limiting can be implemented using different algorithms, each with its pros and cons. 
 The interactions between an interviewer and a candidate help to clarify the type of rate limiters we are trying to build.
 
 Clarification
 
-What kind of rate limiter are we going to design? client-side rate limiter or server-side API rate limiter?
-Does the rate limiter throttle API requests based on IP, the user ID, or other properties?
-Will the system work in a distributed environment?
-Is the rate limiter a separate service or should it be implemented in application code?
-Do we need to inform users who are throttled? 
-Where to put the rate limiter? on API gateway(rate limiter middleware) or on the API servers?
+  What kind of rate limiter are we going to design? client-side rate limiter or server-side API rate limiter?
+  Does the rate limiter throttle API requests based on IP, the user ID, or other properties?
+  Will the system work in a distributed environment?
+  Is the rate limiter a separate service or should it be implemented in application code?
+  Do we need to inform users who are throttled? 
+  Where to put the rate limiter? on API gateway(rate limiter middleware) or on the API servers?
 
 Requirements
   - Rate limiter middleware
@@ -83,8 +85,65 @@ Which algorithm to use?
                            
   • The client sends a request to rate limiting middleware.
   • Rate limiting middleware fetches the counter from the corresponding bucket in Redis and checks if the limit is reached or not.
-    • If the limit is reached, the request is rejected.
+    • If the limit is reached, the request is rejected. // where is limit saved? on configuration files or DB
     • If the limit is not reached, the request is sent to API servers. Meanwhile, the system increments the counter and saves it back to Redis.
 
 Design deep dive
+   How are rate limiting rules created? Where are the rules stored?
+      - Example of clients are not allowed to login more than 5 times in 1 minute:
+        
+        domain: auth 
+        descriptors:
+          - key: auth_type 
+          Value: login 
+          rate_limit:
+            unit: minute 
+            requests_per_unit: 5
+    
+      - store in configuration files and saved on disk or DB
+      
+    How to response requests that are rate limited(reject/accpet)?
+       Exceeding the rate limit 
+          - return 429 as HTTP response code
+       Rate limiter headers
+          X-Ratelimit-Remaining: The remaining number of allowed requests within the window. 
+          X-Ratelimit-Limit: It indicates how many calls the client can make per time window.
+          X-Ratelimit-Retry-After: The number of seconds to wait until you can make a request again without being throttled.
+        
+Detailed Design
+    
+                           / -----------------------> Cache <----------- Workers -------> Configuration Rule
+                          /
+     Client ----->    Rate limiter middleware ----->  API servers
+                         | \
+       |                 |  \-------------> Redis
+       |                 |
+       |<----------------|--------option1----> Request Dropped    
+                         |      
+                         |---------option2---> Message Queue(optional) ----> API servers
+            
+        • Rules are stored on the disk. Workers frequently pull rules from the disk and store them in the cache.
+        • When a client sends a request to the server, the request is sent to the rate limiter middleware first.
+        • Rate limiter middleware loads rules from the cache. It fetches counters and last request timestamp from Redis cache. Based on the response, the rate limiter decides:
+          • if the request is not rate limited, it is forwarded to API servers.
+          • if the request is rate limited, the rate limiter returns 429 too many requests error to the client. In the meantime, the request is either dropped or forwarded to the queue.
 
+
+        
+Rate limiter in a distributed environment
+  Race condition
+    - issue: two Rate limiter application update on same Redis counter, there will be race condition
+      - solution 1) using distributed lock but result in low performance
+      - better solution: using the lua script to make INCRE and GET count atomic operation
+  Synchronization 
+    - in this example, we use the Redis as global storage cache, there is no synchronization issue at all. the issue it is more like distributed session issue where
+    request mapping to the different server which server does not know about request
+    
+Performance optimization
+  - using the cloud edge technology which help reduce the latency
+  - using the cache but need to be careful with eventual consistency issue
+  
+
+       
+       
+       
