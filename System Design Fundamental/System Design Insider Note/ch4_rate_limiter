@@ -129,19 +129,19 @@ Detailed Design
           • if the request is rate limited, the rate limiter returns 429 too many requests error to the client. In the meantime, the request is either dropped or forwarded to the queue.
 
 
-        
-Rate limiter in a distributed environment
-  Race condition
-    - issue: two Rate limiter application update on same Redis counter, there will be race condition
-      - solution 1) using distributed lock but result in low performance
-      - better solution: using the lua script to make INCRE and GET count atomic operation
-  Synchronization 
-    - in this example, we use the Redis as global storage cache, there is no synchronization issue at all. the issue it is more like distributed session issue where
-    request mapping to the different server which server does not know about request
-    
-Performance optimization
-  - using the cloud edge technology which help reduce the latency
-  - using the cache but need to be careful with eventual consistency issue
+
+    Rate limiter in a distributed environment
+      Race condition
+        - issue: two Rate limiter application update on same Redis counter, there will be race condition
+          - solution 1) using distributed lock but result in low performance
+          - better solution: using the lua script to make INCRE and GET count atomic operation
+      Synchronization 
+        - in this example, we use the Redis as global storage cache, there is no synchronization issue at all. the issue it is more like distributed session issue where
+        request mapping to the different server which server does not know about request
+
+    Performance optimization
+      - using the cloud edge technology which help reduce the latency
+      - using the cache but need to be careful with eventual consistency issue
   
 
        
