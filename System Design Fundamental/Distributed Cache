@@ -19,7 +19,7 @@ Common cache system issues:
         There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
         Solution: Use locks, if distributed then use distributed locks
   
-  
+
 Cache Race Condition under one DB and one Cache:
   
   User -----> Cache ----> DB
@@ -48,8 +48,8 @@ Cache Race Condition under one DB and one Cache:
          if system read more and write less requires storng consistency => use distributed lock or Canal for MYSQL
       
    Best practice: lazy loading: database.set(key,user); cache.delete(key)
-   
-   
+
+
 Redis Cluster:
    1) Sharding
       a) client side sharding
@@ -80,8 +80,35 @@ Spring cache
       cache write(cache update):
          - use only TTL for eventually consistent
    
-   
+
 Distributed Session issue:
    1) cannot share on different domain
    2) Load balancing to arbitrary machine and that machine not guarrantee have the previous stored session
    
+
+
+
+Distributed environment
+   Sychronization issue
+      When multiple instances are used, then it is important to study whether there is issue that mapping to a different instance as before. 
+      Distributed session issue, it's example of this issue
+      
+      Solution:
+         1) ensure request is alwasy mapping to same instance as before
+            - sticky session (idea ensure)
+            - consistent hashing
+         2) create a global unique instance
+            - we could use some consensus algorithm to ensure instance act like one machine
+         
+   Race Condition/concurrent issue
+      case that under high concurrency (multiple request in any order), the ouput is randomly generated depends the which
+      operation go in first (like Redis for example, GET and INCRE are separate operations if not using LUA script then item could be not increment appropriate)
+      
+      Solutions:
+         - Distributed lock -> low performance
+         - Distributed Transaction
+      
+   Distributed transaction issue
+      Under distributed environment, one operation contains multiple DB objects
+       Solutions:
+         - Distributed Transaction
