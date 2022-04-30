@@ -20,17 +20,20 @@ Common cache system issues:
         Solution: Use locks, if distributed then use distributed locks
   
   
-Cache update issues(write):
-   Double write: when data is updated, write to update both DB and cache. (Note: operation order matters)
+Cache Race Condition under one DB and one Cache:
+  
+  User -----> Cache ----> DB
+  
+  Double write: when data is updated, write to update both DB and cache. (Note: operation order matters)
       example:
-         user1 -> writeDB-1 |                             |-> write cache-1
-         user2 ->           | writeDB-2  -> write cache-2 |
+         user1 -> writeDB |                             |-> write cache // Cache outdated
+         user2 ->           | writeDB  -> write cache   |
    
    Lazy Loading: when data is updated, firstly update DB data then delete cache. (Note: operation order matters)
       example:
-         user1 -> writeDB-1 -> delete cache |                          | 
-         user2 ->                     |   writeDB-2    ->         delete cache   |
-         user3 ->                           | read cache  not found -> read db-1 | -> update cache
+         user1 -> writeDB -> delete cache |                          | 
+         user2 ->                     |   writeDB    ->         delete cache   |
+         user3 ->                           | read cache  not found -> read db | -> update cache
    
    under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
    
