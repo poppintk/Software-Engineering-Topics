@@ -1,0 +1,37 @@
+What are some of management type OOD question?
+  - Gym
+  - Parking lot
+  - Restaurant
+  - Library
+  - Super market
+  - Hotel
+  
+Clarify
+  What: other than considering noun,
+  should also consider question from administrator perspective, like what are target we're going to manage?
+  i.g. parking lot system -> parking lot AND vehicle
+  How: asking potential rules
+  
+  
+Core object
+  consider input and output of xxx management system
+  
+Use case
+  how to start going through each core object and figure out the use case?
+  we follow this pattern for management type OOD
+    - Reserve
+    - Serve (how to serve request)
+    - Checkout 
+
+Class
+  for management type OOD we should keep this in mind that using recept Class to keep information
+  e.g. Library System 
+    No: User  -----> Book 
+    Better: User ----> Receipt(describe relation between user and book, like DB table many to many relation) ------> Book
+  
+
+ 
+  
+  
+  
+  
