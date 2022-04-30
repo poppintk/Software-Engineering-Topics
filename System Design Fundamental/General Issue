@@ -1,3 +1,30 @@
+Distributed environment
+   Sychronization issue
+      When multiple instances are used, then it is important to study whether there is issue that mapping to a different instance as before. 
+      Distributed session issue, it's example of this issue
+      
+      Solution:
+         1) ensure request is alwasy mapping to same instance as before
+            - sticky session (idea ensure)
+            - consistent hashing
+         2) create a global unique instance
+            - we could use some consensus algorithm to ensure instance act like one machine
+         
+   Race Condition/concurrent issue
+      case that under high concurrency (multiple request in any order), the ouput is randomly generated depends the which
+      operation go in first (like Redis for example, GET and INCRE are separate operations if not using LUA script then item could be not increment appropriate)
+      
+      Solutions:
+         - Distributed lock -> low performance
+         - Distributed Transaction
+      
+   Distributed transaction issue
+      Under distributed environment, one operation contains multiple DB objects
+       Solutions:
+         - Distributed Transaction
+
+
+
 
 Oauth2 flow for web server:
    1) client browser click on the Oauth2 login icon, Request to third party for the login with redirect URL(for web server)
