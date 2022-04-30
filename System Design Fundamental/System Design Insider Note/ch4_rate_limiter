@@ -136,9 +136,9 @@ Detailed Design
           - solution 1) using distributed lock but result in low performance
           - better solution: using the lua script to make INCRE and GET count atomic operation
       Synchronization 
-        - in this example, we use the Redis as global storage cache, there is no synchronization issue at all. the issue it is more like distributed session issue where
-        request mapping to the different server which server does not know about request
-
+        - when multiple instances are used, then it is important to study 
+        - in this example, we use the Redis offical cluster, internally Redis use consistent hashing, it gurrantee that one request is mapping to one cache instance.
+        Synchronization happens request is mapping to different instance in which doesn't contain the information
     Performance optimization
       - using the cloud edge technology which help reduce the latency
       - using the cache but need to be careful with eventual consistency issue
