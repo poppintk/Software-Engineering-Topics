@@ -92,7 +92,7 @@ Design deep dive
    How are rate limiting rules created? Where are the rules stored?
       - Example of clients are not allowed to login more than 5 times in 1 minute:
         
-        domain: auth 
+        domain: auth // which request has its domian, key could be the uri pattern, value is readable context. basic idea is maping request to some domain object that rate limiter understand
         descriptors:
           - key: auth_type 
           Value: login 
