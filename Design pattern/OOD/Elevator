@@ -195,3 +195,24 @@ public class Elevator {
 		return description;
 	}
 }
+---------------------------------------------------------------------------------------------
+
+How to handle different elevator algorithm?
+we can use strategy patter
+
+ElevatorSystem class
+	- + setStrategy(ElevatorStrategy strategy)
+	- + handleRequest(Request r)
+
+ElevatorStrategy Interface
+	- + handleRequest(Request r, List<Elevator> elevators)
+
+RandomElevatorStrategy implements ElevatorStrategy {
+	@Override handleRequest(Request r, List<Elevator> elevators){}
+}
+
+
+
+
+
+
