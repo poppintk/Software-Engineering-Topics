@@ -1,9 +1,31 @@
 To achieve horizontal scaling, it is important to distribute requests/data efficiently and evenly across servers. Consistent hashing is a commonly used technique to achieve this goal.
 
+What problem does consistent hashing solve?
+  - Minimized keys are redistributed when servers are added or removed
+  - make data distribution more evenly distributed
+
+
 The rehashing problem
     - If you have n cache servers, a common way to balance the load is to use the following hash method:
     serverIndex = hash(key) % N, where N is the size of the server pool. However, problems arise when new servers are added, or existing servers are removed.
     due to servers are added/removed then the serverIndex result will be unmatched. one solution is re-mapping all keys
     
-
+Consistent Hashing basic approach
+  - using the hash funciton which offer more hash space, SHA-1 for example supports hash space from 0 to 2^160 - 1, logicial like a ring 
+  - Hashing key can be anything IP address or server name
+  - Consistent Hashing does not use module (% n) on server, so there will be no rehashing problem
+  - How to determine which server a key is stored on?
+    consistentHash(key) = hash value
+    using this hash value and going clockwise unitl a server is found
+  - Add a server
+    - after a new server is added to the ring, minimal data migration is required(remove where data is stored).
+    - after locate the new server on the ring, then go anti-clockwise of the new server location and re-distribute all data to newly added server for those data is located between new server location and another server at anti-clockwise. Note that those redistributed data source previously point to the first server that in clockwise direction of new added server location
+  - Remove a server
+    - after a new server is removed from the ring, minimal data migration is required(remove where data is stored).
+    - after removed server on the ring, then go anti-clockwise of the removed server location and re-distribute all data to next server located in clockwise of removed server for those data are located between removed server location and another server at anti-clockwise. Note that those redistributed data source previously point to the removed server
     
+Issues in the basic approach
+  • data are NOT evenly distributed, which make data skew issue (majority of data could be distributed in a single server)
+  solution:
+    initialize vitual nodes randomly distributed on the ring, the virtual nodes are logical reference of each atual server.
+    As the number of virtual nodes increases, the distribution of keys becomes more balanced
