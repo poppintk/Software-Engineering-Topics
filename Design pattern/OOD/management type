@@ -27,7 +27,7 @@ Use case
     - Checkout 
 
 Class
-  for management type OOD we should keep this in mind that using recept Class to keep information
+  for management type OOD we should keep this in mind that using receipt Class to keep information
   e.g. Library System 
     No: User  -----> Book 
     Better: User ----> Receipt(describe relation between user and book, like DB table many to many relation) ------> Book
