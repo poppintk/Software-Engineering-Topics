@@ -1,5 +1,5 @@
 Step 1 - Understand the problem and establish design scope
-  Candidate: What are the characteristics of unique IDs? Interviewer: IDs must be unique and sortable.
+  Candidate: What are the characteristics of unique IDs? Interviewer: IDs must be unique and sortable by time
   Candidate: For each new record, does ID increment by 1?
   Interviewer: The ID increments by time but not necessarily only increments by 1. IDs created in the evening are larger than those created in the morning on the same day.
   Candidate: Do IDs only contain numerical values? Interviewer: Yes, that is correct.
