@@ -97,6 +97,7 @@ Interface segregation principle: any class should not force it to implement a in
     How to derive use class?
     go through each of core objects determine the use cases.
     end of this session, asking your peer. those are the usu cases I have so far, do I miss anything?
+    Note: depends on different types of question, the pattern could be different. e.g. management type OOD pattern is, Reserve, Serve, payment
  
  Classes - use UML diagram to fill in the methods or attributes of each class
     draw UML diagram
