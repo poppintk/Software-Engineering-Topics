@@ -6,6 +6,14 @@ NOs:
   3) Oh, wait a second, I think I can optimize the process by modifying/removing this class
   4) Did not test your test case whether your solution is viable
   
+  
+Best practice:
+- class inheritance make its member variable protected modifier
+- try to avoid inject a Moving object inside a Static object. but how to describe relation between static object and moving object?
+  using the receipt class!
+  
+  
+  
 S.O.L.I.D
 
 Single Responsibility principle: A class should only have one reason to change it OR a class should only serve one duty
