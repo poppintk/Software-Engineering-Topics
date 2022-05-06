@@ -8,10 +8,17 @@ NOs:
   
   
 Best practice:
+ Access modifier in UML
+ package: only avaialbe in same package
+ public: +
+ private: -
+ protected: # also accessiable by its children class  
+ 
 - class inheritance make its member variable protected modifier
 - try to avoid inject a Moving object inside a Static object. but how to describe relation between static object and moving object?
   using the receipt class!
-  
+- When we have function return void, How do we determine the running state? e.g. how to know your program run successfully? like having some feedback?
+ Exception: note that, Exception handling is better than using the status code in OOD 
   
   
 S.O.L.I.D
@@ -80,14 +87,8 @@ Interface segregation principle: any class should not force it to implement a in
               }
     
  ---------------------------------------------------------------------------------------------------------------------------
- Access modifier in UML
- package: only avaialbe in same package
- public: +
- private: -
- protected: # also accessiable by its children class  
+
  
- When we have function return void, How do we determine the running state? e.g. how to know your program run successfully? like having some feedback?
- Exception: note that, Exception handling is better than using the status code in OOD 
  
  5C's Approach
  Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
