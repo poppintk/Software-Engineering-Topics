@@ -35,7 +35,8 @@ Class
   
 
  
-  
-  
+Design pattern
+  Parking Lot
+    Singleton -> Parking system only have one parkingLot(Singleton)
   
   
