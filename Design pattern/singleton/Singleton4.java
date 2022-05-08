@@ -1,11 +1,11 @@
 package singleton;
 
-public class Singleton3 {
-    private static Singleton3 uniqueInstance = new Singleton3(); // create instance at initial runtime
+public class Singleton4 {
+    private static Singleton4 uniqueInstance = new Singleton4(); // create instance at initial runtime
 
-    private Singleton3(){}
+    private Singleton4(){}
     
-    public static Singleton3 getInstance(){
+    public static Singleton4 getInstance(){
         return uniqueInstance;
     }
 
