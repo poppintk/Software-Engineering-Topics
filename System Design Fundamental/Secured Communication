@@ -12,6 +12,48 @@ Asymmetric Encryption
 - RSA, Elgamal
 
 
+
+How HTTPS works
+  1) (A three-way handshake, TCP Handshake) The client (browser) and the server establish a TCP connection.
+    - client send TCP SYN
+    - server send TCP SYN + ACK
+    - client send ACK
+  2) (Certificate Check)The client sends a “client hello” to the server. The message contains a set of necessary encryption algorithms (cipher suites) and the latest TLS version it can support. 
+  The server responds with a “server hello” so the browser knows whether it can support the algorithms and TLS version.
+  The server then sends the SSL certificate to the client. 
+  The certificate contains the public key, host name, expiry dates, etc. The client validates the certificate. 
+  
+  3) (Key Exchange) After validating the SSL certificate, the client generates a session key and encrypts it using the public key. 
+    The server receives the encrypted session key and decrypts it with the private key. 
+
+  4) (Data Transmission) Now that both the client and the server hold the same session key (symmetric encryption), the encrypted data is transmitted in a secure bi-directional channel.
+
+                     Client                         Server
+                       |       TCP SYN ----------->   |
+ 1) TCP handshakes     | <----- TCP SYNC + ACK        |
+                       |    TCP ACK ------>           |
+                        connection established
+ --------------------------------------------------------
+                       |------> Client Hello          |
+ 2) Certificate Check  | <----- Server Hello          |
+                       | <----- CA Certification      |
+                       | <----- Server Hello Done     |
+ ---------------------------------------------------------
+                           Asymmetric Encryption
+                       |  Client Key Exchange  --->   |
+                       |  Change Cipher Spec   --->   |
+ 3) Key Exchange       |  Finished ------------->     |
+                       | <--- Change Cipher Spec      |
+                       |  <----------Finished         |
+ ---------------------------------------------------------
+                          Symmetric Encryption
+                       |  Encrypted Data --->         |
+ 4) Data Transmission  |  <--- Encrypted Data         |
+                       |                              |
+ ---------------------------------------------------------
+  
+
+
 solution by Alipay:
   - 2 pairs of keys (2 public keys and 2 private keys)
   - one pair keys(1 public key and 1 private key) for one directional communication and another pair of keys for opposite communication
