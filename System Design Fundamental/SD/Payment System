@@ -1,0 +1,24 @@
+                                                               Inside           |     Outside
+                                                                                |
+                        User                                                    |
+                         |                                                      |
+                         | 1) Payment event                                     |
+                         |                                                      |
+                         V                                                      |
+             2) |---------------| 3)Payment order |----------------|         5) |           |---------------------------------|        |------------------|
+Payment DB <--- |Payment Service|  ----------->   |Payment Executor|------------------------> | Payment Service Providers (PSP) | -----> | VISA Master Card |
+                |---------------|                 |----------------|            |           |     Paypal, Stripe Adgen.       |        |  Card Schemes    |
+                /       \                                  |                    |           |---------------------------------|        |------------------|
+            8) /         \ 6)                              | 4)                 |                           |
+              /           \                                V                    |                           |
+       |--------|     |--------|                  Payment Executor DB           |                           |
+       | Ledger |     | Wallet |                                                |                           |
+       |--------|     |--------|                                                |                           |
+           |              |                                                     |                           |
+        9) |              | 7)                                                  |                           |
+           V              V                                                     |                           |
+       Ledger DB      Wallet DB                        10)                         |                           |
+          |                                     |----------------|              |                           |  
+          |-----------------------------------> | Reconcillation | <-------------------------------------Settlement file          
+                                                |----------------|              |
+                                                                                |
