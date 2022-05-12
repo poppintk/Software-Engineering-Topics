@@ -92,7 +92,7 @@ Interface segregation principle: any class should not force it to implement a in
  
  5C's Approach
  Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
-    What - using noun to derive it's attributes
+    What - using noun to derive it's attributes. Starting main object, input object and output object
     How - asking potential rules. e.g. throw your naive solution and see the feedback
     Who - optional
     
