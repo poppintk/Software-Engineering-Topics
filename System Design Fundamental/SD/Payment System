@@ -51,3 +51,7 @@ Payment DB <--- |Payment Service|  ----------->   |Payment Executor|------------
 9. The ledger service appends the new ledger information to the database.
 
 10. Every night the PSP or banks send settlement files to their clients. The settlement file contains the balance of the bank account, together with all the transactions that took place on this bank account during the day. 
+
+
+
+If you plan to accept credit card payments online, you’ll likely need both a payment gateway and a payment processor.
