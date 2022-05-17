@@ -2,6 +2,9 @@
 one or more request to API and generate the same output. For example users click on payment, no matter how many times users clicks on it and it will not cause double pay.
 * Retry and distributed system is key factor cause the Idemopotence， Single service due to network delay could also possible end up processing twice
 
+Idepotency Characteristic:
+  - unique key generated on client side and send it to server side
+  - it has expiry time!
 
 2) Use case:
   1) users click on payment button
