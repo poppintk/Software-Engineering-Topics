@@ -58,7 +58,7 @@ Performance Optimaize
   
   Table Horizontal partitioning
     Pros: Smaller tables, smaller indexes, lower query latency
-    Cons: intrusive as application needs changes to write to the correct partition. If the number of partitions is out-grown, you have the same issue with the partitions.
+    Cons: intrusive as application needs changes to write to the correct partition. If the number of partitions is out-grown, you have the same issue with the data migration(moving data).
       AFAIK full re-partitioning would be needed to increase the partition count. Certainly a non-trivial activity.
 
   Note: Can use shardingProxy to Horizontal Sharding and Table Horizontal partitioning, Note that sharding detail are transparent to all services
