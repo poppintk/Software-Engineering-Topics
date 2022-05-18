@@ -39,6 +39,7 @@ Performance Optimaize
     Cons: slower writing speed and more space for storing index data structure
 
     multiple column index
+    https://www.mysqltutorial.org/mysql-index/mysql-composite-index/
     
   2) Table Partitioning and Sharding  
   Table Vertical Partitioning 
