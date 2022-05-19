@@ -14,9 +14,9 @@ Async/Sync VS Blocking/Non-blocking
 
 Reactive Programming
     
-    - Observable + Subscriber + Subscription (Moving away from Thread per Request Model)
+    - Observable + Subscriber + Subscription (Webflux moving away from Thread per Request Model)
     
-    - Asynchronous and Non Blocking
+    - Asynchronous and Non Blocking (Note: if your application has blocking logic, it will wait for blocking logic to be executed, so don't mix iwth blocking logic with Reactor together)
     
     - Functional Programming
     
