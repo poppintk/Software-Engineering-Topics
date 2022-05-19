@@ -16,7 +16,9 @@ Reactive Programming
     
     - Observable + Subscriber + Subscription (Webflux moving away from Thread per Request Model)
     
-    - Asynchronous and Non Blocking (Note: if your application has blocking logic, it will wait for blocking logic to be executed, so don't mix iwth blocking logic with Reactor together)
+    - Asynchronous and Non Blocking 
+        - (Note: if your application has blocking logic, it will wait for blocking logic to be executed, so don't mix iwth blocking logic with Reactor together)
+        - Reactive runtimes typically use a limited number of threads that match the number of CPU cores
     
     - Functional Programming
     
