@@ -35,12 +35,13 @@ Payment DB <--- |Payment Service|  ----------->   |Payment Executor|------------
 
 5. The payment executor calls an external PSP to finish the credit card payment.
   1) call PSP create payment with nouce(UUID, payment_order_id for "exactly once" registration),This registration request contains payment information like amount, currency, expireation data.
-    Note: no seller account is needed here, because we know seller now is company account
+    Note: no seller account(target account) is needed here, because we know seller now is company account(transfer money from buyer to company account)
     
   2) return payment token(UUID from PSP that uniquely identifies the payment registration, we can examine the payment registration and the payment execution status later using this token)
   3) payment service stores the token in the database 
-  4) calling the PSP-hosted payment page -> display a PSP-hosed payment page with token in step 3)
-  - 
+  4) calling the PSP-hosted payment page -> display a PSP-hosed payment page with the token from step 3 and redirect URL, PSP's javascript code will use this token to get detail information like how much money going to collect from buyer)
+  5) Asynchronously, PSP calls payment service with payment status via a webhook. The webhook is an URL on the payment system side that was registered with PSP during the initial setup with PSP.
+  afterwards, payment system update pyment_order_status in database. 
 
 6. After the payment executor has successfully executed the payment, the payment service will update the wallet to record how much money a given seller has.
 
