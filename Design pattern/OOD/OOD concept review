@@ -19,6 +19,7 @@ Best practice:
   using the receipt class!
 - When we have function return void, How do we determine the running state? e.g. how to know your program run successfully? like having some feedback?
  Exception: note that, Exception handling is better than using the status code in OOD 
+- function naming should be more concreted like setAvailable + setUnavaialble is better than changeStatus()
   
   
 S.O.L.I.D
