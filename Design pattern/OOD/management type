@@ -7,15 +7,20 @@ What are some of management type OOD question?
   - Hotel
   
 Clarify
-  What: other than considering noun,
-  should also consider question from administrator perspective, like what are target we're going to manage?
-  i.g. parking lot system -> parking lot AND vehicle
-  How: asking potential rules
-  
+  What: for management type first asking question from administrator perspective, 
+  like what are target we're going to manage? (This is way to get input/output for management type question)
+  e.g. 
+  parking lot system -> parking lot AND vehicle (vehicle<input> -> Parking lot System -> target parking lot<output>)
+  Restaurant system -> Party/Table (request<input> -> Restaurant system -> Party/Table<output>)
+
+  How: for management type, following below pattern
+    Reserve
+    Service
+    Payment
   
 Core object
   consider input and output of xxx management system
-  when define classes mapping, one best practice to follow is that 
+  Note: when define classes mapping, one best practice to follow is that 
   try to avoid inject a Moving object inside a Static object. but how to describe relation between static object and moving object?
   using the receipt class!
   
