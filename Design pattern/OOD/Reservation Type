@@ -1,0 +1,50 @@
+Reservation type is base on the management type
+example could be 
+  Restaurant reservation system
+  Hotel Reservation system
+  Flight/Bus/Train/Movie reservation system
+  Booking system
+  
+Clarify:
+  what: consider what can be reserved? table at time interval, Flight ticket at time interval
+    additional information need to include, flight number, seat number etc
+  
+  How: 
+    Reservation type question following this pattern: Search criteria -> Search() -> List<Result> -> Select() -> Receipt
+    - Search
+    - Select
+    - Cancel
+    
+    Question should ask:
+      1) Search Criteria
+        what criteria need to be included?
+         e.g. A restaurant reservation system
+          - number of people -> Do we allow it to share table if given people is more than the target table capacity
+          - Date -> Do we allow it to reserve a date in a week or month?
+          - time -> Do we allow it include all timing?
+          Assume that no sharing table, any date and any time. 
+            ? findTableReservation(Time timeslot)
+            ? findTableReservation(Time timeslot, numPeople)
+        
+      2) List<Result>
+        what typical result looks like?
+          Two approaches:
+          1) search() return List of <Result>
+            e.g. A restaurant reservation system, Search() return list of timestamp
+            Design: List<Timeslot> findTableReservation(Time timeslot)
+            Not recommend using this approach, because we need to choose a algorithm to find a table!
+           
+          2) after search()
+            - if not reservable, then throw exception/show message
+              Design: Pair<Table, Timeslot> findTableForReservation(Time slot) throws NoTableForReservationException
+            - if reservable, then show confirmation(confirmation here is "select()")
+              Design: void confirmReservation(Pair<Table, Timeslot> reservation)
+                
+
+Core Object
+
+Case
+
+Class
+
+Correctness
