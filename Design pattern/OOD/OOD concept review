@@ -92,11 +92,8 @@ Interface segregation principle: any class should not force it to implement a in
  
  5C's Approach
  Clarify - communicate with peers and ensure the scope of the question is asking about and also to avoid ambiguous
-    What -  
-      1) Starting main object and determining its input object and output object (This is parapration of Core Objects)
-      2) using noun to derive it's attributes.
-    How - 
-      asking potential rules. (This is parapration of use cases) 
+    What -  asking attributes(using noun to derive it's attributes) of main object, input object and output object (This is parapration of Core Objects)
+    How - asking about potential rules. (This is parapration of use cases) 
       e.g. throw your naive solution and see the feedback. Starting asking feature can support e.g. reserve, service and payment
     Who - optional
     
