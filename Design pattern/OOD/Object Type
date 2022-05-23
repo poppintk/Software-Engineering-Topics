@@ -1,6 +1,6 @@
 Design a actual Object
 some of examples:
-  Vending machine
+  Vending machine/ATM machine
   Jukebox
   CD Player
   Coffee maker
@@ -32,3 +32,60 @@ Clarify
       - how to select item to purchase
         selectitem(?)
       
+      
+      
+Use cases:
+  - Select item
+    Vending machine takes an external request("A1"), return the price of that item
+    Design: float selectItem(String selection) 
+  - Insert coin
+    Design: insertCoins(List<Coin> coins)
+  - Execute transaction
+    Design: Pair<Item, List<Coins>> executeTransaction
+    - get the current selected item
+    - compare the item price and inserted coins
+    - if not enough money, throw an exception
+    - Else, return the item purchased
+    - refund if any
+  - Cancel transaction
+  - Refill items
+    Design: void refillitems(List<Item> items)
+  
+Good practice: when there is nested data structure, bring additional class to encasulate the nested structure
+example: 
+class Stock {
+  private HashMap<ItemInfo, List<Item>> stock;
+  public void add(Item item) {
+    ItemInfo info = item.getInfo();
+    List<Item> itemsInStock = stock.get(info);
+    itemsInStock.add(item);
+    stock.put(info, itemsInStock);
+  }
+}
+
+Stock = new Stock();
+public void refillItem(List<Item> items) {
+  for (Item item: items) {
+    stock.add(item);
+  }
+}
+  
+
+In vending machine 
+  base on use case :
+    - selectitems
+    - insertCoins
+    - executeTransaction
+    - cancelTransaction
+    
+  we have multiple status  
+  - HAS_SELECTED
+  - NO_SELECTED
+  - COINS_INSERTED
+  - NO_COIN
+  - SOLD
+  - SOLD_OUT
+  
+  Note: above use cases will result in state change, e.g. after execute selectItems NO_SELECT -> HAS_SELECTED
+  This is perfect case for applying "State Pattern"
+  
