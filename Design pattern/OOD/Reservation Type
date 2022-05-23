@@ -1,9 +1,9 @@
 Reservation type is base on the management type
 example could be 
   Restaurant reservation system
-  Hotel Reservation system
+  Hotel Reservation system(LRU cache can be applied)
   Flight/Bus/Train/Movie reservation system
-  Booking system
+  Booking system (do another search() base on first search() result)
   
 Clarify:
   what: consider what can be reserved? table at given time interval, Flight ticket at given time interval
