@@ -88,4 +88,25 @@ In vending machine
   
   Note: above use cases will result in state change, e.g. after execute selectItems NO_SELECT -> HAS_SELECTED
   This is perfect case for applying "State Pattern" (ATM machine/Vending machine is perfect case for using State pattern)
-  
+
+--------------------------------------------
+
+Coffee Maker
+
+Clarify
+  What:
+    input object: coffee bean, coffee powder
+
+    output object: coffee
+      Expresso
+    core object: coffee Maker
+  How
+    What are the functions that coffee maker supports? Assume Brew only
+
+Core Object
+  CoffeePack -> CoffeeMaker -> Expresso
+
+Note: This is perfect case for "Decorator Pattern"
+
+---------------------------------------------------------
+
