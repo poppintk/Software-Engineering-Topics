@@ -5,8 +5,8 @@ public class Test {
     public static void main(String[] args){
         Beverage beverage = new Espresso();
 
-        beverage = new Mocha(beverage);
-        beverage = new Mocha(beverage);
+        beverage = new Mocha(beverage); // Note: Mocha and Soy are concrete decorator type, 
+        beverage = new Mocha(beverage); // Decorator is abstracted class has internal member variable of Beverage(target to be decorated) which also inherited Beverage type 
         beverage = new Soy(beverage);
 
         System.out.println(beverage.getDescription() + " cost:$" + beverage.cost());
