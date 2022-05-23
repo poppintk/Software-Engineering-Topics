@@ -87,5 +87,5 @@ In vending machine
   - SOLD_OUT
   
   Note: above use cases will result in state change, e.g. after execute selectItems NO_SELECT -> HAS_SELECTED
-  This is perfect case for applying "State Pattern"
+  This is perfect case for applying "State Pattern" (ATM machine/Vending machine is perfect case for using State pattern)
   
