@@ -109,4 +109,25 @@ Core Object
 Note: This is perfect case for "Decorator Pattern"
 
 ---------------------------------------------------------
+Kindle
+Clarify
+  What:
+    Book
+      what format support?
+    Kindle
+      different size
+      
+  How:
+    support upload book, download book, read book and remove book
+    
+    
+Challenge
+  How read book works given that books support different format, like PDF 
+  Simple Factory design pattern, readerFactory(Book book) base on the format of book generate different Reader to display
+  Facotry Pattern
+    - Simple Factory
+    - Factory Method
+    - Abstract Factory
 
+  
+    
