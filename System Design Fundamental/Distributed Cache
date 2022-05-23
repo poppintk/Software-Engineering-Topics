@@ -5,6 +5,13 @@ Use case:
 - Scale read for syste
 - protection for DB in high QPS scenrio like seckill system, because DB normally support lower QPS than cache 
 
+Basic:
+   Cache Evition
+      decide what to recycle the cache when cache is full
+      - LRU
+      - FIFO
+      - LFU
+      
 Common cache system issues:
    Cache read issue:
       1) Cache Avalanche
@@ -21,10 +28,12 @@ Common cache system issues:
   
 
 Cache Race Condition under one DB and one Cache:
+  Write through: cache update at db write operation 
+  Lazy loading: cache update at db read operation
   
   User -----> Cache ----> DB
   
-  Double write: when data is updated, write to update both DB and cache. (Note: operation order matters)
+  Write Through/Double write: when data is updated, write to update both DB and cache. (Note: operation order matters)
       example:
          user1 -> writeDB |                             |-> write cache // Cache outdated
          user2 ->           | writeDB  -> write cache   |
@@ -35,7 +44,7 @@ Cache Race Condition under one DB and one Cache:
          user2 ->                     |   writeDB    ->         delete cache   |
          user3 ->                           | read cache  not found -> read db | -> update cache
    
-   under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
+   Note: under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
    
    
    - what if system requires strong consistency? (depends on senerio)
@@ -100,7 +109,7 @@ Distributed environment
          2) create a global unique instance
             - we could use some consensus algorithm to ensure instance act like one machine
          
-   Race Condition/concurrent issue
+   Race Condition/concurrent issue(occurs on update cache, as example above)
       case that under high concurrency (multiple request in any order), the ouput is randomly generated depends the which
       operation go in first (like Redis for example, GET and INCRE are separate operations if not using LUA script then item could be not increment appropriate)
       
