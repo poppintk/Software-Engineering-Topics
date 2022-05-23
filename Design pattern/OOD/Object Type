@@ -1,0 +1,34 @@
+Design a actual Object
+some of examples:
+  Vending machine
+  Jukebox
+  CD Player
+  Coffee maker
+  Kindle
+
+
+Clarify
+  what: consider the attribute on core object, input object and output object
+ 
+----------------------------------
+Vending Machine
+Clarify
+  What: 
+    input object: coins/payment
+      - what payments are supported? (Strategy Pattern can be applied)
+        - coin/paper money: know how much take in and return remining
+        - credit card: deducted money from credit card
+      
+    output object: product/item
+      - what item does this vending machine sell? (We interested in figure out item category/class type)
+      - What happen when an item sold out? (might need to support refill use case, throw ItemSoldOutException)
+      
+    core object: vending machine
+      - remote controll
+ 
+  How:
+    what feature vending machine support? 
+      - refill
+      - how to select item to purchase
+        selectitem(?)
+      
