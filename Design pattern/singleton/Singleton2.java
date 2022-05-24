@@ -9,7 +9,7 @@ public class Singleton2 {
 
     private volatile static Singleton2 uniqueInstance; // Note: volatile keyword is used
 
-    private Singleton2(){}
+    private Singleton2(){} // Note: private constructor
 
     public static Singleton2 getInstance(){
         //检查实例，如果不存在，就进入同步区块
