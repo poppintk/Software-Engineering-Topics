@@ -2,12 +2,12 @@
 Use case:
 - System requires low real-time and allow eventually consistent
 - Read more and write less
-- Scale read for syste
-- protection for DB in high QPS scenrio like seckill system, because DB normally support lower QPS than cache 
+- Scale read for system
+- protection for DB in high QPS scenrio like seckill system, because DB normally support lower QPS than the cache 
 
 Basic:
    Cache Evition
-      decide what to recycle the cache when cache is full
+      decide what to recycle in the cache when cache is full
       - LRU
       - FIFO
       - LFU
@@ -20,7 +20,7 @@ Common cache system issues(using cache as protection for high QPS for DB):
 
       2) Cache Penetration
         User requests the key does not exist on the DB, so the key must not in the cache as well, So all the requests go to DB => DB down
-        Solution: 1)Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
+        Solution: 1) Bloom Filter 2) Allowing null as value to the cache key and also setup TTL.     
 
       3) Hotspot Invalid
         There are hot data that User keep requesting to the cache(large QPS), right at the point of time TTL get expired, Soall requests go to DB => DB down 
@@ -28,8 +28,8 @@ Common cache system issues(using cache as protection for high QPS for DB):
   
 
 Cache Race Condition under one DB and one Cache:
-  Write through: cache update at db write operation 
-  Lazy loading: cache update at db read operation
+  Write through: cache updated at db write operation 
+  Lazy loading: cache updated at db read operation
   
   User -----> Cache ----> DB
   
@@ -44,7 +44,7 @@ Cache Race Condition under one DB and one Cache:
          user2 ->                     |   writeDB    ->         delete cache   |
          user3 ->                           | read cache  not found -> read db | -> update cache
    
-   Note: under high concurrency senerio both cases will cause data inconsistency. adding TTL to make it eventually consistent.
+   Note: under high concurrency senerio both cases will cause data inconsistency. but adding TTL to make it eventually consistent.
    
    
    - what if system requires strong consistency? (depends on senerio)
