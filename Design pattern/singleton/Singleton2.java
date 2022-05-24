@@ -7,7 +7,7 @@ package singleton;
  */
 public class Singleton2 {
 
-    private volatile static Singleton2 uniqueInstance;
+    private volatile static Singleton2 uniqueInstance; // Note: volatile keyword is used
 
     private Singleton2(){}
 
