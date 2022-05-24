@@ -22,6 +22,7 @@ public class Test {
         /**
          * State pattern
          * 状态模式： 允许对象在内部状态改变时改变它的行为， 对象看起来好像修改来它的类
+         * Precondition when apply this pattern: 1) each of use case will result in state change 2) state change will impact on use case 
          */
     }
 }
