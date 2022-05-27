@@ -3,7 +3,6 @@ package singleton;
 /**
  * 双重检查锁
  * 如果性能是你关系的重点，那么这个做法可以帮你大大的减少getInstance()的时间耗费
- * 但是不适合java 1.4 之前的版本
  */
 public class Singleton2 {
 
