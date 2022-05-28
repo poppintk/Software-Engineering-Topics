@@ -30,6 +30,16 @@ Traditional way
             There is no issue with scaling because token is stored on the client side. Token is solution trade Running time instead of space
     
     
+    
+
+Oauth2 flow for web server:
+   1) client browser click on the Oauth2 login icon, Request to third party for the login with redirect URL(for web server)
+   2) Users input their third party login
+   3) After authenticate third party authorization server redirect back to the URL(web server) with access token(code)
+   4) The web server now can call POST request ask for public protected user information. Note the POST body requires access token(code) just return
+   CLIENT_ID, CLIENT_KEY those can be access from the third party
+   5) public protected information is returned
+   
 Oauth social (token base)
     social user register & login (Note: Oauth doesn't require register)
     implement the success callback for specific social auth in the controller i.e.(@GetMapping("/oauth2.0/google/success"))
@@ -37,5 +47,11 @@ Oauth social (token base)
     Get the social user info from the social auth payload -> member service: 
     1) if already have the user info in the database then update expiryTime and accessToken and return expiryTime and accessToken  
     2) if first time user, then store social user information into database including accessToken andexpiryTime
+      
+ SMS API protection:
+      Why? public API need be called too often
+      - one workable solution is use Redis to save key-value pair key is the phone number and the value is SMS code + current system time
+      - Rate limiter can also work
+      
 
 
