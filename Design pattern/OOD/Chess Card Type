@@ -1,0 +1,59 @@
+Example:
+  Chess game, Go game
+  Tic Tac Toe
+  Black Jack
+  
+Characteristic:
+  - Player
+  - Rule
+  - Win/Loss
+  - Score
+
+Terminology
+  - Board
+  - Suit
+  - Hand: cards on hand
+ 
+use case:
+  - Initialization
+  - Play
+  - Win/Lose check(on each round or each movement)
+  
+
+Clarify:
+  What: in chess card type, asking question no longer base on input/output
+  instead, asking question about Player, Rule, Win/Loss and Score
+  
+-----------------------
+Tic Tac Toe
+Clarify:
+  - Player
+    - Do we need to keep tracking of score on each player?
+      When do we need player class? Tic Tac Toe doesn't need player class. Whether or not need player classs depends on whether or not each player support score feature
+  - Rules
+    - Who take first move?
+    - what side is the board?
+  - Win
+    - How to determine win condition
+  - Score
+    no score supported
+    
+Core Object
+  - TicTacToe
+  - Board
+  
+  
+Use Case
+  - Initialization board
+  - Play
+    - Make move
+    - Change player
+    - Win/Lose check
+      check if "X" win/"O" win/game tie OR the board is full(BoardFullException)
+
+Class
+   
+  
+---------------------------------------------------------------------
+
+
