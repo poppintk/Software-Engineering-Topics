@@ -6,7 +6,7 @@ Example:
 Characteristic:
   - Player
   - Rule
-  - Win/Loss
+  - Win/Loss/Tie
   - Score
 
 Terminology
@@ -49,11 +49,40 @@ Use Case
     - Make move
     - Change player
     - Win/Lose check
-      check if "X" win/"O" win/game tie OR the board is full(BoardFullException)
-
-Class
-   
+      check if "X" win/"O" win/game tie OR the board is full(BoardFullException)   
   
 ---------------------------------------------------------------------
+Chinese Chess
+
+Clarify:
+  Player:
+    Do we need to supoort matching room rule?
+    - score
+  
+  Rules:
+    NOTE: game card type, don't expect to know exactly rule is. just mention throw the InvalidMoveException. Avoid to go into detail implementation of algorithm
+    - timing rule
+      Do we need to support time limitation for palyer to make a movement
+  
+  Win/Loss/Tie Condition:
+    How to determine a player is win?
+    How to determine a game is tie?
+      - solution1: over certain number of steps then game is tie
+      - solution2: let compute decide if all player is repeating the step then game is tie
+      - solution3: if all players agree to game tie then game is t      
+  Score
+    - win +1 score
+    - lose -1 score
+    - tie 0 score
+    
+    
+Use case
+  - join table (For online game)
+  - initialization
+    - set up game
+  - Win/Lose/Tie check
+    - check for win
+    - increase steps
+    - calculate points
 
 
