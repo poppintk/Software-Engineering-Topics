@@ -25,7 +25,7 @@ Clarify:
   instead, asking question about Player, Rule, Win/Loss and Score
   
 -----------------------
-Tic Tac Toe
+Tic Tac Toe (Chess type)
 Clarify:
   - Player
     - Do we need to keep tracking of score on each player?
@@ -52,7 +52,7 @@ Use Case
       check if "X" win/"O" win/game tie OR the board is full(BoardFullException)   
   
 ---------------------------------------------------------------------
-Chinese Chess
+Chinese Chess (Chess Type)
 
 Clarify:
   Player:
@@ -77,12 +77,58 @@ Clarify:
     
     
 Use case
-  - join table (For online game)
   - initialization
+    - join table (For online game)
     - set up game
   - Win/Lose/Tie check
     - check for win
     - increase steps
     - calculate points
 
-
+-----------------------------------------------------------------------------------------------------------------------
+Black Jack (Card Type, Note: Card Type is only need to consider player action e.g. Player can add card to his/her hand, Place Bets)
+  - 5 players
+  - 1 dealer
+  - initialize 2 cards
+  - initialize bets
+  - Rule at different region might be slightly different
+    - 2 - 10 worth 2 - 10 score
+    - Jack/Queen/King = 10 score
+    - A = 1 or 10 score
+    - It is game between dealer and each player
+    - Whoever gets 21 score win the bet against dealer. The new card will be draw to player and dealer, whoever gets point more than 21 who lose.OR point greater gets win
+    
+Clarify
+  What
+    - player
+      - Is there a fixed dealer or players take turn to become dealer?
+    - rule
+      - What if we run out of cards?
+      - Can dealer run out of bets?
+    - score
+      - How many initial bets does a player have?
+    
+Core Object
+  Terminology
+    - Player
+    - Deck (Desk/Table)
+    - Dealer
+    - Hand
+    - Card
+    - Suit
+    
+Use case
+  - Initialization
+    - join table
+    - Place bet
+    - get initial cards
+  - Play
+    - Deal (asking for new card)
+    - Increase bet
+    - Stop dealing
+  - Win/Lose/Tie check
+    - compare score
+    - win/lose bets
+    
+  - Note: need to understand Shuffle algorithm in card game
+  
