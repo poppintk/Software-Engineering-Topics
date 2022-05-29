@@ -86,7 +86,7 @@ Use case
     - calculate points
 
 -----------------------------------------------------------------------------------------------------------------------
-Black Jack (Card Type, Note: Card Type is only need to consider player action e.g. Player can add card to his/her hand, Place Bets)
+Black Jack (Card Type)
   - 5 players
   - 1 dealer
   - initialize 2 cards
@@ -99,7 +99,7 @@ Black Jack (Card Type, Note: Card Type is only need to consider player action e.
     - Whoever gets 21 score win the bet against dealer. The new card will be draw to player and dealer, whoever gets point more than 21 who lose.OR point greater gets win
     
 Clarify
-  What
+  What (Note: Card Type is only need to consider from player perspective e.g. Player can add card to his/her hand, Place Bets)
     - player
       - Is there a fixed dealer or players take turn to become dealer?
     - rule
