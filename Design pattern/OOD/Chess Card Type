@@ -3,12 +3,6 @@ Example:
   Tic Tac Toe
   Black Jack
   
-Characteristic:
-  - Player
-  - Rule
-  - Win/Loss/Tie
-  - Score
-
 Terminology
   - Board
   - Suit
@@ -23,6 +17,10 @@ use case:
 Clarify:
   What: in chess card type, asking question no longer base on input/output
   instead, asking question about Player, Rule, Win/Loss and Score
+  - Player
+  - Rule
+  - Win/Loss/Tie
+  - Score
   
 -----------------------
 Tic Tac Toe (Chess type)
