@@ -32,7 +32,7 @@ Clarify:
       When do we need player class? Tic Tac Toe doesn't need player class. Whether or not need player classs depends on whether or not each player support score feature
   - Rules
     - Who take first move?
-    - what side is the board?
+    - what size is the board?
   - Win
     - How to determine win condition
   - Score
@@ -65,10 +65,10 @@ Clarify:
       Do we need to support time limitation for palyer to make a movement
   
   Win/Loss/Tie Condition:
-    How to determine a player is win?
+    How to determine a player win?
     How to determine a game is tie?
       - solution1: over certain number of steps then game is tie
-      - solution2: let compute decide if all player is repeating the step then game is tie
+      - solution2: let computer decide if all players are repeating the step then game is tie
       - solution3: if all players agree to game tie then game is t      
   Score
     - win +1 score
@@ -80,10 +80,12 @@ Use case
   - initialization
     - join table (For online game)
     - set up game
-  - Win/Lose/Tie check
-    - check for win
+  - play 
+    - make move
+    - change player
+    - Win/Lose/Tie checked
     - increase steps
-    - calculate points
+    - calculate points(win/lose)
 
 -----------------------------------------------------------------------------------------------------------------------
 Black Jack (Card Type)
