@@ -29,3 +29,4 @@ ms = millisencond
 | Send packet California-> Netherlands -> California | 150 ms    |
 |----------------------------------------------------|-----------|
 
+Note: compress data before sending it over the internet if possible
