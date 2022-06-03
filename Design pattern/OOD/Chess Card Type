@@ -15,7 +15,7 @@ use case:
   
 
 Clarify:
-  What: in chess card type, asking question no longer base on input/output
+  What: in the chess card type, asking question no longer base on input/output
   instead, asking question about Player, Rule, Win/Loss and Score
   - Player
   - Rule
