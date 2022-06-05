@@ -1,4 +1,4 @@
-1) What is Idempotence?
+1) What is Idempotence/exactly once/at most once?
 one or more request to API and generate the same output. For example users click on payment, no matter how many times users clicks on it and it will not cause double pay.
 * Retry and distributed system is key factor cause the Idemopotence， Single service due to network delay could also possible end up processing twice
 
