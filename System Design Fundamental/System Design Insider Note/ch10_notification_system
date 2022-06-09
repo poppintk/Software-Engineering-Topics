@@ -12,3 +12,43 @@ Step 1 - Understand the problem and establish design scope
   Interviewer: 10 million mobile push notifications, 1 million SMS messages, and 5 million emails.
   
 Step 2 - Propose high-level design and get buy-in
+  - Different types of notifications
+    - Phone
+      - IOS push notification
+        Provider (Notification system) -> APNs(Apple Push Notification Service) -> IOS Device
+          - Device token: This is a unique identifier used for sending push notifications.
+          - Notification's Playload (what to send) 
+      - Android push notification
+        Provider -> FCM (Firebase Cloud Messaging) -> Android Device
+    - Email
+      Provider -> Email Service -> Email
+    - SMS message
+      Provider -> SMS Service -> SMS
+  - Contact info gathering flow
+    To send notifications, we need device tokens, phone number, or email address. we can have those information when user installs our app or signs up for the first time,
+    API Servers collect user information and store it in the database
+    
+    User ---install app or signup---> Load balancer -----> API servers ----store contact info ----> DB 
+    ______________  ____________________   
+    |   User     |  |   Device         |
+    --------------  --------------------
+    | user_id    |  | id               |
+    --------------  --------------------
+    | email      |  | device_token     |
+    --------------  --------------------
+    |country_code|  | user_id          |
+    --------------  --------------------
+    |phone_number|  | last_logged_in_at|
+    --------------  --------------------
+    | created_at |  
+    -------------- 
+  - Notification sending/receiving flow
+  
+    Services ---------> Notification System -------------> Third Party Services
+    micro-service ---->                                             APNs    ----------> IOS
+    cron job      ---->                                             FCM     ----------> Android
+    triggers events -->                                             SMS     ----------> SMS
+                                                                     Email Service ---> Email
+ 
+    trigger events like a billing service sends emails to remind customers of their due payment
+  
