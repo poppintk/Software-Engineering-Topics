@@ -112,6 +112,7 @@ Kafka
    
    Kafka require third party tool for the service discovery, recommmended Zookeeper
    
+   Kafka guarrantee the order delivery within a same paritition
    
    Why Kafka allows high throughput?
       - zero copy
