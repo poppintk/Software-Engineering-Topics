@@ -1,8 +1,8 @@
 Message Queue:
 use case:
-   1) asyc task
-   2) decoupling between services
-   3) controll the trafic on peak time, in order to protect downstream services
+   1) Asyc communitation: Producer does need to wait for consumer to finish consuming
+   2) Decoupling: decoupling between components so that they can be updated independently
+   3) Controll the trafic on peak time, in order to protect downstream services
 concepts:
    1) message broker
    2) destination
