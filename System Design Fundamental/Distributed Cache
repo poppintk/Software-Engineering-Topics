@@ -117,7 +117,5 @@ Distributed environment
          - Distributed lock -> low performance
          - Distributed Transaction
       
-   Distributed transaction issue
+   Distributed transaction
       Under distributed environment, one operation contains multiple DB objects
-       Solutions:
-         - Distributed Transaction
