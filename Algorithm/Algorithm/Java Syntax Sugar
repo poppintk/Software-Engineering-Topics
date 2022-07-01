@@ -7,13 +7,12 @@
   
   PriorityQueue<Integer> queue1 new PriorityQueue<Integer>(3,(a, b) -> a - b);
   
+---------------------------------------------------------
+Sort API
+ArrayList uses Collections.sort()
+int[] uses Arrays.sort()
 
-
-a.compareTo(b) 
-// return -1 if a less than b
-// return 0 if a equals to b
-// return 1 if a is greater than b
-
+------------------------------------------------------------
 
 public int compare(final Person a, Person b) {
  //TODO return 1 if b should be before a 
