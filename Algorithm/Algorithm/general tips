@@ -28,15 +28,11 @@ ask some example to start with
 compute product init 1
 compute sum init 0
 ------------------------------------------------------------
-Note1: difference property: rightIndex - leftIndex = diffIndex,
-this diffIndex is 1 based(start from 1...)
-if we want to get length = diffIndex + 1
-if left and right are not index base, left - right = diff
-if we want to get length = diff + 1
-length => 1 based 
-
-rightindex - leftindex + 1 = length;
+here length refers to the length between right and left
+length = rightindex - leftindex + 1;
 RightIndex = leftIndex - 1 + lenghth;
+
+length = right length - left length + 1
 
 TwoD array's coordination into oneD array : k = i * cols + j
 OneD to twoD: k % cols = j, k / cols = i
