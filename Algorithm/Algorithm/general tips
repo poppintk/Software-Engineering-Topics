@@ -1,10 +1,32 @@
+Clairify:
+    1) clairify Function Sinature. 
+        - function input
+        - function output
+        - input is null or empty
+    2) Abitrary word
+        LinkedList
+            - single LinkedList/double LinkedList
+            - contains Cycle?
+        Tree:
+            - Binary Tree? BST ? N-narry Tree
+            - Does node contains pointer to parent
+        Node:
+            - what data type in the Node
+            
+        Sorted: descending/ascending order
+        Reverse: from the head to tail or partially reverse
+        same/Equal: value same or reference same
+        Content Same/Equal: 
+            1) case sensitive: ABC = abc
+            2) ordering: abc = cba
+            3) space: one space = two space
+            4) duplicate: ab = aabb
+
+ask some example to start with
+
+------------------------------------------------------------
 compute product init 1
 compute sum init 0
------------------------------------------------------------
-caution:
-    1) output overflow
-    2) duplicated input like input Array [1,1,1,1,1]
-    3) corner case, like input is null 
 ------------------------------------------------------------
 Note1: difference property: rightIndex - leftIndex = diffIndex,
 this diffIndex is 1 based(start from 1...)
