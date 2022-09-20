@@ -104,7 +104,7 @@ General issues on MQ?
 Kafka
    Broker: one kafka server is one broker
    Topic: group of partition (producer can publish to topic and consumer subscribe to it will receive msg)
-   Partition: a Topic break down into more of partitions
+   Partition: a Topic break down into more of partitions, partition could be distributed in different broker
    Segment: a partition break down into more of segments
    Offset: the sequential id in the partition,  each message in the queue has a sequential id(offset)
    Consumer Group: group of consumers, consumers in a same group can only fetch data from a topic exactly once (there is no overlaping in fetched data).But multiple groups can fetch to same topic at the same time.
