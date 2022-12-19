@@ -56,7 +56,7 @@ Thread
   }
   
   4) ThreadExecutor 
-  Why thread pool? to reduce the overhead for creating a new thread
+  Why thread pool? to reduce the overhead for creating&destorying a new thread
   
   
   ExecutorService service = Executors.newFixedThreadPool(10);
@@ -90,6 +90,12 @@ Executors.newScheduledThreadPool() creating fixed size of threads and it enable 
 
 CompletableFuture
 
+  - 4 static methods
+    - runAsync
+    - supplyAsync
+    
+
+
   ExecutorService executor = Executors.newFixedThreadPool(10);
   // runAsync -> not require return value
   CompletableFuture.runAsync(() -> {
@@ -115,3 +121,13 @@ CompletableFuture
   Multiple tasks at same time
     allOf() trigger when all of tasks are finished
     anyOf() trigger when either one of task is done 
+    
+    
+Trick for functional interface in common
+name        method name    parameters        return value
+Runable     run            No                 No
+Function    apply          1 paramter         Yes
+Consume     accept         1 paramter         No
+Supplier    get            No                 Yes
+BiConsumer  accept         2 parameters       No
+
