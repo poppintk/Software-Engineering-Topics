@@ -24,7 +24,7 @@ Thread
       }
     }
   
-  2) Implement Runable
+  2) Implement Runable, it doesn't return value
   
   public static void main(String[] args) {
       Runable01 runable01 = new Runable01();
@@ -38,7 +38,7 @@ Thread
     }
   }
   
-  3) Callable
+  3) Callable, it returns value
   
   public static void main(String[] args) {
       FutureTask<Integer> futureTask = new FutureTask<>(new Callable01());
@@ -56,10 +56,13 @@ Thread
   }
   
   4) ThreadExecutor 
+  Why thread pool? to reduce the overhead for creating a new thread
+  
+  
   ExecutorService service = Executors.newFixedThreadPool(10);
   service.execute(new Runable01())
   
-  7 parameters
+  7 parameters of "ThreadPoolExecutor" 
   corePoolSize - base number of threads
   maximumPoolSize - maximum number of threads
   keepAliveTime - when the number of threads is greater than the core, this is the maximum time that excess idle threads will wait for new tasks before terminating
@@ -82,6 +85,8 @@ Q: one ThreadExecutor, coreSize: 7, maxSize:20 and queue: 50, reject Policy: Abo
   
 Executors.newCachedThreadPool() core is 0 and all threads are recyclable
 Executors.newFixedThreadPool() fixed size of threadPool
+Executors.newSingleThreadExecutor() only one thread in threadpool
+Executors.newScheduledThreadPool() creating fixed size of threads and it enable executing task at scheduled time 
 
 CompletableFuture
 
