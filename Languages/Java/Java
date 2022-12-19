@@ -111,7 +111,7 @@ CompletableFuture
     return 1;
   });
 
-  Integer return = future.get();
+  Integer return = future.get(); // NOTE: get() vs join(), get() requires throw compile time exception(need to try catch mannually) and join() will not throw compile time exception
 
   Sequantial order
     thenApply() -> have return value and have access to previous return value
