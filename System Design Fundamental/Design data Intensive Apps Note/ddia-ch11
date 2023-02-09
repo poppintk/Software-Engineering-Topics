@@ -1,97 +1,20 @@
-Streaming System
-  - What?
-    - Producuer/publisher/sender send event to consumer/buscribers/recipients
-    - input source is boudless
-    - Asynchronours 
-    
-    
+Message System : producer push messages and consumer receive messages
 
-#How to deliever streaming data
-
-Message System
-  use cases:
-    - weather sensor peridically measurement
-    - monitoring system 
-    - user actions(order checkout application)
-
-  Issues:
-    1) if producer sending message faster than consumers can process?
-      Solution:
-        - drop message
-        - put on the buffer queue/write to local disk(decrease throughput)
-        - backpressure(flow control, blocking producer to send more of message)
-
-
-    2) Node(MQ) is unavailble
-        - durable write to disk or/and relicas
-      
-
-  Note that, not all system requires reliable MQ, for example weather sensor measurement data is not so important for every data to be sent
-
-
-Message Broker/Message queue
+1) Producer publish messages faster than consumer can handle?
+  a) messages are dropped, message lost
+  b) message are cached on memory(backpressure) then persistence them into disk (it will slow down the throughput of message system)
   
+2) if Message System is down
+  a) persistence messages into disk
 
-Message Broker vs Database
-  - when message gets deliveried, msg will be deleted
-  - database supports index and message queue only support match topic or subscribed subset
 
+Consume Data from the queue
+  a) load balance: rotate all consumers to consume data
+  b) fan-out: the same message will broadcast to all its consumers
   
-Multiple consumers
-  1) load balance
-    each message is load balacner to ONE of consumers.
-    if there are dependent relations existing in events, then load balance might be issue. because due to crash on one of consumer the message will re-send to other consumer
-    this will break the original sequence.
+Prevent the data lost
+  a) acknowledgement (RabbitMQ)
+    as long as message is used by its consumer, then consumer will mannually ack the particular message, as the result the message will be deleted from the queue
+    NOTE: this mechanism will break sequence that message consumed, due to the one of mesages is retry(unack due to exception)
     
     
-  2) fan-out
-    each message is delivered to all its consumers
-    
-  Note: we can combine load balance and fan-out 
-  
-Confirm and Re-send 
-  - consumer could be unavailable any time. MQ use the acknowledgments(consumer must tell the MQ message is processed sucessfully)
-  - when combineing with load balance on consumer. re-send behaviour could end up consumer consumer not consume events in original sequence that events produced
-
-
-Partition logs
-  log-baseed message brokers(Kafka)
-    each partition on different machine and each partition has it's log
-    a topic is group of partition with same kinds of message
-    each message within the partition has mononic offset in the log (therefore. the message is sequence within a partition)
-    
-    
-  log-based message brokers VS JMS/AMQP
-    AMQP: after ackownledge -> message is deleted
-    Log-based: after ackownledge -> offset is increased by one
-    
-    When message sequence is unimportant and allow to parallel processing USE JMS/AMQP
-    When required high throughput and process quickly and event order matters, USE log-based message broker
-    
-  Load Balance also work
-    one consumer on odd offset
-    and another consumer on even offset 
-    
-    
-    
-  Consumer offset
-    in log-based MQ, when message is consumed the message is not deleted, instead, consumer will increase its offset number
-    all offset less then the consumer current offset => message processed
-    
-    if a consumer is unavailable then MQ will re-send to another consumer and new consumer will consumer the data from last offset.
-    if other consumer already consume the data but not yet update to broker. it could end up the double process
-    
-    
-  disk consumption
-    in log-base MQ, use the circular buffer, so those log data will be recycle if out of the disk space.
-    example 6TB disk space, throughput is 150MB/s. After 11 hours it will be full.
-    
-    
-    
-When consumer can not catch up with producer
-  
-
-
-  
-
-  
