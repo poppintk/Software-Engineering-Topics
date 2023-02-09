@@ -22,3 +22,9 @@ Log-based message brokers: Kafka
 Topic contains more of Partitions
 partition has offset and consumer increment offset when data is consumed and producer append the data to the tail of each partition, offset are stored inside the consumer group
 consumer group are group of consumer clients
+
+
+use case:
+  when order sequence is NOT important -> Traditional MQ like RabbitMQ
+  when order sequence is important -> Log-based MQ like Kafka 
+
