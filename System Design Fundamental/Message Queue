@@ -70,17 +70,18 @@ Queue ---> Consumer ack
 
 General issues on MQ?
       1) Message reliable delievery: 
-        a) message sent, but due to network lost
-          - try catch and retry
-          - logging (new table in database for logging)
-          - schedule job resend unsuccessful message
+        a) message sent to downstream, but due to network lost
+          - retry on "fail to send" messages
+          - tracking message via logs and persistence message into disk(can be on database system or RabbitMQ queue)
          b) Message arrive Broker, Broker need to write into disk, but before writting to disk, service down
           - publisher also need callback, after confirm successful then change database message status
          c) Auto-ACK, The consumer received message, but not yet mark ACK, service down
           - Must mannually ACK and after confirming consumed successfully then remove message. if failue then noACK and re-push back to queue
       2) Message duplicated
-        a) The consumer consume message successfully and transaction commited. the machine down right on the ack so that ack not go through. Broker message re-send message
-        from unack status to ready status and send to other consumers
+        a) The consumer consume message successfully and transaction commited(Write operation like POST call to downstream system sent). 
+        the machine down right before the ack so that ack not go through. 
+        Broker message re-send message from unack status to ready status and send to other consumers
+        
         b) message consumed failed but due to retry and double sending message
         soluction: Idempodence
       3) Message Pressure on consumer/subscribe server side
