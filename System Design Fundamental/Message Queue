@@ -92,6 +92,23 @@ General issues on MQ?
       4) Consumer Server might crash if poll too many message to process(beyond its machine limitation)
          Solution: config the prefetch size base on machine capacity 
           
+          
+          
+          
+ Here are some best practices to ensure that messages are not lost:
+- Mark messages as persistent. When publishing a message, set the message's deliveryMode property to 2 to indicate that the message needs to be persistently stored.
+- Configure durable queues. When creating a queue, set the durable property to true to indicate that the queue is durable. This ensures that even if the RabbitMQ service crashes or restarts, the queue will not be lost.
+- Configure durable exchanges. When creating an exchange, set the durable property to true to indicate that the exchange is durable. This ensures that even if the RabbitMQ service crashes or restarts, the exchange will not be lost.
+- Configure backup queues. RabbitMQ allows you to configure backup queues to ensure that messages are not lost. When the main queue fails to handle messages, the messages will be sent to the backup queue to ensure that messages are not lost.
+- Enable message acknowledgement. When consuming messages, enable the message acknowledgement mechanism to ensure that messages have been processed correctly. If message processing fails, the message will be resent to other consumers for processing.
+
+RabbitMQ ensures reliable message delivery through various mechanisms, including:
+- Acknowledgements: RabbitMQ uses a message acknowledgement system to ensure that messages are not lost during transmission. When a consumer receives a message, it sends an acknowledgement back to RabbitMQ, letting it know that the message was received and processed successfully.
+- Message Queuing: RabbitMQ uses message queues to store messages until they can be delivered to the intended recipient. Messages are placed in a queue when they are produced, and they stay in the queue until a consumer retrieves them.
+- Exchanges: RabbitMQ uses exchanges to route messages to the correct queue or queues. Exchanges receive messages from producers and distribute them to the appropriate queue based on routing rules.
+- Persistence: RabbitMQ can store messages on disk to ensure that they are not lost in the event of a failure. By default, RabbitMQ stores messages in memory, but you can configure it to use a durable storage backend to store messages on disk.
+ 
+ 
  How to scale?
    - to scale the throughput for RabbitMQ can use RabbitMq sharding plugin or use nginx to balance load ( scale for throughput)
 
