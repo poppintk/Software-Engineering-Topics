@@ -13,7 +13,7 @@ AMQP(advanced Message Queuing Protocol)
 - Advanced message queue protocol, JMS compatible
 - RabbitMQ is AMQP implementation
 
-RabbitMQ:
+RabbitMQ(by default, RabbitMQ supports push model):
    Message:
       message body: not public accessible
       message head: routing-key, priority, delivery-mode(durable)
