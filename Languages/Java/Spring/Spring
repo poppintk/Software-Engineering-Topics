@@ -10,6 +10,13 @@ Async/Sync VS Blocking/Non-blocking
         Non-Blocking means Callee will return immediately to Caller, Callee will return immediately back to Caller (Callee might be half way on its execution OR not        yet started OR finish execuate its logic)
 
 
+SpringBoot Tomcat server config
+    maxConnection: the number of client requests will be taken by the Tomcat server
+    maxThread: the number of threads that will be asigned to handle the client request
+    acceptCount: when maxConnection is full then client requests will be queued in acceptCount, if acceptCount is full then exceeding requests will be rejected
+
+------------------------------------------------------
+
 
 
 Reactive Programming
