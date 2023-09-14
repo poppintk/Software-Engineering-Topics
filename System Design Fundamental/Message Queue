@@ -93,7 +93,7 @@ General issues on MQ?
       4) Consumer Server might crash if poll too many message to process(beyond its machine limitation)
          Solution: config the prefetch size base on machine capacity 
           
-          
+pattern: eventQueue --exception ocuurs--> retry queue ---max number reached --> Dead letter queue
           
           
  Here are some best practices to ensure that messages are not lost:
